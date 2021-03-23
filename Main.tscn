@@ -1,0 +1,122 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Camera2D.gd" type="Script" id=2]
+[ext_resource path="res://Canvas.gd" type="Script" id=3]
+[ext_resource path="res://Layer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Pencil.gd" type="Script" id=5]
+[ext_resource path="res://PencilButton.gd" type="Script" id=6]
+[ext_resource path="res://ColorPickerButton.gd" type="Script" id=7]
+[ext_resource path="res://Line.gd" type="Script" id=8]
+[ext_resource path="res://LineButton.gd" type="Script" id=9]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 2 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EditPanel" type="Panel" parent="UI"]
+anchor_bottom = 1.0
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/EditPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PencilButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "Pencil"
+script = ExtResource( 6 )
+
+[node name="LineButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 24.0
+margin_right = 100.0
+margin_bottom = 44.0
+text = "Line"
+script = ExtResource( 9 )
+
+[node name="ColorPanel" type="Panel" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+rect_min_size = Vector2( 100, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ColorPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/ColorPanel/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 20.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Canvas" type="TextureRect" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layers" type="Control" parent="Canvas"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layer" parent="Canvas/Layers" instance=ExtResource( 4 )]
+light_mask = -2147483647
+stretch_mode = 3
+
+[node name="PreivewLayer" parent="Canvas/Layers" instance=ExtResource( 4 )]
+light_mask = -2147483647
+stretch_mode = 3
+preview_layer = true
+
+[node name="Tools" type="Control" parent="Canvas"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line" type="Control" parent="Canvas/Tools"]
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pencil" type="Control" parent="Canvas/Tools"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/PencilButton" to="UI/EditPanel/VBoxContainer/PencilButton" method="_on_PencilButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/LineButton" to="UI/EditPanel/VBoxContainer/LineButton" method="_on_LineButton_pressed"]
+[connection signal="color_changed" from="UI/ColorPanel/VBoxContainer/ColorPickerButton" to="UI/ColorPanel/VBoxContainer/ColorPickerButton" method="_on_ColorPickerButton_color_changed"]
+[connection signal="gui_input" from="Canvas/Tools" to="Canvas/Tools" method="_on_Tools_gui_input"]
