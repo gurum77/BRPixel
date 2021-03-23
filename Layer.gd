@@ -38,6 +38,22 @@ func clear(var update=false):
 	if update:
 		update_texture()
 	
+func get_pixel(x, y)->Color:
+	return image.get_pixel(x, y)
+	
+func erase_pixel(point):
+	image.lock()
+	image.set_pixel(point.x, point.y, Color.transparent)
+	image.unlock()
+	update_texture()
+	
+func erase_pixels(points:Array):
+	image.lock()
+	for p in points:
+		image.set_pixel(p.x, p.y, Color.transparent)
+	image.unlock()
+	update_texture()
+	
 func set_pixel_by_current_color(point):
 	image.lock()
 	image.set_pixel(point.x, point.y, StaticData.current_color)

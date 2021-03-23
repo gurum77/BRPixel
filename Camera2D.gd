@@ -2,7 +2,7 @@ extends Camera2D
 
 const MAX_ZOOM_LEVEL = 0.02
 const MIN_ZOOM_LEVEL = 50.0
-const ZOOM_INCREMENT = 0.1
+const ZOOM_INCREMENT = 0.05
 
 signal moved()
 signal zoomed()
@@ -10,6 +10,19 @@ signal zoomed()
 var _current_zoom_level = 1
 var _drag = false
 
+# canvas가 꽉차게 zoom fit을 한다.
+func zoom_fit():
+	set_offset(Vector2(StaticData.canvas_width/2, StaticData.canvas_height/2))
+	var screen_width = get_viewport_rect().size.x
+	var screen_height = get_viewport_rect().size.y
+	var screen_min = min(screen_width, screen_height)
+	var canvas_max = max(StaticData.canvas_width, StaticData.canvas_height)
+	var scale = canvas_max / screen_min
+	# 여백의 미(10%)
+	_current_zoom_level = scale + scale / 10
+	set_zoom(Vector2(_current_zoom_level, _current_zoom_level))
+	
+	
 func _input(event):
 	if event.is_action_pressed("cam_drag"):
 		_drag = true

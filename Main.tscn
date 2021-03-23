@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -9,16 +9,35 @@
 [ext_resource path="res://ColorPickerButton.gd" type="Script" id=7]
 [ext_resource path="res://Line.gd" type="Script" id=8]
 [ext_resource path="res://LineButton.gd" type="Script" id=9]
+[ext_resource path="res://Rectangle.gd" type="Script" id=10]
+[ext_resource path="res://RectangleButton.gd" type="Script" id=11]
+[ext_resource path="res://EraserButton.gd" type="Script" id=12]
+[ext_resource path="res://Eraser.gd" type="Script" id=13]
+[ext_resource path="res://FillButton.gd" type="Script" id=14]
+[ext_resource path="res://Fill.gd" type="Script" id=15]
+[ext_resource path="res://ChangeColor.gd" type="Script" id=16]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+
+func _on_ChangeColorButton_pressed():
+	StaticData.preview_layer.clear(true)
+	StaticData.current_tool = StaticData.Tool.change_color
+"
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = -1024.0
+margin_bottom = -600.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Camera" type="Camera2D" parent="."]
+offset = Vector2( 33, 33 )
 current = true
 script = ExtResource( 2 )
 
@@ -52,6 +71,34 @@ margin_right = 100.0
 margin_bottom = 44.0
 text = "Line"
 script = ExtResource( 9 )
+
+[node name="RectangleButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 48.0
+margin_right = 100.0
+margin_bottom = 68.0
+text = "Rectangle"
+script = ExtResource( 11 )
+
+[node name="EraserButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 72.0
+margin_right = 100.0
+margin_bottom = 92.0
+text = "Eraser"
+script = ExtResource( 12 )
+
+[node name="FillButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 96.0
+margin_right = 100.0
+margin_bottom = 116.0
+text = "Fill"
+script = ExtResource( 14 )
+
+[node name="ChangeColorButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 120.0
+margin_right = 100.0
+margin_bottom = 140.0
+text = "Change color"
+script = SubResource( 1 )
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 anchor_left = 1.0
@@ -116,7 +163,43 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Rectangle" type="Control" parent="Canvas/Tools"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Eraser" type="Control" parent="Canvas/Tools"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fill" type="Control" parent="Canvas/Tools"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChangeColor" type="Control" parent="Canvas/Tools"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/PencilButton" to="UI/EditPanel/VBoxContainer/PencilButton" method="_on_PencilButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/LineButton" to="UI/EditPanel/VBoxContainer/LineButton" method="_on_LineButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/RectangleButton" to="UI/EditPanel/VBoxContainer/RectangleButton" method="_on_RectangleButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/EraserButton" to="UI/EditPanel/VBoxContainer/EraserButton" method="_on_EraserButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/FillButton" to="UI/EditPanel/VBoxContainer/FillButton" method="_on_FillButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/ChangeColorButton" to="UI/EditPanel/VBoxContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
 [connection signal="color_changed" from="UI/ColorPanel/VBoxContainer/ColorPickerButton" to="UI/ColorPanel/VBoxContainer/ColorPickerButton" method="_on_ColorPickerButton_color_changed"]
 [connection signal="gui_input" from="Canvas/Tools" to="Canvas/Tools" method="_on_Tools_gui_input"]

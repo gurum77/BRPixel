@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 StaticData="*res://StaticData.gd"
+GeometryMaker="*res://GeometryMaker.gd"
 
 [display]
 
