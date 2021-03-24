@@ -42,7 +42,7 @@ func make_default_palette():
 func set_palette_from_image(image:Image):
 	var w = image.get_width()
 	var h = image.get_height()
-	var dic:Dictionary
+	var dic:Dictionary = Dictionary()
 	
 	image.lock()
 	for x in range(0, w):

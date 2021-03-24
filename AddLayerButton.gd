@@ -6,3 +6,6 @@ func _on_AddLayerButton_pressed():
 	var new_layer = layer_node.instance();
 	NodeManager.get_layers().add_child(new_layer)
 	StaticData.current_layer = new_layer
+	
+	# laye button 갱신
+	NodeManager.get_layer_panel().regen_layer_buttons()

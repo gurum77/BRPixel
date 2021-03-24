@@ -17,7 +17,7 @@ func _draw():
 		
 	return points
 		
-func _input(event):
+func _input(_event):
 	if StaticData.current_tool != StaticData.Tool.rectangle:
 		return
 	

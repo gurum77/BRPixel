@@ -1,6 +1,6 @@
 extends Control
 
-func _input(event):
+func _input(_event):
 	if StaticData.current_tool != StaticData.Tool.fill:
 		return
 	if !Input.is_mouse_button_pressed(BUTTON_LEFT):
@@ -16,13 +16,13 @@ func is_inside_canvas(x, y)->bool:
 	return StaticData.current_layer.has_point(Vector2(x, y))
 	
 func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
-	var pixels:Array
+	var pixels:Array = []
 	
 	if !StaticData.current_layer.has_point(Vector2(pos_x, pos_y)):
 		return pixels;
 	
 	var to_check_queue = []
-	var checked_queue:Dictionary
+	var checked_queue:Dictionary = Dictionary()
 	
 	to_check_queue.append(GeometryMaker.to_1D(pos_x, pos_y, StaticData.canvas_width))
 	

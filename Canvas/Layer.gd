@@ -2,17 +2,31 @@ extends TextureRect
 class_name Layer
 
 export (bool) var preview_layer = false
+export (bool) var minimap_layer = false
+var index:int = 0
 var image:Image
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	texture = ImageTexture.new()
-	
-	if preview_layer:
-		StaticData.preview_layer = self
-	else:
-		StaticData.current_layer = self
 	resize()
+	update_index()
+	
+	if !minimap_layer: 
+		if preview_layer:
+			StaticData.preview_layer = self
+		else:
+			StaticData.current_layer = self
+
+# 자신의 index를 갱신한다.
+func update_index():
+	var nodes = get_parent().get_children()
+	index = 0
+	for node in nodes:
+		if self == node:
+			break
+		index += 1
+
 
 func has_point(point:Vector2)->bool:
 	if point.x < 0 || point.y < 0:
@@ -20,7 +34,12 @@ func has_point(point:Vector2)->bool:
 	if point.x >= image.get_width() || point.y >= image.get_height():
 		return false
 	return true
-		
+
+func toggle_visible():
+	if visible:
+		visible = false
+	else:
+		visible = true
 	
 # 지정된 크기에 맞게 resize를 한다.
 func resize():
@@ -30,6 +49,8 @@ func resize():
 
 # texture를 업데이트 한다.	
 func update_texture():
+	if image == null:
+		return
 	texture.create_from_image(image)
 	texture.flags = 0	# filter 등 모든 롭션을 끔(2d pixel 스타일로 그려야 함)
 	

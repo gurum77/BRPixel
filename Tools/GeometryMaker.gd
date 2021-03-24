@@ -12,12 +12,12 @@ static func to_2D(idx, w) -> Vector2:
 	
 # 두 점 사이의 circle에 대한 pixel을 만들어서 리턴
 static func get_pixels_in_circle(from:Vector2, to:Vector2)->Array:
-	var pixels:Array
+	var pixels:Array = []
 	
-	var rx:int = abs((from.x - to.x)/2)
-	var ry:int = abs((from.y - to.y)/2)
-	var xc:int = abs((from.x + to.x)/2)
-	var yc:int = abs((from.y + to.y)/2)
+	var rx:int = abs((from.x - to.x)/2) as int
+	var ry:int = abs((from.y - to.y)/2) as int
+	var xc:int = abs((from.x + to.x)/2) as int
+	var yc:int = abs((from.y + to.y)/2) as int
 	
 	var dx:float
 	var dy:float
@@ -100,14 +100,14 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2)->Array:
 	
 # 두점 사이의 선에 대한 pixel을 만들어서 리턴
 static func get_pixels_in_line(from: Vector2, to: Vector2)->Array:
-	var x1:int = from.x
-	var y1:int = from.y
-	var x2:int = to.x
-	var y2:int = to.y
+	var x1 = from.x
+	var y1 = from.y
+	var x2 = to.x
+	var y2 = to.y
 	
 	var points : Array = []
-	var dx:int = x2 - x1
-	var dy:int = y2 - y1
+	var dx = (x2 - x1)
+	var dy = (y2 - y1)
 	var offset:int = 1
 	
 	if abs(dx) > abs(dy):	

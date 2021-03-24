@@ -1,6 +1,6 @@
 extends Control
 
-func _input(event):
+func _input(_event):
 	if StaticData.current_tool != StaticData.Tool.eraser:
 		return
 	if !Input.is_mouse_button_pressed(BUTTON_LEFT):

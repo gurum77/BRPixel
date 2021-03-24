@@ -1,9 +1,10 @@
 extends Control
 
 
-func _input(event):
-	if StaticData.current_tool != StaticData.Tool.change_color:
+func _input(_event):
+	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.change_color):
 		return
+	
 	if !Input.is_mouse_button_pressed(BUTTON_LEFT):
 		return
 		
@@ -13,7 +14,11 @@ func _input(event):
 	StaticData.current_layer.set_pixels_by_current_color(points)
 	
 func get_same_color_pixels(x:int, y:int)->Array:
-	var pixels:Array
+	var pixels:Array = []
+	
+	if !StaticData.current_layer.has_point(Vector2(x, y)):
+		return pixels
+		
 	StaticData.current_layer.image.lock()
 	
 	var color = StaticData.current_layer.image.get_pixel(x, y)
