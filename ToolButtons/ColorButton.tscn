@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ToolButtons/ColorButton.gd" type="Script" id=1]
+[ext_resource path="res://ToolButtons/ColorButton.png" type="Texture" id=2]
+
+
+[node name="ColorButton" type="TextureRect"]
+margin_right = 50.0
+margin_bottom = 50.0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+[connection signal="gui_input" from="." to="." method="_on_ColorButton_gui_input"]

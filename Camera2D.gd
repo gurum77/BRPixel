@@ -24,6 +24,8 @@ func zoom_fit():
 	
 	
 func _input(event):
+	if StaticData.invalid_mouse_pos_for_tool(StaticData.current_tool):
+		return
 	if event.is_action_pressed("cam_drag"):
 		_drag = true
 	elif event.is_action_released("cam_drag"):

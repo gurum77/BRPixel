@@ -12,10 +12,16 @@ _global_script_classes=[ {
 "base": "TextureRect",
 "class": "Layer",
 "language": "GDScript",
-"path": "res://Layer.gd"
+"path": "res://Canvas/Layer.gd"
+}, {
+"base": "Control",
+"class": "Palette",
+"language": "GDScript",
+"path": "res://Tools/Palette.gd"
 } ]
 _global_script_class_icons={
-"Layer": ""
+"Layer": "",
+"Palette": ""
 }
 
 [application]
@@ -27,7 +33,8 @@ config/icon="res://icon.png"
 [autoload]
 
 StaticData="*res://StaticData.gd"
-GeometryMaker="*res://GeometryMaker.gd"
+GeometryMaker="*res://Tools/GeometryMaker.gd"
+NodeManager="*res://NodeManager.gd"
 
 [display]
 

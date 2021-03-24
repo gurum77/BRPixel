@@ -17,15 +17,15 @@ func resize():
 	for y in range(0, image.get_height(), 2):
 		for x in range(0, image.get_width(), 2):
 			image.set_pixel(x, y, Color.white)
-	for y in range(1, image.get_height()-1, 2):
-		for x in range(1, image.get_width()-1, 2):
+	for y in range(1, image.get_height(), 2):
+		for x in range(1, image.get_width(), 2):
 			image.set_pixel(x, y, Color.white)
 	
 	# gray
 	for y in range(0, image.get_height(), 2):
-		for x in range(1, image.get_width()-1, 2):
+		for x in range(1, image.get_width(), 2):
 			image.set_pixel(x, y, Color.lightgray)
-	for y in range(1, image.get_height()-1, 2):
+	for y in range(1, image.get_height(), 2):
 		for x in range(0, image.get_width(), 2):
 			image.set_pixel(x, y, Color.lightgray)
 	

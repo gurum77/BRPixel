@@ -1,21 +1,29 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
-[ext_resource path="res://Canvas.gd" type="Script" id=3]
-[ext_resource path="res://Layer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Pencil.gd" type="Script" id=5]
-[ext_resource path="res://PencilButton.gd" type="Script" id=6]
-[ext_resource path="res://ColorPickerButton.gd" type="Script" id=7]
-[ext_resource path="res://Line.gd" type="Script" id=8]
-[ext_resource path="res://LineButton.gd" type="Script" id=9]
-[ext_resource path="res://Rectangle.gd" type="Script" id=10]
-[ext_resource path="res://RectangleButton.gd" type="Script" id=11]
-[ext_resource path="res://EraserButton.gd" type="Script" id=12]
-[ext_resource path="res://Eraser.gd" type="Script" id=13]
-[ext_resource path="res://FillButton.gd" type="Script" id=14]
-[ext_resource path="res://Fill.gd" type="Script" id=15]
-[ext_resource path="res://ChangeColor.gd" type="Script" id=16]
+[ext_resource path="res://Canvas/Canvas.gd" type="Script" id=3]
+[ext_resource path="res://Canvas/Layer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tools/Pencil.gd" type="Script" id=5]
+[ext_resource path="res://ToolButtons/PencilButton.gd" type="Script" id=6]
+[ext_resource path="res://ToolButtons/ColorPickerButton.gd" type="Script" id=7]
+[ext_resource path="res://Tools/Line.gd" type="Script" id=8]
+[ext_resource path="res://ToolButtons/LineButton.gd" type="Script" id=9]
+[ext_resource path="res://Tools/Rectangle.gd" type="Script" id=10]
+[ext_resource path="res://ToolButtons/RectangleButton.gd" type="Script" id=11]
+[ext_resource path="res://ToolButtons/EraserButton.gd" type="Script" id=12]
+[ext_resource path="res://Tools/Eraser.gd" type="Script" id=13]
+[ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
+[ext_resource path="res://Tools/Fill.gd" type="Script" id=15]
+[ext_resource path="res://Tools/ChangeColor.gd" type="Script" id=16]
+[ext_resource path="res://Tools/Palette.gd" type="Script" id=17]
+[ext_resource path="res://ToolButtons/ColorButton.tscn" type="PackedScene" id=18]
+[ext_resource path="res://ToolButtons/ColorPanel.gd" type="Script" id=19]
+[ext_resource path="res://ToolButtons/CircleButton.gd" type="Script" id=20]
+[ext_resource path="res://Tools/Circle.gd" type="Script" id=21]
+[ext_resource path="res://EditPanel.gd" type="Script" id=22]
+[ext_resource path="res://AddLayerButton.gd" type="Script" id=23]
+[ext_resource path="res://LayerPanel.gd" type="Script" id=24]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -47,6 +55,7 @@ script = ExtResource( 2 )
 anchor_bottom = 1.0
 margin_right = 100.0
 rect_min_size = Vector2( 100, 0 )
+script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -58,69 +67,357 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PencilButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/EditPanel/VBoxContainer"]
 margin_right = 100.0
 margin_bottom = 20.0
+color = Color( 0.596078, 0.435294, 0.435294, 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PencilButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 24.0
+margin_right = 100.0
+margin_bottom = 44.0
 toggle_mode = true
 text = "Pencil"
 script = ExtResource( 6 )
 
 [node name="LineButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 24.0
+margin_top = 48.0
 margin_right = 100.0
-margin_bottom = 44.0
+margin_bottom = 68.0
 text = "Line"
 script = ExtResource( 9 )
 
 [node name="RectangleButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 48.0
+margin_top = 72.0
 margin_right = 100.0
-margin_bottom = 68.0
+margin_bottom = 92.0
 text = "Rectangle"
 script = ExtResource( 11 )
 
 [node name="EraserButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 72.0
+margin_top = 96.0
 margin_right = 100.0
-margin_bottom = 92.0
+margin_bottom = 116.0
 text = "Eraser"
 script = ExtResource( 12 )
 
 [node name="FillButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 96.0
+margin_top = 120.0
 margin_right = 100.0
-margin_bottom = 116.0
+margin_bottom = 140.0
 text = "Fill"
 script = ExtResource( 14 )
 
 [node name="ChangeColorButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 120.0
+margin_top = 144.0
 margin_right = 100.0
-margin_bottom = 140.0
+margin_bottom = 164.0
 text = "Change color"
 script = SubResource( 1 )
 
+[node name="CircleButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 168.0
+margin_right = 100.0
+margin_bottom = 188.0
+text = "Circle"
+script = ExtResource( 20 )
+
+[node name="AddLayerButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 192.0
+margin_right = 100.0
+margin_bottom = 212.0
+text = "Add Layer"
+script = ExtResource( 23 )
+
 [node name="ColorPanel" type="Panel" parent="UI"]
+self_modulate = Color( 0, 0, 0, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
-rect_min_size = Vector2( 100, 0 )
+rect_min_size = Vector2( 116, 0 )
+script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/ColorPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/ColorPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 2.0
+margin_right = 2.0
+follow_focus = true
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/ColorPanel/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="UI/ColorPanel/ScrollContainer"]
 margin_right = 100.0
-margin_bottom = 20.0
-script = ExtResource( 7 )
+margin_bottom = 1490.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 0
+columns = 2
+
+[node name="ColorButton" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+
+[node name="ColorButton2" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_right = 100.0
+
+[node name="ColorButton3" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 60.0
+margin_bottom = 110.0
+
+[node name="ColorButton4" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 60.0
+margin_right = 100.0
+margin_bottom = 110.0
+
+[node name="ColorButton5" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 120.0
+margin_bottom = 170.0
+
+[node name="ColorButton6" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 120.0
+margin_right = 100.0
+margin_bottom = 170.0
+
+[node name="ColorButton7" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 180.0
+margin_bottom = 230.0
+
+[node name="ColorButton8" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 180.0
+margin_right = 100.0
+margin_bottom = 230.0
+
+[node name="ColorButton9" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 240.0
+margin_bottom = 290.0
+
+[node name="ColorButton10" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 240.0
+margin_right = 100.0
+margin_bottom = 290.0
+
+[node name="ColorButton11" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 300.0
+margin_bottom = 350.0
+
+[node name="ColorButton12" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 300.0
+margin_right = 100.0
+margin_bottom = 350.0
+
+[node name="ColorButton13" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 360.0
+margin_bottom = 410.0
+
+[node name="ColorButton14" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 360.0
+margin_right = 100.0
+margin_bottom = 410.0
+
+[node name="ColorButton15" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 420.0
+margin_bottom = 470.0
+
+[node name="ColorButton16" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 420.0
+margin_right = 100.0
+margin_bottom = 470.0
+
+[node name="ColorButton17" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 480.0
+margin_bottom = 530.0
+
+[node name="ColorButton18" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 480.0
+margin_right = 100.0
+margin_bottom = 530.0
+
+[node name="ColorButton19" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 540.0
+margin_bottom = 590.0
+
+[node name="ColorButton20" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 540.0
+margin_right = 100.0
+margin_bottom = 590.0
+
+[node name="ColorButton21" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 600.0
+margin_bottom = 650.0
+
+[node name="ColorButton22" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 600.0
+margin_right = 100.0
+margin_bottom = 650.0
+
+[node name="ColorButton23" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 660.0
+margin_bottom = 710.0
+
+[node name="ColorButton24" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 660.0
+margin_right = 100.0
+margin_bottom = 710.0
+
+[node name="ColorButton25" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 720.0
+margin_bottom = 770.0
+
+[node name="ColorButton26" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 720.0
+margin_right = 100.0
+margin_bottom = 770.0
+
+[node name="ColorButton27" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 780.0
+margin_bottom = 830.0
+
+[node name="ColorButton28" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 780.0
+margin_right = 100.0
+margin_bottom = 830.0
+
+[node name="ColorButton29" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 840.0
+margin_bottom = 890.0
+
+[node name="ColorButton30" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 840.0
+margin_right = 100.0
+margin_bottom = 890.0
+
+[node name="ColorButton31" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 900.0
+margin_bottom = 950.0
+
+[node name="ColorButton32" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 900.0
+margin_right = 100.0
+margin_bottom = 950.0
+
+[node name="ColorButton33" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 960.0
+margin_bottom = 1010.0
+
+[node name="ColorButton34" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 960.0
+margin_right = 100.0
+margin_bottom = 1010.0
+
+[node name="ColorButton35" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 1020.0
+margin_bottom = 1070.0
+
+[node name="ColorButton36" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1020.0
+margin_right = 100.0
+margin_bottom = 1070.0
+
+[node name="ColorButton37" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 1080.0
+margin_bottom = 1130.0
+
+[node name="ColorButton38" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1080.0
+margin_right = 100.0
+margin_bottom = 1130.0
+
+[node name="ColorButton39" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 1140.0
+margin_bottom = 1190.0
+
+[node name="ColorButton40" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1140.0
+margin_right = 100.0
+margin_bottom = 1190.0
+
+[node name="ColorButton41" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 1200.0
+margin_bottom = 1250.0
+
+[node name="ColorButton42" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1200.0
+margin_right = 100.0
+margin_bottom = 1250.0
+
+[node name="ColorButton43" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 1260.0
+margin_bottom = 1310.0
+
+[node name="ColorButton44" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1260.0
+margin_right = 100.0
+margin_bottom = 1310.0
+
+[node name="ColorButton45" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 1320.0
+margin_bottom = 1370.0
+
+[node name="ColorButton46" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1320.0
+margin_right = 100.0
+margin_bottom = 1370.0
+
+[node name="ColorButton47" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 1380.0
+margin_bottom = 1430.0
+
+[node name="ColorButton48" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1380.0
+margin_right = 100.0
+margin_bottom = 1430.0
+
+[node name="ColorButton49" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_top = 1440.0
+margin_bottom = 1490.0
+
+[node name="ColorButton50" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1440.0
+margin_right = 100.0
+margin_bottom = 1490.0
+
+[node name="LayerPanel" type="Panel" parent="UI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 150.0
+margin_right = -150.0
+grow_vertical = 0
+rect_min_size = Vector2( 0, 80 )
+script = ExtResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -132,7 +429,8 @@ __meta__ = {
 }
 
 [node name="Layers" type="Control" parent="Canvas"]
-margin_right = 40.0
+margin_left = 1.0
+margin_right = 41.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -142,29 +440,31 @@ __meta__ = {
 light_mask = -2147483647
 stretch_mode = 3
 
-[node name="PreivewLayer" parent="Canvas/Layers" instance=ExtResource( 4 )]
+[node name="PreivewLayer" parent="Canvas" instance=ExtResource( 4 )]
 light_mask = -2147483647
+margin_left = 1.0
+margin_right = 41.0
 stretch_mode = 3
 preview_layer = true
 
-[node name="Tools" type="Control" parent="Canvas"]
+[node name="Tools" type="Control" parent="."]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Line" type="Control" parent="Canvas/Tools"]
+[node name="Line" type="Control" parent="Tools"]
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pencil" type="Control" parent="Canvas/Tools"]
+[node name="Pencil" type="Control" parent="Tools"]
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rectangle" type="Control" parent="Canvas/Tools"]
+[node name="Rectangle" type="Control" parent="Tools"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 10 )
@@ -172,7 +472,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Eraser" type="Control" parent="Canvas/Tools"]
+[node name="Eraser" type="Control" parent="Tools"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 13 )
@@ -180,7 +480,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Fill" type="Control" parent="Canvas/Tools"]
+[node name="Fill" type="Control" parent="Tools"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 15 )
@@ -188,18 +488,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ChangeColor" type="Control" parent="Canvas/Tools"]
+[node name="ChangeColor" type="Control" parent="Tools"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Circle" type="Control" parent="Tools"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 21 )
+
+[node name="Palettes" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Palette" type="Control" parent="Palettes"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 17 )
+[connection signal="mouse_entered" from="UI/EditPanel" to="UI/EditPanel" method="_on_EditPanel_mouse_entered"]
+[connection signal="mouse_exited" from="UI/EditPanel" to="UI/EditPanel" method="_on_EditPanel_mouse_exited"]
+[connection signal="color_changed" from="UI/EditPanel/VBoxContainer/ColorPickerButton" to="UI/EditPanel/VBoxContainer/ColorPickerButton" method="_on_ColorPickerButton_color_changed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/PencilButton" to="UI/EditPanel/VBoxContainer/PencilButton" method="_on_PencilButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/LineButton" to="UI/EditPanel/VBoxContainer/LineButton" method="_on_LineButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/RectangleButton" to="UI/EditPanel/VBoxContainer/RectangleButton" method="_on_RectangleButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/EraserButton" to="UI/EditPanel/VBoxContainer/EraserButton" method="_on_EraserButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/FillButton" to="UI/EditPanel/VBoxContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/ChangeColorButton" to="UI/EditPanel/VBoxContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
-[connection signal="color_changed" from="UI/ColorPanel/VBoxContainer/ColorPickerButton" to="UI/ColorPanel/VBoxContainer/ColorPickerButton" method="_on_ColorPickerButton_color_changed"]
-[connection signal="gui_input" from="Canvas/Tools" to="Canvas/Tools" method="_on_Tools_gui_input"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/CircleButton" to="UI/EditPanel/VBoxContainer/CircleButton" method="_on_CircleButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/AddLayerButton" to="UI/EditPanel/VBoxContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
+[connection signal="mouse_entered" from="UI/ColorPanel" to="UI/ColorPanel" method="_on_ColorPanel_mouse_entered"]
+[connection signal="mouse_exited" from="UI/ColorPanel" to="UI/ColorPanel" method="_on_ColorPanel_mouse_exited"]
+[connection signal="gui_input" from="Tools" to="Tools" method="_on_Tools_gui_input"]

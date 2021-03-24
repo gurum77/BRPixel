@@ -18,6 +18,9 @@ func is_inside_canvas(x, y)->bool:
 func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 	var pixels:Array
 	
+	if !StaticData.current_layer.has_point(Vector2(pos_x, pos_y)):
+		return pixels;
+	
 	var to_check_queue = []
 	var checked_queue:Dictionary
 	

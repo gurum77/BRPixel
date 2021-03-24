@@ -17,7 +17,7 @@ func _ready():
 func has_point(point:Vector2)->bool:
 	if point.x < 0 || point.y < 0:
 		return false
-	if point.x > image.get_width() || point.y > image.get_height():
+	if point.x >= image.get_width() || point.y >= image.get_height():
 		return false
 	return true
 		
