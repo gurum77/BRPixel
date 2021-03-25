@@ -8,6 +8,9 @@ var image:Image
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# 0,0으로 고정한다.
+	rect_position = Vector2(0, 0)
+	
 	texture = ImageTexture.new()
 	resize()
 	update_index()

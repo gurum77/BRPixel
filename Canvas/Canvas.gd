@@ -1,6 +1,9 @@
 extends TextureRect
 
 func _ready():
+	# 0,0으로 고정한다.
+	rect_position = Vector2(0, 0)
+	
 	# 시작하면 지정된 크기로 resize를 한다
 	resize()
 	
