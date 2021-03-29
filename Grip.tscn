@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Grip.gd" type="Script" id=1]
+[ext_resource path="res://white_circle_32x32.png" type="Texture" id=2]
+
+[node name="Grip" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.016
+anchor_top = 0.027
+anchor_right = 0.016
+anchor_bottom = 0.027
+margin_left = -15.0
+margin_top = -16.2
+margin_right = 17.0
+margin_bottom = 15.8
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="gui_input" from="TextureRect" to="." method="_on_TextureRect_gui_input"]
