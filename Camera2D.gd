@@ -10,7 +10,7 @@ signal zoomed()
 var _current_zoom_level = 1
 var _drag = false
 func _ready():
-	connect("zoomed", NodeManager.get_grips(), "on_camera_zoomed")
+	pass
 
 # canvas가 꽉차게 zoom fit을 한다.
 func zoom_fit():
