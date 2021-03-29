@@ -15,11 +15,3 @@ func load_current_palette():
 		else:
 			buttons[i].modulate = Color.white
 			
-
-
-func _on_ColorPanel_mouse_entered():
-	StaticData.mouse_inside_ui = true
-
-
-func _on_ColorPanel_mouse_exited():
-	StaticData.mouse_inside_ui = false

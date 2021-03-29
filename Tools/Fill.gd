@@ -1,9 +1,11 @@
 extends Control
 
 func _input(_event):
-	if StaticData.current_tool != StaticData.Tool.fill:
+	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.fill):
 		return
-	if !Input.is_mouse_button_pressed(BUTTON_LEFT):
+	
+		
+	if !InputManager.is_action_just_pressed_lbutton(_event):
 		return
 		
 	# image 사본을 복사한다.

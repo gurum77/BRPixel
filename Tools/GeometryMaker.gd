@@ -100,12 +100,17 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2)->Array:
 	
 # 두점 사이의 선에 대한 pixel을 만들어서 리턴
 static func get_pixels_in_line(from: Vector2, to: Vector2)->Array:
+	var points : Array = []
+	
+	if from == null || to == null:
+		return points
+		
 	var x1:int = from.x as int
 	var y1:int = from.y as int
 	var x2:int = to.x as int
 	var y2:int = to.y as int
 	
-	var points : Array = []
+	
 	var dx = (x2 - x1)
 	var dy = (y2 - y1)
 	var offset:int = 1

@@ -6,3 +6,4 @@ func _ready():
 	$Palettes/Palette.make_default_palette()
 	$UI/ColorPanel.load_current_palette()
 	
+

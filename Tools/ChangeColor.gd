@@ -5,7 +5,7 @@ func _input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.change_color):
 		return
 	
-	if !Input.is_mouse_button_pressed(BUTTON_LEFT):
+	if !InputManager.is_action_just_pressed_lbutton(_event):
 		return
 		
 	# image 사본을 복사한다.

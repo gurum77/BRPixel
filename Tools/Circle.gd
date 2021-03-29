@@ -18,18 +18,20 @@ func _draw():
 	return points
 		
 func _input(_event):
-	if StaticData.current_tool != StaticData.Tool.circle:
+	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.circle):
 		return
 	
-	if Input.is_action_just_pressed("left_button"):
+	if InputManager.is_action_just_pressed_lbutton(_event):
 		start_point = get_local_mouse_position()
 		pressed = true
-	elif Input.is_action_just_released("left_button"):
-		end_point = get_local_mouse_position()
-		var points = GeometryMaker.get_pixels_in_circle(start_point, end_point)
-		StaticData.current_layer.set_pixels_by_current_color(points)
-		StaticData.preview_layer.clear(true)
-		pressed = false
+	elif InputManager.is_action_just_released_lbutton(_event):
+		# 빠르게 움직이면서 마우스를 떼면 두번 그려지는 현상을 방지하지 위해서 pressed일때만 사각형을 추가한다.
+		if pressed:
+			end_point = get_local_mouse_position()
+			var points = GeometryMaker.get_pixels_in_circle(start_point, end_point)
+			StaticData.current_layer.set_pixels_by_current_color(points)
+			StaticData.preview_layer.clear(true)
+			pressed = false
 		
 	if pressed:
 		end_point = get_local_mouse_position()

@@ -41,14 +41,12 @@ func update():
 
 
 func _on_LayerButton_gui_input(event):
-	# layer button 클릭시
-	if event is InputEventMouseButton:
-		# L 버튼 클릭시 현재 layer로 설정
-		if Input.is_action_just_pressed("left_button"):
-			StaticData.current_layer = get_layer()
-			NodeManager.get_layer_panel().update_layer_buttons()
-		elif Input.is_action_just_pressed("right_button"):
-			get_layer().toggle_visible()
-			update()
+	# L 버튼 클릭시 현재 layer로 설정
+	if InputManager.is_action_just_pressed_lbutton(event):
+		StaticData.current_layer = get_layer()
+		NodeManager.get_layer_panel().update_layer_buttons()
+	elif InputManager.is_action_just_pressed_rbutton(event):
+		get_layer().toggle_visible()
+		update()
 			
 		
