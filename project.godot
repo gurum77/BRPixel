@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "Grip",
+"language": "GDScript",
+"path": "res://Grip.gd"
+}, {
 "base": "TextureRect",
 "class": "Layer",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://Tools/Palette.gd"
 } ]
 _global_script_class_icons={
+"Grip": "",
 "Layer": "",
 "LayerPanel": "",
 "Palette": ""

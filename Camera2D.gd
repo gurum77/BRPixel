@@ -14,6 +14,8 @@ var last_drag_distance = 0
 var zoom_sensitivity = 2
 var zoom_speed = 0.05
 var touching = false
+func _ready():
+	pass
 
 onready var debug_label = get_tree().root.get_node_or_null("Main/UI/DebugLabel")
 # canvas가 꽉차게 zoom fit을 한다.

@@ -10,8 +10,5 @@ func _on_DeleteLayerButton_pressed():
 	# 현재 layer를 지우고 다음 layer를 현재 layer로 설정한다.
 	NodeManager.layers.remove_layer(StaticData.current_layer.index)
 	
-	
-	
-	
 	# layer button을 재생성 한다.
 	NodeManager.layer_panel.regen_layer_buttons()
