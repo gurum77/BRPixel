@@ -8,6 +8,7 @@ var pressed = false
 var dragging = false
 var start_point:Vector2
 var end_point:Vector2
+var preview = true	# 미리보기 중인지?
 
 onready var camera = get_tree().root.get_node_or_null("Main/Camera")
 
@@ -41,24 +42,59 @@ func _ready():
 func on_camera_zoomed():
 	update()
 	
-func _draw():
+func get_rect()->Rect2:
 	var radius = get_radius()
-	draw_circle(get_local_center_position(), radius, modulate)
+	var center = get_local_center_position()
+	center.x -= radius
+	center.y -= radius
+	var rect = Rect2(center, Vector2(radius*2, radius*2))
+	return rect
+func _draw():
 	
-func _on_TextureRect_gui_input(event):
-	if event is InputEventMouseMotion && pressed:
-		end_point = get_local_mouse_position()
-		drag()
+	
+	
+	draw_rect(get_rect(), modulate, true)
+#	draw_circle(get_local_center_position(), radius, modulate)
+	
+func is_mouse_entered()->bool:
+	if preview:
+		return false
+		
+	var mouse_position = get_local_mouse_position()
+	var center_position = get_local_center_position()
+	if mouse_position.distance_to(center_position) < get_radius():
+		return true
+	return false
+	
+func get_global_mouse_position_as_int()->Vector2:
+	var p = get_global_mouse_position()
+	p.x = p.x as int
+	p.y = p.y as int
+	return p
+	
+func _input(event):
+	if preview:
+		return
+	
+	if event is InputEventMouseMotion:
+		if pressed:
+			end_point = get_global_mouse_position_as_int()
+			drag()
 		
 	if Input.is_action_just_pressed("left_button"):
-		start_point = get_local_mouse_position()
-		update()
-		pressed = true
+		if is_mouse_entered():
+			start_point = get_global_mouse_position_as_int()
+			update()
+			pressed = true
 	elif Input.is_action_just_released("left_button"):
-		end_point = get_local_mouse_position()
-		pressed = false
+		if pressed:
+			end_point = get_global_mouse_position_as_int()
+			pressed = false		
+	
 		
 func drag():
+	rect_position = end_point
 	update()
 	emit_signal("moved")
 	pass
+

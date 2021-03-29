@@ -2,7 +2,7 @@ extends Camera2D
 
 const MAX_ZOOM_LEVEL = 0.02
 const MIN_ZOOM_LEVEL = 50.0
-const ZOOM_INCREMENT = 0.05
+const ZOOM_INCREMENT = 0.02
 
 signal moved()
 signal zoomed()
