@@ -1,4 +1,8 @@
-[gd_scene load_steps=33 format=2]
+<<<<<<< HEAD
+[gd_scene load_steps=30 format=2]
+=======
+[gd_scene load_steps=32 format=2]
+>>>>>>> fead2a3d791a09452226e08c8d8f362ee73ddfce
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -27,10 +31,13 @@
 [ext_resource path="res://Canvas/LayerButton.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Layers.gd" type="Script" id=26]
 [ext_resource path="res://DeleteLayerButton.gd" type="Script" id=27]
+<<<<<<< HEAD
+[ext_resource path="res://DrawingArea.gd" type="Script" id=28]
+=======
 [ext_resource path="res://Select.gd" type="Script" id=28]
 [ext_resource path="res://SelectButton.gd" type="Script" id=29]
 [ext_resource path="res://Grips.gd" type="Script" id=30]
-[ext_resource path="res://DrawingArea.gd" type="Script" id=31]
+>>>>>>> fead2a3d791a09452226e08c8d8f362ee73ddfce
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -468,7 +475,7 @@ anchor_bottom = 1.0
 margin_left = 110.0
 margin_right = -120.0
 margin_bottom = -65.0
-script = ExtResource( 31 )
+script = ExtResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -593,6 +600,11 @@ script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+<<<<<<< HEAD
+=======
+[connection signal="mouse_entered" from="UI/EditPanel" to="UI/EditPanel" method="_on_EditPanel_mouse_entered"]
+[connection signal="mouse_exited" from="UI/EditPanel" to="UI/EditPanel" method="_on_EditPanel_mouse_exited"]
+>>>>>>> fead2a3d791a09452226e08c8d8f362ee73ddfce
 [connection signal="color_changed" from="UI/EditPanel/VBoxContainer/ColorPickerButton" to="UI/EditPanel/VBoxContainer/ColorPickerButton" method="_on_ColorPickerButton_color_changed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/PencilButton" to="UI/EditPanel/VBoxContainer/PencilButton" method="_on_PencilButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/LineButton" to="UI/EditPanel/VBoxContainer/LineButton" method="_on_LineButton_pressed"]
@@ -603,7 +615,12 @@ __meta__ = {
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/CircleButton" to="UI/EditPanel/VBoxContainer/CircleButton" method="_on_CircleButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/AddLayerButton" to="UI/EditPanel/VBoxContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/DeleteLayerButton" to="UI/EditPanel/VBoxContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/SelectButton" to="UI/EditPanel/VBoxContainer/SelectButton" method="_on_SelectButton_pressed"]
+<<<<<<< HEAD
 [connection signal="mouse_entered" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_entered"]
 [connection signal="mouse_exited" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_exited"]
+=======
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/SelectButton" to="UI/EditPanel/VBoxContainer/SelectButton" method="_on_SelectButton_pressed"]
+[connection signal="mouse_entered" from="UI/ColorPanel" to="UI/ColorPanel" method="_on_ColorPanel_mouse_entered"]
+[connection signal="mouse_exited" from="UI/ColorPanel" to="UI/ColorPanel" method="_on_ColorPanel_mouse_exited"]
+>>>>>>> fead2a3d791a09452226e08c8d8f362ee73ddfce
 [connection signal="gui_input" from="Tools" to="Tools" method="_on_Tools_gui_input"]

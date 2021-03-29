@@ -9,13 +9,16 @@ signal zoomed()
 
 var _current_zoom_level = 1
 var _drag = false
+<<<<<<< HEAD
 var events = {}
 var last_drag_distance = 0
 var zoom_sensitivity = 2
 var zoom_speed = 0.05
 var touching = false
+=======
 func _ready():
 	pass
+>>>>>>> fead2a3d791a09452226e08c8d8f362ee73ddfce
 
 onready var debug_label = get_tree().root.get_node_or_null("Main/UI/DebugLabel")
 # canvas가 꽉차게 zoom fit을 한다.
@@ -68,8 +71,6 @@ func _input(event):
 #			last_drag_distance = drag_distance
 			
 	if !touching:
-		if StaticData.mouse_inside_ui:
-			return
 		if event.is_action_pressed("cam_drag"):
 			_drag = true
 			debug_label.text = "cam_drag"
