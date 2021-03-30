@@ -1,5 +1,8 @@
 extends Control
 
+func _ready():
+	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.fill)
+	
 func _input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.fill):
 		return

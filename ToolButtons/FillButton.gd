@@ -1,5 +1,6 @@
 extends Button
 
+var fill_tool = preload("res://Tools/Fill.tscn")
+
 func _on_FillButton_pressed():	
-	StaticData.preview_layer.clear(true)
-	StaticData.current_tool = StaticData.Tool.fill
+	NodeManager.get_tools().add_child(fill_tool.instance())

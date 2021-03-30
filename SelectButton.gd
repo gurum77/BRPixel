@@ -1,5 +1,6 @@
 extends Button
 
+var select_tool = preload("res://Tools/Select.tscn")
+
 func _on_SelectButton_pressed():
-	StaticData.preview_layer.clear(true)
-	StaticData.current_tool = StaticData.Tool.select
+	NodeManager.get_tools().add_child(select_tool.instance())

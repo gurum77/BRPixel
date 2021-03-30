@@ -1,33 +1,26 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://Canvas/Canvas.gd" type="Script" id=3]
 [ext_resource path="res://Canvas/Layer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Tools/Pencil.gd" type="Script" id=5]
+[ext_resource path="res://Tools/Tools.gd" type="Script" id=5]
 [ext_resource path="res://ToolButtons/PencilButton.gd" type="Script" id=6]
 [ext_resource path="res://ToolButtons/ColorPickerButton.gd" type="Script" id=7]
-[ext_resource path="res://Tools/Line.gd" type="Script" id=8]
 [ext_resource path="res://ToolButtons/LineButton.gd" type="Script" id=9]
-[ext_resource path="res://Tools/Rectangle.gd" type="Script" id=10]
 [ext_resource path="res://ToolButtons/RectangleButton.gd" type="Script" id=11]
 [ext_resource path="res://ToolButtons/EraserButton.gd" type="Script" id=12]
-[ext_resource path="res://Tools/Eraser.gd" type="Script" id=13]
 [ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
-[ext_resource path="res://Tools/Fill.gd" type="Script" id=15]
-[ext_resource path="res://Tools/ChangeColor.gd" type="Script" id=16]
 [ext_resource path="res://Tools/Palette.gd" type="Script" id=17]
 [ext_resource path="res://ToolButtons/ColorButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ToolButtons/ColorPanel.gd" type="Script" id=19]
 [ext_resource path="res://ToolButtons/CircleButton.gd" type="Script" id=20]
-[ext_resource path="res://Tools/Circle.gd" type="Script" id=21]
 [ext_resource path="res://EditPanel.gd" type="Script" id=22]
 [ext_resource path="res://AddLayerButton.gd" type="Script" id=23]
 [ext_resource path="res://LayerPanel.gd" type="Script" id=24]
 [ext_resource path="res://Canvas/LayerButton.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Layers.gd" type="Script" id=26]
 [ext_resource path="res://DeleteLayerButton.gd" type="Script" id=27]
-[ext_resource path="res://Select.gd" type="Script" id=28]
 [ext_resource path="res://SelectButton.gd" type="Script" id=29]
 [ext_resource path="res://Grips.gd" type="Script" id=30]
 [ext_resource path="res://DrawingArea.gd" type="Script" id=31]
@@ -35,10 +28,10 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
 
+var change_color = preload(\"res://Tools/ChangeColor.tscn\")
 
 func _on_ChangeColorButton_pressed():
-	StaticData.preview_layer.clear(true)
-	StaticData.current_tool = StaticData.Tool.change_color
+	NodeManager.get_tools().add_child(change_color.instance())
 "
 
 [node name="Main" type="Control"]
@@ -518,63 +511,7 @@ __meta__ = {
 }
 
 [node name="Tools" type="Control" parent="."]
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Line" type="Control" parent="Tools"]
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Pencil" type="Control" parent="Tools"]
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Rectangle" type="Control" parent="Tools"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Eraser" type="Control" parent="Tools"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Fill" type="Control" parent="Tools"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ChangeColor" type="Control" parent="Tools"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 16 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Circle" type="Control" parent="Tools"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 21 )
-
-[node name="Select" type="Control" parent="Tools"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -606,4 +543,3 @@ __meta__ = {
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/SelectButton" to="UI/EditPanel/VBoxContainer/SelectButton" method="_on_SelectButton_pressed"]
 [connection signal="mouse_entered" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_entered"]
 [connection signal="mouse_exited" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_exited"]
-[connection signal="gui_input" from="Tools" to="Tools" method="_on_Tools_gui_input"]

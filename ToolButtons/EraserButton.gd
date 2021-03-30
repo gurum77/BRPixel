@@ -1,6 +1,6 @@
 extends Button
 
+var eraser_tool = preload("res://Tools/Eraser.tscn")
 
 func _on_EraserButton_pressed():
-	StaticData.preview_layer.clear(true)
-	StaticData.current_tool = StaticData.Tool.eraser
+	NodeManager.get_tools().add_child(eraser_tool.instance())

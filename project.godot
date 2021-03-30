@@ -28,12 +28,24 @@ _global_script_classes=[ {
 "class": "Palette",
 "language": "GDScript",
 "path": "res://Tools/Palette.gd"
+}, {
+"base": "Control",
+"class": "Select",
+"language": "GDScript",
+"path": "res://Tools/Select.gd"
+}, {
+"base": "Control",
+"class": "Tools",
+"language": "GDScript",
+"path": "res://Tools/Tools.gd"
 } ]
 _global_script_class_icons={
 "Grip": "",
 "Layer": "",
 "LayerPanel": "",
-"Palette": ""
+"Palette": "",
+"Select": "",
+"Tools": ""
 }
 
 [application]

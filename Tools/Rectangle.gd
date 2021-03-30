@@ -6,7 +6,7 @@ var start_point = Vector2(0, 0)
 var end_point = Vector2(0, 0)
 
 func _ready():
-	pass
+	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.rectangle)
 	
 func _draw():
 	if StaticData.current_tool != StaticData.Tool.rectangle:

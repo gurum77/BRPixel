@@ -1,7 +1,6 @@
 extends Button
 
-
+var rectangle_tool = preload("res://Tools/Rectangle.tscn")
 
 func _on_RectangleButton_pressed():
-	StaticData.preview_layer.clear(true)
-	StaticData.current_tool = StaticData.Tool.rectangle
+	NodeManager.get_tools().add_child(rectangle_tool.instance())

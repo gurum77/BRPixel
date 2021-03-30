@@ -66,6 +66,8 @@ func get_pixel(x, y)->Color:
 	return image.get_pixel(x, y)
 	
 func erase_pixel(point):
+	if !StaticData.inside_working_area(point):
+		return
 	image.lock()
 	image.set_pixel(point.x, point.y, Color.transparent)
 	image.unlock()
@@ -73,12 +75,16 @@ func erase_pixel(point):
 	
 func erase_pixels(points:Array):
 	image.lock()
-	for p in points:
-		image.set_pixel(p.x, p.y, Color.transparent)
+	for point in points:
+		if !StaticData.inside_working_area(point):
+			continue
+		image.set_pixel(point.x, point.y, Color.transparent)
 	image.unlock()
 	update_texture()
 	
 func set_pixel_by_current_color(point):
+	if !StaticData.inside_working_area(point):
+		return
 	image.lock()
 	image.set_pixel(point.x, point.y, StaticData.current_color)
 	image.unlock()
@@ -86,7 +92,9 @@ func set_pixel_by_current_color(point):
 	
 func set_pixels_by_current_color(points:Array):
 	image.lock()
-	for p in points:
-		image.set_pixel(p.x, p.y, StaticData.current_color)
+	for point in points:
+		if !StaticData.inside_working_area(point):
+			continue
+		image.set_pixel(point.x, point.y, StaticData.current_color)
 	image.unlock()
 	update_texture()

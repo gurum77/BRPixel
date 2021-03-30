@@ -9,6 +9,7 @@ var dragging = false
 var start_point:Vector2
 var end_point:Vector2
 var preview = true	# 미리보기 중인지?
+var locked = false	# grip이 lock이 되면 drag를 하지않는다.
 
 onready var camera = get_tree().root.get_node_or_null("Main/Camera")
 
@@ -33,7 +34,6 @@ func _ready():
 	modulate = Color.blue
 	modulate.a = 0.7
 	
-
 	update()
 	var err = camera.connect("zoomed", self, "on_camera_zoomed")
 	if err != OK:
@@ -50,9 +50,6 @@ func get_rect()->Rect2:
 	var rect = Rect2(center, Vector2(radius*2, radius*2))
 	return rect
 func _draw():
-	
-	
-	
 	draw_rect(get_rect(), modulate, true)
 #	draw_circle(get_local_center_position(), radius, modulate)
 	
@@ -72,8 +69,16 @@ func get_global_mouse_position_as_int()->Vector2:
 	p.y = p.y as int
 	return p
 	
+func lock():
+	locked = true
+	modulate = Color.gray
+	modulate.a = 0.7
+	update()
+	
 func _input(event):
 	if preview:
+		return
+	if locked:
 		return
 	
 	if event is InputEventMouseMotion:
@@ -86,10 +91,12 @@ func _input(event):
 			start_point = get_global_mouse_position_as_int()
 			update()
 			pressed = true
+			StaticData.dragging_grip = true
 	elif Input.is_action_just_released("left_button"):
 		if pressed:
 			end_point = get_global_mouse_position_as_int()
 			pressed = false		
+			StaticData.dragging_grip = false
 	
 		
 func drag():
