@@ -79,3 +79,29 @@ func inside_working_area(point)->bool:
 func _ready():
 	pass
 	
+
+# 저장 
+func save_project(path):
+	var save_dic={
+		"layers" : get_save_dic_layers()
+	}
+	var save_file = File.new()
+	save_file.open(path, File.WRITE)
+	save_file.store_line(to_json(save_dic))
+	save_file.close()
+
+func open_project(path):
+	var open_file = File.new()
+	open_file.open(path, File.READ)
+	if open_file.get_position() < open_file.get_len():
+		var dic = parse_json(open_file.get_line())
+	open_file.close()
+		
+func get_save_dic_layers()->Dictionary:
+	var _save_dic:Dictionary
+	var layers = NodeManager.get_layers().get_children()
+	for layer in layers:
+		if !layer.is_need_to_save():
+			continue
+		_save_dic[layer.name] = layer.get_save_dic()
+	return _save_dic

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://Tools/Tools.gd" type="Script" id=5]
 [ext_resource path="res://ToolButtons/PencilButton.gd" type="Script" id=6]
 [ext_resource path="res://ToolButtons/ColorPickerButton.gd" type="Script" id=7]
+[ext_resource path="res://SaveButton.gd" type="Script" id=8]
 [ext_resource path="res://ToolButtons/LineButton.gd" type="Script" id=9]
+[ext_resource path="res://OpenButton.gd" type="Script" id=10]
 [ext_resource path="res://ToolButtons/RectangleButton.gd" type="Script" id=11]
 [ext_resource path="res://ToolButtons/EraserButton.gd" type="Script" id=12]
 [ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
@@ -146,6 +148,46 @@ margin_right = 100.0
 margin_bottom = 260.0
 text = "Select"
 script = ExtResource( 29 )
+
+[node name="SaveButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 264.0
+margin_right = 100.0
+margin_bottom = 284.0
+text = "Save"
+script = ExtResource( 8 )
+
+[node name="FileDialog" type="FileDialog" parent="UI/EditPanel/VBoxContainer/SaveButton"]
+margin_right = 424.0
+margin_bottom = 242.0
+access = 2
+filters = PoolStringArray( "*.pex;Pixel Express" )
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+margin_top = 288.0
+margin_right = 100.0
+margin_bottom = 308.0
+text = "Open"
+script = ExtResource( 10 )
+
+[node name="FileDialog" type="FileDialog" parent="UI/EditPanel/VBoxContainer/OpenButton"]
+visible = true
+margin_right = 502.0
+margin_bottom = 252.0
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.pex;Pixel Express" )
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -477,6 +519,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SaveFileDialog" type="FileDialog" parent="UI"]
+margin_right = 521.0
+margin_bottom = 342.0
+resizable = true
+access = 2
+filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
+show_hidden_files = true
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Canvas" type="TextureRect" parent="."]
 script = ExtResource( 3 )
 __meta__ = {
@@ -541,5 +596,9 @@ __meta__ = {
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/AddLayerButton" to="UI/EditPanel/VBoxContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/DeleteLayerButton" to="UI/EditPanel/VBoxContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/VBoxContainer/SelectButton" to="UI/EditPanel/VBoxContainer/SelectButton" method="_on_SelectButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/SaveButton" to="UI/EditPanel/VBoxContainer/SaveButton" method="_on_SaveButton_pressed"]
+[connection signal="file_selected" from="UI/EditPanel/VBoxContainer/SaveButton/FileDialog" to="UI/EditPanel/VBoxContainer/SaveButton" method="_on_FileDialog_file_selected"]
+[connection signal="pressed" from="UI/EditPanel/VBoxContainer/OpenButton" to="UI/EditPanel/VBoxContainer/OpenButton" method="_on_OpenButton_pressed"]
+[connection signal="file_selected" from="UI/EditPanel/VBoxContainer/OpenButton/FileDialog" to="UI/EditPanel/VBoxContainer/OpenButton" method="_on_FileDialog_file_selected"]
 [connection signal="mouse_entered" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_entered"]
 [connection signal="mouse_exited" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_exited"]

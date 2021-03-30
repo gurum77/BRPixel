@@ -21,6 +21,24 @@ func _ready():
 		else:
 			StaticData.current_layer = self
 
+func get_save_dic()->Dictionary:
+	var array:PoolByteArray = image.get_data()
+	array = array.compress(File.COMPRESSION_DEFLATE)
+	var image_row_data = Marshalls.raw_to_base64(array)
+	var save_dic={
+		"index" : index,
+		"image_row_data" : image_row_data,
+	}
+	return save_dic
+	
+# 저장해야 되는 layer인지?
+func is_need_to_save()->bool:
+	if preview_layer:
+		return false
+	if minimap_layer:
+		return false
+	return true
+	
 # 자신의 index를 갱신한다.
 func update_index():
 	var nodes = get_parent().get_children()
