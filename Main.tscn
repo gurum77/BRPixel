@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -12,20 +12,32 @@
 [ext_resource path="res://OpenButton.gd" type="Script" id=10]
 [ext_resource path="res://ToolButtons/RectangleButton.gd" type="Script" id=11]
 [ext_resource path="res://ToolButtons/EraserButton.gd" type="Script" id=12]
+[ext_resource path="res://Assets/icon_line.png" type="Texture" id=13]
 [ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
+[ext_resource path="res://Assets/icon_pen.png" type="Texture" id=15]
+[ext_resource path="res://Assets/icon_rectangle.png" type="Texture" id=16]
 [ext_resource path="res://Tools/Palette.gd" type="Script" id=17]
 [ext_resource path="res://ToolButtons/ColorButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ToolButtons/ColorPanel.gd" type="Script" id=19]
 [ext_resource path="res://ToolButtons/CircleButton.gd" type="Script" id=20]
+[ext_resource path="res://Assets/icon_open.png" type="Texture" id=21]
 [ext_resource path="res://EditPanel.gd" type="Script" id=22]
 [ext_resource path="res://AddLayerButton.gd" type="Script" id=23]
 [ext_resource path="res://LayerPanel.gd" type="Script" id=24]
 [ext_resource path="res://Canvas/LayerButton.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Layers.gd" type="Script" id=26]
 [ext_resource path="res://DeleteLayerButton.gd" type="Script" id=27]
+[ext_resource path="res://Assets/icon_save.png" type="Texture" id=28]
 [ext_resource path="res://SelectButton.gd" type="Script" id=29]
 [ext_resource path="res://Grips.gd" type="Script" id=30]
 [ext_resource path="res://DrawingArea.gd" type="Script" id=31]
+[ext_resource path="res://Assets/icon_circle.png" type="Texture" id=32]
+[ext_resource path="res://Assets/icon_eraser.png" type="Texture" id=33]
+[ext_resource path="res://Assets/icon_add_layer.png" type="Texture" id=34]
+[ext_resource path="res://Assets/icon_delete_layer.png" type="Texture" id=35]
+[ext_resource path="res://Assets/icon_select.png" type="Texture" id=36]
+[ext_resource path="res://Assets/icon_change_color.png" type="Texture" id=37]
+[ext_resource path="res://Assets/icon_fill.png" type="Texture" id=38]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -55,127 +67,170 @@ script = ExtResource( 2 )
 
 [node name="EditPanel" type="Panel" parent="UI"]
 anchor_bottom = 1.0
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
+margin_right = 105.0
+rect_min_size = Vector2( 105, 0 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/EditPanel"]
+[node name="GridContainer" type="GridContainer" parent="UI/EditPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/EditPanel/VBoxContainer"]
-margin_right = 100.0
-margin_bottom = 20.0
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/EditPanel/GridContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+flat = true
 color = Color( 0.596078, 0.435294, 0.435294, 1 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PencilButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 24.0
-margin_right = 100.0
-margin_bottom = 44.0
+[node name="PencilButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 toggle_mode = true
-text = "Pencil"
+icon = ExtResource( 15 )
+flat = true
+expand_icon = true
 script = ExtResource( 6 )
 
-[node name="LineButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 48.0
-margin_right = 100.0
-margin_bottom = 68.0
-text = "Line"
+[node name="LineButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_top = 54.0
+margin_right = 50.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 13 )
+flat = true
+expand_icon = true
 script = ExtResource( 9 )
 
-[node name="RectangleButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 72.0
-margin_right = 100.0
-margin_bottom = 92.0
-text = "Rectangle"
+[node name="RectangleButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
+margin_top = 54.0
+margin_right = 104.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 16 )
+flat = true
+expand_icon = true
 script = ExtResource( 11 )
 
-[node name="EraserButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 96.0
-margin_right = 100.0
-margin_bottom = 116.0
-text = "Eraser"
+[node name="EraserButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_top = 108.0
+margin_right = 50.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 33 )
+flat = true
+expand_icon = true
 script = ExtResource( 12 )
 
-[node name="FillButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 120.0
-margin_right = 100.0
-margin_bottom = 140.0
-text = "Fill"
+[node name="FillButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
+margin_top = 108.0
+margin_right = 104.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 38 )
+flat = true
+expand_icon = true
 script = ExtResource( 14 )
 
-[node name="ChangeColorButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 144.0
-margin_right = 100.0
-margin_bottom = 164.0
-text = "Change color"
+[node name="ChangeColorButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_top = 162.0
+margin_right = 50.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 37 )
+flat = true
+expand_icon = true
 script = SubResource( 1 )
 
-[node name="CircleButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 168.0
-margin_right = 100.0
-margin_bottom = 188.0
-text = "Circle"
+[node name="CircleButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
+margin_top = 162.0
+margin_right = 104.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 32 )
+flat = true
+expand_icon = true
 script = ExtResource( 20 )
 
-[node name="AddLayerButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 192.0
-margin_right = 100.0
-margin_bottom = 212.0
-text = "Add Layer"
+[node name="AddLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_top = 216.0
+margin_right = 50.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 34 )
+flat = true
+expand_icon = true
 script = ExtResource( 23 )
 
-[node name="DeleteLayerButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
+[node name="DeleteLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
 margin_top = 216.0
-margin_right = 100.0
-margin_bottom = 236.0
-text = "Delete Layer"
+margin_right = 104.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 35 )
+flat = true
+expand_icon = true
 script = ExtResource( 27 )
 
-[node name="SelectButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 240.0
-margin_right = 100.0
-margin_bottom = 260.0
-text = "Select"
+[node name="SelectButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_top = 270.0
+margin_right = 50.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 36 )
+flat = true
+expand_icon = true
 script = ExtResource( 29 )
 
-[node name="SaveButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 264.0
-margin_right = 100.0
-margin_bottom = 284.0
-text = "Save"
+[node name="SaveButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
+margin_top = 270.0
+margin_right = 104.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 28 )
+flat = true
+expand_icon = true
 script = ExtResource( 8 )
 
-[node name="FileDialog" type="FileDialog" parent="UI/EditPanel/VBoxContainer/SaveButton"]
+[node name="FileDialog" type="FileDialog" parent="UI/EditPanel/GridContainer/SaveButton"]
 margin_right = 424.0
 margin_bottom = 242.0
 access = 2
 filters = PoolStringArray( "*.pex;Pixel Express" )
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OpenButton" type="Button" parent="UI/EditPanel/VBoxContainer"]
-margin_top = 288.0
-margin_right = 100.0
-margin_bottom = 308.0
-text = "Open"
+[node name="OpenButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_top = 324.0
+margin_right = 50.0
+margin_bottom = 374.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 21 )
+flat = true
+expand_icon = true
 script = ExtResource( 10 )
 
-[node name="FileDialog" type="FileDialog" parent="UI/EditPanel/VBoxContainer/OpenButton"]
-visible = true
+[node name="FileDialog" type="FileDialog" parent="UI/EditPanel/GridContainer/OpenButton"]
 margin_right = 502.0
 margin_bottom = 252.0
 window_title = "Open a File"
@@ -183,8 +238,8 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.pex;Pixel Express" )
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -526,8 +581,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -585,20 +640,20 @@ script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="color_changed" from="UI/EditPanel/VBoxContainer/ColorPickerButton" to="UI/EditPanel/VBoxContainer/ColorPickerButton" method="_on_ColorPickerButton_color_changed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/PencilButton" to="UI/EditPanel/VBoxContainer/PencilButton" method="_on_PencilButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/LineButton" to="UI/EditPanel/VBoxContainer/LineButton" method="_on_LineButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/RectangleButton" to="UI/EditPanel/VBoxContainer/RectangleButton" method="_on_RectangleButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/EraserButton" to="UI/EditPanel/VBoxContainer/EraserButton" method="_on_EraserButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/FillButton" to="UI/EditPanel/VBoxContainer/FillButton" method="_on_FillButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/ChangeColorButton" to="UI/EditPanel/VBoxContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/CircleButton" to="UI/EditPanel/VBoxContainer/CircleButton" method="_on_CircleButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/AddLayerButton" to="UI/EditPanel/VBoxContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/DeleteLayerButton" to="UI/EditPanel/VBoxContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/SelectButton" to="UI/EditPanel/VBoxContainer/SelectButton" method="_on_SelectButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/SaveButton" to="UI/EditPanel/VBoxContainer/SaveButton" method="_on_SaveButton_pressed"]
-[connection signal="file_selected" from="UI/EditPanel/VBoxContainer/SaveButton/FileDialog" to="UI/EditPanel/VBoxContainer/SaveButton" method="_on_FileDialog_file_selected"]
-[connection signal="pressed" from="UI/EditPanel/VBoxContainer/OpenButton" to="UI/EditPanel/VBoxContainer/OpenButton" method="_on_OpenButton_pressed"]
-[connection signal="file_selected" from="UI/EditPanel/VBoxContainer/OpenButton/FileDialog" to="UI/EditPanel/VBoxContainer/OpenButton" method="_on_FileDialog_file_selected"]
+[connection signal="color_changed" from="UI/EditPanel/GridContainer/ColorPickerButton" to="UI/EditPanel/GridContainer/ColorPickerButton" method="_on_ColorPickerButton_color_changed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/PencilButton" to="UI/EditPanel/GridContainer/PencilButton" method="_on_PencilButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/LineButton" to="UI/EditPanel/GridContainer/LineButton" method="_on_LineButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/RectangleButton" to="UI/EditPanel/GridContainer/RectangleButton" method="_on_RectangleButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/EraserButton" to="UI/EditPanel/GridContainer/EraserButton" method="_on_EraserButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/FillButton" to="UI/EditPanel/GridContainer/FillButton" method="_on_FillButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/ChangeColorButton" to="UI/EditPanel/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/CircleButton" to="UI/EditPanel/GridContainer/CircleButton" method="_on_CircleButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/AddLayerButton" to="UI/EditPanel/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/DeleteLayerButton" to="UI/EditPanel/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/SelectButton" to="UI/EditPanel/GridContainer/SelectButton" method="_on_SelectButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/SaveButton" to="UI/EditPanel/GridContainer/SaveButton" method="_on_SaveButton_pressed"]
+[connection signal="file_selected" from="UI/EditPanel/GridContainer/SaveButton/FileDialog" to="UI/EditPanel/GridContainer/SaveButton" method="_on_FileDialog_file_selected"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/OpenButton" to="UI/EditPanel/GridContainer/OpenButton" method="_on_OpenButton_pressed"]
+[connection signal="file_selected" from="UI/EditPanel/GridContainer/OpenButton/FileDialog" to="UI/EditPanel/GridContainer/OpenButton" method="_on_FileDialog_file_selected"]
 [connection signal="mouse_entered" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_entered"]
 [connection signal="mouse_exited" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_exited"]

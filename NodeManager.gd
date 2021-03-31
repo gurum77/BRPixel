@@ -6,9 +6,12 @@ var preview_layer:Layer = null
 var layer_panel = null
 var tools:Tools = null
 var save_file_dialog:FileDialog = null
+var color_picker_button:ColorPickerButton = null
 
-
-	
+func get_color_picker_button()->ColorPickerButton:
+	if color_picker_button == null:
+		color_picker_button = get_tree().root.get_node("Main/UI/EditPanel/VBoxContainer/ColorPickerButton")
+	return color_picker_button
 		
 func get_save_file_dialog()->FileDialog:
 	if save_file_dialog == null:

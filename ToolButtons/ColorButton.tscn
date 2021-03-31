@@ -1,12 +1,48 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ToolButtons/ColorButton.gd" type="Script" id=1]
 [ext_resource path="res://ToolButtons/ColorButton.png" type="Texture" id=2]
-
+[ext_resource path="res://white_rect_10x10.png" type="Texture" id=3]
+[ext_resource path="res://Assets/icon_plus.png" type="Texture" id=4]
 
 [node name="ColorButton" type="TextureRect"]
 margin_right = 50.0
 margin_bottom = 50.0
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentColorSign" type="TextureRect" parent="."]
+modulate = Color( 0.945098, 0.945098, 0.945098, 1 )
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 15.0
+margin_bottom = 15.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmptyColorSign" type="TextureRect" parent="."]
+margin_left = 8.80003
+margin_top = 9.59463
+margin_right = 38.8
+margin_bottom = 39.5946
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="gui_input" from="." to="." method="_on_ColorButton_gui_input"]
+[connection signal="popup_closed" from="ColorPickerButton" to="." method="_on_ColorPickerButton_popup_closed"]

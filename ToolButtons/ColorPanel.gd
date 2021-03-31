@@ -11,7 +11,7 @@ func load_current_palette():
 	var palette:Palette = StaticData.current_palette
 	for i in range(0, buttons.size()):
 		if palette != null && palette.colors.size() > i:
-			buttons[i].modulate = palette.colors[i]
+			buttons[i].set_color(palette.colors[i])
 		else:
-			buttons[i].modulate = Color.white
-			
+			buttons[i].clear_color()
+	
