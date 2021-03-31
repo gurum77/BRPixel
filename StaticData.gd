@@ -95,13 +95,28 @@ func open_project(path):
 	open_file.open(path, File.READ)
 	if open_file.get_position() < open_file.get_len():
 		var dic = parse_json(open_file.get_line())
+		open_project_layers(dic)
 	open_file.close()
+		
+func open_project_layers(var dic:Dictionary):
+	# 기존 레이어를 제거한다.
+	NodeManager.get_layers().clear_normal_layers()
+	if !dic.has("layers"):
+		return
+	var dic_layers:Dictionary = dic["layers"]
+	for key in dic_layers.keys():
+		# layer 추가
+		var new_layer = NodeManager.get_layers().add_layer()
+		new_layer.set_save_dic(dic_layers[key])
+
+	# laye button 갱신
+	NodeManager.get_layer_panel().regen_layer_buttons()
 		
 func get_save_dic_layers()->Dictionary:
 	var _save_dic:Dictionary
-	var layers = NodeManager.get_layers().get_children()
+	var layers = NodeManager.get_layers().get_normal_layers()
 	for layer in layers:
 		if !layer.is_need_to_save():
 			continue
-		_save_dic[layer.name] = layer.get_save_dic()
+		_save_dic[layer.index] = layer.get_save_dic()
 	return _save_dic

@@ -20,11 +20,11 @@ func regen_layer_buttons():
 		node.queue_free()
 		
 	# layer 버튼을 새로 만든다.
-	nodes = NodeManager.get_layers().get_children()
+	var normal_layers = NodeManager.get_layers().get_normal_layers()
 	var layer_index = 0
-	for node in nodes:
+	for node in normal_layers:
 		if not node is Layer:
-			continue;
+			continue
 		var layer_button = layer_button_node.instance()
 		layer_button.layer_index = layer_index
 		layer_button_parent.add_child(layer_button)

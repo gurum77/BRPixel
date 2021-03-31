@@ -4,6 +4,7 @@ class_name Layer
 export (bool) var preview_layer = false
 export (bool) var minimap_layer = false
 var index:int = 0
+var unused:bool = false	# 사용 되지 않음.
 var image:Image
 	
 # Called when the node enters the scene tree for the first time.
@@ -21,12 +22,33 @@ func _ready():
 		else:
 			StaticData.current_layer = self
 
+	
+			
+func set_save_dic(dic:Dictionary):
+	# image를 canvas 크기에 맞게 조절
+	resize()
+	
+	index = dic["index"]
+	name = dic["name"]
+	visible = dic["visible"]
+	var array_size = dic["array_size"]
+	var image_row_data = dic["image_row_data"]
+	var array = Marshalls.base64_to_raw(image_row_data)
+	array = array.decompress(array_size, File.COMPRESSION_DEFLATE)
+	image.create_from_data(image.get_width(), image.get_height(), image.has_mipmaps(), image.get_format(), array)
+	texture = ImageTexture.new()
+	update_texture()
+	
 func get_save_dic()->Dictionary:
 	var array:PoolByteArray = image.get_data()
+	var array_size = array.size()
 	array = array.compress(File.COMPRESSION_DEFLATE)
 	var image_row_data = Marshalls.raw_to_base64(array)
 	var save_dic={
 		"index" : index,
+		"name" : name,
+		"visible" : visible,
+		"array_size" : array_size,
 		"image_row_data" : image_row_data,
 	}
 	return save_dic

@@ -8,7 +8,7 @@ var tools:Tools = null
 var save_file_dialog:FileDialog = null
 
 
-
+	
 		
 func get_save_file_dialog()->FileDialog:
 	if save_file_dialog == null:
@@ -36,6 +36,9 @@ func get_preview_layer()->Layer:
 		preview_layer = get_tree().root.get_node("Main/Canvas/PreviewLayer")
 	return preview_layer
 
+
+		
+	
 # 현재 활성화 되어 있는 모든 tool을 제거한다.
 func clear_other_tools(var current_tool, var except_select_tool=true):
 	var nodes = get_tools().get_children()

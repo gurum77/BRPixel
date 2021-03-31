@@ -6,14 +6,10 @@ func _ready():
 	update_layer()
 	
 func update_layer():
-	
-	if NodeManager.get_layers()== null:
+	var layer= get_layer()
+	if layer == null:
 		return
-		
-	var nodes = NodeManager.get_layers().get_children()
-	if layer_index < 0 || nodes.size() <= layer_index:
-		return
-	$Layer.image = nodes[layer_index].image
+	$Layer.image = layer.image
 	$Layer.update_texture()
 	
 
