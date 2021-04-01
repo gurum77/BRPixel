@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -38,6 +38,14 @@
 [ext_resource path="res://Assets/icon_select.png" type="Texture" id=36]
 [ext_resource path="res://Assets/icon_change_color.png" type="Texture" id=37]
 [ext_resource path="res://Assets/icon_fill.png" type="Texture" id=38]
+[ext_resource path="res://GridButton.gd" type="Script" id=39]
+[ext_resource path="res://Assets/icon_grid.png" type="Texture" id=40]
+[ext_resource path="res://AddLayerButtonOnLayerPanel.tscn" type="PackedScene" id=41]
+[ext_resource path="res://Assets/icon_setting.png" type="Texture" id=42]
+[ext_resource path="res://DraggableWindow.tscn" type="PackedScene" id=43]
+[ext_resource path="res://SettingButton.gd" type="Script" id=44]
+[ext_resource path="res://Assets/icon_canvas_size.png" type="Texture" id=45]
+[ext_resource path="res://CanvasSizeButton.gd" type="Script" id=46]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -86,7 +94,6 @@ __meta__ = {
 margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
-flat = true
 color = Color( 0.596078, 0.435294, 0.435294, 1 )
 script = ExtResource( 7 )
 __meta__ = {
@@ -98,9 +105,7 @@ margin_left = 54.0
 margin_right = 104.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
-toggle_mode = true
 icon = ExtResource( 15 )
-flat = true
 expand_icon = true
 script = ExtResource( 6 )
 
@@ -110,62 +115,56 @@ margin_right = 50.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 13 )
-flat = true
 expand_icon = true
 script = ExtResource( 9 )
 
-[node name="RectangleButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="CircleButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_left = 54.0
 margin_top = 54.0
 margin_right = 104.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 32 )
+expand_icon = true
+script = ExtResource( 20 )
+
+[node name="RectangleButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_top = 108.0
+margin_right = 50.0
+margin_bottom = 158.0
+rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 16 )
-flat = true
 expand_icon = true
 script = ExtResource( 11 )
 
 [node name="EraserButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
 margin_top = 108.0
-margin_right = 50.0
+margin_right = 104.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 33 )
-flat = true
 expand_icon = true
 script = ExtResource( 12 )
 
 [node name="FillButton" type="Button" parent="UI/EditPanel/GridContainer"]
-margin_left = 54.0
-margin_top = 108.0
-margin_right = 104.0
-margin_bottom = 158.0
-rect_min_size = Vector2( 50, 50 )
-icon = ExtResource( 38 )
-flat = true
-expand_icon = true
-script = ExtResource( 14 )
-
-[node name="ChangeColorButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 162.0
 margin_right = 50.0
 margin_bottom = 212.0
 rect_min_size = Vector2( 50, 50 )
-icon = ExtResource( 37 )
-flat = true
+icon = ExtResource( 38 )
 expand_icon = true
-script = SubResource( 1 )
+script = ExtResource( 14 )
 
-[node name="CircleButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="ChangeColorButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_left = 54.0
 margin_top = 162.0
 margin_right = 104.0
 margin_bottom = 212.0
 rect_min_size = Vector2( 50, 50 )
-icon = ExtResource( 32 )
-flat = true
+icon = ExtResource( 37 )
 expand_icon = true
-script = ExtResource( 20 )
+script = SubResource( 1 )
 
 [node name="AddLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 216.0
@@ -173,7 +172,6 @@ margin_right = 50.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 34 )
-flat = true
 expand_icon = true
 script = ExtResource( 23 )
 
@@ -184,7 +182,6 @@ margin_right = 104.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 35 )
-flat = true
 expand_icon = true
 script = ExtResource( 27 )
 
@@ -194,7 +191,6 @@ margin_right = 50.0
 margin_bottom = 320.0
 rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 36 )
-flat = true
 expand_icon = true
 script = ExtResource( 29 )
 
@@ -205,7 +201,6 @@ margin_right = 104.0
 margin_bottom = 320.0
 rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 28 )
-flat = true
 expand_icon = true
 script = ExtResource( 8 )
 
@@ -214,8 +209,8 @@ margin_right = 424.0
 margin_bottom = 242.0
 access = 2
 filters = PoolStringArray( "*.pex;Pixel Express" )
-current_dir = "/MyProjects/Godot/ExpertPixelEditor"
-current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+current_dir = "/Trunk_Godot/ExpertPixelEditor"
+current_path = "/Trunk_Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -226,7 +221,6 @@ margin_right = 50.0
 margin_bottom = 374.0
 rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 21 )
-flat = true
 expand_icon = true
 script = ExtResource( 10 )
 
@@ -238,11 +232,20 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.pex;Pixel Express" )
-current_dir = "/MyProjects/Godot/ExpertPixelEditor"
-current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+current_dir = "/Trunk_Godot/ExpertPixelEditor"
+current_path = "/Trunk_Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GridButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
+margin_top = 324.0
+margin_right = 104.0
+margin_bottom = 374.0
+icon = ExtResource( 40 )
+expand_icon = true
+script = ExtResource( 39 )
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -543,25 +546,76 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/LayerPanel/ScrollContainer"]
-margin_right = 50.0
+margin_right = 104.0
 margin_bottom = 50.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LayerButton" parent="UI/LayerPanel/ScrollContainer/HBoxContainer" instance=ExtResource( 25 )]
+expand = true
+
+[node name="AddLayerButtonOnLayerPanel" parent="UI/LayerPanel/ScrollContainer/HBoxContainer" instance=ExtResource( 41 )]
 
 [node name="DrawingArea" type="Panel" parent="UI"]
 modulate = Color( 1, 1, 1, 0.0470588 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 111.122
-margin_right = -118.878
-margin_bottom = -65.0
+margin_left = 110.492
+margin_top = 0.314972
+margin_right = -119.508
+margin_bottom = -64.6851
 script = ExtResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SettingButton" type="TextureButton" parent="UI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -198.0
+margin_top = -120.0
+margin_right = -150.0
+margin_bottom = -70.0
+texture_normal = ExtResource( 42 )
+expand = true
+script = ExtResource( 44 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingWindow" parent="UI/SettingButton" instance=ExtResource( 43 )]
+margin_left = -465.97
+margin_top = -405.736
+margin_right = -121.97
+margin_bottom = 3.2641
+
+[node name="GridContainer" type="GridContainer" parent="UI/SettingButton/SettingWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 40.0
+margin_right = -10.0
+margin_bottom = -10.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasSizeButton" type="Button" parent="UI/SettingButton/SettingWindow/GridContainer"]
+margin_right = 136.0
+margin_bottom = 54.0
+text = "Canvas size"
+icon = ExtResource( 45 )
+script = ExtResource( 46 )
+
+[node name="CanvasSizeWindow" parent="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" instance=ExtResource( 43 )]
+margin_left = 677.933
+margin_top = -50.5519
+margin_right = 857.933
+margin_bottom = 123.448
 
 [node name="DebugLabel" type="Label" parent="UI"]
 anchor_right = 1.0
@@ -581,8 +635,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/MyProjects/Godot/ExpertPixelEditor"
-current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+current_dir = "/Trunk_Godot/ExpertPixelEditor"
+current_path = "/Trunk_Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -643,11 +697,11 @@ __meta__ = {
 [connection signal="color_changed" from="UI/EditPanel/GridContainer/ColorPickerButton" to="UI/EditPanel/GridContainer/ColorPickerButton" method="_on_ColorPickerButton_color_changed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/PencilButton" to="UI/EditPanel/GridContainer/PencilButton" method="_on_PencilButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/LineButton" to="UI/EditPanel/GridContainer/LineButton" method="_on_LineButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/CircleButton" to="UI/EditPanel/GridContainer/CircleButton" method="_on_CircleButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/RectangleButton" to="UI/EditPanel/GridContainer/RectangleButton" method="_on_RectangleButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/EraserButton" to="UI/EditPanel/GridContainer/EraserButton" method="_on_EraserButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/FillButton" to="UI/EditPanel/GridContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/ChangeColorButton" to="UI/EditPanel/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/GridContainer/CircleButton" to="UI/EditPanel/GridContainer/CircleButton" method="_on_CircleButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/AddLayerButton" to="UI/EditPanel/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/DeleteLayerButton" to="UI/EditPanel/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/SelectButton" to="UI/EditPanel/GridContainer/SelectButton" method="_on_SelectButton_pressed"]
@@ -655,5 +709,10 @@ __meta__ = {
 [connection signal="file_selected" from="UI/EditPanel/GridContainer/SaveButton/FileDialog" to="UI/EditPanel/GridContainer/SaveButton" method="_on_FileDialog_file_selected"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/OpenButton" to="UI/EditPanel/GridContainer/OpenButton" method="_on_OpenButton_pressed"]
 [connection signal="file_selected" from="UI/EditPanel/GridContainer/OpenButton/FileDialog" to="UI/EditPanel/GridContainer/OpenButton" method="_on_FileDialog_file_selected"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/GridButton" to="UI/EditPanel/GridContainer/GridButton" method="_on_GridButton_pressed"]
 [connection signal="mouse_entered" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_entered"]
 [connection signal="mouse_exited" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_exited"]
+[connection signal="pressed" from="UI/SettingButton" to="UI/SettingButton" method="_on_SettingButton_pressed"]
+[connection signal="hide" from="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" to="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" method="_on_CanvasSizeButton_hide"]
+[connection signal="pressed" from="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" to="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" method="_on_CanvasSizeButton_pressed"]
+[connection signal="hide" from="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton/CanvasSizeWindow" to="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" method="_on_CanvasSizeWindow_hide"]

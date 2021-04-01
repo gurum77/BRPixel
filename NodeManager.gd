@@ -7,10 +7,22 @@ var layer_panel = null
 var tools:Tools = null
 var save_file_dialog:FileDialog = null
 var color_picker_button:ColorPickerButton = null
+var canvas = null
+var setting_window = null
 
+func get_setting_window()->Node:
+	if setting_window == null:
+		setting_window = get_tree().root.get_node("Main/UI/SettingButton/SettingWindow")
+	return setting_window
+	
+func get_canvas()->Node:
+	if canvas == null:
+		canvas = get_tree().root.get_node("Main/Canvas")
+	return canvas
+	
 func get_color_picker_button()->ColorPickerButton:
 	if color_picker_button == null:
-		color_picker_button = get_tree().root.get_node("Main/UI/EditPanel/VBoxContainer/ColorPickerButton")
+		color_picker_button = get_tree().root.get_node("Main/UI/EditPanel/GridContainer/ColorPickerButton")
 	return color_picker_button
 		
 func get_save_file_dialog()->FileDialog:

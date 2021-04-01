@@ -2,13 +2,15 @@ extends Panel
 class_name LayerPanel
 
 var layer_button_node = preload("res://Canvas/LayerButton.tscn")
-
+var add_layer_button_on_layer_panel = preload("res://AddLayerButtonOnLayerPanel.tscn")
 onready var layer_button_parent = $ScrollContainer/HBoxContainer
 # layer button을 다시 만들지는 않고 갱신만 한다.
 # 설정등이 변경 되었을때 호
 func update_layer_buttons():
 	var nodes = layer_button_parent.get_children()
 	for node in nodes:
+		if node is AddLayerButtonOnLayerPanel:
+			continue
 		node.update()
 		node.update_layer()
 		
@@ -30,4 +32,8 @@ func regen_layer_buttons():
 		layer_button_parent.add_child(layer_button)
 		layer_button.update_layer()
 		layer_index += 1
+	
+	# layer 추가 버튼을 마지막에 만든다.
+	var add_layer_button_ins = add_layer_button_on_layer_panel.instance()
+	layer_button_parent.add_child(add_layer_button_ins)
 		

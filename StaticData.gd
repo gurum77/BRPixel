@@ -12,6 +12,7 @@ var mouse_inside_ui:bool = false
 var dragging_grip:bool = false	# grip을 dragging중인지?
 var canvas_width = 64
 var canvas_height = 64
+var enabled_grid = true
 
 # selected area
 var selected_area = Rect2(0, 0, 0, 0)
@@ -83,6 +84,9 @@ func _ready():
 # 저장 
 func save_project(path):
 	var save_dic={
+		"canvas_width" : StaticData.canvas_width,
+		"canvas_height" : StaticData.canvas_height,
+		"enabled_grid" : StaticData.enabled_grid,
 		"layers" : get_save_dic_layers()
 	}
 	var save_file = File.new()
@@ -95,8 +99,12 @@ func open_project(path):
 	open_file.open(path, File.READ)
 	if open_file.get_position() < open_file.get_len():
 		var dic = parse_json(open_file.get_line())
+		StaticData.canvas_width = dic["canvas_width"]
+		StaticData.canvas_height = dic["canvas_height"]
+		StaticData.enabled_grid = dic["enabled_grid"]
 		open_project_layers(dic)
 	open_file.close()
+	NodeManager.get_canvas().update()
 		
 func open_project_layers(var dic:Dictionary):
 	# 기존 레이어를 제거한다.
