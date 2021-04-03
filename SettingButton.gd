@@ -17,7 +17,4 @@ func _ready():
 
 
 func _on_SettingButton_pressed():
-	$SettingWindow.popup_centered()
-	$SettingWindow.visible = true
-	
-	
+	$SettingPopup.popup_centered()

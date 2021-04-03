@@ -15,7 +15,7 @@ func _ready():
 	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.select)
 	color.a = 0.3
 	boundary_color.a = 1.0
-	pass
+	StaticData.dragging_grip = false
 	
 func _draw():
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.select) && !StaticData.enabled_selected_area():

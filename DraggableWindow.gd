@@ -4,7 +4,6 @@ var drag_position = null
 var active_color
 func _ready():
 	hint_tooltip = name
-	visible = false
 	active_color = self_modulate
 	
 func set_active(active):

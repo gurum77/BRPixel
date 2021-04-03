@@ -1,6 +1,6 @@
 extends Node
 
-func is_action_just_pressed_rbutton(event)->bool:
+func is_action_just_pressed_rbutton(_event)->bool:
 	if Input.is_action_just_pressed("right_button"):
 		return true
 	return false

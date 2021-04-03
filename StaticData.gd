@@ -104,7 +104,7 @@ func open_project(path):
 		StaticData.enabled_grid = dic["enabled_grid"]
 		open_project_layers(dic)
 	open_file.close()
-	NodeManager.get_canvas().update()
+	NodeManager.get_canvas().resize()
 		
 func open_project_layers(var dic:Dictionary):
 	# 기존 레이어를 제거한다.
@@ -112,11 +112,18 @@ func open_project_layers(var dic:Dictionary):
 	if !dic.has("layers"):
 		return
 	var dic_layers:Dictionary = dic["layers"]
+	
 	for key in dic_layers.keys():
 		# layer 추가
 		var new_layer = NodeManager.get_layers().add_layer()
 		new_layer.set_save_dic(dic_layers[key])
+		
+	# 첫번째 layer를 현재 레이어로 설정 
+	StaticData.current_layer = NodeManager.get_layers().get_layer(0)
 
+	# layer index 갱신
+	NodeManager.get_layers().update_layer_index()
+	
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
 		

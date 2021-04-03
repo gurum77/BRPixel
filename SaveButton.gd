@@ -2,10 +2,11 @@ extends Button
 
 	
 func _on_SaveButton_pressed():
-	$FileDialog.popup_centered()
-	$FileDialog.show()
+	$SaveFileDialog.popup_centered()
+	$SaveFileDialog.show()
 
-func _on_FileDialog_file_selected(path):
-	var ext = $FileDialog.current_file.get_extension()
+func _on_SaveFileDialog_file_selected(path):
+	var ext = $SaveFileDialog.current_file.get_extension()
 	if ext == "pex":
 		StaticData.save_project(path)
+

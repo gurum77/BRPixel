@@ -42,10 +42,10 @@
 [ext_resource path="res://Assets/icon_grid.png" type="Texture" id=40]
 [ext_resource path="res://AddLayerButtonOnLayerPanel.tscn" type="PackedScene" id=41]
 [ext_resource path="res://Assets/icon_setting.png" type="Texture" id=42]
-[ext_resource path="res://DraggableWindow.tscn" type="PackedScene" id=43]
+[ext_resource path="res://SettingPopup.tscn" type="PackedScene" id=43]
 [ext_resource path="res://SettingButton.gd" type="Script" id=44]
-[ext_resource path="res://Assets/icon_canvas_size.png" type="Texture" id=45]
-[ext_resource path="res://CanvasSizeButton.gd" type="Script" id=46]
+[ext_resource path="res://SaveFileDialog.tscn" type="PackedScene" id=45]
+[ext_resource path="res://OpenFileDialog.tscn" type="PackedScene" id=46]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -204,16 +204,7 @@ icon = ExtResource( 28 )
 expand_icon = true
 script = ExtResource( 8 )
 
-[node name="FileDialog" type="FileDialog" parent="UI/EditPanel/GridContainer/SaveButton"]
-margin_right = 424.0
-margin_bottom = 242.0
-access = 2
-filters = PoolStringArray( "*.pex;Pixel Express" )
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="SaveFileDialog" parent="UI/EditPanel/GridContainer/SaveButton" instance=ExtResource( 45 )]
 
 [node name="OpenButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 324.0
@@ -224,19 +215,7 @@ icon = ExtResource( 21 )
 expand_icon = true
 script = ExtResource( 10 )
 
-[node name="FileDialog" type="FileDialog" parent="UI/EditPanel/GridContainer/OpenButton"]
-margin_right = 502.0
-margin_bottom = 252.0
-window_title = "Open a File"
-resizable = true
-mode = 0
-access = 2
-filters = PoolStringArray( "*.pex;Pixel Express" )
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="OpenFileDialog" parent="UI/EditPanel/GridContainer/OpenButton" instance=ExtResource( 46 )]
 
 [node name="GridButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_left = 54.0
@@ -586,36 +565,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SettingWindow" parent="UI/SettingButton" instance=ExtResource( 43 )]
-margin_left = -465.97
-margin_top = -405.736
-margin_right = -121.97
-margin_bottom = 3.2641
-
-[node name="GridContainer" type="GridContainer" parent="UI/SettingButton/SettingWindow"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 40.0
-margin_right = -10.0
-margin_bottom = -10.0
-columns = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CanvasSizeButton" type="Button" parent="UI/SettingButton/SettingWindow/GridContainer"]
-margin_right = 136.0
-margin_bottom = 54.0
-text = "Canvas size"
-icon = ExtResource( 45 )
-script = ExtResource( 46 )
-
-[node name="CanvasSizeWindow" parent="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" instance=ExtResource( 43 )]
-margin_left = 677.933
-margin_top = -50.5519
-margin_right = 857.933
-margin_bottom = 123.448
+[node name="SettingPopup" parent="UI/SettingButton" instance=ExtResource( 43 )]
+margin_left = -489.318
+margin_top = -401.637
+margin_right = -489.318
+margin_bottom = -401.637
 
 [node name="DebugLabel" type="Label" parent="UI"]
 anchor_right = 1.0
@@ -706,13 +660,10 @@ __meta__ = {
 [connection signal="pressed" from="UI/EditPanel/GridContainer/DeleteLayerButton" to="UI/EditPanel/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/SelectButton" to="UI/EditPanel/GridContainer/SelectButton" method="_on_SelectButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/SaveButton" to="UI/EditPanel/GridContainer/SaveButton" method="_on_SaveButton_pressed"]
-[connection signal="file_selected" from="UI/EditPanel/GridContainer/SaveButton/FileDialog" to="UI/EditPanel/GridContainer/SaveButton" method="_on_FileDialog_file_selected"]
+[connection signal="file_selected" from="UI/EditPanel/GridContainer/SaveButton/SaveFileDialog" to="UI/EditPanel/GridContainer/SaveButton" method="_on_SaveFileDialog_file_selected"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/OpenButton" to="UI/EditPanel/GridContainer/OpenButton" method="_on_OpenButton_pressed"]
-[connection signal="file_selected" from="UI/EditPanel/GridContainer/OpenButton/FileDialog" to="UI/EditPanel/GridContainer/OpenButton" method="_on_FileDialog_file_selected"]
+[connection signal="file_selected" from="UI/EditPanel/GridContainer/OpenButton/OpenFileDialog" to="UI/EditPanel/GridContainer/OpenButton" method="_on_OpenFileDialog_file_selected"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/GridButton" to="UI/EditPanel/GridContainer/GridButton" method="_on_GridButton_pressed"]
 [connection signal="mouse_entered" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_entered"]
 [connection signal="mouse_exited" from="UI/DrawingArea" to="UI/DrawingArea" method="_on_DrawingArea_mouse_exited"]
 [connection signal="pressed" from="UI/SettingButton" to="UI/SettingButton" method="_on_SettingButton_pressed"]
-[connection signal="hide" from="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" to="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" method="_on_CanvasSizeButton_hide"]
-[connection signal="pressed" from="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" to="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" method="_on_CanvasSizeButton_pressed"]
-[connection signal="hide" from="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton/CanvasSizeWindow" to="UI/SettingButton/SettingWindow/GridContainer/CanvasSizeButton" method="_on_CanvasSizeWindow_hide"]

@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://AddLayerButtonOnLayerPanel.gd"
 }, {
+"base": "PopupDialog",
+"class": "DraggablePopup",
+"language": "GDScript",
+"path": "res://DraggablePopup.gd"
+}, {
 "base": "Control",
 "class": "Grip",
 "language": "GDScript",
@@ -46,6 +51,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AddLayerButtonOnLayerPanel": "",
+"DraggablePopup": "",
 "Grip": "",
 "Layer": "",
 "LayerPanel": "",
@@ -66,6 +72,8 @@ StaticData="*res://StaticData.gd"
 GeometryMaker="*res://Tools/GeometryMaker.gd"
 NodeManager="*res://NodeManager.gd"
 InputManager="*res://InputManager.gd"
+Define="*res://Define.gd"
+Util="*res://Util.gd"
 
 [display]
 

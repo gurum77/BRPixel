@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="SaveFileDialog" type="FileDialog"]
+margin_right = 560.0
+margin_bottom = 342.0
+access = 2
+filters = PoolStringArray( "*.pex;Pixel Express" )
+current_dir = "/Trunk_Godot/ExpertPixelEditor"
+current_path = "/Trunk_Godot/ExpertPixelEditor/"
+__meta__ = {
+"_edit_use_anchors_": false
+}

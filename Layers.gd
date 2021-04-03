@@ -59,7 +59,7 @@ func remove_layer(index):
 	StaticData.current_layer = NodeManager.layers.get_layer(index)
 
 func update_layer_index():
-	var nodes = get_children()
+	var nodes = get_normal_layers()
 	var idx = 0
 	for node in nodes:
 		node.index = idx

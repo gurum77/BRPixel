@@ -37,7 +37,7 @@ func update_current_color_sign():
 func update_none_sign():
 	empty_color_sign.visible = empty_color
 			
-func _process(delta):
+func _process(_delta):
 	update_current_color_sign()
 	update_none_sign()
 	

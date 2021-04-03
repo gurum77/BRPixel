@@ -8,12 +8,13 @@ var tools:Tools = null
 var save_file_dialog:FileDialog = null
 var color_picker_button:ColorPickerButton = null
 var canvas = null
-var setting_window = null
+var setting_popup = null
+var preload_message_popup = preload("res://MessagePopup.tscn")
 
-func get_setting_window()->Node:
-	if setting_window == null:
-		setting_window = get_tree().root.get_node("Main/UI/SettingButton/SettingWindow")
-	return setting_window
+func get_setting_popup()->Node:
+	if setting_popup == null:
+		setting_popup = get_tree().root.get_node("Main/UI/SettingButton/SettingPopup")
+	return setting_popup
 	
 func get_canvas()->Node:
 	if canvas == null:
@@ -66,8 +67,8 @@ func clear_other_tools(var current_tool, var except_select_tool=true):
 		# 단 select 툴의 grip는 lock을 건다.
 		if except_select_tool:
 			if node is Select:
-				var grips = node.get_children()
-				for grip in grips:
+				var grips_tmp = node.get_children()
+				for grip in grips_tmp:
 					grip.lock()
 				continue
 		node.queue_free()

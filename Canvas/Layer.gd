@@ -6,6 +6,7 @@ export (bool) var minimap_layer = false
 var index:int = 0
 var unused:bool = false	# 사용 되지 않음.
 var image:Image
+enum ResizeDir{left_top, top, right_top, left, center, right, left_bottom, bottom, right_bottom}
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,7 +14,7 @@ func _ready():
 	rect_position = Vector2(0, 0)
 	
 	texture = ImageTexture.new()
-	resize()
+	init_size()
 	update_index()
 	
 	if !minimap_layer: 
@@ -26,7 +27,7 @@ func _ready():
 			
 func set_save_dic(dic:Dictionary):
 	# image를 canvas 크기에 맞게 조절
-	resize()
+	init_size()
 	
 	index = dic["index"]
 	name = dic["name"]
@@ -86,11 +87,62 @@ func toggle_visible():
 	else:
 		visible = true
 	
-# 지정된 크기에 맞게 resize를 한다.
-func resize():
+# 이미지의 크기를 canvas 크기로 설정한다.(이미지는 초기화 됨)
+func init_size():
 	image = Image.new()
 	image.create(StaticData.canvas_width, StaticData.canvas_height, false, Image.FORMAT_RGBA8)
 	update_texture()
+# 이미지의 크기를 canvas크기로 설정한다.
+# 이미지의 원본을 유지한다.
+func resize(resize_dir):
+	if image == null:
+		init_size()
+		return
+	# new image
+	var new_image = Image.new()
+	new_image.create(StaticData.canvas_width, StaticData.canvas_height, false, Image.FORMAT_RGBA8)
+	
+	# image를 new_image에 복사(이동량과 함께)
+	var offset_x = 0
+	var offset_y = 0
+	# 왼쪽으로 늘어나야 되는 경우
+	# 오른쪽으로 늘어나는 경우 그냥 둔다.
+	if resize_dir == ResizeDir.left || resize_dir == ResizeDir.left_bottom || resize_dir == ResizeDir.left_top:
+		offset_x = StaticData.canvas_width - image.get_width()
+	elif resize_dir == ResizeDir.center:
+		offset_x = (StaticData.canvas_width - image.get_width())/2
+		
+	# 위로 늘어나냐 되는 경우
+	if resize_dir == ResizeDir.top || resize_dir == ResizeDir.left_top || resize_dir == ResizeDir.right_top:
+		offset_y = StaticData.canvas_height - image.get_height()
+	elif resize_dir == ResizeDir.center:
+		offset_y = (StaticData.canvas_height - image.get_height())/2
+	
+	copy_image(image, new_image, offset_x, offset_y)
+	image = new_image
+	update_texture()
+
+# image의 외부인지?
+func outside_of_image(var image_tmp:Image, var x:int, var y:int):
+	if x < 0 || y < 0 || x >= image_tmp.get_width() || y >= image_tmp.get_height():
+		return true
+	return false
+	
+# image를 복사한다.(offset 값과 함께)
+# 잘려 나갈 수 있다.
+func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int):
+	src_image.lock()
+	target_image.lock()
+	for x in src_image.get_width():
+		for y in src_image.get_height():
+			var new_x = x + offset_x
+			var new_y = y + offset_y
+			if outside_of_image(target_image, new_x, new_y):
+				continue
+				
+			target_image.set_pixel(new_x, new_y, src_image.get_pixel(x, y))
+	src_image.unlock()
+	target_image.unlock()
 
 # texture를 업데이트 한다.	
 func update_texture():
