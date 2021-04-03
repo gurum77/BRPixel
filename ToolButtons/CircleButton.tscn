@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ToolButtons/CircleButton.gd" type="Script" id=1]
+[ext_resource path="res://Assets/icon_circle.png" type="Texture" id=2]
+
+[node name="CircleButton" type="Button"]
+margin_left = 54.0
+margin_top = 54.0
+margin_right = 104.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 2 )
+expand_icon = true
+script = ExtResource( 1 )
+[connection signal="pressed" from="." to="." method="_on_CircleButton_pressed"]

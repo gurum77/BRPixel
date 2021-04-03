@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://DrawingArea.gd" type="Script" id=1]
+
+[node name="DrawingArea" type="Panel"]
+modulate = Color( 1, 1, 1, 0.607843 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 110.492
+margin_top = 0.314972
+margin_right = -119.508
+margin_bottom = -64.6851
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="." to="." method="_on_DrawingArea_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_DrawingArea_mouse_exited"]

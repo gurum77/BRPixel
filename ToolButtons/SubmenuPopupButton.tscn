@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/icon_line.png" type="Texture" id=1]
+[ext_resource path="res://ToolButtons/SubmenuPopupButton.gd" type="Script" id=2]
+[ext_resource path="res://DraggableWindow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/icon_drag.png" type="Texture" id=4]
+
+[node name="SubmenuPopupButton" type="Button"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 1 )
+expand_icon = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DraggableWindow" parent="." instance=ExtResource( 3 )]
+margin_left = 145.083
+margin_top = -1.18921
+margin_right = 462.083
+margin_bottom = 48.8108
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DraggableWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+rect_min_size = Vector2( 100, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="DraggableWindow"]
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = 5.0
+margin_right = 30.0
+margin_bottom = -5.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 27.0
+margin_top = 5.0
+margin_right = 12.0
+margin_bottom = -5.0
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="." to="." method="_on_SubmenuPopupButton_pressed"]

@@ -1,6 +1,8 @@
 extends Panel
 
-
+func _ready():
+	show()
+	
 func _on_DrawingArea_mouse_entered():
 	StaticData.mouse_inside_ui = false
 

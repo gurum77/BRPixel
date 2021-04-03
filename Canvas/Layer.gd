@@ -86,11 +86,15 @@ func toggle_visible():
 		visible = false
 	else:
 		visible = true
-	
+
+func create_image(width, height)->Image:
+	var tmp_image = Image.new()
+	tmp_image.create(width, height, false, Image.FORMAT_RGBA8)
+	return tmp_image
+
 # 이미지의 크기를 canvas 크기로 설정한다.(이미지는 초기화 됨)
 func init_size():
-	image = Image.new()
-	image.create(StaticData.canvas_width, StaticData.canvas_height, false, Image.FORMAT_RGBA8)
+	image = create_image(StaticData.canvas_width, StaticData.canvas_height)
 	update_texture()
 # 이미지의 크기를 canvas크기로 설정한다.
 # 이미지의 원본을 유지한다.
