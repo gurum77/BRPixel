@@ -21,6 +21,7 @@ margin_left = 145.083
 margin_top = -1.18921
 margin_right = 462.083
 margin_bottom = 48.8108
+hide_close_button = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DraggableWindow"]
 anchor_right = 1.0

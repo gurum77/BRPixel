@@ -1,6 +1,6 @@
 extends Node
 
-enum Tool{pencil, line, rectangle, eraser, fill, change_color, circle, select}
+enum Tool{pencil, line, rectangle, eraser, fill, change_color, circle, select, edit}
 
 var current_tool = Tool.pencil
 var current_color = Color.black

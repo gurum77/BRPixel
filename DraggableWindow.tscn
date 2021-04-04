@@ -15,7 +15,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="CloseButton" type="TextureButton" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -37.0
@@ -29,4 +29,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
-[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]

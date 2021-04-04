@@ -4,6 +4,8 @@ var empty_color = true
 onready var current_color_sign = $CurrentColorSign
 onready var empty_color_sign = $EmptyColorSign
 
+var pressed_position
+
 func clear_color():
 	self_modulate = Color.white
 	$ColorPickerButton.visible = true
@@ -21,10 +23,19 @@ func set_color(color):
 
 func _on_ColorButton_gui_input(event):
 	if event is InputEventMouseButton:
-		if !empty_color:
-			StaticData.current_color = self_modulate
+		if event.button_index == BUTTON_WHEEL_DOWN || event.button_index == BUTTON_WHEEL_UP:
+			return
+			
+		if event.pressed:
+			pressed_position = get_global_mouse_position()
 		else:
-			NodeManager.get_color_picker_button().emit_signal("button_up")
+			# drag 상황이 아닐때만 색을 선택한
+			if pressed_position.distance_squared_to(get_global_mouse_position()) < 3:
+				if !empty_color:
+					StaticData.current_color = self_modulate
+				else:
+					NodeManager.get_color_picker_button().emit_signal("button_up")
+			pressed_position = null
 		
 			
 

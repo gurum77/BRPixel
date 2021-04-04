@@ -3,6 +3,7 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$DraggableWindow.hide_close_button = true
 	$DraggableWindow.hide()
 	resize()
 	
@@ -10,9 +11,17 @@ func resize():
 	var total_width = 0
 	var nodes = $DraggableWindow/HBoxContainer.get_children()
 	for node in nodes:
-		if node is Button:
-			var but:Button = node
+		# clipboard중 사용되지 않는것은 크기조절에서 제외
+		if node is ClipBoardButton:
+			var but:ClipBoardButton = node
+			if but.unused:
+				continue
+				
+		# button의 크기를 더해준다.
+		if node is Control:
+			var but:Control = node
 			total_width = total_width + but.rect_size.x
+					
 
 	var margins = $DraggableWindow/HBoxContainer.margin_left + $DraggableWindow/HBoxContainer.margin_right
 	var sparations = $DraggableWindow/HBoxContainer.get_constant("separation") * nodes.size()

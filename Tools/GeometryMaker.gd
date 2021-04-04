@@ -80,22 +80,39 @@ static func get_pixels_in_circle(from:Vector2, to:Vector2)->Array:
 	return pixels
 	
 # 두점 사이의 사각형에 대한 pixel을 만들어서 리턴
-static func get_pixels_in_rectangle(from:Vector2, to:Vector2)->Array:
-	# 가로선들 
-	var hor1 = get_pixels_in_line(Vector2(from.x, to.y), to)
-	var hor2 = get_pixels_in_line(from, Vector2(to.x, from.y))
-	var vert1 = get_pixels_in_line(from, Vector2(from.x, to.y))
-	var vert2 = get_pixels_in_line(Vector2(to.x, from.y), to)
+static func get_pixels_in_rectangle(from:Vector2, to:Vector2, filled=false)->Array:
 	var points : Array = []
-	
-	for p in hor1:
-		points.append(p)
-	for p in hor2:
-		points.append(p)
-	for p in vert1:
-		points.append(p)
-	for p in vert2:
-		points.append(p)
+
+
+	if filled:
+		var from_x:int = from.x
+		var from_y:int = from.y
+		var to_x:int = to.x
+		var to_y:int = to.y
+		
+		var min_x = min(from_x, to_x)
+		var max_x = max(from_x, to_x)
+		var min_y = min(from_y, to_y)
+		var max_y = max(from_y, to_y)
+		
+		for x in range(min_x, max_x+1):
+			for y in range(min_y, max_y+1):
+				points.append(Vector2(x, y))
+	else:
+		# 가로선들 
+		var hor1 = get_pixels_in_line(Vector2(from.x, to.y), to)
+		var hor2 = get_pixels_in_line(from, Vector2(to.x, from.y))
+		var vert1 = get_pixels_in_line(from, Vector2(from.x, to.y))
+		var vert2 = get_pixels_in_line(Vector2(to.x, from.y), to)
+		
+		for p in hor1:
+			points.append(p)
+		for p in hor2:
+			points.append(p)
+		for p in vert1:
+			points.append(p)
+		for p in vert2:
+			points.append(p)
 	return points
 	
 # 두점 사이의 선에 대한 pixel을 만들어서 리턴

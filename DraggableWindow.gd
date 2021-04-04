@@ -2,9 +2,12 @@ extends TextureRect
 
 var drag_position = null
 var active_color
+export var hide_close_button = false
 func _ready():
 	hint_tooltip = name
 	active_color = self_modulate
+	if hide_close_button:
+		$CloseButton.hide()
 	
 func set_active(active):
 	if active_color == null:

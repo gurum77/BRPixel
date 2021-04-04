@@ -8,6 +8,7 @@ var grip_node = preload("res://Grip.tscn")
 var grips = []
 var color = Color.yellowgreen
 var boundary_color = Color.yellowgreen
+var edit_mode = false
 
 onready var grip_parent = self
 
@@ -22,6 +23,8 @@ func _draw():
 		return
 		
 	var points = get_grip_points()
+	if points.size() < 3:
+		return
 	draw_colored_polygon(points, color)
 	draw_polyline(points, boundary_color)
 	
@@ -43,20 +46,20 @@ func _input(_event):
 	if is_mouse_on_grip():
 		pass
 	else:
-		if Input.is_action_just_pressed("left_button"):
+		if InputManager.is_action_just_pressed_lbutton(_event):
 			start_point = get_local_mouse_position()
 			start_point.x = start_point.x as int
 			start_point.y = start_point.y as int
 			pressed = true
 			# 마우스를 클릭할때 preview grip을 만든다
 			make_grips(true)
-		elif Input.is_action_just_released("left_button"):
+		elif InputManager.is_action_just_released_lbutton(_event):
 			if pressed:
 				end_point = get_local_mouse_position()
 				end_point.x = end_point.x as int
 				end_point.y = end_point.y as int
 				pressed = false
-				# 마우스를 떼면 그립을 진짜 grip을 만든다.
+				# 마우스를 떼면 그립을 진짜 grip을 만들고 selected area를 갱신한다.
 				make_grips(false)
 				update()
 			
@@ -130,9 +133,11 @@ func on_grip_moved(grip):
 	update()
 	set_selected_area_by_grip_points()
 	
+# grip 좌표로 selected area를 설정한다.
 func set_selected_area_by_grip_points():
 	StaticData.set_selected_area(get_grip_points())
 	
+# grip을 다시 만든다.
 func make_grips(preview):
 	clear_grips()
 	grips.append(make_grip(Grip.Type.left_bottom, preview))
@@ -140,8 +145,7 @@ func make_grips(preview):
 	grips.append(make_grip(Grip.Type.right_top, preview))
 	grips.append(make_grip(Grip.Type.left_top, preview))
 	set_selected_area_by_grip_points()
-	
-	
+
 	
 # grip 위에 mouse가 있는지?
 func is_mouse_on_grip()->bool:

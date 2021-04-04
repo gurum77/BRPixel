@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -30,6 +30,8 @@
 [ext_resource path="res://Assets/icon_save.png" type="Texture" id=28]
 [ext_resource path="res://ToolButtons/SelectButton.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Grips.gd" type="Script" id=30]
+[ext_resource path="res://ToolButtons/EditButton.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Tools/Edit.tscn" type="PackedScene" id=32]
 [ext_resource path="res://Assets/icon_eraser.png" type="Texture" id=33]
 [ext_resource path="res://Assets/icon_add_layer.png" type="Texture" id=34]
 [ext_resource path="res://Assets/icon_delete_layer.png" type="Texture" id=35]
@@ -44,6 +46,7 @@
 [ext_resource path="res://SettingButton.gd" type="Script" id=44]
 [ext_resource path="res://SaveFileDialog.tscn" type="PackedScene" id=45]
 [ext_resource path="res://OpenFileDialog.tscn" type="PackedScene" id=46]
+[ext_resource path="res://Assets/icon_separator.png" type="Texture" id=47]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -73,6 +76,8 @@ script = ExtResource( 2 )
 
 [node name="DrawingArea" parent="UI" instance=ExtResource( 20 )]
 modulate = Color( 1, 1, 1, 0 )
+margin_left = 111.241
+margin_right = -118.759
 
 [node name="EditPanel" type="Panel" parent="UI"]
 anchor_bottom = 1.0
@@ -175,9 +180,21 @@ rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 36 )
 expand_icon = true
 
-[node name="CopyButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 16 )]
+[node name="EditButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 31 )]
+
+[node name="CopyButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 16 )]
+margin_left = 108.0
 margin_top = 0.0
+margin_right = 158.0
 margin_bottom = 50.0
+
+[node name="Separator" type="TextureRect" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="3"]
+margin_left = 162.0
+margin_right = 172.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 10, 50 )
+texture = ExtResource( 47 )
+expand = true
 
 [node name="SaveButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_left = 54.0
@@ -587,7 +604,7 @@ __meta__ = {
 light_mask = -2147483647
 stretch_mode = 3
 
-[node name="PreivewLayer" parent="Canvas" instance=ExtResource( 4 )]
+[node name="PreviewLayer" parent="Canvas" instance=ExtResource( 4 )]
 light_mask = -2147483647
 margin_left = 1.0
 margin_right = 41.0
@@ -607,6 +624,10 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Edit" parent="Tools" instance=ExtResource( 32 )]
+margin_right = 20.0
+margin_bottom = 20.0
 
 [node name="Palettes" type="Control" parent="."]
 margin_right = 40.0

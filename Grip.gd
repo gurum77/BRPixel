@@ -71,28 +71,30 @@ func get_global_mouse_position_as_int()->Vector2:
 	
 func lock():
 	locked = true
-	modulate = Color.gray
+	modulate = Color.darkgray
 	modulate.a = 0.7
 	update()
 	
 func _input(event):
 	if preview:
 		return
-	if locked:
-		return
+		# lock이 되더라도 이동은 할 수 있다
+		# 편집 모드인 경우이다.
+#	if locked:
+#		return
 	
 	if event is InputEventMouseMotion:
 		if pressed:
 			end_point = get_global_mouse_position_as_int()
 			drag()
 		
-	if Input.is_action_just_pressed("left_button"):
+	if InputManager.is_action_just_pressed_lbutton(event):
 		if is_mouse_entered():
 			start_point = get_global_mouse_position_as_int()
 			update()
 			pressed = true
 			StaticData.dragging_grip = true
-	elif Input.is_action_just_released("left_button"):
+	elif InputManager.is_action_just_released_lbutton(event):
 		if pressed:
 			end_point = get_global_mouse_position_as_int()
 			pressed = false		

@@ -1,11 +1,16 @@
 extends Control
 class_name Tools
 
+var pencil_tool = preload("res://Tools/Pencil.tscn")
+var select_tool = preload("res://Tools/Select.tscn")
+var edit_tool = preload("res://Tools/Edit.tscn")
+
 # edit 관련 tool을 시작하기 위한 초기화를 한다.
 # 현재 툴은 제거하지 않는다.
-func init_to_start_tool(current_tool, tool_type):
+func init_to_start_tool(current_tool, tool_type, clear_preview_layer=true):
 	# 미리 보기 제거
-	StaticData.preview_layer.clear(true)
+	if clear_preview_layer:
+		StaticData.preview_layer.clear(true)
 	
 	# 현재 툴 설정
 	StaticData.current_tool = tool_type
@@ -15,6 +20,42 @@ func init_to_start_tool(current_tool, tool_type):
 		NodeManager.clear_other_tools(current_tool, false)
 	else:
 		NodeManager.clear_other_tools(current_tool, true)
-		
+	
+# 마지막으로 실행한 그리기 툴을 실행한다.	
+# todo : 일단 pencil로 고정
+func run_last_drawing_tool():
+	NodeManager.get_tools().add_child(pencil_tool.instance())
+	
+func find_select_tool()->Select:
+	var nodes = get_children()
+	for node in nodes:
+		if node is Select:
+			return node as Select
+	return null
+	
+func find_edit_tool()->Node:
+	var nodes = get_children()
+	for node in nodes:
+		if node is Edit:
+			return node as Edit
+	return null
+	
+# select 기능을 실행한다.
+# 이미 실행 되어 있다면 실행하지 않는다.
+func run_select_tool()->Select:
+	var select = find_select_tool()
+	if select != null:
+		return select
+	select = select_tool.instance()
+	NodeManager.get_tools().add_child(select)
+	return select
 	
 	
+func run_edit_tool(use_preview_layer)->Edit:
+	var edit = find_edit_tool()
+	if edit != null:
+		return edit
+	edit = edit_tool.instance()
+	edit.use_preview_layer = use_preview_layer
+	NodeManager.get_tools().add_child(edit)
+	return edit

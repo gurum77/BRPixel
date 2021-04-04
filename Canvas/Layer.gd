@@ -134,17 +134,24 @@ func outside_of_image(var image_tmp:Image, var x:int, var y:int):
 	
 # image를 복사한다.(offset 값과 함께)
 # 잘려 나갈 수 있다.
-func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int):
+# except_transparency_pixel : 투명색은 복사하지 않는다.(원본 유지)
+func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int, except_transparency_pixel:bool=false):
 	src_image.lock()
 	target_image.lock()
-	for x in src_image.get_width():
-		for y in src_image.get_height():
-			var new_x = x + offset_x
-			var new_y = y + offset_y
-			if outside_of_image(target_image, new_x, new_y):
-				continue
-				
-			target_image.set_pixel(new_x, new_y, src_image.get_pixel(x, y))
+
+	var rect = Rect2(0, 0, src_image.get_width(), src_image.get_height())
+	target_image.blend_rect(src_image, rect, Vector2(offset_x, offset_y))
+#
+#	for x in src_image.get_width():
+#		for y in src_image.get_height():
+#			var new_x = x + offset_x
+#			var new_y = y + offset_y
+#
+#			if outside_of_image(target_image, new_x, new_y):
+#				continue
+#
+#			var pixel = src_image.get_pixel(x, y)
+#			target_image.set_pixel(new_x, new_y, pixel)
 	src_image.unlock()
 	target_image.unlock()
 
@@ -171,10 +178,14 @@ func erase_pixel(point):
 	image.unlock()
 	update_texture()
 	
-func erase_pixels(points:Array):
+func erase_pixels_by_rect(rect:Rect2, inside_working_area_only = true):
+	var points = GeometryMaker.get_pixels_in_rectangle(rect.position, rect.end, true)
+	erase_pixels(points, inside_working_area_only)
+	
+func erase_pixels(points:Array, inside_working_area_only=true):
 	image.lock()
 	for point in points:
-		if !StaticData.inside_working_area(point):
+		if inside_working_area_only && !StaticData.inside_working_area(point):
 			continue
 		image.set_pixel(point.x, point.y, Color.transparent)
 	image.unlock()
