@@ -103,5 +103,5 @@ func on_grip_moved(grip):
 	var resized_image = make_resized_image()
 
 	# preview layer에 이미지를 그린다.
-	Util.draw_image_on_preview_layer(resized_image, StaticData.selected_area.position.x, StaticData.selected_area.position.y)
+	Util.draw_image_on_preview_layer(resized_image, StaticData.selected_area.position)
 

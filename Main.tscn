@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -49,9 +49,10 @@
 [ext_resource path="res://Assets/icon_separator.png" type="Texture" id=47]
 [ext_resource path="res://Assets/icon_fill_rectangle.png" type="Texture" id=48]
 [ext_resource path="res://Assets/icon_fill_circle.png" type="Texture" id=49]
-[ext_resource path="res://ToolButtons/FlipButton.gd" type="Script" id=50]
+[ext_resource path="res://ToolButtons/RotateButton.tscn" type="PackedScene" id=50]
 [ext_resource path="res://ToolButtons/FlipButton.tscn" type="PackedScene" id=51]
 [ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=52]
+[ext_resource path="res://Assets/icon_rotate.png" type="Texture" id=53]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -212,17 +213,18 @@ margin_right = 158.0
 margin_bottom = 50.0
 
 [node name="HorFlipButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 51 )]
-script = ExtResource( 50 )
 
 [node name="VertFlipButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 51 )]
 margin_left = 216.0
 margin_right = 266.0
 icon = ExtResource( 52 )
-script = ExtResource( 50 )
 
-[node name="Separator" type="TextureRect" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="5"]
-margin_left = 270.0
-margin_right = 280.0
+[node name="RotateButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="5" instance=ExtResource( 50 )]
+icon = ExtResource( 53 )
+
+[node name="Separator" type="TextureRect" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="6"]
+margin_left = 324.0
+margin_right = 334.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 10, 50 )
 texture = ExtResource( 47 )
@@ -239,6 +241,8 @@ expand_icon = true
 script = ExtResource( 8 )
 
 [node name="SaveFileDialog" parent="UI/EditPanel/GridContainer/SaveButton" instance=ExtResource( 45 )]
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 
 [node name="OpenButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 270.0
@@ -250,6 +254,8 @@ expand_icon = true
 script = ExtResource( 10 )
 
 [node name="OpenFileDialog" parent="UI/EditPanel/GridContainer/OpenButton" instance=ExtResource( 46 )]
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 
 [node name="GridButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_left = 54.0
@@ -612,8 +618,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
