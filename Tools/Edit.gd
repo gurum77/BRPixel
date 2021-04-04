@@ -88,12 +88,9 @@ func finish_edit():
 	StaticData.current_layer.update_texture()
 	NodeManager.get_preview_layer().clear()
 	
-	# select 영역을 제거하고 edit 기능도 종료한다.
-	StaticData.clear_selected_area()
-	select.call_deferred("queue_free")
+	# select 영역 편집을 마무리 한다.(선택 영역 제거를 하고 마지막 실행했던 drawing tool을 실행)
+	NodeManager.get_tools().finish_selected_area_editing()
 	
-	# 마지막 실행했던 drawing tool을 실행한다.
-	NodeManager.get_tools().run_last_drawing_tool()
 	
 func on_grip_moved(grip):
 	if grip == null:

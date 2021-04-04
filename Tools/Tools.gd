@@ -5,6 +5,18 @@ var pencil_tool = preload("res://Tools/Pencil.tscn")
 var select_tool = preload("res://Tools/Select.tscn")
 var edit_tool = preload("res://Tools/Edit.tscn")
 
+# selected area 편집을 마무리 한다.
+# 선택 영역을 해제하고, 마지막으로 실행했던 drawing tool을 실행한다.
+func finish_selected_area_editing():
+	# select 영역을 제거하고 edit 기능도 종료한다.
+	StaticData.clear_selected_area()
+	var select:Select = get_tree().root.get_node_or_null("Main/Tools/Select")
+	if select != null:
+		select.call_deferred("queue_free")
+	
+	# 마지막 실행했던 drawing tool을 실행한다.
+	NodeManager.get_tools().run_last_drawing_tool()
+
 # edit 관련 tool을 시작하기 위한 초기화를 한다.
 # 현재 툴은 제거하지 않는다.
 func init_to_start_tool(current_tool, tool_type, clear_preview_layer=true):

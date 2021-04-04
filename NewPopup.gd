@@ -48,6 +48,9 @@ func _on_OkButton_pressed():
 	StaticData.current_layer = NodeManager.get_layers().add_layer("Layer1")
 	NodeManager.get_layers().update_layer_index()
 	
+	# preview layer 크기 변경
+	StaticData.preview_layer.resize(Layer.ResizeDir.right_bottom)
+	
 	# layer 버튼 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	

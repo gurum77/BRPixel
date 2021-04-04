@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -47,6 +47,11 @@
 [ext_resource path="res://SaveFileDialog.tscn" type="PackedScene" id=45]
 [ext_resource path="res://OpenFileDialog.tscn" type="PackedScene" id=46]
 [ext_resource path="res://Assets/icon_separator.png" type="Texture" id=47]
+[ext_resource path="res://Assets/icon_fill_rectangle.png" type="Texture" id=48]
+[ext_resource path="res://Assets/icon_fill_circle.png" type="Texture" id=49]
+[ext_resource path="res://ToolButtons/FlipButton.gd" type="Script" id=50]
+[ext_resource path="res://ToolButtons/FlipButton.tscn" type="PackedScene" id=51]
+[ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=52]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -76,8 +81,10 @@ script = ExtResource( 2 )
 
 [node name="DrawingArea" parent="UI" instance=ExtResource( 20 )]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 111.241
-margin_right = -118.759
+margin_left = -8.63107
+margin_top = 28.6312
+margin_right = -238.631
+margin_bottom = -36.3689
 
 [node name="EditPanel" type="Panel" parent="UI"]
 anchor_bottom = 1.0
@@ -114,11 +121,27 @@ margin_top = 0.0
 margin_right = 104.0
 margin_bottom = 50.0
 
-[node name="CircleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 15 )]
+[node name="FillRectangleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 6 )]
 margin_left = 108.0
 margin_top = 0.0
 margin_right = 158.0
 margin_bottom = 50.0
+icon = ExtResource( 48 )
+fill = true
+
+[node name="CircleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 15 )]
+margin_left = 162.0
+margin_top = 0.0
+margin_right = 212.0
+margin_bottom = 50.0
+
+[node name="FillCircleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 15 )]
+margin_left = 216.0
+margin_top = 0.0
+margin_right = 266.0
+margin_bottom = 50.0
+icon = ExtResource( 49 )
+fill = true
 
 [node name="EraserButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_left = 54.0
@@ -188,9 +211,18 @@ margin_top = 0.0
 margin_right = 158.0
 margin_bottom = 50.0
 
-[node name="Separator" type="TextureRect" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="3"]
-margin_left = 162.0
-margin_right = 172.0
+[node name="HorFlipButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 51 )]
+script = ExtResource( 50 )
+
+[node name="VertFlipButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 51 )]
+margin_left = 216.0
+margin_right = 266.0
+icon = ExtResource( 52 )
+script = ExtResource( 50 )
+
+[node name="Separator" type="TextureRect" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="5"]
+margin_left = 270.0
+margin_right = 280.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 10, 50 )
 texture = ExtResource( 47 )

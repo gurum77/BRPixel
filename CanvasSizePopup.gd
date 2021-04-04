@@ -45,6 +45,9 @@ func _on_OkButton_pressed():
 	var layers = NodeManager.get_layers().get_children()
 	for layer in layers:
 		layer.resize(get_resize_dir())
+	# preview layer 크기 조정
+	StaticData.preview_layer.resize(get_resize_dir())
+	
 	$DraggablePopup.hide()
 
 func get_resize_dir()->int:
