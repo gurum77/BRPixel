@@ -90,8 +90,8 @@ func rotxel(sprite : Image, angle : float, pixels : Array) -> void:
 			var dir = atan2(dy + j, dx + i)
 			var mag = sqrt(pow(dx + i, 2) + pow(dy + j, 2))
 			dir -= angle
-			ox = round(center.x*3 + 1 + mag*cos(dir))
-			oy = round(center.y*3 + 1 + mag*sin(dir))
+			ox = round(center.x*3 + 1 + mag*cos(dir)) as int
+			oy = round(center.y*3 + 1 + mag*sin(dir)) as int
 
 			if (sprite.get_width() % 2 != 0):
 				ox += 1
@@ -110,8 +110,8 @@ func rotxel(sprite : Image, angle : float, pixels : Array) -> void:
 		var col : int = ox % 3
 		var index : int = col + 3*fil
 
-		ox = round((ox - 1)/3.0);
-		oy = round((oy - 1)/3.0);
+		ox = round((ox - 1)/3.0) as int
+		oy = round((oy - 1)/3.0) as int
 		var a : Color
 		var b : Color
 		var c : Color
@@ -213,8 +213,8 @@ func nn_rotate(sprite : Image, angle : float, pixels : Array) -> void:
 		center = Vector2(sprite.get_width() / 2, sprite.get_height() / 2)
 		for x in range(sprite.get_width()):
 			for y in range(sprite.get_height()):
-				ox = (x - center.x)*cos(angle) + (y - center.y)*sin(angle) + center.x
-				oy = -(x - center.x)*sin(angle) + (y - center.y)*cos(angle) + center.y
+				ox = ((x - center.x)*cos(angle) + (y - center.y)*sin(angle) + center.x) as int
+				oy = (-(x - center.x)*sin(angle) + (y - center.y)*cos(angle) + center.y) as int
 				if ox >= 0 && ox < sprite.get_width() && oy >= 0 && oy < sprite.get_height():
 					sprite.set_pixel(x, y, aux.get_pixel(ox, oy))
 				else:
@@ -234,8 +234,8 @@ func colorDistance(c1 : Color, c2 : Color) -> float:
 
 # Image effects
 
-func scale_image(width : int, height : int, interpolation : int) -> void:
-	pass
+#func scale_image(width : int, height : int, interpolation : int) -> void:
+#	pass
 #	general_do_scale(width, height)
 #
 #	for f in Global.current_project.frames:
@@ -326,8 +326,8 @@ func centralize() -> void:
 #	general_undo_scale()
 
 
-func general_do_scale(width : int, height : int) -> void:
-	pass
+#func general_do_scale(width : int, height : int) -> void:
+#	pass
 #	var x_ratio = Global.current_project.size.x / width
 #	var y_ratio = Global.current_project.size.y / height
 #	var new_x_symmetry_point = Global.current_project.x_symmetry_point / x_ratio

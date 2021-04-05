@@ -135,7 +135,7 @@ func outside_of_image(var image_tmp:Image, var x:int, var y:int):
 # image를 복사한다.(offset 값과 함께)
 # 잘려 나갈 수 있다.
 # except_transparency_pixel : 투명색은 복사하지 않는다.(원본 유지)
-func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int, except_transparency_pixel:bool=false):
+func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int, _except_transparency_pixel:bool=false):
 	src_image.lock()
 	target_image.lock()
 

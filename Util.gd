@@ -1,6 +1,11 @@
 extends Node
 
 
+# error message를 화면에 표시한다.
+func show_error_message(parent, _err):
+	var message = "failed"
+	show_message(parent, "Error", message)
+	
 # message는 popup으로 보여준다.
 func show_message(parent, title="", message=""):
 	var dlg = AcceptDialog.new()

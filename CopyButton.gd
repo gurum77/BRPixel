@@ -1,6 +1,9 @@
 extends Button
 var clipboard_button = preload("res://ToolButtons/ClipBoardButton.tscn")
 
+# cut 기능인지?
+export var cut = false
+
 # clipboard 갯수
 func get_clipboard_count()->int:
 	var nodes = get_parent().get_children()
@@ -54,6 +57,9 @@ func _on_CopyButton_pressed():
 	
 	# 사이즈 조정
 	get_parent().get_parent().get_parent().resize()
+	
+	# 선택했던 영역은 삭제를 한다.
+	StaticData.current_layer.erase_pixels_by_rect(StaticData.selected_area)
 
 # 가장 오래된 clipboard를 삭제한다.
 func remove_oldest_clipboard():

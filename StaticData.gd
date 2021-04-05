@@ -80,6 +80,16 @@ func inside_working_area(point)->bool:
 func _ready():
 	pass
 	
+# image로 저장한다.
+func save_image(path, selected_area_only):
+	var image:Image
+	if selected_area_only:
+		image = Util.create_image_from_selected_area()
+	else:
+		image = StaticData.current_layer.image
+	return image.save_png(path)
+	
+	
 
 # 저장 
 func save_project(path):

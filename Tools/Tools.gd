@@ -63,7 +63,7 @@ func run_select_tool()->Select:
 	return select
 	
 	
-func run_edit_tool(use_preview_layer)->Edit:
+func run_edit_tool(use_preview_layer):
 	var edit = find_edit_tool()
 	if edit != null:
 		return edit

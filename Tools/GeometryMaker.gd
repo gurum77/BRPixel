@@ -127,7 +127,7 @@ func _get_ellipse_points (pos: Vector2, size: Vector2) -> Array:
 	var e2 := 0
 
 	if x0 > x1:
-		x0 = x1
+		x0 = x1 as int
 		x1 += a
 
 	if y0 > y1:
@@ -223,10 +223,10 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false)->Array
 
 
 	if fill:
-		var from_x:int = from.x
-		var from_y:int = from.y
-		var to_x:int = to.x
-		var to_y:int = to.y
+		var from_x:int = from.x as int
+		var from_y:int = from.y as int
+		var to_x:int = to.x as int
+		var to_y:int = to.y as int
 		
 		var min_x = min(from_x, to_x)
 		var max_x = max(from_x, to_x)

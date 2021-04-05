@@ -10,6 +10,7 @@ func update_layer():
 	if layer == null:
 		return
 	$Layer.image = layer.image
+	$Layer.modulate.a = layer.modulate.a
 	$Layer.update_texture()
 	
 
@@ -45,4 +46,7 @@ func _on_LayerButton_gui_input(event):
 		get_layer().toggle_visible()
 		update()
 			
-		
+
+func _on_SettingButton_pressed():
+	$SettingButton/LayerSettingPopup.selected_layer = get_layer()
+	$SettingButton/LayerSettingPopup.popup_centered()

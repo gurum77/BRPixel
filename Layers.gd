@@ -65,5 +65,14 @@ func update_layer_index():
 		node.index = idx
 		idx += 1
 		
+# child의 인덱스를 리턴
+func get_child_index(child)->int:
+	var nodes = get_children()
+	var idx = 0
+	for node in nodes:
+		if node == child:
+			return idx
+		idx += 1
+	return -1
 	
 	
