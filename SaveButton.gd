@@ -4,7 +4,7 @@ export var save_selected_area = false
 	
 func _on_SaveButton_pressed():
 	if save_selected_area:
-		$SaveFileDialog.filters = PoolStringArray(["*.png;PNG"])
+		$SaveFileDialog.filters = PoolStringArray(["*.png;PNG", "*.jpg;JPEG"])
 	else:
 		$SaveFileDialog.filters = PoolStringArray(["*.pex;Pixel Express"])
 	$SaveFileDialog.popup_centered()

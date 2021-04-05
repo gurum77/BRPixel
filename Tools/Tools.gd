@@ -20,8 +20,10 @@ func finish_selected_area_editing():
 # edit 관련 tool을 시작하기 위한 초기화를 한다.
 # 현재 툴은 제거하지 않는다.
 func init_to_start_tool(current_tool, tool_type, clear_preview_layer=true):
-	# 미리 보기 제거
+	# 미리 보기 제거를 하고, 크기도 현재 canvas에 맞춘다.
+	# preview layer는 상황에 따라 크기가 변하기 때문...
 	if clear_preview_layer:
+		StaticData.preview_layer.init_size()
 		StaticData.preview_layer.clear(true)
 	
 	# 현재 툴 설정
@@ -65,8 +67,12 @@ func run_select_tool()->Select:
 	
 func run_edit_tool(use_preview_layer):
 	var edit = find_edit_tool()
+	
+	# edit는 삭제하고 다시 실행한다.
+	# 초기화 문제..
 	if edit != null:
-		return edit
+		edit.call_deferred("queue_free")
+		
 	edit = edit_tool.instance()
 	edit.use_preview_layer = use_preview_layer
 	NodeManager.get_tools().add_child(edit)

@@ -24,7 +24,7 @@ func _ready():
 			StaticData.current_layer = self
 
 	
-			
+	
 func set_save_dic(dic:Dictionary):
 	# image를 canvas 크기에 맞게 조절
 	init_size()
@@ -90,12 +90,20 @@ func toggle_visible():
 func create_image(width, height)->Image:
 	var tmp_image = Image.new()
 	tmp_image.create(width, height, false, Image.FORMAT_RGBA8)
+
 	return tmp_image
 
 # 이미지의 크기를 canvas 크기로 설정한다.(이미지는 초기화 됨)
-func init_size():
-	image = create_image(StaticData.canvas_width, StaticData.canvas_height)
+# 크기를 0, 0 으로 하면 기본 사이즈로 설정한다
+# 지정하면 지정한 크기로 만들어 진다.
+func init_size(width=0, height=0):
+	if width == 0 || height == 0:
+		image = create_image(StaticData.canvas_width, StaticData.canvas_height)
+	else:
+		image = create_image(width, height)
+		
 	update_texture()
+	
 # 이미지의 크기를 canvas크기로 설정한다.
 # 이미지의 원본을 유지한다.
 func resize(resize_dir):
@@ -139,9 +147,15 @@ func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int,
 	src_image.lock()
 	target_image.lock()
 
+#	var src_format = src_image.get_format()
+#	var target_format = target_image.get_format()
+#	if src_format != target_format:
+#		src_image.convert(target_format)
+#	src_format = src_image.get_format()	
 	var rect = Rect2(0, 0, src_image.get_width(), src_image.get_height())
 	target_image.blend_rect(src_image, rect, Vector2(offset_x, offset_y))
-#
+#	target_image.blit_rect(src_image, rect, Vector2(offset_x, offset_y))
+#	
 #	for x in src_image.get_width():
 #		for y in src_image.get_height():
 #			var new_x = x + offset_x

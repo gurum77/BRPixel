@@ -18,5 +18,7 @@ __meta__ = {
 }
 
 [node name="SaveFileDialog" parent="." instance=ExtResource( 3 )]
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 [connection signal="pressed" from="." to="." method="_on_SaveButton_pressed"]
 [connection signal="file_selected" from="SaveFileDialog" to="." method="_on_SaveFileDialog_file_selected"]

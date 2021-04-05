@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/icon_open.png" type="Texture" id=1]
+[ext_resource path="res://OpenButton.gd" type="Script" id=2]
+[ext_resource path="res://OpenFileDialog.tscn" type="PackedScene" id=3]
+
+[node name="OpenButton" type="Button"]
+margin_top = 270.0
+margin_right = 50.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 1 )
+expand_icon = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenFileDialog" parent="." instance=ExtResource( 3 )]
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+[connection signal="pressed" from="." to="." method="_on_OpenButton_pressed"]
+[connection signal="file_selected" from="OpenFileDialog" to="." method="_on_OpenFileDialog_file_selected"]

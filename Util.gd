@@ -47,12 +47,33 @@ func create_image_from_selected_area(use_preview_layer=false)->Image:
 	
 	return image
 
+# image 파일을 로딩한다.
+# RGBA8로 만들어야 함
+func load_image_file(parent:Node, path:String)->Image:
+	var image = Image.new()
+	var err = image.load(path)
+	if err != OK:
+		show_error_message(parent, err)
+		return null
+	var format = image.get_format()
+	if format == Image.FORMAT_RGBA8:
+		return image
+	# format이 안 맞으면 같은 크기로 만들어서 복사해서 리턴
+	var image_tmp = StaticData.current_layer.create_image(image.get_width(), image.get_height())
+	image.lock()
+	image_tmp.lock()
+	for x in image.get_width():
+		for y in image.get_height():
+			image_tmp.set_pixel(x, y, image.get_pixel(x, y))
+	image.unlock()
+	image_tmp.unlock()
+	return image_tmp
+	
 # edit tool 모드로 image를 붙여 넣는다.
 # grip / move로 편집 후 image 붙여 넣기를 완료 할 수 있다.
 func AttachImageWithEditTool(image:Image, pos):
 	# select 기능 실행 되어 있지 않다면 실행을 한다.
 	var select:Select = NodeManager.get_tools().run_select_tool()
-	
 	
 	# 이미지크기 만큼의 grip을 만든다.
 	# grip을 만들면서 select area가 설정된
@@ -76,5 +97,6 @@ func draw_image_on_preview_layer(image:Image, pos):
 	preview_layer.clear()
 	
 	# 이미지를 preview layer에 그린다.
+	preview_layer.init_size(max(image.get_width(), StaticData.canvas_width), max(image.get_height(), StaticData.canvas_height))
 	preview_layer.copy_image(image, preview_layer.image, pos.x, pos.y)
 	preview_layer.update_texture()
