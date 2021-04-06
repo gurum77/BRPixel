@@ -79,3 +79,54 @@ func _on_HideButton_pressed():
 func _on_TransparencyHSlider_value_changed(value):
 	selected_layer.modulate.a = $DraggablePopup/GridContainerTop/TransparencyHSlider.value / 100.0
 	$DraggablePopup/GridContainerTop/TransparencyHSlider/TextEdit.text = str($DraggablePopup/GridContainerTop/TransparencyHSlider.value)
+
+
+# 이전 layer와 합치기
+func _on_MergeWithPrevButton_pressed():
+	# 이전 layer
+	var prev_layer:Layer = NodeManager.get_layers().get_layer(StaticData.current_layer.index-1)
+	if prev_layer == null:
+		return
+		
+	# 이미지를 이전 layer로 복사
+	prev_layer.copy_image(StaticData.current_layer.image, prev_layer.image, 0, 0)
+	
+	# 현재 layer 삭제
+	_on_DeleteButton_pressed()
+		
+
+# 이후 layer와 합치기
+func _on_MergeAllButton_pressed():
+	var layers = NodeManager.get_layers().get_normal_layers()
+	if layers == null || layers.size() < 2:
+		return
+	
+	# 모두 첫번째 layer로 합친다.
+	var first_layer = layers[0]
+	for layer in layers:
+		if layer == first_layer:
+			continue
+		first_layer.copy_image(layer.image, first_layer.image, 0, 0)
+		layer.unused = true
+		layer.call_deferred("queue_free")
+	
+	StaticData.current_layer = first_layer	
+	StaticData.current_layer.update_texture()
+	# 인덱스 갱신
+	NodeManager.get_layers().update_layer_index()
+	# layer button을 재생성 한다.
+	NodeManager.get_layer_panel().regen_layer_buttons()		
+	
+
+
+func _on_MergeWithNextButton_pressed():
+	# 다음 layer
+	var next_layer:Layer = NodeManager.get_layers().get_layer(StaticData.current_layer.index+1)
+	if next_layer == null:
+		return
+		
+	# 이미지를 다음 layer로 복사
+	next_layer.copy_image(StaticData.current_layer.image, next_layer.image, 0, 0)
+	
+	# 현재 layer 삭제
+	_on_DeleteButton_pressed()

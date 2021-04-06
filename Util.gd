@@ -69,24 +69,30 @@ func load_image_file(parent:Node, path:String)->Image:
 	image_tmp.unlock()
 	return image_tmp
 	
-# edit tool 모드로 image를 붙여 넣는다.
-# grip / move로 편집 후 image 붙여 넣기를 완료 할 수 있다.
-func AttachImageWithEditTool(image:Image, pos):
+# 그립을 만들고 edit 모드를 실행한다.
+func run_edit_mode(pos:Vector2, width, height, use_preview_layer=true):
 	# select 기능 실행 되어 있지 않다면 실행을 한다.
 	var select:Select = NodeManager.get_tools().run_select_tool()
 	
 	# 이미지크기 만큼의 grip을 만든다.
 	# grip을 만들면서 select area가 설정된
 	select.start_point = pos
-	select.end_point = pos + Vector2(image.get_width()-1, image.get_height()-1)
+	select.end_point = pos + Vector2(width-1, height-1)
 	select.make_grips(false)
 	
-	# 미리보기에 이미지를 그린다.
-	Util.draw_image_on_preview_layer(image, pos)
-
 	# edit기능을 실행한다.
 	# 단 edit기능을 preview를 그대로 활용하도록 설정해야함
-	NodeManager.get_tools().run_edit_tool(true)
+	NodeManager.get_tools().run_edit_tool(use_preview_layer)
+	
+# edit tool 모드로 image를 붙여 넣는다.
+# grip / move로 편집 후 image 붙여 넣기를 완료 할 수 있다.
+func AttachImageWithEditTool(image:Image, pos):
+	# 미리보기에 이미지를 그린다.
+	Util.draw_image_on_preview_layer(image, pos)
+	
+	# edit mode 실행
+	Util.run_edit_mode(pos, image.get_width(), image.get_height(), true)
+	
 	
 # preview layer에 image를 그린다.
 # preview layer는 초기화 된다.
