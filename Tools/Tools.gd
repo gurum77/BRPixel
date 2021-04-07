@@ -4,6 +4,10 @@ class_name Tools
 var pencil_tool = preload("res://Tools/Pencil.tscn")
 var select_tool = preload("res://Tools/Select.tscn")
 var edit_tool = preload("res://Tools/Edit.tscn")
+var circle_tool = preload("res://Tools/Circle.tscn")
+var rectangle_tool = preload("res://Tools/Rectangle.tscn")
+var fill_tool = preload("res://Tools/Fill.tscn")
+var change_color = preload("res://Tools/ChangeColor.tscn")
 
 # selected area 편집을 마무리 한다.
 # 선택 영역을 해제하고, 마지막으로 실행했던 drawing tool을 실행한다.
@@ -38,7 +42,13 @@ func init_to_start_tool(current_tool, tool_type, clear_preview_layer=true):
 # 마지막으로 실행한 그리기 툴을 실행한다.	
 # todo : 일단 pencil로 고정
 func run_last_drawing_tool():
-	NodeManager.get_tools().add_child(pencil_tool.instance())
+	if StaticData.last_drawing_tool != null:
+		var last_tool = StaticData.last_drawing_tool.instance()
+		if last_tool is RectangleTool || last_tool is CircleTool:
+			last_tool.fill = StaticData.fill_for_last_drawing_tool
+		NodeManager.get_tools().add_child(last_tool)
+	else:
+		NodeManager.get_tools().add_child(pencil_tool.instance())
 	
 func find_select_tool()->Select:
 	var nodes = get_children()

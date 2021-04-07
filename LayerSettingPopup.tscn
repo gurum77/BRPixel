@@ -115,7 +115,6 @@ margin_left = 151.0
 margin_top = 80.0
 margin_right = 298.0
 margin_bottom = 116.0
-toggle_mode = true
 text = "Merge all"
 icon = ExtResource( 9 )
 
@@ -123,7 +122,6 @@ icon = ExtResource( 9 )
 margin_top = 120.0
 margin_right = 147.0
 margin_bottom = 156.0
-toggle_mode = true
 text = "Merge with prev"
 icon = ExtResource( 8 )
 
@@ -132,7 +130,6 @@ margin_left = 151.0
 margin_top = 120.0
 margin_right = 298.0
 margin_bottom = 156.0
-toggle_mode = true
 text = "Merge with next"
 icon = ExtResource( 10 )
 [connection signal="value_changed" from="DraggablePopup/GridContainerTop/TransparencyHSlider" to="." method="_on_TransparencyHSlider_value_changed"]

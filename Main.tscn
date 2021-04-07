@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://ToolButtons/SelectButton.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Grips.gd" type="Script" id=30]
 [ext_resource path="res://ToolButtons/EditButton.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Assets/icon_pick_color_from_canvas.png" type="Texture" id=32]
 [ext_resource path="res://Assets/icon_eraser.png" type="Texture" id=33]
 [ext_resource path="res://Assets/icon_add_layer.png" type="Texture" id=34]
 [ext_resource path="res://Assets/icon_delete_layer.png" type="Texture" id=35]
@@ -43,20 +44,27 @@
 [ext_resource path="res://Assets/icon_setting.png" type="Texture" id=42]
 [ext_resource path="res://SettingPopup.tscn" type="PackedScene" id=43]
 [ext_resource path="res://SettingButton.gd" type="Script" id=44]
+[ext_resource path="res://Tools/BrighterButton.tscn" type="PackedScene" id=45]
+[ext_resource path="res://PickColorFromCanvasButton.gd" type="Script" id=46]
 [ext_resource path="res://Assets/icon_separator.png" type="Texture" id=47]
 [ext_resource path="res://Assets/icon_fill_rectangle.png" type="Texture" id=48]
 [ext_resource path="res://Assets/icon_fill_circle.png" type="Texture" id=49]
 [ext_resource path="res://Assets/icon_cut.png" type="Texture" id=50]
 [ext_resource path="res://ToolButtons/FlipButton.tscn" type="PackedScene" id=51]
 [ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=52]
+[ext_resource path="res://Tools/DarkerButton.tscn" type="PackedScene" id=53]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
 
-var change_color = preload(\"res://Tools/ChangeColor.tscn\")
+
 
 func _on_ChangeColorButton_pressed():
-	NodeManager.get_tools().add_child(change_color.instance())
+	NodeManager.get_tools().add_child(NodeManager.get_tools().change_color.instance())
+	StaticData.last_drawing_tool = NodeManager.get_tools().change_color
+
+func _process(delta):
+	Util.press_current_tool_button(self, StaticData.Tool.change_color)
 "
 
 [node name="Main" type="Control"]
@@ -102,27 +110,53 @@ __meta__ = {
 
 [node name="ColorPickerButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 11 )]
 
+[node name="PickColorFromCanvasButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+toggle_mode = true
+icon = ExtResource( 32 )
+expand_icon = true
+script = ExtResource( 46 )
+
 [node name="PencilButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 7 )]
+margin_left = 0.0
+margin_top = 54.0
+margin_right = 50.0
+margin_bottom = 104.0
+toggle_mode = true
 
 [node name="GeometryPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
+margin_left = 54.0
 margin_top = 54.0
+margin_right = 104.0
 margin_bottom = 104.0
+
+[node name="DraggableWindow" parent="UI/EditPanel/GridContainer/GeometryPopupButton" index="0"]
+margin_left = 65.7771
+margin_top = -46.9309
+margin_right = 382.777
+margin_bottom = 3.06912
 
 [node name="LineButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 9 )]
 margin_top = 0.0
 margin_bottom = 50.0
+toggle_mode = true
 
 [node name="RectangleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 6 )]
 margin_left = 54.0
 margin_top = 0.0
 margin_right = 104.0
 margin_bottom = 50.0
+toggle_mode = true
 
 [node name="FillRectangleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 6 )]
 margin_left = 108.0
 margin_top = 0.0
 margin_right = 158.0
 margin_bottom = 50.0
+toggle_mode = true
 icon = ExtResource( 48 )
 fill = true
 
@@ -131,30 +165,23 @@ margin_left = 162.0
 margin_top = 0.0
 margin_right = 212.0
 margin_bottom = 50.0
+toggle_mode = true
 
 [node name="FillCircleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 15 )]
 margin_left = 216.0
 margin_top = 0.0
 margin_right = 266.0
 margin_bottom = 50.0
+toggle_mode = true
 icon = ExtResource( 49 )
 fill = true
-
-[node name="EraserButton" type="Button" parent="UI/EditPanel/GridContainer"]
-margin_left = 54.0
-margin_top = 54.0
-margin_right = 104.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 50, 50 )
-icon = ExtResource( 33 )
-expand_icon = true
-script = ExtResource( 12 )
 
 [node name="FillButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 108.0
 margin_right = 50.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 50, 50 )
+toggle_mode = true
 icon = ExtResource( 38 )
 expand_icon = true
 script = ExtResource( 14 )
@@ -165,48 +192,44 @@ margin_top = 108.0
 margin_right = 104.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 50, 50 )
+toggle_mode = true
 icon = ExtResource( 37 )
 expand_icon = true
 script = SubResource( 1 )
 
-[node name="AddLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="EraserButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 162.0
 margin_right = 50.0
 margin_bottom = 212.0
 rect_min_size = Vector2( 50, 50 )
-icon = ExtResource( 34 )
+toggle_mode = true
+icon = ExtResource( 33 )
 expand_icon = true
-script = ExtResource( 23 )
+script = ExtResource( 12 )
 
-[node name="DeleteLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="SelectPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
 margin_top = 162.0
 margin_right = 104.0
 margin_bottom = 212.0
-rect_min_size = Vector2( 50, 50 )
-icon = ExtResource( 35 )
-expand_icon = true
-script = ExtResource( 27 )
-
-[node name="MoveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 28 )]
-margin_top = 216.0
-margin_bottom = 266.0
-
-[node name="SelectPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
-margin_left = 54.0
-margin_top = 216.0
-margin_right = 104.0
-margin_bottom = 266.0
 icon = ExtResource( 36 )
+
+[node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SelectPopupButton" index="0"]
+margin_left = 64.4447
+margin_top = 319.466
+margin_right = 381.445
+margin_bottom = 369.466
 
 [node name="SelectButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 29 )]
 margin_top = 0.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
+toggle_mode = true
 icon = ExtResource( 36 )
 expand_icon = true
 
 [node name="EditButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 31 )]
+toggle_mode = true
 
 [node name="CopyButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 16 )]
 margin_left = 108.0
@@ -253,24 +276,59 @@ rect_min_size = Vector2( 10, 50 )
 texture = ExtResource( 47 )
 expand = true
 
-[node name="SaveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 8 )]
-margin_left = 0.0
-margin_top = 270.0
+[node name="AddLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_top = 216.0
 margin_right = 50.0
-margin_bottom = 320.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 34 )
+expand_icon = true
+script = ExtResource( 23 )
 
-[node name="OpenButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 10 )]
+[node name="DeleteLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_left = 54.0
+margin_top = 216.0
 margin_right = 104.0
+margin_bottom = 266.0
+rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 35 )
+expand_icon = true
+script = ExtResource( 27 )
+
+[node name="BrighterButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 45 )]
+margin_top = 270.0
+margin_bottom = 320.0
+toggle_mode = true
+
+[node name="DarkerButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 53 )]
+margin_top = 270.0
+margin_bottom = 320.0
+toggle_mode = true
+
+[node name="MoveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 28 )]
 
 [node name="GridButton" type="Button" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
 margin_top = 324.0
-margin_right = 50.0
+margin_right = 104.0
 margin_bottom = 374.0
 rect_min_size = Vector2( 50, 50 )
+toggle_mode = true
 icon = ExtResource( 40 )
 expand_icon = true
 script = ExtResource( 39 )
+
+[node name="SaveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 8 )]
+margin_left = 0.0
+margin_top = 378.0
+margin_right = 50.0
+margin_bottom = 428.0
+
+[node name="OpenButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 10 )]
+margin_left = 54.0
+margin_top = 378.0
+margin_right = 104.0
+margin_bottom = 428.0
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -682,9 +740,10 @@ script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="UI/EditPanel/GridContainer/EraserButton" to="UI/EditPanel/GridContainer/EraserButton" method="_on_EraserButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/FillButton" to="UI/EditPanel/GridContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/ChangeColorButton" to="UI/EditPanel/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/EraserButton" to="UI/EditPanel/GridContainer/EraserButton" method="_on_EraserButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/AddLayerButton" to="UI/EditPanel/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/DeleteLayerButton" to="UI/EditPanel/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/GridButton" to="UI/EditPanel/GridContainer/GridButton" method="_on_GridButton_pressed"]

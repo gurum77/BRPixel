@@ -6,6 +6,14 @@ func show_error_message(parent, _err):
 	var message = "failed"
 	show_message(parent, "Error", message)
 	
+# 현재 tool인 경우 버튼을 press한다
+func press_current_tool_button(button, current_tool):
+	var need_to_pressed = false
+	if StaticData.current_tool == current_tool:
+		need_to_pressed = true
+	if button.pressed != need_to_pressed:
+		button.pressed = need_to_pressed
+	
 # message는 popup으로 보여준다.
 func show_message(parent, title="", message=""):
 	var dlg = AcceptDialog.new()

@@ -1,5 +1,5 @@
 extends Control
-
+class_name RectangleTool
 var pressed = false
 var fill = false
 var start_point = Vector2(0, 0)
@@ -36,7 +36,3 @@ func _input(_event):
 	if pressed:
 		end_point = get_local_mouse_position()
 		update()
-		
-		
-	
-		

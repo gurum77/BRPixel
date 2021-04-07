@@ -86,6 +86,7 @@ func _on_MergeWithPrevButton_pressed():
 	# 이전 layer
 	var prev_layer:Layer = NodeManager.get_layers().get_layer(StaticData.current_layer.index-1)
 	if prev_layer == null:
+		hide()
 		return
 		
 	# 이미지를 이전 layer로 복사
@@ -93,12 +94,15 @@ func _on_MergeWithPrevButton_pressed():
 	
 	# 현재 layer 삭제
 	_on_DeleteButton_pressed()
+	
+	hide()
 		
 
 # 이후 layer와 합치기
 func _on_MergeAllButton_pressed():
 	var layers = NodeManager.get_layers().get_normal_layers()
 	if layers == null || layers.size() < 2:
+		hide()
 		return
 	
 	# 모두 첫번째 layer로 합친다.
@@ -116,13 +120,14 @@ func _on_MergeAllButton_pressed():
 	NodeManager.get_layers().update_layer_index()
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()		
-	
+	hide()
 
 
 func _on_MergeWithNextButton_pressed():
 	# 다음 layer
 	var next_layer:Layer = NodeManager.get_layers().get_layer(StaticData.current_layer.index+1)
 	if next_layer == null:
+		hide()
 		return
 		
 	# 이미지를 다음 layer로 복사
@@ -130,3 +135,5 @@ func _on_MergeWithNextButton_pressed():
 	
 	# 현재 layer 삭제
 	_on_DeleteButton_pressed()
+	
+	hide()

@@ -1,12 +1,16 @@
 extends Node
 
-enum Tool{pencil, line, rectangle, eraser, fill, change_color, circle, select, edit}
+enum Tool{pencil, line, rectangle, eraser, fill, change_color, 
+circle, select, edit, pick_color_from_canvas, brighter, darker}
 
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_palette = null
 var current_layer = null
 var preview_layer = null
+
+var last_drawing_tool = null
+var fill_for_last_drawing_tool = true
 
 var mouse_inside_ui:bool = false
 var dragging_grip:bool = false	# grip을 dragging중인지?

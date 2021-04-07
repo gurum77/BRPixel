@@ -1,5 +1,5 @@
 extends Control
-
+class_name CircleTool
 var pressed = false
 var fill = false
 var start_point = Vector2(0, 0)

@@ -1,11 +1,13 @@
 extends Control
+class_name Pencil
 
+var current_tool = StaticData.Tool.pencil
 var start_point
 func _ready():
-	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.pencil)
+	NodeManager.get_tools().init_to_start_tool(self, current_tool)
 	
 func _input(_event):
-	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.pencil):
+	if StaticData.invalid_mouse_pos_for_tool(current_tool):
 		return
 		
 	# 처음 클릭하면 첫번째 점을 보관한다.
