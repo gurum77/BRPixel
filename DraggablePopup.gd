@@ -21,3 +21,5 @@ func _on_CloseButton_pressed():
 func _on_MessagePopup_popup_hide():
 	if queue_free_on_hide:
 		call_deferred("queue_free")
+
+

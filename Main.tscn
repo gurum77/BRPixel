@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -53,6 +53,7 @@
 [ext_resource path="res://ToolButtons/FlipButton.tscn" type="PackedScene" id=51]
 [ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=52]
 [ext_resource path="res://Tools/DarkerButton.tscn" type="PackedScene" id=53]
+[ext_resource path="res://Settings/LineSettingButton.tscn" type="PackedScene" id=54]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -175,6 +176,8 @@ margin_bottom = 50.0
 toggle_mode = true
 icon = ExtResource( 49 )
 fill = true
+
+[node name="LineSettingButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton" instance=ExtResource( 54 )]
 
 [node name="FillButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 108.0
@@ -681,8 +684,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/MyProjects/Godot/ExpertPixelEditor"
-current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+current_dir = "/Trunk_Godot/ExpertPixelEditor"
+current_path = "/Trunk_Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }

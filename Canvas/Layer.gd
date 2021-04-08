@@ -221,3 +221,25 @@ func set_pixels_by_current_color(points:Array):
 		image.set_pixel(point.x, point.y, StaticData.current_color)
 	image.unlock()
 	update_texture()
+	
+func set_pixels_by_brighter(points:Array):
+	image.lock()
+	for point in points:
+		if !StaticData.inside_working_area(point):
+			continue
+		var color = image.get_pixel(point.x, point.y)
+		color = color.lightened(Define.brighter_amount)
+		image.set_pixel(point.x, point.y, color)
+	image.unlock()
+	update_texture()
+
+func set_pixels_by_darker(points:Array):
+	image.lock()
+	for point in points:
+		if !StaticData.inside_working_area(point):
+			continue
+		var color = image.get_pixel(point.x, point.y)
+		color = color.darkened(Define.darker_amount)
+		image.set_pixel(point.x, point.y, color)
+	image.unlock()
+	update_texture()

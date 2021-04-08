@@ -1,6 +1,6 @@
 extends Node
 
-var _thickness:= 1
+
 
 static func to_1D(x, y, w) -> int:
 	return x + y * w
@@ -13,8 +13,8 @@ static func to_2D(idx, w) -> Vector2:
 	return p 
 	
 # 원점 기준 채워진 ellipse의 points를 계산
-func _get_ellipse_points_filled_on_origin(size: Vector2) -> PoolVector2Array:
-	var offseted_size := size + Vector2(2, 2) * (_thickness - 1)
+func _get_ellipse_points_filled_on_origin(size: Vector2, thickness:int) -> PoolVector2Array:
+	var offseted_size := size + Vector2(2, 2) * (thickness - 1)
 	var border := _get_ellipse_points(Vector2.ZERO, offseted_size)
 	var filling := []
 	var bitmap := _fill_bitmap_with_points(border, offseted_size)
@@ -45,18 +45,18 @@ func _get_ellipse_points_filled_on_origin(size: Vector2) -> PoolVector2Array:
 	return PoolVector2Array(border + filling)
 
 # 원점 기준 ellipse 포인트를 계산
-func _get_ellipse_points_on_origin(size: Vector2) -> PoolVector2Array:
+func _get_ellipse_points_on_origin(size: Vector2, thickness:int) -> PoolVector2Array:
 	# Return ellipse with thickness 1
-	if _thickness == 1:
+	if thickness == 1:
 		return PoolVector2Array(_get_ellipse_points(Vector2.ZERO, size))
 
-	var size_offset := Vector2.ONE * 2 * (_thickness - 1)
+	var size_offset := Vector2.ONE * 2 * (thickness - 1)
 	var new_size := size + size_offset
 	var inner_ellipse_size = new_size - 2 * size_offset
 
 	# The inner ellipse is to small to create a gap in the middle of the ellipse, just return a filled ellipse
 	if inner_ellipse_size.x <= 2 and inner_ellipse_size.y <= 2:
-		return _get_ellipse_points_filled_on_origin(size)
+		return _get_ellipse_points_filled_on_origin(size, thickness)
 
 	# Adapted scanline algorithm to fill between 2 ellipses, to create a thicker ellipse
 	var res_array := []
@@ -189,7 +189,7 @@ func _fill_bitmap_with_points(points: Array, size: Vector2) -> BitMap:
 
 			
 # 두 점 사이의 circle에 대한 pixel을 만들어서 리턴
-static func get_pixels_in_circle(from:Vector2, to:Vector2, fill)->Array:
+static func get_pixels_in_circle(from:Vector2, to:Vector2, fill, thickness:int=1)->Array:
 	from.x = from.x as int
 	from.y = from.y as int
 	to.x = to.x as int
@@ -206,9 +206,9 @@ static func get_pixels_in_circle(from:Vector2, to:Vector2, fill)->Array:
 	var size = Vector2(to_real.x - from_real.x, to_real.y - from_real.y)
 	var points:PoolVector2Array
 	if fill:
-		points = GeometryMaker._get_ellipse_points_filled_on_origin(size)
+		points = GeometryMaker._get_ellipse_points_filled_on_origin(size, thickness)
 	else:
-		points = GeometryMaker._get_ellipse_points_on_origin(size)
+		points = GeometryMaker._get_ellipse_points_on_origin(size, thickness)
 		
 	var pixels = []
 	for p in points:
@@ -218,7 +218,7 @@ static func get_pixels_in_circle(from:Vector2, to:Vector2, fill)->Array:
 	return pixels
 	
 # 두점 사이의 사각형에 대한 pixel을 만들어서 리턴
-static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false)->Array:
+static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false, thickness:int=1)->Array:
 	var points : Array = []
 
 
@@ -240,10 +240,10 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false)->Array
 					points.append(pos)
 	else:
 		# 가로선들 
-		var hor1 = get_pixels_in_line(Vector2(from.x, to.y), to)
-		var hor2 = get_pixels_in_line(from, Vector2(to.x, from.y))
-		var vert1 = get_pixels_in_line(from, Vector2(from.x, to.y))
-		var vert2 = get_pixels_in_line(Vector2(to.x, from.y), to)
+		var hor1 = get_pixels_in_line(Vector2(from.x, to.y), to, thickness)
+		var hor2 = get_pixels_in_line(from, Vector2(to.x, from.y), thickness)
+		var vert1 = get_pixels_in_line(from, Vector2(from.x, to.y), thickness)
+		var vert2 = get_pixels_in_line(Vector2(to.x, from.y), to, thickness)
 		
 		for p in hor1:
 			points.append(p)
@@ -255,8 +255,22 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false)->Array
 			points.append(p)
 	return points
 	
+static func get_pixels_by_thickness(position:Vector2, thickness:int)->Array:
+	var points : Array = []
+	var start := position - Vector2.ONE * (thickness >> 1)
+	var end := start + Vector2.ONE * thickness
+	for y in range(start.y, end.y):
+		for x in range(start.x, end.x):
+			points.append(Vector2(x, y))
+	return points
+			
+static func append_valid_points(target:Array, src:Array):
+	for pos in src:
+		if StaticData.current_layer.has_point(pos):
+			target.append(pos)
+			
 # 두점 사이의 선에 대한 pixel을 만들어서 리턴
-static func get_pixels_in_line(from: Vector2, to: Vector2)->Array:
+static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1)->Array:
 	var points : Array = []
 	
 	if from == null || to == null:
@@ -277,20 +291,24 @@ static func get_pixels_in_line(from: Vector2, to: Vector2)->Array:
 			offset = -1
 		for x in range(x1, x2, offset):
 			var y = y1 + dy * (x - x1) / dx
-			var pos = Vector2(x, y)
-			if StaticData.current_layer.has_point(pos):
-				points.append(pos)
+			var new_points = get_pixels_by_thickness(Vector2(x, y), thickness)
+			append_valid_points(points, new_points)
+			
 	else:
 		if y2 < y1:
 			offset = -1
 		for y in range(y1, y2, offset):
 			var x = x1 + dx * (y - y1) / dy
-			var pos = Vector2(x, y)
-			if StaticData.current_layer.has_point(pos):
-				points.append(pos)
+			var new_points = get_pixels_by_thickness(Vector2(x, y), thickness)
+			append_valid_points(points, new_points)
+#			var pos = Vector2(x, y)
+#			if StaticData.current_layer.has_point(pos):
+#				points.append(pos)
 			
 	# 마지막점 추가
-	if StaticData.current_layer.has_point(to):
-		points.append(to)
+	var new_points = get_pixels_by_thickness(to, thickness)
+	append_valid_points(points, new_points)
+#	if StaticData.current_layer.has_point(to):
+#		points.append(to)
 	
 	return points

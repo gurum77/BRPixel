@@ -18,6 +18,9 @@ var canvas_width = 64
 var canvas_height = 64
 var enabled_grid = true
 
+var pencil_thickness = 1
+var line_thickness = 1
+
 # selected area
 var selected_area = Rect2(0, 0, 0, 0)
 

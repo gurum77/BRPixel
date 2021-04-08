@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Settings/LineSettingPopup.gd" type="Script" id=1]
+[ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=2]
+
+[node name="LineSettingPopup" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DraggablePopup" parent="." instance=ExtResource( 2 )]
+visible = true
+margin_left = 87.0
+margin_top = 1.0
+margin_right = 296.0
+margin_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="DraggablePopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineThicknessLabel" type="Label" parent="DraggablePopup/GridContainer"]
+margin_top = 2.0
+margin_right = 26.0
+margin_bottom = 16.0
+text = "Size"
+
+[node name="LineThicknessHSlider" type="HSlider" parent="DraggablePopup/GridContainer"]
+margin_left = 30.0
+margin_right = 130.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 100, 0 )
+min_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="LineThicknessTextEdit" type="TextEdit" parent="DraggablePopup/GridContainer"]
+margin_left = 134.0
+margin_right = 184.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 50, 18 )
+text = "1"
+context_menu_enabled = false
+[connection signal="value_changed" from="DraggablePopup/GridContainer/LineThicknessHSlider" to="." method="_on_LineThicknessHSlider_value_changed"]
+[connection signal="text_changed" from="DraggablePopup/GridContainer/LineThicknessTextEdit" to="." method="_on_LineThicknessTextEdit_text_changed"]

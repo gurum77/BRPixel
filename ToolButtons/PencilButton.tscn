@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ToolButtons/PencilButton.gd" type="Script" id=1]
 [ext_resource path="res://Assets/icon_pen.png" type="Texture" id=2]
+[ext_resource path="res://Assets/icon_setting_small.png" type="Texture" id=3]
+[ext_resource path="res://Settings/PencilSettingPopup.tscn" type="PackedScene" id=4]
 
 [node name="PencilButton" type="Button"]
 margin_left = 54.0
@@ -11,4 +13,22 @@ rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 2 )
 expand_icon = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PencilSettingButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -15.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 15, 15 )
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PencilSettingPopup" parent="PencilSettingButton" instance=ExtResource( 4 )]
 [connection signal="pressed" from="." to="." method="_on_PencilButton_pressed"]
+[connection signal="pressed" from="PencilSettingButton" to="." method="_on_PencilSettingButton_pressed"]

@@ -10,7 +10,7 @@ func _ready():
 func _draw():
 	if StaticData.current_tool != StaticData.Tool.line:
 		return
-	var points = GeometryMaker.get_pixels_in_line(start_point, end_point)
+	var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.line_thickness)
 	StaticData.preview_layer.clear()
 	StaticData.preview_layer.set_pixels_by_current_color(points)
 		
@@ -30,7 +30,7 @@ func _input(_event):
 			if start_point == null:
 				start_point = end_point
 				
-			var points = GeometryMaker.get_pixels_in_line(start_point, end_point)
+			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.line_thickness)
 			StaticData.current_layer.set_pixels_by_current_color(points)
 			StaticData.preview_layer.clear(true)
 			pressed = false

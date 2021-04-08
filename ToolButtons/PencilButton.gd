@@ -7,3 +7,7 @@ func _on_PencilButton_pressed():
 func _process(delta):
 	Util.press_current_tool_button(self, StaticData.Tool.pencil)
 
+
+
+func _on_PencilSettingButton_pressed():
+	$PencilSettingButton/PencilSettingPopup.popup_centered()

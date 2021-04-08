@@ -41,3 +41,7 @@ func _on_SubmenuPopupButton_pressed():
 	else:
 		$DraggableWindow.show()
 	
+
+
+func _on_LineSettingButton_pressed():
+	pass # Replace with function body.
