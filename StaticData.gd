@@ -111,6 +111,38 @@ func save_project(path):
 	save_file.store_line(to_json(save_dic))
 	save_file.close()
 
+# 이미지를 open 한다.
+func open_image(parent, path):
+	var image:Image = Util.load_image_file(self, path)
+	if image == null:
+		return
+	# 이미지의 크기가 허용치를 벗어나면 오픈 불가
+	if image.get_width() < Define.min_canvas_size || image.get_height() < Define.min_canvas_size:
+		Util.show_error_message(parent, "Image is too small.")
+		return
+	if image.get_width() > Define.max_canvas_size || image.get_height() > Define.max_canvas_size:
+		Util.show_error_message(parent, "Image is too large.")
+		return
+	# canvas 사이즈 설정
+	StaticData.canvas_width = image.get_width()
+	StaticData.canvas_height = image.get_height()
+	NodeManager.get_canvas().resize()
+	
+	# layer를 하나로 만든다.
+	NodeManager.get_layers().clear_normal_layers()
+	var new_layer = NodeManager.get_layers().add_layer()
+	new_layer.image = image
+	new_layer.update_texture()
+		
+	# 첫번째 layer를 현재 레이어로 설정 
+	StaticData.current_layer = NodeManager.get_layers().get_layer(0)
+
+	# layer index 갱신
+	NodeManager.get_layers().update_layer_index()
+	
+	# laye button 갱신
+	NodeManager.get_layer_panel().regen_layer_buttons()
+	pass
 func open_project(path):
 	var open_file = File.new()
 	open_file.open(path, File.READ)
