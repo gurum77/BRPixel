@@ -10,7 +10,7 @@ func _on_RectangleButton_pressed():
 	StaticData.last_drawing_tool = NodeManager.get_tools().rectangle_tool
 	StaticData.fill_for_last_drawing_tool = fill
 
-func _process(delta):
+func _process(_delta):
 	var is_current_tool = false
 	if StaticData.current_tool == StaticData.Tool.rectangle:
 		var nodes = NodeManager.get_tools().get_children()

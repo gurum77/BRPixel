@@ -4,7 +4,7 @@ func _on_PencilButton_pressed():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().pencil_tool.instance())
 	StaticData.last_drawing_tool = NodeManager.get_tools().pencil_tool
 
-func _process(delta):
+func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.pencil)
 
 
