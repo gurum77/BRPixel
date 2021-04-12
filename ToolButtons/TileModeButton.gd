@@ -18,7 +18,15 @@ func _ready():
 
 func _on_TileModeButton_pressed():
 	StaticData.enabled_tilemode = !StaticData.enabled_tilemode
-	var tiles:Tiles = NodeManager.get_tiles()
-	tiles.init_size_tiles()
-	tiles.visible = StaticData.enabled_tilemode
+	# tile mode manager 초기화
+	var tile_mode_manager:TileModeManager = NodeManager.get_tile_mode_manager()
+	tile_mode_manager.init_tile_layers()
+	tile_mode_manager.visible = StaticData.enabled_tilemode
+	tile_mode_manager.update_force()
+	
+	# canvas 다시 그린다.
+	NodeManager.get_canvas().resize()
+	NodeManager.get_canvas().update()
+	
+	
 	

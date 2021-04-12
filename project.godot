@@ -70,6 +70,11 @@ _global_script_classes=[ {
 "path": "res://Tools/Select.gd"
 }, {
 "base": "Control",
+"class": "TileModeManager",
+"language": "GDScript",
+"path": "res://Canvas/TileModeManager.gd"
+}, {
+"base": "Control",
 "class": "Tools",
 "language": "GDScript",
 "path": "res://Tools/Tools.gd"
@@ -87,6 +92,7 @@ _global_script_class_icons={
 "Pencil": "",
 "RectangleTool": "",
 "Select": "",
+"TileModeManager": "",
 "Tools": ""
 }
 

@@ -8,6 +8,7 @@ var tools:Tools = null
 var save_file_dialog:FileDialog = null
 var color_picker_button:ColorPickerButton = null
 var canvas = null
+var tile_mode_manager = null
 var setting_popup = null
 var preload_message_popup = preload("res://MessagePopup.tscn")
 
@@ -15,6 +16,11 @@ func get_setting_popup()->Node:
 	if setting_popup == null:
 		setting_popup = get_tree().root.get_node("Main/UI/SettingButton/SettingPopup")
 	return setting_popup
+
+func get_tile_mode_manager()->Node:
+	if tile_mode_manager == null:
+		tile_mode_manager = get_tree().root.get_node("Main/Canvas/TileModeManager")	
+	return tile_mode_manager
 	
 func get_canvas()->Node:
 	if canvas == null:

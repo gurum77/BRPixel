@@ -31,10 +31,10 @@ func _get_ellipse_points_filled_on_origin(size: Vector2, thickness:int) -> PoolV
 				continue
 
 			if not bit and (fill or prev_is_true):
-				filling.append(top_l_p)
-				filling.append(Vector2(x, offseted_size.y - y - 1))
-				filling.append(Vector2(offseted_size.x - x - 1, y))
-				filling.append(Vector2(offseted_size.x - x - 1, offseted_size.y - y - 1))
+				filling.append(GeometryMaker.get_adjusted_point_by_tile_mode(top_l_p))
+				filling.append(GeometryMaker.get_adjusted_point_by_tile_mode(Vector2(x, offseted_size.y - y - 1)))
+				filling.append(GeometryMaker.get_adjusted_point_by_tile_mode(Vector2(offseted_size.x - x - 1, y)))
+				filling.append(GeometryMaker.get_adjusted_point_by_tile_mode(Vector2(offseted_size.x - x - 1, offseted_size.y - y - 1)))
 
 				if prev_is_true:
 					fill = true
@@ -144,6 +144,10 @@ func _get_ellipse_points (pos: Vector2, size: Vector2) -> Array:
 		var v2 := Vector2(x0, y0)
 		var v3 := Vector2(x0, y1)
 		var v4 := Vector2(x1, y1)
+		v1 = GeometryMaker.get_adjusted_point_by_tile_mode(v1)
+		v2 = GeometryMaker.get_adjusted_point_by_tile_mode(v2)
+		v3 = GeometryMaker.get_adjusted_point_by_tile_mode(v3)
+		v4 = GeometryMaker.get_adjusted_point_by_tile_mode(v4)
 		array.append(v1)
 		array.append(v2)
 		array.append(v3)
@@ -168,6 +172,10 @@ func _get_ellipse_points (pos: Vector2, size: Vector2) -> Array:
 		var v2 := Vector2(x1+1, y0)
 		var v3 := Vector2(x0-1, y1)
 		var v4 := Vector2(x1+1, y1)
+		v1 = GeometryMaker.get_adjusted_point_by_tile_mode(v1)
+		v2 = GeometryMaker.get_adjusted_point_by_tile_mode(v2)
+		v3 = GeometryMaker.get_adjusted_point_by_tile_mode(v3)
+		v4 = GeometryMaker.get_adjusted_point_by_tile_mode(v4)
 		array.append(v1)
 		array.append(v2)
 		array.append(v3)
@@ -187,6 +195,20 @@ func _fill_bitmap_with_points(points: Array, size: Vector2) -> BitMap:
 
 	return bitmap
 
+# tile mode에 의해서 조정된 좌표리턴
+static func get_adjusted_point_by_tile_mode(point)->Vector2:
+	if !StaticData.enabled_tilemode:
+		return point
+	if point.x < 0:
+		point.x += StaticData.canvas_width
+	if point.y < 0:
+		point.y += StaticData.canvas_height
+	if point.x >= StaticData.canvas_width:
+		point.x -= StaticData.canvas_width
+	if point.y >= StaticData.canvas_height:
+		point.y -= StaticData.canvas_height
+	return point
+	
 			
 # 두 점 사이의 circle에 대한 pixel을 만들어서 리턴
 static func get_pixels_in_circle(from:Vector2, to:Vector2, fill, thickness:int=1)->Array:
@@ -213,8 +235,9 @@ static func get_pixels_in_circle(from:Vector2, to:Vector2, fill, thickness:int=1
 	var pixels = []
 	for p in points:
 		var pos = p + from_real
+		pos = GeometryMaker.get_adjusted_point_by_tile_mode(pos)
 		if StaticData.current_layer.has_point(pos):
-			pixels.append(p + from_real)
+			pixels.append(pos)
 	return pixels
 	
 # 두점 사이의 사각형에 대한 pixel을 만들어서 리턴
@@ -236,6 +259,7 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false, thickn
 		for x in range(min_x, max_x+1):
 			for y in range(min_y, max_y+1):
 				var pos = Vector2(x, y)
+				pos = get_adjusted_point_by_tile_mode(pos)
 				if StaticData.current_layer.has_point(pos):
 					points.append(pos)
 	else:
@@ -261,7 +285,9 @@ static func get_pixels_by_thickness(position:Vector2, thickness:int)->Array:
 	var end := start + Vector2.ONE * thickness
 	for y in range(start.y, end.y):
 		for x in range(start.x, end.x):
-			points.append(Vector2(x, y))
+			var pos = Vector2(x, y)
+			pos = get_adjusted_point_by_tile_mode(pos)
+			points.append(pos)
 	return points
 			
 static func append_valid_points(target:Array, src:Array):

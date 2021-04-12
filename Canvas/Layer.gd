@@ -3,6 +3,7 @@ class_name Layer
 
 export (bool) var preview_layer = false
 export (bool) var minimap_layer = false
+export (bool) var tile_layer = false
 var index:int = 0
 var unused:bool = false	# 사용 되지 않음.
 var image:Image
@@ -17,7 +18,7 @@ func _ready():
 	init_size()
 	update_index()
 	
-	if !minimap_layer: 
+	if !minimap_layer && !tile_layer: 
 		if preview_layer:
 			StaticData.preview_layer = self
 		else:

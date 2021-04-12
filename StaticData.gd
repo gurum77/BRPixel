@@ -17,6 +17,7 @@ var dragging_grip:bool = false	# grip을 dragging중인지?
 var canvas_width = 64
 var canvas_height = 64
 var enabled_grid = true
+var enabled_tilemode = false
 
 var pencil_thickness = 1
 var line_thickness = 1

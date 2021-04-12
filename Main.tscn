@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -54,6 +54,8 @@
 [ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=52]
 [ext_resource path="res://Tools/DarkerButton.tscn" type="PackedScene" id=53]
 [ext_resource path="res://Settings/LineSettingButton.tscn" type="PackedScene" id=54]
+[ext_resource path="res://ToolButtons/TileModeButton.tscn" type="PackedScene" id=55]
+[ext_resource path="res://Canvas/TileModeManager.tscn" type="PackedScene" id=56]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -321,17 +323,15 @@ icon = ExtResource( 40 )
 expand_icon = true
 script = ExtResource( 39 )
 
+[node name="TileModeButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 55 )]
+
 [node name="SaveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 8 )]
-margin_left = 0.0
 margin_top = 378.0
-margin_right = 50.0
 margin_bottom = 428.0
 
 [node name="OpenButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 10 )]
-margin_left = 54.0
-margin_top = 378.0
-margin_right = 104.0
-margin_bottom = 428.0
+margin_top = 432.0
+margin_bottom = 482.0
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -722,6 +722,8 @@ script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TileModeManager" parent="Canvas" instance=ExtResource( 56 )]
 
 [node name="Tools" type="Control" parent="."]
 script = ExtResource( 5 )
