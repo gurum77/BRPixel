@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -56,6 +56,10 @@
 [ext_resource path="res://Settings/LineSettingButton.tscn" type="PackedScene" id=54]
 [ext_resource path="res://ToolButtons/TileModeButton.tscn" type="PackedScene" id=55]
 [ext_resource path="res://Canvas/TileModeManager.tscn" type="PackedScene" id=56]
+[ext_resource path="res://Assets/icon_horizontal_symmetry.png" type="Texture" id=57]
+[ext_resource path="res://ToolButtons/SymmetryButton.tscn" type="PackedScene" id=58]
+[ext_resource path="res://Assets/icon_vertical_symmetry.png" type="Texture" id=59]
+[ext_resource path="res://Grip.tscn" type="PackedScene" id=60]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -66,7 +70,7 @@ func _on_ChangeColorButton_pressed():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().change_color.instance())
 	StaticData.last_drawing_tool = NodeManager.get_tools().change_color
 
-func _process(delta):
+func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.change_color)
 "
 
@@ -332,6 +336,33 @@ margin_bottom = 428.0
 [node name="OpenButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 10 )]
 margin_top = 432.0
 margin_bottom = 482.0
+
+[node name="SymmetryPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
+margin_left = 54.0
+margin_top = 432.0
+margin_right = 104.0
+margin_bottom = 482.0
+icon = ExtResource( 57 )
+
+[node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SymmetryPopupButton" index="0"]
+margin_left = 63.083
+margin_top = -3.18921
+margin_right = 380.083
+margin_bottom = 46.8108
+
+[node name="NoSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 58 )]
+
+[node name="HorizontalSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 58 )]
+margin_left = 54.0
+margin_right = 104.0
+icon = ExtResource( 57 )
+symmetry_type = 1
+
+[node name="VerticalSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 58 )]
+margin_left = 108.0
+margin_right = 158.0
+icon = ExtResource( 59 )
+symmetry_type = 2
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -684,8 +715,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -725,6 +756,18 @@ __meta__ = {
 
 [node name="TileModeManager" parent="Canvas" instance=ExtResource( 56 )]
 
+[node name="SymmetryGrips" type="Control" parent="Canvas"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="HorizontalGrip1" parent="Canvas/SymmetryGrips" instance=ExtResource( 60 )]
+
+[node name="HorizontalGrip2" parent="Canvas/SymmetryGrips" instance=ExtResource( 60 )]
+
+[node name="VerticalGrip1" parent="Canvas/SymmetryGrips" instance=ExtResource( 60 )]
+
+[node name="VerticalGrip2" parent="Canvas/SymmetryGrips" instance=ExtResource( 60 )]
+
 [node name="Tools" type="Control" parent="."]
 script = ExtResource( 5 )
 __meta__ = {
@@ -757,3 +800,5 @@ __meta__ = {
 [editable path="UI/EditPanel/GridContainer/GeometryPopupButton"]
 
 [editable path="UI/EditPanel/GridContainer/SelectPopupButton"]
+
+[editable path="UI/EditPanel/GridContainer/SymmetryPopupButton"]

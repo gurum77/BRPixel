@@ -3,6 +3,7 @@ extends Node
 enum Tool{pencil, line, rectangle, eraser, fill, change_color, 
 circle, select, edit, pick_color_from_canvas, brighter, darker}
 
+enum SymmetryType{no, horizontal, vertical}
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_palette = null
@@ -18,7 +19,9 @@ var canvas_width = 64
 var canvas_height = 64
 var enabled_grid = true
 var enabled_tilemode = false
-
+var symmetry_type = SymmetryType.no
+var horizontal_symmetry_position = 0
+var vertical_symmetry_position = 0
 var pencil_thickness = 1
 var line_thickness = 1
 

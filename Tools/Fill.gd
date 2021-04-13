@@ -13,6 +13,7 @@ func _input(_event):
 		
 	# image 사본을 복사한다.
 	var pos = StaticData.current_layer.get_local_mouse_position()
+	pos = GeometryMaker.get_adjusted_point_by_tile_mode(pos)
 	var points = get_neighbouring_pixels(pos.x, pos.y)
 	StaticData.current_layer.set_pixels_by_current_color(points)
 

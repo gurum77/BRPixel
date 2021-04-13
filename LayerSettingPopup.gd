@@ -76,7 +76,7 @@ func _on_HideButton_pressed():
 	
 
 # 투명도 슬라이더 변경시..
-func _on_TransparencyHSlider_value_changed(value):
+func _on_TransparencyHSlider_value_changed(_value):
 	selected_layer.modulate.a = $DraggablePopup/GridContainerTop/TransparencyHSlider.value / 100.0
 	$DraggablePopup/GridContainerTop/TransparencyHSlider/TextEdit.text = str($DraggablePopup/GridContainerTop/TransparencyHSlider.value)
 

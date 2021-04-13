@@ -10,8 +10,15 @@ var color_picker_button:ColorPickerButton = null
 var canvas = null
 var tile_mode_manager = null
 var setting_popup = null
+var symmetry_grips = null
+
 var preload_message_popup = preload("res://MessagePopup.tscn")
 
+func get_symmetry_grips()->Node:
+	if symmetry_grips == null:
+		symmetry_grips = get_tree().root.get_node("Main/Canvas/SymmetryGrips")
+	return symmetry_grips
+	
 func get_setting_popup()->Node:
 	if setting_popup == null:
 		setting_popup = get_tree().root.get_node("Main/UI/SettingButton/SettingPopup")

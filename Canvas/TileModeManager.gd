@@ -21,7 +21,7 @@ func init_tile_layers():
 	$TileLayer_B.rect_position = Vector2(0, -h)
 	$TileLayer_RB.rect_position = Vector2(w, -h)
 	
-func _input(event):
+func _input(_event):
 	enabled_draw =true
 func update_force():
 	enabled_draw = true

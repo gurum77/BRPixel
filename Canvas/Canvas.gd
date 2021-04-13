@@ -13,6 +13,25 @@ func _draw():
 		draw_tile_check_patterns()
 	if StaticData.enabled_grid:
 		draw_grid()
+	if StaticData.symmetry_type != StaticData.SymmetryType.no:
+		draw_symmetry_guide_line()
+	
+# symmetry guid line 그리기	
+func draw_symmetry_guide_line():
+	if StaticData.symmetry_type == StaticData.SymmetryType.horizontal:
+		var min_y = 0
+		var max_y = StaticData.canvas_height
+		if StaticData.enabled_tilemode:
+			min_y -= StaticData.canvas_height
+			max_y += StaticData.canvas_height
+		draw_line(Vector2(StaticData.horizontal_symmetry_position, min_y), Vector2(StaticData.horizontal_symmetry_position, max_y), Color.blue)
+	elif StaticData.symmetry_type == StaticData.SymmetryType.vertical:
+		var min_x = 0
+		var max_x = StaticData.canvas_width
+		if StaticData.enabled_tilemode:
+			min_x -= StaticData.canvas_width
+			max_x += StaticData.canvas_width
+		draw_line(Vector2(min_x, StaticData.vertical_symmetry_position), Vector2(max_x, StaticData.vertical_symmetry_position), Color.blue)
 		
 func draw_tile_check_patterns():
 	var rect = Rect2(-StaticData.canvas_width, -StaticData.canvas_height, StaticData.canvas_width * 3, StaticData.canvas_height * 3)
@@ -55,9 +74,6 @@ func draw_grid():
 		pline.append(Vector2(0, StaticData.canvas_height))
 		pline.append(Vector2(0, 0))
 		draw_polyline(pline, Color.blue)
-	
-	
-	
 	
 
 # canvas를 크기를 조정한다.

@@ -262,6 +262,7 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false, thickn
 				pos = get_adjusted_point_by_tile_mode(pos)
 				if StaticData.current_layer.has_point(pos):
 					points.append(pos)
+		append_symmetry_pixels(points)
 	else:
 		# 가로선들 
 		var hor1 = get_pixels_in_line(Vector2(from.x, to.y), to, thickness)
@@ -294,7 +295,37 @@ static func append_valid_points(target:Array, src:Array):
 	for pos in src:
 		if StaticData.current_layer.has_point(pos):
 			target.append(pos)
+	
+# symmetry된 point를 리턴한다.
+static func get_symmetry_pixel(point:Vector2)->Vector2:
+	if StaticData.symmetry_type == StaticData.SymmetryType.no:
+		return point
+		
+	if StaticData.symmetry_type == StaticData.SymmetryType.horizontal:
+		var diff = StaticData.horizontal_symmetry_position - point.x
+		return Vector2(point.x + diff * 2, point.y)
+	elif StaticData.symmetry_type == StaticData.SymmetryType.vertical:
+		var diff = StaticData.vertical_symmetry_position - point.y
+		return Vector2(point.x, point.y + diff * 2)
+	return point
 			
+		
+		
+# symmetry 가 적용된 pixels을 추가한다.
+static func append_symmetry_pixels(points):
+	if StaticData.symmetry_type == StaticData.SymmetryType.no:
+		return points
+		
+	var old_points:Array = points.duplicate()
+	for p in old_points:
+		var new_point = get_symmetry_pixel(p)
+		if new_point == null:
+			return
+		if StaticData.current_layer.has_point(new_point):
+			points.append(new_point)
+	
+		
+	
 # 두점 사이의 선에 대한 pixel을 만들어서 리턴
 static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1)->Array:
 	var points : Array = []
@@ -337,4 +368,5 @@ static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1)->Arr
 #	if StaticData.current_layer.has_point(to):
 #		points.append(to)
 	
+	append_symmetry_pixels(points)
 	return points
