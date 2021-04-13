@@ -33,7 +33,7 @@ func update():
 	if get_layer().visible:
 		modulate = Color.white
 	else:
-		modulate = Color.gray
+		modulate = Color.darkgray
 	$CurrentLayerSign.visible = is_current_layer()
 
 

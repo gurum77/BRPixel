@@ -108,6 +108,10 @@ func save_project(path):
 		"canvas_width" : StaticData.canvas_width,
 		"canvas_height" : StaticData.canvas_height,
 		"enabled_grid" : StaticData.enabled_grid,
+		"enabled_tilemode" : StaticData.enabled_tilemode,
+		"symmetry_type" : StaticData.symmetry_type,
+		"horizontal_symmetry_position" : StaticData.horizontal_symmetry_position,
+		"vertical_symmetry_position" : StaticData.vertical_symmetry_position,
 		"layers" : get_save_dic_layers()
 	}
 	var save_file = File.new()
@@ -147,17 +151,31 @@ func open_image(parent, path):
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	pass
+
+func get_value(dic:Dictionary, key, default_value:int):
+	if dic.has(key):
+		return dic[key]
+	return default_value
+			
 func open_project(path):
 	var open_file = File.new()
 	open_file.open(path, File.READ)
 	if open_file.get_position() < open_file.get_len():
 		var dic = parse_json(open_file.get_line())
-		StaticData.canvas_width = dic["canvas_width"]
-		StaticData.canvas_height = dic["canvas_height"]
-		StaticData.enabled_grid = dic["enabled_grid"]
+		StaticData.canvas_width = get_value(dic, "canvas_width", StaticData.canvas_width)
+		StaticData.canvas_height = get_value(dic, "canvas_height", StaticData.canvas_height)
+		StaticData.enabled_grid = get_value(dic, "enabled_grid", StaticData.enabled_grid)
+		StaticData.enabled_tilemode = get_value(dic, "enabled_tilemode", StaticData.enabled_tilemode)
+		StaticData.symmetry_type = get_value(dic, "symmetry_type", StaticData.symmetry_type)
+		StaticData.horizontal_symmetry_position = get_value(dic, "horizontal_symmetry_position", StaticData.horizontal_symmetry_position)
+		StaticData.vertical_symmetry_position = get_value(dic, "vertical_symmetry_position", StaticData.vertical_symmetry_position)
+		
 		open_project_layers(dic)
 	open_file.close()
 	NodeManager.get_canvas().resize()
+	NodeManager.get_tile_mode_manager().init_tile_layers()
+	NodeManager.get_tile_mode_manager().update_force()
+	NodeManager.get_symmetry_grips().update_canvas_and_grips()
 		
 func open_project_layers(var dic:Dictionary):
 	# 기존 레이어를 제거한다.

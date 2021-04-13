@@ -212,10 +212,10 @@ static func get_adjusted_point_by_tile_mode(point)->Vector2:
 			
 # 두 점 사이의 circle에 대한 pixel을 만들어서 리턴
 static func get_pixels_in_circle(from:Vector2, to:Vector2, fill, thickness:int=1)->Array:
-	from.x = from.x as int
-	from.y = from.y as int
-	to.x = to.x as int
-	to.y = to.y as int
+	from.x = floor(from.x) as int
+	from.y = floor(from.y) as int
+	to.x = floor(to.x) as int
+	to.y = floor(to.y) as int
 	
 		
 	var from_real = Vector2(min(to.x, from.x), min(to.y, from.y))
@@ -246,10 +246,10 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false, thickn
 
 
 	if fill:
-		var from_x:int = from.x as int
-		var from_y:int = from.y as int
-		var to_x:int = to.x as int
-		var to_y:int = to.y as int
+		var from_x:int = floor(from.x) as int
+		var from_y:int = floor(from.y) as int
+		var to_x:int = floor(to.x) as int
+		var to_y:int = floor(to.y) as int
 		
 		var min_x = min(from_x, to_x)
 		var max_x = max(from_x, to_x)
@@ -284,8 +284,8 @@ static func get_pixels_by_thickness(position:Vector2, thickness:int)->Array:
 	var points : Array = []
 	var start := position - Vector2.ONE * (thickness >> 1)
 	var end := start + Vector2.ONE * thickness
-	for y in range(start.y, end.y):
-		for x in range(start.x, end.x):
+	for y in range(floor(start.y), floor(end.y)):
+		for x in range(floor(start.x), floor(end.x)):
 			var pos = Vector2(x, y)
 			pos = get_adjusted_point_by_tile_mode(pos)
 			points.append(pos)
@@ -303,10 +303,10 @@ static func get_symmetry_pixel(point:Vector2)->Vector2:
 		
 	if StaticData.symmetry_type == StaticData.SymmetryType.horizontal:
 		var diff = StaticData.horizontal_symmetry_position - point.x
-		return Vector2(point.x + diff * 2, point.y)
+		return Vector2(point.x + diff * 2 - 1, point.y)
 	elif StaticData.symmetry_type == StaticData.SymmetryType.vertical:
 		var diff = StaticData.vertical_symmetry_position - point.y
-		return Vector2(point.x, point.y + diff * 2)
+		return Vector2(point.x, point.y + diff * 2 - 1)
 	return point
 			
 		
@@ -333,10 +333,10 @@ static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1)->Arr
 	if from == null || to == null:
 		return points
 		
-	var x1:int = from.x as int
-	var y1:int = from.y as int
-	var x2:int = to.x as int
-	var y2:int = to.y as int
+	var x1:int = floor(from.x) as int
+	var y1:int = floor(from.y) as int
+	var x2:int = floor(to.x) as int
+	var y2:int = floor(to.y) as int
 	
 	
 	var dx = (x2 - x1)

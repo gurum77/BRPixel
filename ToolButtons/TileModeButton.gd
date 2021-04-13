@@ -31,5 +31,9 @@ func _on_TileModeButton_pressed():
 	# 마지막 drawing tool을 실행한다.
 	NodeManager.get_tools().run_last_drawing_tool()
 	
+	# symmetry 그립 갱신
+	NodeManager.get_symmetry_grips().update_canvas_and_grips()
+	
+	
 	
 	

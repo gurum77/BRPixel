@@ -59,7 +59,7 @@
 [ext_resource path="res://Assets/icon_horizontal_symmetry.png" type="Texture" id=57]
 [ext_resource path="res://ToolButtons/SymmetryButton.tscn" type="PackedScene" id=58]
 [ext_resource path="res://Assets/icon_vertical_symmetry.png" type="Texture" id=59]
-[ext_resource path="res://Grip.tscn" type="PackedScene" id=60]
+[ext_resource path="res://Canvas/SymmetryGrips.tscn" type="PackedScene" id=60]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -715,8 +715,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/MyProjects/Godot/ExpertPixelEditor"
-current_path = "/MyProjects/Godot/ExpertPixelEditor/"
+current_dir = "/Trunk_Godot/ExpertPixelEditor"
+current_path = "/Trunk_Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -756,17 +756,7 @@ __meta__ = {
 
 [node name="TileModeManager" parent="Canvas" instance=ExtResource( 56 )]
 
-[node name="SymmetryGrips" type="Control" parent="Canvas"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="HorizontalGrip1" parent="Canvas/SymmetryGrips" instance=ExtResource( 60 )]
-
-[node name="HorizontalGrip2" parent="Canvas/SymmetryGrips" instance=ExtResource( 60 )]
-
-[node name="VerticalGrip1" parent="Canvas/SymmetryGrips" instance=ExtResource( 60 )]
-
-[node name="VerticalGrip2" parent="Canvas/SymmetryGrips" instance=ExtResource( 60 )]
+[node name="SymmetryGrips" parent="Canvas" instance=ExtResource( 60 )]
 
 [node name="Tools" type="Control" parent="."]
 script = ExtResource( 5 )
