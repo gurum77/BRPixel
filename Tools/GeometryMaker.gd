@@ -12,6 +12,27 @@ static func to_2D(idx, w) -> Vector2:
 	p.y = int(idx / w)
 	return p 
 	
+# pixel를 start 부터 offset간격으로 가져온다.
+func get_pixels_by_check_pattern(pixels, first:bool)->Array:
+	var start = 0
+	if !first:
+		start = 1
+	var offset_pixels = []
+	for pixel in pixels:
+		var x:int = floor(pixel.x)
+		var y:int = floor(pixel.y)
+		var result_x = x % 2
+		var result_y = y % 2
+		
+		if result_y == 0:
+			if result_x == start:
+				offset_pixels.append(pixel)
+		else:
+			if result_x != start:
+				offset_pixels.append(pixel)
+			
+	return offset_pixels
+	
 # 원점 기준 채워진 ellipse의 points를 계산
 func _get_ellipse_points_filled_on_origin(size: Vector2, thickness:int) -> PoolVector2Array:
 	var offseted_size := size + Vector2(2, 2) * (thickness - 1)

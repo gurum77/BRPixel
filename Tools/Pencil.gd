@@ -15,10 +15,13 @@ func _input(_event):
 	if InputManager.is_action_just_released_lbutton(_event)		:
 		drawn_points.clear()
 		
+	# 마우스를 이동하면 미리보기 점을 표시한다.
+	InputManager.draw_preview_pixel_cursor(self, _event, StaticData.pencil_thickness)
+		
+		
 	# 처음 클릭하면 첫번째 점을 보관한다.
 	if InputManager.is_action_just_pressed_lbutton(_event):
 		start_point = get_local_mouse_position()
-		
 	
 	# 누르고 있는 동안 계속 그림
 	if start_point != null && InputManager.is_action_pressed_lbutton(_event):
@@ -33,6 +36,7 @@ func set_pixels(points):
 	
 func get_key(point)->String:
 	return str(point.x as int) + str(",") + str(point.y as int)
+	
 func get_new_points(points:Array)->Array:
 	var new_points:Array = []
 	for point in points:

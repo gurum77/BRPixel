@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://ToolButtons/LineButton.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ToolButtons/OpenButton.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ToolButtons/ColorPickerButton.tscn" type="PackedScene" id=11]
-[ext_resource path="res://ToolButtons/EraserButton.gd" type="Script" id=12]
+[ext_resource path="res://ToolButtons/EraserButton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ToolButtons/SubmenuPopupButton.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
 [ext_resource path="res://ToolButtons/CircleButton.tscn" type="PackedScene" id=15]
@@ -32,7 +32,6 @@
 [ext_resource path="res://Grips.gd" type="Script" id=30]
 [ext_resource path="res://ToolButtons/EditButton.tscn" type="PackedScene" id=31]
 [ext_resource path="res://Assets/icon_pick_color_from_canvas.png" type="Texture" id=32]
-[ext_resource path="res://Assets/icon_eraser.png" type="Texture" id=33]
 [ext_resource path="res://Assets/icon_add_layer.png" type="Texture" id=34]
 [ext_resource path="res://Assets/icon_delete_layer.png" type="Texture" id=35]
 [ext_resource path="res://Assets/icon_select.png" type="Texture" id=36]
@@ -206,15 +205,7 @@ icon = ExtResource( 37 )
 expand_icon = true
 script = SubResource( 1 )
 
-[node name="EraserButton" type="Button" parent="UI/EditPanel/GridContainer"]
-margin_top = 162.0
-margin_right = 50.0
-margin_bottom = 212.0
-rect_min_size = Vector2( 50, 50 )
-toggle_mode = true
-icon = ExtResource( 33 )
-expand_icon = true
-script = ExtResource( 12 )
+[node name="EraserButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 12 )]
 
 [node name="SelectPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
@@ -715,8 +706,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -781,7 +772,6 @@ __meta__ = {
 [connection signal="pressed" from="UI/EditPanel/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/FillButton" to="UI/EditPanel/GridContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/ChangeColorButton" to="UI/EditPanel/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/GridContainer/EraserButton" to="UI/EditPanel/GridContainer/EraserButton" method="_on_EraserButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/AddLayerButton" to="UI/EditPanel/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/DeleteLayerButton" to="UI/EditPanel/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/GridButton" to="UI/EditPanel/GridContainer/GridButton" method="_on_GridButton_pressed"]

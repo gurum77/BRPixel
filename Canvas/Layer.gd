@@ -215,11 +215,14 @@ func set_pixel_by_current_color(point):
 	update_texture()
 	
 func set_pixels_by_current_color(points:Array):
+	set_pixels_by_color(points, StaticData.current_color)
+	
+func set_pixels_by_color(points:Array, color:Color):
 	image.lock()
 	for point in points:
 		if !StaticData.inside_working_area(point):
 			continue
-		image.set_pixel(point.x, point.y, StaticData.current_color)
+		image.set_pixel(point.x, point.y, color)
 	image.unlock()
 	update_texture()
 	

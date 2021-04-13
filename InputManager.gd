@@ -1,5 +1,21 @@
 extends Node
 
+# 미리보기 cursor를 그린다.
+# cursor는 현재 점의 크기이다.
+func draw_preview_pixel_cursor(parent:Control, event, thickness):
+	if event is InputEventMouseMotion:
+		var point = parent.get_local_mouse_position()
+		var pixels = GeometryMaker.get_pixels_in_line(point, point, thickness)
+		StaticData.preview_layer.clear()
+		if StaticData.current_tool == StaticData.Tool.eraser:
+			var white_pixels = GeometryMaker.get_pixels_by_check_pattern(pixels, true)
+			var gray_pixels = GeometryMaker.get_pixels_by_check_pattern(pixels, false)
+			StaticData.preview_layer.set_pixels_by_color(white_pixels, Color.white)
+			StaticData.preview_layer.set_pixels_by_color(gray_pixels, Color.gray)
+		else:
+			StaticData.preview_layer.set_pixels_by_current_color(pixels)
+	
+	
 func is_action_just_pressed_rbutton(_event)->bool:
 	if Input.is_action_just_pressed("right_button"):
 		return true

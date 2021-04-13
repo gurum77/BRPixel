@@ -23,6 +23,7 @@ var symmetry_type = SymmetryType.no
 var horizontal_symmetry_position = 0
 var vertical_symmetry_position = 0
 var pencil_thickness = 1
+var eraser_thickness = 1
 var line_thickness = 1
 
 # selected area
@@ -112,6 +113,9 @@ func save_project(path):
 		"symmetry_type" : StaticData.symmetry_type,
 		"horizontal_symmetry_position" : StaticData.horizontal_symmetry_position,
 		"vertical_symmetry_position" : StaticData.vertical_symmetry_position,
+		"pencil_thickness" : StaticData.pencil_thickness,
+		"eraser_thickness" : StaticData.eraser_thickness,
+		"line_thickness" : StaticData.line_thickness,
 		"layers" : get_save_dic_layers()
 	}
 	var save_file = File.new()
@@ -169,6 +173,9 @@ func open_project(path):
 		StaticData.symmetry_type = get_value(dic, "symmetry_type", StaticData.symmetry_type)
 		StaticData.horizontal_symmetry_position = get_value(dic, "horizontal_symmetry_position", StaticData.horizontal_symmetry_position)
 		StaticData.vertical_symmetry_position = get_value(dic, "vertical_symmetry_position", StaticData.vertical_symmetry_position)
+		StaticData.pencil_thickness = get_value(dic, "pencil_thickness", StaticData.pencil_thickness)
+		StaticData.eraser_thickness = get_value(dic, "eraser_thickness", StaticData.eraser_thickness)
+		StaticData.line_thickness = get_value(dic, "line_thickness", StaticData.line_thickness)
 		
 		open_project_layers(dic)
 	open_file.close()

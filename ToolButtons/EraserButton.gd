@@ -7,3 +7,7 @@ func _on_EraserButton_pressed():
 
 func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.eraser)
+
+
+func _on_EraserSettingPopupButton_pressed():
+	$EraserSettingPopupButton/EraserSettingPopup.popup_centered()

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ToolButtons/EraserButton.gd" type="Script" id=1]
+[ext_resource path="res://Assets/icon_eraser.png" type="Texture" id=2]
+[ext_resource path="res://ToolButtons/SettingPopupButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ToolButtons/EraserSettingPopup.tscn" type="PackedScene" id=4]
+
+[node name="EraserButton" type="Button"]
+margin_top = 162.0
+margin_right = 50.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 50, 50 )
+toggle_mode = true
+icon = ExtResource( 2 )
+expand_icon = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EraserSettingPopupButton" parent="." instance=ExtResource( 3 )]
+
+[node name="EraserSettingPopup" parent="EraserSettingPopupButton" instance=ExtResource( 4 )]
+margin_left = 61.3518
+margin_top = 3.30356
+margin_right = 270.352
+margin_bottom = 43.3036
+[connection signal="pressed" from="." to="." method="_on_EraserButton_pressed"]
+[connection signal="pressed" from="EraserSettingPopupButton" to="." method="_on_EraserSettingPopupButton_pressed"]
+
+[editable path="EraserSettingPopupButton"]
