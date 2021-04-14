@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ToolButtons/PixelPerfectCheckBox.gd" type="Script" id=1]
+
+[node name="PixelPerfectCheckBox" type="CheckBox"]
+margin_left = 110.0
+margin_right = 219.0
+margin_bottom = 25.0
+text = "Pixel-perfect"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="." to="." method="_on_PixelPerfectCheckBox_toggled"]

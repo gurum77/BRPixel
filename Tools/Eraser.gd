@@ -8,7 +8,7 @@ func _input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.eraser):
 		return
 		
-	InputManager.draw_preview_pixel_cursor(self, _event, StaticData.eraser_thickness)
+	InputManager.draw_preview_pixel_cursor(self, _event, StaticData.pencil_thickness)
 	
 	# 처음 클릭하면 첫번째 점을 보관한다.
 	if InputManager.is_action_just_pressed_lbutton(_event):
@@ -18,7 +18,7 @@ func _input(_event):
 	if InputManager.is_action_pressed_lbutton(_event):
 		var end_point = get_local_mouse_position()
 		if start_point != null:
-			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.eraser_thickness)
+			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
 			StaticData.current_layer.erase_pixels(points)
 		start_point = end_point
 
