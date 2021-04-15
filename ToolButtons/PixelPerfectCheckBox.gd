@@ -2,7 +2,7 @@ extends CheckBox
 
 
 
-func _process(delta):
+func _process(_delta):
 	if pressed != StaticData.pixel_perfect:
 		pressed = StaticData.pixel_perfect
 

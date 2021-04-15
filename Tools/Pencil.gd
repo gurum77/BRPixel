@@ -4,8 +4,31 @@ class_name Pencil
 var drawn_points:Dictionary = Dictionary()	# 마우스를 떼기 전에 한번 그려진 포인트를 보
 var current_tool = StaticData.Tool.pencil
 var start_point
-var origin_pixels = []	# pixel perfect가 적용되지 않은 곳의 원래 pixel(OriginPixel의 array)
+var pixel_perfect_drawer = PixelPerfectDrawer.new()
 
+class PixelPerfectDrawer:
+	const neighbours = [Vector2(0, 1), Vector2(1, 0), Vector2(-1, 0), Vector2(0, -1)]
+	const corners = [Vector2(1, 1), Vector2(-1, -1), Vector2(-1, 1), Vector2(1, -1)]
+	var last_pixels = [null, null]
+
+	func reset() -> void:
+		last_pixels = [null, null]
+
+	func set_pixel(image: Image, position: Vector2, color: Color) -> void:
+		var color_old = image.get_pixelv(position)
+		last_pixels.push_back([position, color_old])
+		image.set_pixelv(position, color)
+
+		var corner = last_pixels.pop_front()
+		var neighbour = last_pixels[0]
+
+		if corner == null or neighbour == null:
+			return
+
+		if position - corner[0] in corners and position - neighbour[0] in neighbours:
+			image.set_pixel(neighbour[0].x, neighbour[0].y, neighbour[1])
+			last_pixels[0] = corner
+			
 func _ready():
 	NodeManager.get_tools().init_to_start_tool(self, current_tool)
 	drawn_points.clear()
@@ -22,11 +45,9 @@ func _input(_event):
 		
 	# 처음 클릭하면 첫번째 점을 보관한다.
 	if InputManager.is_action_just_pressed_lbutton(_event):
-		origin_pixels.clear()
+		pixel_perfect_drawer.reset()
 		start_point = get_local_mouse_position()
 		var points = GeometryMaker.get_pixels_in_line(start_point, start_point, StaticData.pencil_thickness)
-		if is_enabled_pixel_perfect():
-			append_origin_pixels(points)
 		points = get_new_points(points)
 		set_pixels(points)
 	
@@ -36,15 +57,8 @@ func _input(_event):
 		# 다른 점이면 그린다.
 		if !is_same_pixels(start_point, end_point):
 			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
-			if is_enabled_pixel_perfect():
-				append_origin_pixels(points)
 			points = get_new_points(points)
 			set_pixels(points)
-			
-			# pixel perfect때문에 원래 pixel로 그려야 할 곳을 찾아서 그린다.
-			if is_enabled_pixel_perfect():
-				var origin_pixels_to_ = get_origin_pixels_to_(points)
-				StaticData.current_layer.set_origin_pixels(pixels_by_current_color(points)
 			start_point = end_point
 
 # pixel perfect가 활성화되었는지?
@@ -54,17 +68,7 @@ func is_enabled_pixel_perfect()->bool:
 	if StaticData.pencil_thickness > 1:
 		return false
 	return true
-	
-# pixel perfect 적용되는 곳에 원래 pixel을 그려넣기 위해 보관한다.
-func append_origin_pixels(new_points):
-	StaticData.current_layer.image.lock()
-	for new_point in new_points:
-		var color = StaticData.current_layer.image.get_pixel(new_point.x, new_point.y)
-		var origin_pixel = OriginPixel.new()
-		origin_pixel.point = new_point
-		origin_pixel.color = color
-		origin_pixels.append(origin_pixel)
-	StaticData.current_layer.image.unlock()
+
 		
 # point 2개가 같은 pixel인지 비교
 func is_same_pixels(point1, point2)->bool:
@@ -79,7 +83,13 @@ func is_same_pixels(point1, point2)->bool:
 	return true
 	
 func set_pixels(points):
-	StaticData.current_layer.set_pixels_by_current_color(points)
+	if is_enabled_pixel_perfect():
+		StaticData.current_layer.image.lock()
+		for point in points:
+			pixel_perfect_drawer.set_pixel(StaticData.current_layer.image, point, StaticData.current_color)
+		StaticData.current_layer.image.unlock()	
+	else:
+		StaticData.current_layer.set_pixels_by_current_color(points)
 	
 func get_key(point)->String:
 	return str(point.x as int) + str(",") + str(point.y as int)

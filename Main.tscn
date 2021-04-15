@@ -749,8 +749,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -9,6 +9,6 @@ func _draw():
 		draw_circle(pixel, 1, Color.black)
 #	last_drawn_thickness = StaticData.pencil_thickness
 
-func _process(delta):
+func _process(_delta):
 	if last_drawn_thickness != StaticData.pencil_thickness:
 		update()
