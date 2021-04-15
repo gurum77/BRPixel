@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://LayerPanel.gd"
 }, {
+"base": "Reference",
+"class": "OriginPixel",
+"language": "GDScript",
+"path": "res://OriginPixel.gd"
+}, {
 "base": "Control",
 "class": "Palette",
 "language": "GDScript",
@@ -88,6 +93,7 @@ _global_script_class_icons={
 "Grip": "",
 "Layer": "",
 "LayerPanel": "",
+"OriginPixel": "",
 "Palette": "",
 "Pencil": "",
 "RectangleTool": "",

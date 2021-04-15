@@ -217,6 +217,15 @@ func set_pixel_by_current_color(point):
 func set_pixels_by_current_color(points:Array):
 	set_pixels_by_color(points, StaticData.current_color)
 	
+func set_origin_pixels(origin_pixels:Array):
+	image.lock()
+	for origin_pixel in origin_pixels:
+		if !StaticData.inside_working_area(origin_pixel.point):
+			continue
+		image.set_pixel(origin_pixel.point.x, origin_pixel.point.y, origin_pixel.color)
+	image.unlock()
+	update_texture()
+	
 func set_pixels_by_color(points:Array, color:Color):
 	image.lock()
 	for point in points:
