@@ -20,7 +20,7 @@ func _on_FrameButton_gui_input(event):
 		NodeManager.get_layer_panel().update_layer_buttons()
 
 func get_frame()->Frame:
-	return NodeManager.get_current_frames().get_frame(get_index())
+	return NodeManager.get_frames().get_frame(get_index())
 	
 func update_frame_preview(frame:Frame=null):
 	if frame == null:

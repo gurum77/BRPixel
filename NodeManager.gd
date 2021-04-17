@@ -1,5 +1,4 @@
 extends Node
-var projects:Projects = null
 var grips:Node = null
 var preview_layer:Layer = null
 var layer_panel = null
@@ -7,32 +6,33 @@ var frame_panel = null
 var tools:Tools = null
 var save_file_dialog:FileDialog = null
 var color_picker_button:ColorPickerButton = null
-var canvas = null
+var canvas:Canvas = null
 var tile_mode_manager = null
 var setting_popup = null
 var symmetry_grips = null
+var frames:Frames = null
 
 var preload_message_popup = preload("res://MessagePopup.tscn")
 
-func get_projects()->Projects:
-	if projects == null:
-		projects = get_tree().root.get_node("Main/Canvas/Projects") as Projects
-	return projects
-	
-func get_current_project()->Project:
-	return get_projects().get_project(StaticData.current_project_index) as Project
-	
-func get_current_frames()->Frames:
-	return get_current_project().get_frames()
+func get_frames()->Frames:
+	if frames == null:
+		frames = get_tree().root.get_node("Main/Canvas/Frames")
+	return frames
 	
 func get_current_frame()->Frame:
-	return get_current_frames().get_frame(StaticData.current_frame_index)
+	return get_frames().get_frame(StaticData.current_frame_index)
 	
 func get_current_layers()->Layers:
+	if get_current_frame() == null:
+		return null
+		
 	return get_current_frame().get_layers()
 	
 func get_current_layer()->Layer:
-	return get_current_frame().get_layers().get_layer(StaticData.current_layer_index)
+	if get_current_layers() == null:
+		return null
+		
+	return get_current_layers().get_layer(StaticData.current_layer_index)
 	
 func get_symmetry_grips()->Node:
 	if symmetry_grips == null:
@@ -49,7 +49,7 @@ func get_tile_mode_manager()->Node:
 		tile_mode_manager = get_tree().root.get_node("Main/Canvas/TileModeManager")	
 	return tile_mode_manager
 	
-func get_canvas()->Node:
+func get_canvas()->Canvas:
 	if canvas == null:
 		canvas = get_tree().root.get_node("Main/Canvas")
 	return canvas
@@ -71,7 +71,7 @@ func get_tools()->Tools:
 	
 func get_frame_panel():
 	if frame_panel == null:
-		frame_panel = get_tree().root.get_node("Main/UI/FramePanel")
+		frame_panel = get_tree().root.get_node("Main/UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel")
 	return frame_panel
 	
 func get_layer_panel()->LayerPanel:

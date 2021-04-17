@@ -5,7 +5,7 @@ func _ready():
 	update()
 	update_layer_preview()
 	
-func _process(delta):
+func _process(_delta):
 	update()
 	
 func update_layer_preview(layer=null):
@@ -31,6 +31,9 @@ func _on_Timer_timeout():
 		update_layer_preview()
 
 func get_layer()->Layer:
+	if NodeManager.get_current_layers() == null:
+		return null
+		
 	return NodeManager.get_current_layers().get_layer(get_index())
 	
 func update():

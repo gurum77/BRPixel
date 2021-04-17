@@ -42,14 +42,24 @@ func _on_OkButton_pressed():
 	StaticData.canvas_height = height
 	NodeManager.get_canvas().resize()
 	
-	# layer 모두 제거하고 1개만 ..
-	NodeManager.get_current_layers().clear_normal_layers()
-	NodeManager.get_current_layers().add_layer("Layer1")
+	# frame을 모두 제거하고 1개만 추가한다.
+	NodeManager.get_frames().clear_frames()
+	
+	# 한타임 돌고 와야함(그래야 tree가 갱신됨)
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	var _frame = NodeManager.get_frames().add_frame("Frame1")
+	# 한타임 돌고 와야함(그래야 tree가 갱신됨)
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	StaticData.current_frame_index = 0
 	StaticData.current_layer_index = 0
 	
 	# preview layer 크기 변경
 	StaticData.preview_layer.resize(Layer.ResizeDir.right_bottom)
 	
+	# frame 버튼 갱신
+	NodeManager.get_frame_panel().regen_frame_buttons()
 	# layer 버튼 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	

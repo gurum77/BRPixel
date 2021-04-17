@@ -19,8 +19,8 @@ func get_pixels_by_check_pattern(pixels, first:bool)->Array:
 		start = 1
 	var offset_pixels = []
 	for pixel in pixels:
-		var x:int = floor(pixel.x)
-		var y:int = floor(pixel.y)
+		var x:int = floor(pixel.x) as int
+		var y:int = floor(pixel.y) as int
 		var result_x = x % 2
 		var result_y = y % 2
 		

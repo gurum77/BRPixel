@@ -7,7 +7,6 @@ enum SymmetryType{no, horizontal, vertical}
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_palette = null
-var current_project_index = 0
 var current_frame_index = 0
 var current_layer_index = 0
 var preview_layer = null
@@ -26,6 +25,7 @@ var horizontal_symmetry_position = 0
 var vertical_symmetry_position = 0
 var pencil_thickness = 1
 var pixel_perfect:bool = false
+var delay_per_frame = 0.3
 
 # selected area
 var selected_area = Rect2(0, 0, 0, 0)
@@ -116,7 +116,8 @@ func save_project(path):
 		"vertical_symmetry_position" : StaticData.vertical_symmetry_position,
 		"pencil_thickness" : StaticData.pencil_thickness,
 		"pixel_perfect" : StaticData.pixel_perfect,
-		"layers" : get_save_dic_layers()
+		"delay_per_frame" : StaticData.delay_per_frame,
+		"frames" : get_save_dic_frames()
 	}
 	var save_file = File.new()
 	save_file.open(path, File.WRITE)
@@ -172,37 +173,46 @@ func open_project(path):
 		StaticData.vertical_symmetry_position = get_value(dic, "vertical_symmetry_position", StaticData.vertical_symmetry_position)
 		StaticData.pencil_thickness = get_value(dic, "pencil_thickness", StaticData.pencil_thickness)
 		StaticData.pixel_perfect = get_value(dic, "pixel_perfect", StaticData.pixel_perfect)
-		
-		open_project_layers(dic)
+		StaticData.delay_per_frame = get_value(dic, "delay_per_frame", StaticData.delay_per_frame)
+		open_project_frames(dic)
 	open_file.close()
 	NodeManager.get_canvas().resize()
+	StaticData.preview_layer.init_size()
 	NodeManager.get_tile_mode_manager().init_tile_layers()
 	NodeManager.get_tile_mode_manager().update_force()
 	NodeManager.get_symmetry_grips().update_canvas_and_grips()
 		
-func open_project_layers(var dic:Dictionary):
-	# 기존 레이어를 제거한다.
-	NodeManager.get_current_layers().clear_normal_layers()
-	if !dic.has("layers"):
+func open_project_frames(var dic:Dictionary):
+	if !dic.has("frames"):
 		return
-	var dic_layers:Dictionary = dic["layers"]
+
+	var dic_frames:Dictionary = dic["frames"]
 	
-	for key in dic_layers.keys():
-		# layer 추가
-		var new_layer = NodeManager.get_current_layers().add_layer()
-		new_layer.set_save_dic(dic_layers[key])
-		
+	NodeManager.get_frames().clear_frames()
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	for key in dic_frames.keys():
+		var frame = NodeManager.get_frames().add_frame()
+		if frame == null:
+			continue
+		frame.set_save_dic(dic_frames[key])
+	
+	# 첫번째 frame을 현재 frame으로
+	StaticData.current_frame_index = 0
 	# 첫번째 layer를 현재 레이어로 설정 
 	StaticData.current_layer_index = 0
-	
+	# frame button 갱신
+	NodeManager.get_frame_panel().regen_frame_buttons()
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
-		
-func get_save_dic_layers()->Dictionary:
+	
+
+				
+func get_save_dic_frames()->Dictionary:
 	var _save_dic:Dictionary
-	var layers = NodeManager.get_current_layers().get_normal_layers()
-	for layer in layers:
-		if !layer.is_need_to_save():
-			continue
-		_save_dic[layer.index] = layer.get_save_dic()
+	var nodes = NodeManager.get_frames().get_children()
+	for node in nodes:
+		_save_dic[node.get_index()] = node.get_save_dic()
 	return _save_dic
+	
+

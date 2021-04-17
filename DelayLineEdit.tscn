@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://DelayLineEdit.gd" type="Script" id=1]
+
+[node name="DelayLineEdit" type="LineEdit"]
+margin_left = 329.0
+margin_right = 387.0
+margin_bottom = 24.0
+text = "0.1"
+align = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="gui_input" from="." to="." method="_on_DelayLineEdit_gui_input"]
+[connection signal="text_changed" from="." to="." method="_on_DelayLineEdit_text_changed"]

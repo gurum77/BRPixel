@@ -1,4 +1,7 @@
 extends TextureRect
+class_name Canvas
+# play 변수에 직접 할당하지 않아야 하므로 _ 붙임
+export var _play = false
 
 func _ready():
 	# 0,0으로 고정한다.
@@ -109,4 +112,29 @@ func resize():
 	texture.create_from_image(image)
 	texture.flags = 0
 	
+	
+func is_playing():
+	return _play
+	
+func play():
+	if _play:
+		stop()	
+		
+	_play = true
+	$AnimationTimer.start(StaticData.delay_per_frame)
+	
+func stop():
+	_play = false
+	$AnimationTimer.stop()
+
+func _on_AnimationTimer_timeout():
+	if !_play:
+		return
+	var frame_count = NodeManager.get_frames().get_frame_count()
+	if frame_count <= 1:
+		return
+		
+	StaticData.current_frame_index += 1
+	if StaticData.current_frame_index >= frame_count:
+		StaticData.current_frame_index = 0
 	
