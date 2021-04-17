@@ -19,7 +19,7 @@ func _input(_event):
 		var end_point = get_local_mouse_position()
 		if start_point != null:
 			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
-			StaticData.current_layer.erase_pixels(points)
+			NodeManager.get_current_layer().erase_pixels(points)
 		start_point = end_point
 
 	

@@ -42,7 +42,7 @@ func _on_OkButton_pressed():
 	NodeManager.get_canvas().resize()
 
 	# layer의 크기를 조정 
-	var layers = NodeManager.get_layers().get_children()
+	var layers = NodeManager.get_current_layers().get_children()
 	for layer in layers:
 		layer.resize(get_resize_dir())
 	# preview layer 크기 조정

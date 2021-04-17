@@ -31,7 +31,7 @@ func _input(_event):
 		if pressed:
 			end_point = get_local_mouse_position()
 			var points = GeometryMaker.get_pixels_in_rectangle(start_point, end_point, fill, StaticData.pencil_thickness)
-			StaticData.current_layer.set_pixels_by_current_color(points)
+			NodeManager.get_current_layer().set_pixels_by_current_color(points)
 			StaticData.preview_layer.clear(true)
 			pressed = false
 		

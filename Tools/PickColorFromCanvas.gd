@@ -11,8 +11,8 @@ func _input(event):
 
 	if InputManager.is_action_just_pressed_lbutton(event):
 		var pos = get_global_mouse_position()
-		StaticData.current_layer.image.lock()
-		StaticData.current_color = StaticData.current_layer.image.get_pixel(pos.x, pos.y)
-		StaticData.current_layer.image.unlock()
+		NodeManager.get_current_layer().image.lock()
+		StaticData.current_color = NodeManager.get_current_layer().image.get_pixel(pos.x, pos.y)
+		NodeManager.get_current_layer().image.unlock()
 		
 		NodeManager.get_tools().run_last_drawing_tool()

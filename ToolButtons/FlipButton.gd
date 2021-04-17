@@ -19,8 +19,8 @@ func _on_FlipButton_pressed():
 		image.flip_y()
 	
 	# 다시 붙여 넣는다.
-	StaticData.current_layer.erase_pixels_by_rect(StaticData.selected_area)
-	StaticData.current_layer.copy_image(image, StaticData.current_layer.image, StaticData.selected_area.position.x, StaticData.selected_area.position.y, true)
-	StaticData.current_layer.update_texture()
+	NodeManager.get_current_layer().erase_pixels_by_rect(StaticData.selected_area)
+	NodeManager.get_current_layer().copy_image(image, NodeManager.get_current_layer().image, StaticData.selected_area.position.x, StaticData.selected_area.position.y)
+	NodeManager.get_current_layer().update_texture()
 	
 	

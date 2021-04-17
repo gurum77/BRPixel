@@ -33,7 +33,7 @@ func _input(_event):
 				start_point = end_point
 				
 			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
-			StaticData.current_layer.set_pixels_by_current_color(points)
+			NodeManager.get_current_layer().set_pixels_by_current_color(points)
 			StaticData.preview_layer.clear(true)
 			pressed = false
 		

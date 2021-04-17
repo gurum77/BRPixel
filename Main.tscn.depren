@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -25,7 +25,7 @@
 [ext_resource path="res://AddLayerButton.gd" type="Script" id=23]
 [ext_resource path="res://LayerPanel.gd" type="Script" id=24]
 [ext_resource path="res://Canvas/LayerButton.tscn" type="PackedScene" id=25]
-[ext_resource path="res://Canvas/FrameButton.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Layers.gd" type="Script" id=26]
 [ext_resource path="res://DeleteLayerButton.gd" type="Script" id=27]
 [ext_resource path="res://ToolButtons/MoveButton.tscn" type="PackedScene" id=28]
 [ext_resource path="res://ToolButtons/SelectButton.tscn" type="PackedScene" id=29]
@@ -63,9 +63,9 @@
 [ext_resource path="res://ToolButtons/BrushTypeButton.tscn" type="PackedScene" id=61]
 [ext_resource path="res://ToolButtons/BrushSizeTextEdit.tscn" type="PackedScene" id=62]
 [ext_resource path="res://FramePanel.gd" type="Script" id=63]
-[ext_resource path="res://Canvas/Project.tscn" type="PackedScene" id=64]
+[ext_resource path="res://Canvas/FrameButton.tscn" type="PackedScene" id=64]
 [ext_resource path="res://AddFrameButtonOnFramePanel.tscn" type="PackedScene" id=65]
-[ext_resource path="res://Canvas/Projects.gd" type="Script" id=66]
+
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -683,9 +683,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 150.0
-margin_top = -100.0
+margin_top = -115.0
 margin_right = -200.0
-margin_bottom = -60.0
+margin_bottom = -75.0
 script = ExtResource( 63 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -702,7 +702,7 @@ __meta__ = {
 margin_right = 84.0
 margin_bottom = 40.0
 
-[node name="FrameButton" parent="UI/FramePanel/ScrollContainer/HBoxContainer" instance=ExtResource( 26 )]
+[node name="FrameButton" parent="UI/FramePanel/ScrollContainer/HBoxContainer" instance=ExtResource( 64 )]
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -804,12 +804,33 @@ __meta__ = {
 [node name="Projects" type="Control" parent="Canvas"]
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 66 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Project" parent="Canvas/Projects" instance=ExtResource( 64 )]
+[node name="Project" type="Control" parent="Canvas/Projects"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Frames" type="Control" parent="Canvas/Projects/Project"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Frame" type="Control" parent="Canvas/Projects/Project/Frames"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Layers" type="Control" parent="Canvas/Projects/Project/Frames/Frame"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layer" parent="Canvas/Projects/Project/Frames/Frame/Layers" instance=ExtResource( 4 )]
+light_mask = -2147483647
+stretch_mode = 3
 
 [node name="PreviewLayer" parent="Canvas" instance=ExtResource( 4 )]
 light_mask = -2147483647
@@ -865,7 +886,3 @@ __meta__ = {
 [editable path="UI/EditPanel/GridContainer/SelectPopupButton"]
 
 [editable path="UI/EditPanel/GridContainer/SymmetryPopupButton"]
-
-[editable path="Canvas/Projects/Project"]
-
-[editable path="Canvas/Projects/Project/Frames/Frame"]

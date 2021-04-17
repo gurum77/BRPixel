@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Canvas/Frame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Canvas/Frames.gd" type="Script" id=2]
+[ext_resource path="res://Canvas/Project.gd" type="Script" id=3]
+
+[node name="Project" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frames" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Frame" parent="Frames" instance=ExtResource( 1 )]

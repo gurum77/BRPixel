@@ -29,11 +29,16 @@ func update_force():
 func _draw():
 	if !enabled_draw:
 		return
+		
+	var current_layer = NodeManager.get_current_layer()
 	# 모든 layer를 하나의 image로 만든다.
-	var image:Image = StaticData.current_layer.create_image(StaticData.canvas_width, StaticData.canvas_height)
+	if current_layer == null:
+		return
+		
+	var image:Image = current_layer.create_image(StaticData.canvas_width, StaticData.canvas_height)
 	image.fill(Color.transparent)
 	
-	var layers = NodeManager.get_layers().get_normal_layers()
+	var layers = NodeManager.get_current_layers().get_normal_layers()
 	for layer in layers:
 		if !layer.visible:
 			continue

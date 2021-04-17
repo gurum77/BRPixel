@@ -7,7 +7,9 @@ enum SymmetryType{no, horizontal, vertical}
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_palette = null
-var current_layer = null
+var current_project_index = 0
+var current_frame_index = 0
+var current_layer_index = 0
 var preview_layer = null
 
 var last_drawing_tool = null
@@ -97,7 +99,7 @@ func save_image(path, selected_area_only):
 	if selected_area_only:
 		image = Util.create_image_from_selected_area()
 	else:
-		image = StaticData.current_layer.image
+		image = NodeManager.get_current_layer().image
 	return image.save_png(path)
 	
 	
@@ -139,17 +141,14 @@ func open_image(parent, path):
 	NodeManager.get_canvas().resize()
 	
 	# layer를 하나로 만든다.
-	NodeManager.get_layers().clear_normal_layers()
-	var new_layer = NodeManager.get_layers().add_layer()
+	NodeManager.get_current_layers().clear_normal_layers()
+	var new_layer = NodeManager.get_current_layers().add_layer()
 	new_layer.image = image
 	new_layer.update_texture()
 		
 	# 첫번째 layer를 현재 레이어로 설정 
-	StaticData.current_layer = NodeManager.get_layers().get_layer(0)
+	StaticData.current_layer_index = 0
 
-	# layer index 갱신
-	NodeManager.get_layers().update_layer_index()
-	
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	pass
@@ -183,28 +182,25 @@ func open_project(path):
 		
 func open_project_layers(var dic:Dictionary):
 	# 기존 레이어를 제거한다.
-	NodeManager.get_layers().clear_normal_layers()
+	NodeManager.get_current_layers().clear_normal_layers()
 	if !dic.has("layers"):
 		return
 	var dic_layers:Dictionary = dic["layers"]
 	
 	for key in dic_layers.keys():
 		# layer 추가
-		var new_layer = NodeManager.get_layers().add_layer()
+		var new_layer = NodeManager.get_current_layers().add_layer()
 		new_layer.set_save_dic(dic_layers[key])
 		
 	# 첫번째 layer를 현재 레이어로 설정 
-	StaticData.current_layer = NodeManager.get_layers().get_layer(0)
-
-	# layer index 갱신
-	NodeManager.get_layers().update_layer_index()
+	StaticData.current_layer_index = 0
 	
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
 		
 func get_save_dic_layers()->Dictionary:
 	var _save_dic:Dictionary
-	var layers = NodeManager.get_layers().get_normal_layers()
+	var layers = NodeManager.get_current_layers().get_normal_layers()
 	for layer in layers:
 		if !layer.is_need_to_save():
 			continue

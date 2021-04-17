@@ -84,12 +84,12 @@ func is_same_pixels(point1, point2)->bool:
 	
 func set_pixels(points):
 	if is_enabled_pixel_perfect():
-		StaticData.current_layer.image.lock()
+		NodeManager.get_current_layer().image.lock()
 		for point in points:
-			pixel_perfect_drawer.set_pixel(StaticData.current_layer.image, point, StaticData.current_color)
-		StaticData.current_layer.image.unlock()	
+			pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, point, StaticData.current_color)
+		NodeManager.get_current_layer().image.unlock()	
 	else:
-		StaticData.current_layer.set_pixels_by_current_color(points)
+		NodeManager.get_current_layer().set_pixels_by_current_color(points)
 	
 func get_key(point)->String:
 	return str(point.x as int) + str(",") + str(point.y as int)

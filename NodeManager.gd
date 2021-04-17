@@ -1,9 +1,9 @@
 extends Node
-
-var layers:Node = null
+var projects:Projects = null
 var grips:Node = null
 var preview_layer:Layer = null
 var layer_panel = null
+var frame_panel = null
 var tools:Tools = null
 var save_file_dialog:FileDialog = null
 var color_picker_button:ColorPickerButton = null
@@ -14,6 +14,26 @@ var symmetry_grips = null
 
 var preload_message_popup = preload("res://MessagePopup.tscn")
 
+func get_projects()->Projects:
+	if projects == null:
+		projects = get_tree().root.get_node("Main/Canvas/Projects") as Projects
+	return projects
+	
+func get_current_project()->Project:
+	return get_projects().get_project(StaticData.current_project_index) as Project
+	
+func get_current_frames()->Frames:
+	return get_current_project().get_frames()
+	
+func get_current_frame()->Frame:
+	return get_current_frames().get_frame(StaticData.current_frame_index)
+	
+func get_current_layers()->Layers:
+	return get_current_frame().get_layers()
+	
+func get_current_layer()->Layer:
+	return get_current_frame().get_layers().get_layer(StaticData.current_layer_index)
+	
 func get_symmetry_grips()->Node:
 	if symmetry_grips == null:
 		symmetry_grips = get_tree().root.get_node("Main/Canvas/SymmetryGrips")
@@ -49,24 +69,20 @@ func get_tools()->Tools:
 		tools = get_tree().root.get_node("Main/Tools")
 	return tools
 	
-func get_layer_panel():
+func get_frame_panel():
+	if frame_panel == null:
+		frame_panel = get_tree().root.get_node("Main/UI/FramePanel")
+	return frame_panel
+	
+func get_layer_panel()->LayerPanel:
 	if layer_panel == null:
 		layer_panel = get_tree().root.get_node("Main/UI/LayerPanel")
 	return layer_panel
-	
-func get_layers()->Node:
-	if layers == null:
-		layers = get_tree().root.get_node_or_null("Main/Canvas/Layers")
-	return layers
-
 	
 func get_preview_layer()->Layer:
 	if preview_layer == null:
 		preview_layer = get_tree().root.get_node("Main/Canvas/PreviewLayer")
 	return preview_layer
-
-
-		
 	
 # 현재 활성화 되어 있는 모든 tool을 제거한다.
 func clear_other_tools(var current_tool, var except_select_tool=true):

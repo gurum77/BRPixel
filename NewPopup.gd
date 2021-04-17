@@ -43,10 +43,9 @@ func _on_OkButton_pressed():
 	NodeManager.get_canvas().resize()
 	
 	# layer 모두 제거하고 1개만 ..
-	NodeManager.get_layers().clear_normal_layers()
-	
-	StaticData.current_layer = NodeManager.get_layers().add_layer("Layer1")
-	NodeManager.get_layers().update_layer_index()
+	NodeManager.get_current_layers().clear_normal_layers()
+	NodeManager.get_current_layers().add_layer("Layer1")
+	StaticData.current_layer_index = 0
 	
 	# preview layer 크기 변경
 	StaticData.preview_layer.resize(Layer.ResizeDir.right_bottom)

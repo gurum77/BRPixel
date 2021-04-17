@@ -81,11 +81,11 @@ func finish_edit():
 	# 처음 선택한 영역을 지운다. 
 	# 단, preview layer를 사용한 경우에는 지우지 않는다.
 	if !use_preview_layer:
-		StaticData.current_layer.erase_pixels_by_rect(origin_selected_area, false)
+		NodeManager.get_current_layer().erase_pixels_by_rect(origin_selected_area, false)
 	
 	# 이미지를 preview layer에 그린다.
-	StaticData.current_layer.copy_image(resized_image, StaticData.current_layer.image, StaticData.selected_area.position.x, StaticData.selected_area.position.y, true)
-	StaticData.current_layer.update_texture()
+	NodeManager.get_current_layer().copy_image(resized_image, NodeManager.get_current_layer().image, StaticData.selected_area.position.x, StaticData.selected_area.position.y, true)
+	NodeManager.get_current_layer().update_texture()
 	NodeManager.get_preview_layer().clear()
 	
 	# select 영역 편집을 마무리 한다.(선택 영역 제거를 하고 마지막 실행했던 drawing tool을 실행)

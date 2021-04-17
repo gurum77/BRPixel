@@ -12,19 +12,19 @@ func _input(_event):
 		return
 		
 	# image 사본을 복사한다.
-	var pos = StaticData.current_layer.get_local_mouse_position()
+	var pos = NodeManager.get_current_layer().get_local_mouse_position()
 	pos = GeometryMaker.get_adjusted_point_by_tile_mode(pos)
 	var points = get_neighbouring_pixels(pos.x, pos.y)
-	StaticData.current_layer.set_pixels_by_current_color(points)
+	NodeManager.get_current_layer().set_pixels_by_current_color(points)
 
 	
 func is_inside_canvas(x, y)->bool:
-	return StaticData.current_layer.has_point(Vector2(x, y))
+	return NodeManager.get_current_layer().has_point(Vector2(x, y))
 	
 func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 	var pixels:Array = []
 	
-	if !StaticData.current_layer.has_point(Vector2(pos_x, pos_y)):
+	if !NodeManager.get_current_layer().has_point(Vector2(pos_x, pos_y)):
 		return pixels;
 	
 	var to_check_queue = []
@@ -32,9 +32,9 @@ func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 	
 	to_check_queue.append(GeometryMaker.to_1D(pos_x, pos_y, StaticData.canvas_width))
 	
-	StaticData.current_layer.image.lock()
+	NodeManager.get_current_layer().image.lock()
 	
-	var color = StaticData.current_layer.image.get_pixel(pos_x, pos_y)
+	var color = NodeManager.get_current_layer().image.get_pixel(pos_x, pos_y)
 	
 	while not to_check_queue.empty():
 		var idx = to_check_queue.pop_front()
@@ -46,7 +46,7 @@ func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 		
 		if !is_inside_canvas(p.x, p.y):
 			continue
-		if StaticData.current_layer.image.get_pixel(p.x, p.y) != color:
+		if NodeManager.get_current_layer().image.get_pixel(p.x, p.y) != color:
 			continue
 		
 		# add to result
@@ -75,6 +75,6 @@ func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 			idx = GeometryMaker.to_1D(x, y, StaticData.canvas_width)
 			to_check_queue.append(idx)
 			
-	StaticData.current_layer.image.unlock()
+	NodeManager.get_current_layer().image.unlock()
 	return pixels
 	

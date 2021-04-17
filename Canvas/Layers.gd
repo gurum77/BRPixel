@@ -1,5 +1,5 @@
 extends Control
-
+class_name Layers
 var layer_node = preload("res://Canvas/Layer.tscn")
 
 func _ready():
@@ -7,12 +7,11 @@ func _ready():
 	rect_position = Vector2(0, 0)
 
 # 이름이 없으면 자동으로 변경되는 것을 그냥 사용한다.
-func add_layer(name=null)->Layer:
+func add_layer(name=null):
 	var new_layer = layer_node.instance();
 	add_child(new_layer)
 	if name != null:
 		new_layer.name = name
-	return new_layer
 	
 # 일반 레이어를 모두 가져온다.
 func get_normal_layers()->Array:
@@ -56,7 +55,7 @@ func remove_layer(index):
 	# current_layer를 갱신
 	if index >= get_child_count():
 		index -= 1
-	StaticData.current_layer = NodeManager.layers.get_layer(index)
+	StaticData.current_layer_index = index
 
 func update_layer_index():
 	var nodes = get_normal_layers()
@@ -74,5 +73,17 @@ func get_child_index(child)->int:
 			return idx
 		idx += 1
 	return -1
+	
+# 모든 layer를 병합해서 하나의 이미지로 리턴
+func create_layers_image()->Image:
+	var image = Util.create_image(StaticData.canvas_width, StaticData.canvas_height)
+	
+	# 모든 layer를 돌면서 image를 복사한다.
+	var nodes = get_normal_layers()
+	for node in nodes:
+		var layer = node as Layer
+		Util.copy_image(layer.image, image, 0, 0)
+		
+	return image
 	
 	

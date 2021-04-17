@@ -257,7 +257,7 @@ static func get_pixels_in_circle(from:Vector2, to:Vector2, fill, thickness:int=1
 	for p in points:
 		var pos = p + from_real
 		pos = GeometryMaker.get_adjusted_point_by_tile_mode(pos)
-		if StaticData.current_layer.has_point(pos):
+		if NodeManager.get_current_layer().has_point(pos):
 			pixels.append(pos)
 	return pixels
 	
@@ -281,7 +281,7 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false, thickn
 			for y in range(min_y, max_y+1):
 				var pos = Vector2(x, y)
 				pos = get_adjusted_point_by_tile_mode(pos)
-				if StaticData.current_layer.has_point(pos):
+				if NodeManager.get_current_layer().has_point(pos):
 					points.append(pos)
 		append_symmetry_pixels(points)
 	else:
@@ -314,7 +314,7 @@ static func get_pixels_by_thickness(position:Vector2, thickness:int)->Array:
 			
 static func append_valid_points(target:Array, src:Array):
 	for pos in src:
-		if StaticData.current_layer.has_point(pos):
+		if NodeManager.get_current_layer().has_point(pos):
 			target.append(pos)
 	
 # symmetry된 point를 리턴한다.
@@ -342,7 +342,7 @@ static func append_symmetry_pixels(points):
 		var new_point = get_symmetry_pixel(p)
 		if new_point == null:
 			return
-		if StaticData.current_layer.has_point(new_point):
+		if NodeManager.get_current_layer().has_point(new_point):
 			points.append(new_point)
 	
 		
@@ -380,13 +380,13 @@ static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1)->Arr
 			var new_points = get_pixels_by_thickness(Vector2(x, y), thickness)
 			append_valid_points(points, new_points)
 #			var pos = Vector2(x, y)
-#			if StaticData.current_layer.has_point(pos):
+#			if NodeManager.get_current_layer().has_point(pos):
 #				points.append(pos)
 			
 	# 마지막점 추가
 	var new_points = get_pixels_by_thickness(to, thickness)
 	append_valid_points(points, new_points)
-#	if StaticData.current_layer.has_point(to):
+#	if NodeManager.get_current_layer().has_point(to):
 #		points.append(to)
 	
 	append_symmetry_pixels(points)

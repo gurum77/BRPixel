@@ -1,5 +1,23 @@
 extends Node
 
+# image를 복사한다.(offset 값과 함께)
+# 잘려 나갈 수 있다.
+func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int):
+	src_image.lock()
+	target_image.lock()
+
+	var rect = Rect2(0, 0, src_image.get_width(), src_image.get_height())
+	target_image.blend_rect(src_image, rect, Vector2(offset_x, offset_y))
+
+	src_image.unlock()
+	target_image.unlock()
+	
+# layer에 사용되는 image를 만든다.
+# format이 중요하므로 이함수를 사용해서 만들어야 
+func create_image(width, height)->Image:
+	var tmp_image = Image.new()
+	tmp_image.create(width, height, false, Image.FORMAT_RGBA8)
+	return tmp_image
 
 # error message를 화면에 표시한다.
 func show_error_message(parent, _err):
@@ -43,7 +61,7 @@ func clone_image(image:Image)->Image:
 	
 # 선택 영역을 image로 만들어서 리턴
 func create_image_from_selected_area(use_preview_layer=false)->Image:
-	var layer = StaticData.current_layer
+	var layer = NodeManager.get_current_layer()
 	if use_preview_layer:
 		layer = StaticData.preview_layer
 		
@@ -67,7 +85,7 @@ func load_image_file(parent:Node, path:String)->Image:
 	if format == Image.FORMAT_RGBA8:
 		return image
 	# format이 안 맞으면 같은 크기로 만들어서 복사해서 리턴
-	var image_tmp = StaticData.current_layer.create_image(image.get_width(), image.get_height())
+	var image_tmp = NodeManager.get_current_layer().create_image(image.get_width(), image.get_height())
 	image.lock()
 	image_tmp.lock()
 	for x in image.get_width():

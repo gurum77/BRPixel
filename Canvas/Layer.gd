@@ -4,7 +4,6 @@ class_name Layer
 export (bool) var preview_layer = false
 export (bool) var minimap_layer = false
 export (bool) var tile_layer = false
-var index:int = 0
 var unused:bool = false	# 사용 되지 않음.
 var image:Image
 enum ResizeDir{left_top, top, right_top, left, center, right, left_bottom, bottom, right_bottom}
@@ -16,21 +15,16 @@ func _ready():
 	
 	texture = ImageTexture.new()
 	init_size()
-	update_index()
 	
 	if !minimap_layer && !tile_layer: 
 		if preview_layer:
 			StaticData.preview_layer = self
-		else:
-			StaticData.current_layer = self
 
-	
 	
 func set_save_dic(dic:Dictionary):
 	# image를 canvas 크기에 맞게 조절
 	init_size()
-	
-	index = dic["index"]
+
 	name = dic["name"]
 	visible = dic["visible"]
 	var array_size = dic["array_size"]
@@ -47,7 +41,6 @@ func get_save_dic()->Dictionary:
 	array = array.compress(File.COMPRESSION_DEFLATE)
 	var image_row_data = Marshalls.raw_to_base64(array)
 	var save_dic={
-		"index" : index,
 		"name" : name,
 		"visible" : visible,
 		"array_size" : array_size,
@@ -62,16 +55,6 @@ func is_need_to_save()->bool:
 	if minimap_layer:
 		return false
 	return true
-	
-# 자신의 index를 갱신한다.
-func update_index():
-	var nodes = get_parent().get_children()
-	index = 0
-	for node in nodes:
-		if self == node:
-			break
-		index += 1
-
 
 func has_point(point:Vector2)->bool:
 	if image == null:
@@ -89,10 +72,7 @@ func toggle_visible():
 		visible = true
 
 func create_image(width, height)->Image:
-	var tmp_image = Image.new()
-	tmp_image.create(width, height, false, Image.FORMAT_RGBA8)
-
-	return tmp_image
+	return Util.create_image(width, height)
 
 # 이미지의 크기를 canvas 크기로 설정한다.(이미지는 초기화 됨)
 # 크기를 0, 0 으로 하면 기본 사이즈로 설정한다
@@ -143,32 +123,8 @@ func outside_of_image(var image_tmp:Image, var x:int, var y:int):
 	
 # image를 복사한다.(offset 값과 함께)
 # 잘려 나갈 수 있다.
-# except_transparency_pixel : 투명색은 복사하지 않는다.(원본 유지)
-func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int, _except_transparency_pixel:bool=false):
-	src_image.lock()
-	target_image.lock()
-
-#	var src_format = src_image.get_format()
-#	var target_format = target_image.get_format()
-#	if src_format != target_format:
-#		src_image.convert(target_format)
-#	src_format = src_image.get_format()	
-	var rect = Rect2(0, 0, src_image.get_width(), src_image.get_height())
-	target_image.blend_rect(src_image, rect, Vector2(offset_x, offset_y))
-#	target_image.blit_rect(src_image, rect, Vector2(offset_x, offset_y))
-#	
-#	for x in src_image.get_width():
-#		for y in src_image.get_height():
-#			var new_x = x + offset_x
-#			var new_y = y + offset_y
-#
-#			if outside_of_image(target_image, new_x, new_y):
-#				continue
-#
-#			var pixel = src_image.get_pixel(x, y)
-#			target_image.set_pixel(new_x, new_y, pixel)
-	src_image.unlock()
-	target_image.unlock()
+func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int):
+	Util.copy_image(src_image, target_image, offset_x, offset_y)
 
 # texture를 업데이트 한다.	
 func update_texture():
