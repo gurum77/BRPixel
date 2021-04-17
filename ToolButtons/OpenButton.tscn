@@ -17,5 +17,8 @@ __meta__ = {
 }
 
 [node name="OpenFileDialog" parent="." instance=ExtResource( 3 )]
+access = 1
+current_dir = "user://E:/Trunk_Godot/ExpertPixelEditor"
+current_path = "user://E:/Trunk_Godot/ExpertPixelEditor/"
 [connection signal="pressed" from="." to="." method="_on_OpenButton_pressed"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="_on_OpenFileDialog_file_selected"]
