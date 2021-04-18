@@ -1,7 +1,7 @@
 extends LineEdit
 
 
-func _process(delta):
+func _process(_delta):
 	# 값이 유효한 경우에만 갱신한다.
 	if is_valid_text():
 		update_text()
@@ -19,7 +19,7 @@ func is_valid_text()->bool:
 		return false
 	return true
 	
-func _on_DelayLineEdit_text_changed(new_text):
+func _on_DelayLineEdit_text_changed(_new_text):
 	if !is_valid_text():
 		return
 	StaticData.delay_per_frame = text.to_float()

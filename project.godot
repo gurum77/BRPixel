@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ClipBoardButton.gd"
 }, {
+"base": "Control",
+"class": "DraggableFileDialog",
+"language": "GDScript",
+"path": "res://DraggableFileDialog.gd"
+}, {
 "base": "PopupDialog",
 "class": "DraggablePopup",
 "language": "GDScript",
@@ -43,6 +48,11 @@ _global_script_classes=[ {
 "class": "Edit",
 "language": "GDScript",
 "path": "res://Tools/Edit.gd"
+}, {
+"base": "TextureButton",
+"class": "FileButton",
+"language": "GDScript",
+"path": "res://FileButton.gd"
 }, {
 "base": "Control",
 "class": "Frame",
@@ -83,6 +93,11 @@ _global_script_classes=[ {
 "class": "Layers",
 "language": "GDScript",
 "path": "res://Canvas/Layers.gd"
+}, {
+"base": "Control",
+"class": "MessageBox",
+"language": "GDScript",
+"path": "res://MessageBox.gd"
 }, {
 "base": "Reference",
 "class": "OriginPixel",
@@ -135,8 +150,10 @@ _global_script_class_icons={
 "Canvas": "",
 "CircleTool": "",
 "ClipBoardButton": "",
+"DraggableFileDialog": "",
 "DraggablePopup": "",
 "Edit": "",
+"FileButton": "",
 "Frame": "",
 "FramePanel": "",
 "Frames": "",
@@ -145,6 +162,7 @@ _global_script_class_icons={
 "LayerButton": "",
 "LayerPanel": "",
 "Layers": "",
+"MessageBox": "",
 "OriginPixel": "",
 "Palette": "",
 "Pencil": "",
@@ -175,6 +193,7 @@ ImageHelper="*res://ImageHelper.gd"
 [display]
 
 window/handheld/orientation="sensor"
+window/stretch/mode="2d"
 
 [input]
 

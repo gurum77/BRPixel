@@ -11,9 +11,20 @@ var tile_mode_manager = null
 var setting_popup = null
 var symmetry_grips = null
 var frames:Frames = null
-
+var file_dialog:DraggableFileDialog = null
 var preload_message_popup = preload("res://MessagePopup.tscn")
+var message_box:MessageBox = null
 
+func get_message_box()->MessageBox:
+	if message_box == null:
+		message_box = get_tree().root.get_node("Main/UI/MessageBox")
+	return message_box
+	
+func get_file_dialog()->DraggableFileDialog:
+	if file_dialog == null:
+		file_dialog = get_tree().root.get_node("Main/UI/DraggableFileDialog")
+	return file_dialog
+	
 func get_frames()->Frames:
 	if frames == null:
 		frames = get_tree().root.get_node("Main/Canvas/Frames")

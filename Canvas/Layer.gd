@@ -21,11 +21,15 @@ func _ready():
 			StaticData.preview_layer = self
 
 	
-func set_save_dic(dic:Dictionary):
+func set_save_dic(dic:Dictionary, width=0, height=0):
 	# image를 canvas 크기에 맞게 조절
-	init_size()
+	init_size(width, height)
 
-	name = dic["name"]
+	if dic.has("name"):
+		var value = dic["name"]
+		if value != "":
+			name = value
+	
 	visible = dic["visible"]
 	var array_size = dic["array_size"]
 	var image_row_data = dic["image_row_data"]
@@ -130,6 +134,8 @@ func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int)
 func update_texture():
 	if image == null:
 		return
+	if texture == null:
+		texture = ImageTexture.new()
 	texture.create_from_image(image)
 	texture.flags = 0	# filter 등 모든 롭션을 끔(2d pixel 스타일로 그려야 함)
 	

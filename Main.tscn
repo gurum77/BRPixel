@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -72,6 +72,8 @@
 [ext_resource path="res://EndButton.tscn" type="PackedScene" id=70]
 [ext_resource path="res://DelayLineEdit.tscn" type="PackedScene" id=71]
 [ext_resource path="res://Assets/icon_animation.png" type="Texture" id=72]
+[ext_resource path="res://DraggableFileDialog.tscn" type="PackedScene" id=73]
+[ext_resource path="res://MessageBox.tscn" type="PackedScene" id=74]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -416,8 +418,10 @@ margin_bottom = 536.0
 icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
-margin_top = -76.1892
-margin_bottom = -6.18921
+margin_left = 108.083
+margin_top = -13.1892
+margin_right = 425.083
+margin_bottom = 56.8108
 
 [node name="FramePanel" type="Panel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
 margin_right = 600.0
@@ -778,9 +782,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 150.0
-margin_top = -60.0
+margin_top = -40.0
 margin_right = -150.0
-margin_bottom = -20.0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 40 )
 script = ExtResource( 24 )
@@ -791,7 +794,6 @@ __meta__ = {
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/LayerPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 2.0
 scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -859,6 +861,12 @@ current_path = "/Trunk_Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DraggableFileDialog" parent="UI" instance=ExtResource( 73 )]
+visible = false
+
+[node name="MessageBox" parent="UI" instance=ExtResource( 74 )]
+visible = false
 
 [node name="Canvas" type="TextureRect" parent="."]
 script = ExtResource( 3 )

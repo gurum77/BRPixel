@@ -103,10 +103,20 @@ func save_image(path, selected_area_only):
 	return image.save_png(path)
 	
 	
-
+# thumbnail저장을 위한 layer를 만든다.
+# 현재 작업중인 frame을 저장한다.
+func create_thumbnail_layer()->Layer:
+	var layer:Layer = Layer.new()
+	layer._ready()
+	layer.image = NodeManager.get_current_frame().get_layers().create_layers_image()
+	return layer
 # 저장 
 func save_project(path):
+	# thumbnail을 저장만 하고 프로젝트를 열때 thumbnail을 읽을 필요는 없다
+	# thumbnail은 file dialog에서 표시하기 위함
+	var thumbnail_layer:Layer = create_thumbnail_layer()
 	var save_dic={
+		"thumbnail" : thumbnail_layer.get_save_dic(),
 		"canvas_width" : StaticData.canvas_width,
 		"canvas_height" : StaticData.canvas_height,
 		"enabled_grid" : StaticData.enabled_grid,
@@ -176,6 +186,7 @@ func open_project(path):
 		StaticData.delay_per_frame = get_value(dic, "delay_per_frame", StaticData.delay_per_frame)
 		open_project_frames(dic)
 	open_file.close()
+	
 	NodeManager.get_canvas().resize()
 	StaticData.preview_layer.init_size()
 	NodeManager.get_tile_mode_manager().init_tile_layers()
@@ -206,7 +217,6 @@ func open_project_frames(var dic:Dictionary):
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	
-
 				
 func get_save_dic_frames()->Dictionary:
 	var _save_dic:Dictionary

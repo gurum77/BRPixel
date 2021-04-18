@@ -6,7 +6,8 @@
 
 [node name="DraggableWindow" type="TextureRect"]
 self_modulate = Color( 0, 0, 0, 1 )
-margin_right = 344.0
+margin_left = -1.7818
+margin_right = 342.218
 margin_bottom = 409.0
 texture = ExtResource( 1 )
 expand = true

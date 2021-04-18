@@ -5,7 +5,7 @@ func update_texture():
 	$PlayTexture.visible = !pressed
 	$PauseTexture.visible = pressed
 
-func _process(delta):
+func _process(_delta):
 	if pressed != NodeManager.get_canvas().is_playing():
 		pressed = NodeManager.get_canvas().is_playing()
 		update_texture()

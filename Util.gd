@@ -12,6 +12,18 @@ func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int)
 	src_image.unlock()
 	target_image.unlock()
 	
+# file name을 확장자와 함께 리턴
+func get_file_name_with_ext(file_name:String, default_ext:String, enabled_extensions:Dictionary)->String:
+	var cur_ext = file_name.get_extension()
+	for ext in enabled_extensions:
+		if ext == cur_ext:
+			return file_name
+
+	return file_name + "." + default_ext
+	
+func get_file_path(directory_path, file_name)->String:
+	return directory_path + file_name
+	
 # layer에 사용되는 image를 만든다.
 # format이 중요하므로 이함수를 사용해서 만들어야 
 func create_image(width, height)->Image:
@@ -33,13 +45,19 @@ func press_current_tool_button(button, current_tool):
 		button.pressed = need_to_pressed
 	
 # message는 popup으로 보여준다.
-func show_message(parent, title="", message=""):
-	var dlg = AcceptDialog.new()
-	dlg.window_title = title
-	dlg.dialog_text = message
-	dlg.popup_exclusive = true
-	parent.add_child(dlg)
-	dlg.popup_centered()
+func show_message(_parent, _title="", message=""):
+	NodeManager.get_message_box().enabled_yes_button = false
+	NodeManager.get_message_box().enabled_no_button = false
+	NodeManager.get_message_box().enabled_ok_button = true
+	NodeManager.get_message_box().message = message
+	NodeManager.get_message_box().popup_centered()
+	
+#	var dlg = AcceptDialog.new()
+#	dlg.window_title = title
+#	dlg.dialog_text = message
+#	dlg.popup_exclusive = true
+#	parent.add_child(dlg)
+#	dlg.popup_centered()
 #	var ins = NodeManager.preload_message_popup.instance()
 #	# message는 일회성이므로 hide할때 삭제한다.
 #	ins.queue_free_on_hide = true

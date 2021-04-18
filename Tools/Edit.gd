@@ -84,7 +84,7 @@ func finish_edit():
 		NodeManager.get_current_layer().erase_pixels_by_rect(origin_selected_area, false)
 	
 	# 이미지를 preview layer에 그린다.
-	NodeManager.get_current_layer().copy_image(resized_image, NodeManager.get_current_layer().image, StaticData.selected_area.position.x, StaticData.selected_area.position.y, true)
+	NodeManager.get_current_layer().copy_image(resized_image, NodeManager.get_current_layer().image, StaticData.selected_area.position.x, StaticData.selected_area.position.y)
 	NodeManager.get_current_layer().update_texture()
 	NodeManager.get_preview_layer().clear()
 	
