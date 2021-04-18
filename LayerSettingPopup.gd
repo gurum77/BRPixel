@@ -33,11 +33,11 @@ func _on_DuplicateLayerButton_pressed():
 # 레이어 삭제
 func _on_DeleteButton_pressed():
 	# layer가 하나밖에 없으면 삭제 불가
-	if NodeManager.layers.get_child_count() == 1:
+	if NodeManager.get_current_layers().get_child_count() == 1:
 		return
 		
 	# 현재 layer를 지우고 다음 layer를 현재 layer로 설정한다.
-	NodeManager.get_current_layers().remove_layer(selected_layer.index)
+	NodeManager.get_current_layers().remove_layer(selected_layer.get_index())
 	
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
@@ -46,10 +46,10 @@ func _on_DeleteButton_pressed():
 # 아래로 이동
 func _on_MoveDownButton_pressed():
 	# 현재 index가 0이면 이동 불가
-	if selected_layer.index == 0:
+	if selected_layer.get_index() == 0:
 		return
 	# 이동	
-	NodeManager.get_current_layers().move_child(selected_layer, selected_layer.index-1)
+	NodeManager.get_current_layers().move_child(selected_layer, selected_layer.get_index()-1)
 	# 인덱스 갱신
 	NodeManager.get_current_layers().update_layer_index()
 	# layer button을 재생성 한다.
@@ -59,12 +59,10 @@ func _on_MoveDownButton_pressed():
 # 위로 이동
 func _on_MoveUpButton_pressed():
 	# 현재 index가 마지막이면 이동 불가
-	if selected_layer.index == NodeManager.get_current_layers().get_child_count()-1:
+	if selected_layer.get_index() == NodeManager.get_current_layers().get_child_count()-1:
 		return
 	# 이동	
-	NodeManager.get_current_layers().move_child(selected_layer, selected_layer.index+1)
-	# 인덱스 갱신
-	NodeManager.get_current_layers().update_layer_index()
+	NodeManager.get_current_layers().move_child(selected_layer, selected_layer.get_index()+1)
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
 
@@ -84,7 +82,7 @@ func _on_TransparencyHSlider_value_changed(_value):
 # 이전 layer와 합치기
 func _on_MergeWithPrevButton_pressed():
 	# 이전 layer
-	var prev_layer:Layer = NodeManager.get_current_layers().get_layer(NodeManager.get_current_layer().index-1)
+	var prev_layer:Layer = NodeManager.get_current_layers().get_layer(NodeManager.get_current_layer().get_index()-1)
 	if prev_layer == null:
 		hide()
 		return
@@ -123,7 +121,7 @@ func _on_MergeAllButton_pressed():
 
 func _on_MergeWithNextButton_pressed():
 	# 다음 layer
-	var next_layer:Layer = NodeManager.get_current_layers().get_layer(NodeManager.get_current_layer().index+1)
+	var next_layer:Layer = NodeManager.get_current_layers().get_layer(NodeManager.get_current_layer().get_index()+1)
 	if next_layer == null:
 		hide()
 		return

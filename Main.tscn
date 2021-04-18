@@ -164,6 +164,7 @@ margin_bottom = 19.0
 text = "px"
 
 [node name="PixelPerfectCheckBox" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 54 )]
+margin_right = 232.0
 
 [node name="PickColorFromCanvasButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 54.0
@@ -391,10 +392,10 @@ icon = ExtResource( 57 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SymmetryPopupButton" index="0"]
 visible = false
-margin_left = 63.083
-margin_top = -3.18921
-margin_right = 380.083
-margin_bottom = 46.8108
+margin_left = 163.083
+margin_top = -68.1892
+margin_right = 480.083
+margin_bottom = -18.1892
 
 [node name="NoSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 58 )]
 
@@ -856,8 +857,8 @@ resizable = true
 access = 2
 filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
 show_hidden_files = true
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }

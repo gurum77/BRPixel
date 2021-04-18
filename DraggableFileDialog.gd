@@ -60,6 +60,9 @@ func get_file_names()->Array:
 	return files
 	
 func update_lsit():
+	# 현재 경로 갱신
+	update_path_line_edit()
+	
 	enabled_extenstions.clear()
 	for filter in filters:
 		var text = filter as String
@@ -81,6 +84,8 @@ func update_lsit():
 	add_file_buttons(directorie_names, true)
 	# 파일 버튼 추가 
 	add_file_buttons(file_names, false)
+	
+	
 	
 func add_file_buttons(names:Array, is_directory):
 	for name in names:
@@ -153,6 +158,10 @@ func _on_OkButton_pressed():
 	result_ok = true
 	hide()
 
+# 경로 표시줄을 업데이트 한다.
+func update_path_line_edit():
+	$DraggableWindow/PathLineEdit.text = dir.get_current_dir()
+	
 # 파일명이 변경될 때 마다 실제 파일이 있는지 확인하고 선택을 해준다.
 func _on_FileNameLineEdit_text_changed(new_text):
 	var nums = 0
@@ -167,7 +176,7 @@ func _on_FileNameLineEdit_text_changed(new_text):
 	update_selected_file_nums_label(nums)
 			
 func update_selected_file_nums_label(nums):
-	selected_file_nums_label.text = str(nums) + " file(s) selected"
+	selected_file_nums_label.text = str(nums) + tr(" file(s) selected")
 
 # 새 폴더를 만든다.
 func _on_NewFolderOkButton_pressed():

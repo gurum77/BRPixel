@@ -1,0 +1,30 @@
+id,en,ko
+Pixel-perfect,Pixel-perfect,Pixel-perfect
+Delay Per Frame,Delay Per Frame,프레임당 시간
+New,New,새 파일
+Open,Open,열기
+Save,Save,저장
+Canvas Size,Canvas Size, 캔버스 크기
+Language,Language,언어
+Korean,Korean,한글
+Title,Title,제목
+Width,Width,폭
+Height,Height,높이
+File name,File name,파일 명
+ file(s) selected, file(s) selected, 파일 선택됨
+New folder name,New folder name,새 폴더 명 
+File exists. Overwrite?,File exists. Overwrite?,파일이 있습니다. 덮어쓸까요?
+Error,Error,에러
+Failed to create new folder.,Failed to create new folder.,새 폴더 만들기 실패.
+0 file(s) selected,0 file(s) selected,0 파일 선택됨
+untitled,untitled,제목 없음
+Duplicate,Duplicate,복제
+Delete,Delete,삭제
+To down,To down,아래로 이동
+To up,To up,위로 이동
+Hide,Hide,숨기기
+Merge all,Merge all,모두 합치기
+Merge with prev,Merge with prev,이전과 합치기
+Merge with next,Merge with next,다음과 합치기
+Transparency,Transparency,투명도
+

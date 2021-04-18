@@ -74,6 +74,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Grip.gd"
 }, {
+"base": "Button",
+"class": "LanguageButton",
+"language": "GDScript",
+"path": "res://Settings/LanguageButton.gd"
+}, {
 "base": "TextureRect",
 "class": "Layer",
 "language": "GDScript",
@@ -158,6 +163,7 @@ _global_script_class_icons={
 "FramePanel": "",
 "Frames": "",
 "Grip": "",
+"LanguageButton": "",
 "Layer": "",
 "LayerButton": "",
 "LayerPanel": "",
@@ -190,10 +196,18 @@ Define="*res://Define.gd"
 Util="*res://Util.gd"
 ImageHelper="*res://ImageHelper.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/handheld/orientation="sensor"
 window/stretch/mode="2d"
+
+[gui]
+
+theme/custom_font="res://Fonts/ui_normal.tres"
 
 [input]
 
@@ -222,6 +236,10 @@ right_button={
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[locale]
+
+translations=PoolStringArray( "res://translation/translations.en.translation", "res://translation/translations.ko.translation" )
 
 [rendering]
 

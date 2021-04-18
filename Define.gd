@@ -15,4 +15,5 @@ var brighter_amount = 0.1
 
 var fileThumbnailTexture:StreamTexture = preload("res://Assets/icon_file.png")
 var directoryThumbnailTexture:StreamTexture = preload("res://Assets/icon_directory.png")
+var languageTexture:StreamTexture = preload("res://Assets/icon_language.png")
 

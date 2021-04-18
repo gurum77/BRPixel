@@ -104,6 +104,18 @@ margin_top = 80.0
 margin_right = 234.0
 margin_bottom = 150.0
 
+[node name="PathLineEdit" type="LineEdit" parent="DraggableWindow"]
+anchor_right = 1.0
+margin_left = 20.0
+margin_top = 10.0
+margin_right = -99.9998
+margin_bottom = 50.0
+rect_min_size = Vector2( 300, 0 )
+editable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HBoxContainer" type="HBoxContainer" parent="DraggableWindow"]
 anchor_right = 1.0
 margin_top = 10.0

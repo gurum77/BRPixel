@@ -31,68 +31,70 @@ __meta__ = {
 }
 
 [node name="TitleLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 42.0
-margin_bottom = 17.0
+margin_bottom = 19.0
 text = "Title"
 
-[node name="TitleTextEdit" type="TextEdit" parent="DraggablePopup/GridContainer"]
+[node name="TitleTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
 margin_left = 52.0
 margin_right = 213.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 150, 20 )
-text = "untitled_01	"
+text = "untitled"
 
 [node name="HSeparator" type="HSeparator" parent="DraggablePopup/GridContainer"]
-margin_top = 24.0
+margin_top = 28.0
 margin_right = 42.0
-margin_bottom = 28.0
+margin_bottom = 32.0
 
 [node name="HSeparator2" type="HSeparator" parent="DraggablePopup/GridContainer"]
 margin_left = 52.0
-margin_top = 24.0
+margin_top = 28.0
 margin_right = 213.0
-margin_bottom = 28.0
+margin_bottom = 32.0
 
 [node name="WidthLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 35.0
+margin_top = 41.0
 margin_right = 42.0
-margin_bottom = 49.0
+margin_bottom = 55.0
 text = "Width"
 
-[node name="WidthTextEdit" type="TextEdit" parent="DraggablePopup/GridContainer"]
+[node name="WidthTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
 margin_left = 52.0
-margin_top = 32.0
+margin_top = 36.0
 margin_right = 213.0
-margin_bottom = 52.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 150, 20 )
 text = "32"
+align = 1
 
 [node name="HeightLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 59.0
+margin_top = 69.0
 margin_right = 42.0
-margin_bottom = 73.0
+margin_bottom = 83.0
 text = "Height"
 
-[node name="HeightTextEdit" type="TextEdit" parent="DraggablePopup/GridContainer"]
+[node name="HeightTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
 margin_left = 52.0
-margin_top = 56.0
+margin_top = 64.0
 margin_right = 213.0
-margin_bottom = 76.0
+margin_bottom = 88.0
 rect_min_size = Vector2( 150, 20 )
 text = "32"
+align = 1
 
 [node name="PresetLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 83.0
+margin_top = 95.0
 margin_right = 42.0
-margin_bottom = 97.0
+margin_bottom = 109.0
 text = "	"
 
 [node name="PresetButtons" type="HBoxContainer" parent="DraggablePopup/GridContainer"]
 margin_left = 52.0
-margin_top = 80.0
+margin_top = 92.0
 margin_right = 213.0
-margin_bottom = 100.0
+margin_bottom = 112.0
 
 [node name="16x16Button" type="Button" parent="DraggablePopup/GridContainer/PresetButtons"]
 margin_right = 51.0
@@ -116,15 +118,15 @@ rect_min_size = Vector2( 30, 20 )
 text = "64x64"
 
 [node name="HSeparator3" type="HSeparator" parent="DraggablePopup/GridContainer"]
-margin_top = 104.0
+margin_top = 116.0
 margin_right = 42.0
-margin_bottom = 108.0
+margin_bottom = 120.0
 
 [node name="HSeparator4" type="HSeparator" parent="DraggablePopup/GridContainer"]
 margin_left = 52.0
-margin_top = 104.0
+margin_top = 116.0
 margin_right = 213.0
-margin_bottom = 108.0
+margin_bottom = 120.0
 
 [node name="OkButton" type="TextureButton" parent="DraggablePopup"]
 margin_left = 145.083

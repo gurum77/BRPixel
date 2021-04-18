@@ -38,33 +38,35 @@ __meta__ = {
 }
 
 [node name="WidthLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 42.0
-margin_bottom = 17.0
+margin_bottom = 19.0
 text = "Width"
 valign = 1
 
-[node name="WidthTextEdit" type="TextEdit" parent="DraggablePopup/GridContainer"]
+[node name="WidthTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
 margin_left = 46.0
 margin_right = 116.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 70, 20 )
 text = "32"
+align = 1
 
 [node name="HeightLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 27.0
+margin_top = 33.0
 margin_right = 42.0
-margin_bottom = 41.0
+margin_bottom = 47.0
 text = "Height"
 valign = 1
 
-[node name="HeightTextEdit" type="TextEdit" parent="DraggablePopup/GridContainer"]
+[node name="HeightTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
 margin_left = 46.0
-margin_top = 24.0
+margin_top = 28.0
 margin_right = 116.0
-margin_bottom = 44.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 70, 20 )
 text = "32"
+align = 1
 
 [node name="DirGridContainer" type="GridContainer" parent="DraggablePopup"]
 anchor_left = 0.5

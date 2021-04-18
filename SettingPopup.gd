@@ -8,7 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$DraggablePopup/GridContainer/NewButton.text = tr("New")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,3 +29,8 @@ func _on_CanvasSizeButton_pressed():
 # new button
 func _on_NewButton_pressed():
 	$DraggablePopup/GridContainer/NewButton/NewPopup.popup_centered()
+
+
+# language button
+func _on_LanguageButton_pressed():
+	$DraggablePopup/GridContainer/LanguageButton/LanguagePopup.popup_centered()

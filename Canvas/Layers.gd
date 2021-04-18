@@ -50,20 +50,10 @@ func remove_layer(index):
 	remove_child(layer)
 	layer.queue_free()
 	
-	# index를 다시 설정
-	update_layer_index()
-	
 	# current_layer를 갱신
 	if index >= get_child_count():
 		index -= 1
 	StaticData.current_layer_index = index
-
-func update_layer_index():
-	var nodes = get_normal_layers()
-	var idx = 0
-	for node in nodes:
-		node.index = idx
-		idx += 1
 		
 # child의 인덱스를 리턴
 func get_child_index(child)->int:
