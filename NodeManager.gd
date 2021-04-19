@@ -4,7 +4,6 @@ var preview_layer:Layer = null
 var layer_panel = null
 var frame_panel = null
 var tools:Tools = null
-var save_file_dialog:FileDialog = null
 var color_picker_button:ColorPickerButton = null
 var canvas:Canvas = null
 var tile_mode_manager = null
@@ -69,11 +68,6 @@ func get_color_picker_button()->ColorPickerButton:
 	if color_picker_button == null:
 		color_picker_button = get_tree().root.get_node("Main/UI/EditPanel/GridContainer/ColorPickerButton")
 	return color_picker_button
-		
-func get_save_file_dialog()->FileDialog:
-	if save_file_dialog == null:
-		save_file_dialog = get_tree().root.get_node("Main/UI/SaveFileDialog")		
-	return save_file_dialog
 	
 func get_tools()->Tools:
 	if tools == null:

@@ -8,7 +8,10 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$DraggablePopup/GridContainer/NewButton.text = tr("New")
+	# project name은 번역하면 안됨
+	$DraggablePopup/HBoxContainer/ProjectNameLabel.set_message_translation(false)
+
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,6 +23,10 @@ func hide():
 	
 func popup_centered():
 	$DraggablePopup.popup_centered()
+	update_controls()
+	
+func update_controls():
+	$DraggablePopup/HBoxContainer/ProjectNameLabel.text = StaticData.project_name
 	
 # canvas size button
 func _on_CanvasSizeButton_pressed():

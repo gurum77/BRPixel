@@ -13,8 +13,8 @@ __meta__ = {
 
 [node name="DraggablePopup" parent="." instance=ExtResource( 2 )]
 visible = true
-margin_right = 253.0
-margin_bottom = 203.0
+margin_right = 299.0
+margin_bottom = 229.0
 
 [node name="GridContainer" type="GridContainer" parent="DraggablePopup"]
 anchor_top = -0.00122811
@@ -32,107 +32,138 @@ __meta__ = {
 
 [node name="TitleLabel" type="Label" parent="DraggablePopup/GridContainer"]
 margin_top = 5.0
-margin_right = 42.0
-margin_bottom = 19.0
-text = "Title"
+margin_right = 89.0
+margin_bottom = 21.0
+text = "Project name"
 
 [node name="TitleTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
-margin_left = 52.0
-margin_right = 213.0
-margin_bottom = 24.0
+margin_left = 99.0
+margin_right = 263.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 150, 20 )
 text = "untitled"
+align = 1
+placeholder_text = "Project name"
 
 [node name="HSeparator" type="HSeparator" parent="DraggablePopup/GridContainer"]
-margin_top = 28.0
-margin_right = 42.0
-margin_bottom = 32.0
+margin_top = 30.0
+margin_right = 89.0
+margin_bottom = 34.0
 
 [node name="HSeparator2" type="HSeparator" parent="DraggablePopup/GridContainer"]
-margin_left = 52.0
-margin_top = 28.0
-margin_right = 213.0
-margin_bottom = 32.0
+margin_left = 99.0
+margin_top = 30.0
+margin_right = 263.0
+margin_bottom = 34.0
 
 [node name="WidthLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 41.0
-margin_right = 42.0
-margin_bottom = 55.0
+margin_top = 43.0
+margin_right = 89.0
+margin_bottom = 59.0
 text = "Width"
 
 [node name="WidthTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
-margin_left = 52.0
-margin_top = 36.0
-margin_right = 213.0
-margin_bottom = 60.0
+margin_left = 99.0
+margin_top = 38.0
+margin_right = 263.0
+margin_bottom = 64.0
 rect_min_size = Vector2( 150, 20 )
 text = "32"
 align = 1
 
 [node name="HeightLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 69.0
-margin_right = 42.0
-margin_bottom = 83.0
+margin_top = 73.0
+margin_right = 89.0
+margin_bottom = 89.0
 text = "Height"
 
 [node name="HeightTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
-margin_left = 52.0
-margin_top = 64.0
-margin_right = 213.0
-margin_bottom = 88.0
+margin_left = 99.0
+margin_top = 68.0
+margin_right = 263.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 150, 20 )
 text = "32"
 align = 1
 
 [node name="PresetLabel" type="Label" parent="DraggablePopup/GridContainer"]
-margin_top = 95.0
-margin_right = 42.0
-margin_bottom = 109.0
+margin_top = 101.0
+margin_right = 89.0
+margin_bottom = 117.0
 text = "	"
 
 [node name="PresetButtons" type="HBoxContainer" parent="DraggablePopup/GridContainer"]
-margin_left = 52.0
-margin_top = 92.0
-margin_right = 213.0
-margin_bottom = 112.0
+margin_left = 99.0
+margin_top = 98.0
+margin_right = 263.0
+margin_bottom = 120.0
 
 [node name="16x16Button" type="Button" parent="DraggablePopup/GridContainer/PresetButtons"]
-margin_right = 51.0
-margin_bottom = 20.0
+margin_right = 52.0
+margin_bottom = 22.0
 rect_min_size = Vector2( 30, 20 )
 text = "16x16"
 expand_icon = true
 
 [node name="32x32Button" type="Button" parent="DraggablePopup/GridContainer/PresetButtons"]
-margin_left = 55.0
-margin_right = 106.0
-margin_bottom = 20.0
+margin_left = 56.0
+margin_right = 108.0
+margin_bottom = 22.0
 rect_min_size = Vector2( 30, 20 )
 text = "32x32"
 
 [node name="64x64Button" type="Button" parent="DraggablePopup/GridContainer/PresetButtons"]
-margin_left = 110.0
-margin_right = 161.0
-margin_bottom = 20.0
+margin_left = 112.0
+margin_right = 164.0
+margin_bottom = 22.0
 rect_min_size = Vector2( 30, 20 )
 text = "64x64"
 
+[node name="Label" type="Label" parent="DraggablePopup/GridContainer"]
+margin_top = 127.0
+margin_right = 89.0
+margin_bottom = 143.0
+
+[node name="PresetButtons2" type="HBoxContainer" parent="DraggablePopup/GridContainer"]
+margin_left = 99.0
+margin_top = 124.0
+margin_right = 263.0
+margin_bottom = 146.0
+
+[node name="128x128Button" type="Button" parent="DraggablePopup/GridContainer/PresetButtons2"]
+margin_right = 68.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 30, 20 )
+text = "128x128"
+expand_icon = true
+
+[node name="256x256Button" type="Button" parent="DraggablePopup/GridContainer/PresetButtons2"]
+margin_left = 72.0
+margin_right = 140.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 30, 20 )
+text = "256x256"
+
 [node name="HSeparator3" type="HSeparator" parent="DraggablePopup/GridContainer"]
-margin_top = 116.0
-margin_right = 42.0
-margin_bottom = 120.0
+margin_top = 150.0
+margin_right = 89.0
+margin_bottom = 154.0
 
 [node name="HSeparator4" type="HSeparator" parent="DraggablePopup/GridContainer"]
-margin_left = 52.0
-margin_top = 116.0
-margin_right = 213.0
-margin_bottom = 120.0
+margin_left = 99.0
+margin_top = 150.0
+margin_right = 263.0
+margin_bottom = 154.0
 
 [node name="OkButton" type="TextureButton" parent="DraggablePopup"]
-margin_left = 145.083
-margin_top = 152.218
-margin_right = 185.083
-margin_bottom = 192.218
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -108.0
+margin_top = -45.0
+margin_right = -68.0
+margin_bottom = -5.0
 texture_normal = ExtResource( 3 )
 expand = true
 __meta__ = {
@@ -140,10 +171,14 @@ __meta__ = {
 }
 
 [node name="CancelButton" type="TextureButton" parent="DraggablePopup"]
-margin_left = 190.868
-margin_top = 151.029
-margin_right = 230.868
-margin_bottom = 191.029
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -62.0
+margin_top = -45.0
+margin_right = -22.0
+margin_bottom = -5.0
 texture_normal = ExtResource( 4 )
 expand = true
 __meta__ = {
@@ -152,5 +187,7 @@ __meta__ = {
 [connection signal="pressed" from="DraggablePopup/GridContainer/PresetButtons/16x16Button" to="." method="_on_16x16Button_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/PresetButtons/32x32Button" to="." method="_on_32x32Button_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/PresetButtons/64x64Button" to="." method="_on_64x64Button_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/PresetButtons2/128x128Button" to="." method="_on_128x128Button_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/PresetButtons2/256x256Button" to="." method="_on_256x256Button_pressed"]
 [connection signal="pressed" from="DraggablePopup/OkButton" to="." method="_on_OkButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/CancelButton" to="." method="_on_CancelButton_pressed"]

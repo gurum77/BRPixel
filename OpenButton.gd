@@ -1,33 +1,8 @@
 extends Button
 
 export var add_image = false
-onready var file_dialog = $OpenFileDialog
 func _ready():
-	# android는 user 폴더에 접근하도록 설정해야함
-	if OS.get_name() == "Windows":
-		file_dialog.access = FileDialog.ACCESS_FILESYSTEM
-	else:
-		file_dialog.access = FileDialog.ACCESS_USERDATA
-	
-func _on_OpenFileDialog_file_selected(path):
-		
-	if add_image:
-		# 파일을 image로 로딩
-		var image:Image = Util.load_image_file(self, path)
-		if image == null:
-			return
-		
-		Util.AttachImageWithEditTool(image, Vector2(0, 0))
-	else:
-		var ext = file_dialog.current_file.get_extension()
-		ext = ext.to_lower()
-		if ext == "pex":
-			StaticData.open_project(path)
-		else:
-			StaticData.open_image(self, path)
-		
-		
-
+	pass
 
 func _on_OpenButton_pressed():
 	var _tmp = NodeManager.get_file_dialog().connect("hide", self, "on_hide_file_dialog")

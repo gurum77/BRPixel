@@ -41,6 +41,12 @@ func get_grip_points()->PoolVector2Array:
 
 func _input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.select):
+		# dragging중인 grip이 있고 grip중 하나라도 preview라면 교착상태에 빠진다.
+		# preview가 하나라도 있다면 dragging은 불가하므로 dragging 상태를 푼다.
+		if StaticData.dragging_grip:
+			for grip in grips:
+				if grip.preview:
+					StaticData.dragging_grip = false
 		return
 	
 	if is_mouse_on_grip():

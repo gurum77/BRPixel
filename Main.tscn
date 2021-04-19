@@ -110,7 +110,7 @@ modulate = Color( 0, 0, 0, 0 )
 margin_left = 108.0
 margin_top = 6.0
 margin_right = -122.0
-margin_bottom = -102.0
+margin_bottom = -45.0
 
 [node name="EditPanel" type="Panel" parent="UI"]
 anchor_bottom = 1.0
@@ -150,21 +150,24 @@ margin_bottom = -15.0
 rect_min_size = Vector2( 100, 20 )
 
 [node name="BrushTypeButton" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 61 )]
+margin_bottom = 26.0
 
 [node name="BrushSizeTextEdit" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 62 )]
 margin_left = 29.0
-margin_right = 87.0
-margin_bottom = 25.0
+margin_right = 99.0
+margin_bottom = 26.0
 
 [node name="BrushSizeUnitsLabel" type="Label" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="2"]
-margin_left = 91.0
+margin_left = 103.0
 margin_top = 5.0
-margin_right = 106.0
-margin_bottom = 19.0
+margin_right = 119.0
+margin_bottom = 21.0
 text = "px"
 
 [node name="PixelPerfectCheckBox" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 54 )]
-margin_right = 232.0
+margin_left = 123.0
+margin_right = 245.0
+margin_bottom = 26.0
 
 [node name="PickColorFromCanvasButton" type="Button" parent="UI/EditPanel/GridContainer"]
 margin_top = 54.0
@@ -443,46 +446,49 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
 margin_right = 600.0
-margin_bottom = 24.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 0, 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StartButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 69 )]
-margin_bottom = 24.0
+margin_bottom = 26.0
 
 [node name="PrevButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 67 )]
 margin_left = 44.0
 margin_right = 84.0
-margin_bottom = 24.0
+margin_bottom = 26.0
 
 [node name="PlayButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 66 )]
 margin_left = 88.0
 margin_right = 128.0
-margin_bottom = 24.0
+margin_bottom = 26.0
 
 [node name="NextButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 68 )]
 margin_left = 132.0
 margin_right = 172.0
-margin_bottom = 24.0
+margin_bottom = 26.0
 
 [node name="EndButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 70 )]
-margin_bottom = 24.0
+margin_bottom = 26.0
 
 [node name="DelayLabel" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
 margin_left = 220.0
 margin_top = 5.0
-margin_right = 325.0
-margin_bottom = 19.0
+margin_right = 332.0
+margin_bottom = 21.0
 text = "Delay Per Frame"
 
 [node name="DelayLineEdit" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 71 )]
+margin_left = 336.0
+margin_right = 406.0
+margin_bottom = 26.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
-margin_top = 28.0
+margin_top = 30.0
 margin_right = 600.0
-margin_bottom = 68.0
+margin_bottom = 70.0
 rect_min_size = Vector2( 0, 40 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -846,19 +852,6 @@ rect_min_size = Vector2( 100, 30 )
 text = "asdfasdfasdfasdfasdfsdf"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SaveFileDialog" type="FileDialog" parent="UI"]
-margin_right = 521.0
-margin_bottom = 342.0
-resizable = true
-access = 2
-filters = PoolStringArray( "*.png;PNG Images", "*.jpg ; JPEG images" )
-show_hidden_files = true
-current_dir = "/MyProjects/Godot/ExpertPixelEditor"
-current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 __meta__ = {
 "_edit_use_anchors_": false
 }

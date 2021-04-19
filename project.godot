@@ -139,6 +139,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Tools/Select.gd"
 }, {
+"base": "Button",
+"class": "SubmenuPopupButton",
+"language": "GDScript",
+"path": "res://ToolButtons/SubmenuPopupButton.gd"
+}, {
 "base": "Control",
 "class": "TileModeManager",
 "language": "GDScript",
@@ -176,6 +181,7 @@ _global_script_class_icons={
 "Projects": "",
 "RectangleTool": "",
 "Select": "",
+"SubmenuPopupButton": "",
 "TileModeManager": "",
 "Tools": ""
 }

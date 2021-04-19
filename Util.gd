@@ -36,6 +36,13 @@ func show_error_message(parent, _err):
 	var message = "failed"
 	show_message(parent, "Error", message)
 	
+# submenu popup button에 현재 툴을 설정한다.
+func set_submenu_popup_button_current_tool(submenu_button:Button, current_tool):
+	var parent_button:SubmenuPopupButton = submenu_button.get_parent().get_parent().get_parent()
+	if parent_button != null:
+		parent_button.current_tool = current_tool
+		parent_button.icon = submenu_button.icon
+			
 # 현재 tool인 경우 버튼을 press한다
 func press_current_tool_button(button, current_tool):
 	var need_to_pressed = false

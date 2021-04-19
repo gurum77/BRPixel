@@ -15,6 +15,7 @@ export var multi_selection = false	# 여러개 선택 가능한지?
 export var save_file_dialog = true	# 저장인지?
 export var default_extension = "pex"
 export var filters:PoolStringArray	# filter
+export var default_file_name = ""	# 기본 파일 명
 
 # 표시 가능한 확장자
 var enabled_extenstions:Dictionary
@@ -123,6 +124,7 @@ func unselect_all(except_file_button):
 func popup_centered():
 	visible = true
 	result_ok = false
+	file_name_line_edit.text = default_file_name
 	$DraggableWindow.popup_centered()
 	update_lsit()
 

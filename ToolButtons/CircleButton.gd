@@ -10,6 +10,8 @@ func _on_CircleButton_pressed():
 	StaticData.last_drawing_tool = NodeManager.get_tools().circle_tool
 	StaticData.fill_for_last_drawing_tool = fill
 	
+	Util.set_submenu_popup_button_current_tool(self, NodeManager.get_tools().circle_tool)
+	
 func _process(_delta):
 	var is_current_tool = false
 	if StaticData.current_tool == StaticData.Tool.circle:

@@ -16,8 +16,8 @@
 [ext_resource path="res://Assets/icon_language_48.png" type="Texture" id=14]
 
 [node name="SettingPopup" type="Control"]
-margin_right = 22.0
-margin_bottom = 25.0
+margin_right = 10.0
+margin_bottom = 9.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -29,11 +29,27 @@ margin_left = -1.0
 margin_right = 308.0
 margin_bottom = 376.0
 
+[node name="HBoxContainer" type="HBoxContainer" parent="DraggablePopup"]
+anchor_right = 1.0
+margin_left = 20.0
+margin_top = 10.0
+margin_right = -20.0
+rect_min_size = Vector2( 0, 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProjectNameLabel" type="Label" parent="DraggablePopup/HBoxContainer"]
+margin_top = 2.0
+margin_right = 89.0
+margin_bottom = 18.0
+text = "Project name"
+
 [node name="GridContainer" type="GridContainer" parent="DraggablePopup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
-margin_top = 20.0
+margin_top = 40.0
 margin_right = -20.0
 margin_bottom = -20.0
 columns = 2
@@ -52,8 +68,8 @@ expand_icon = true
 [node name="NewPopup" parent="DraggablePopup/GridContainer/NewButton" instance=ExtResource( 6 )]
 margin_left = -290.718
 margin_top = -114.491
-margin_right = -241.718
-margin_bottom = -76.4911
+margin_right = -290.718
+margin_bottom = -114.491
 
 [node name="OpenButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_left = 134.0

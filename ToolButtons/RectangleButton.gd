@@ -9,6 +9,9 @@ func _on_RectangleButton_pressed():
 	
 	StaticData.last_drawing_tool = NodeManager.get_tools().rectangle_tool
 	StaticData.fill_for_last_drawing_tool = fill
+	
+	Util.set_submenu_popup_button_current_tool(self, NodeManager.get_tools().rectangle_tool)
+	
 
 func _process(_delta):
 	var is_current_tool = false

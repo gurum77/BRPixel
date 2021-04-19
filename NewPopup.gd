@@ -8,7 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$DraggablePopup/GridContainer/TitleTextEdit.set_message_translation(false)
 
 
 func popup_centered():
@@ -28,6 +28,14 @@ func _on_64x64Button_pressed():
 	$DraggablePopup/GridContainer/WidthTextEdit.text = "64"
 	$DraggablePopup/GridContainer/HeightTextEdit.text = "64"
 
+func _on_128x128Button_pressed():
+	$DraggablePopup/GridContainer/WidthTextEdit.text = "128"
+	$DraggablePopup/GridContainer/HeightTextEdit.text = "128"
+
+
+func _on_256x256Button_pressed():
+	$DraggablePopup/GridContainer/WidthTextEdit.text = "256"
+	$DraggablePopup/GridContainer/HeightTextEdit.text = "256"
 
 func _on_OkButton_pressed():
 	var width = $DraggablePopup/GridContainer/WidthTextEdit.text.to_int()
@@ -37,6 +45,9 @@ func _on_OkButton_pressed():
 	if width > Define.max_canvas_size || height > Define.max_canvas_size:
 		Util.show_message(self, "minimum canvas size : " + str(Define.max_canvas_size))
 		
+	# project name
+	StaticData.project_name = $DraggablePopup/GridContainer/TitleTextEdit.text
+	
 	# canvas 크기 설정
 	StaticData.canvas_width = width
 	StaticData.canvas_height = height
@@ -70,3 +81,5 @@ func _on_OkButton_pressed():
 
 func _on_CancelButton_pressed():
 	$DraggablePopup.hide()
+
+

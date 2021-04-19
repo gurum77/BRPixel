@@ -4,6 +4,8 @@ enum Tool{pencil, line, rectangle, eraser, fill, change_color,
 circle, select, edit, pick_color_from_canvas, brighter, darker}
 
 enum SymmetryType{no, horizontal, vertical}
+
+enum BrushType{rectangle, circle}
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_palette = null
@@ -16,11 +18,13 @@ var fill_for_last_drawing_tool = true
 
 var mouse_inside_ui:bool = false
 var dragging_grip:bool = false	# grip을 dragging중인지?
+var project_name = "untitled"
 var canvas_width = 64
 var canvas_height = 64
 var enabled_grid = true
 var enabled_tilemode = false
 var symmetry_type = SymmetryType.no
+var brush_type = BrushType.rectangle
 var horizontal_symmetry_position = 0
 var vertical_symmetry_position = 0
 var pencil_thickness = 1
@@ -117,11 +121,13 @@ func save_project(path):
 	var thumbnail_layer:Layer = create_thumbnail_layer()
 	var save_dic={
 		"thumbnail" : thumbnail_layer.get_save_dic(),
+		"project_name" : StaticData.project_name,
 		"canvas_width" : StaticData.canvas_width,
 		"canvas_height" : StaticData.canvas_height,
 		"enabled_grid" : StaticData.enabled_grid,
 		"enabled_tilemode" : StaticData.enabled_tilemode,
 		"symmetry_type" : StaticData.symmetry_type,
+		"brush_type" : StaticData.brush_type,
 		"horizontal_symmetry_position" : StaticData.horizontal_symmetry_position,
 		"vertical_symmetry_position" : StaticData.vertical_symmetry_position,
 		"pencil_thickness" : StaticData.pencil_thickness,
@@ -174,11 +180,13 @@ func open_project(path):
 	open_file.open(path, File.READ)
 	if open_file.get_position() < open_file.get_len():
 		var dic = parse_json(open_file.get_line())
+		StaticData.project_name = get_value(dic, "project_name", StaticData.project_name)
 		StaticData.canvas_width = get_value(dic, "canvas_width", StaticData.canvas_width)
 		StaticData.canvas_height = get_value(dic, "canvas_height", StaticData.canvas_height)
 		StaticData.enabled_grid = get_value(dic, "enabled_grid", StaticData.enabled_grid)
 		StaticData.enabled_tilemode = get_value(dic, "enabled_tilemode", StaticData.enabled_tilemode)
 		StaticData.symmetry_type = get_value(dic, "symmetry_type", StaticData.symmetry_type)
+		StaticData.brush_type = get_value(dic, "brush_type", StaticData.brush_type)
 		StaticData.horizontal_symmetry_position = get_value(dic, "horizontal_symmetry_position", StaticData.horizontal_symmetry_position)
 		StaticData.vertical_symmetry_position = get_value(dic, "vertical_symmetry_position", StaticData.vertical_symmetry_position)
 		StaticData.pencil_thickness = get_value(dic, "pencil_thickness", StaticData.pencil_thickness)

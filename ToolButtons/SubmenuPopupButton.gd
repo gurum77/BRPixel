@@ -1,5 +1,6 @@
 extends Button
-
+class_name SubmenuPopupButton
+var current_tool = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,27 +22,22 @@ func resize():
 		if node is Control:
 			var but:Control = node
 			total_width = total_width + but.rect_size.x
-					
 
 	var margins = $DraggableWindow/HBoxContainer.margin_left + $DraggableWindow/HBoxContainer.margin_right
 	var sparations = $DraggableWindow/HBoxContainer.get_constant("separation") * nodes.size()
 	var close_button_width = 0
 	$DraggableWindow.rect_size.x = total_width + margins + sparations + close_button_width
-			
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 # 클릭을 하면 child를 우측으로 표시한다.
 func _on_SubmenuPopupButton_pressed():
+	if current_tool != null:
+		NodeManager.get_tools().add_child(current_tool.instance())
+		
 	if $DraggableWindow.visible:
 		$DraggableWindow.hide()
 	else:
 		$DraggableWindow.show()
-	
-
 
 func _on_LineSettingButton_pressed():
 	pass # Replace with function body.

@@ -6,6 +6,7 @@ var select_tool = preload("res://Tools/Select.tscn")
 var edit_tool = preload("res://Tools/Edit.tscn")
 var circle_tool = preload("res://Tools/Circle.tscn")
 var rectangle_tool = preload("res://Tools/Rectangle.tscn")
+var line_tool = preload("res://Tools/Line.tscn")
 var fill_tool = preload("res://Tools/Fill.tscn")
 var change_color = preload("res://Tools/ChangeColor.tscn")
 

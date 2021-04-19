@@ -3,18 +3,17 @@ extends Button
 export var save_selected_area = false
 	
 func _ready():
-	# android는 user 폴더에 접근하도록 설정해야함
-	if OS.get_name() == "Windows":
-		$SaveFileDialog.access = FileDialog.ACCESS_FILESYSTEM
-	else:
-		$SaveFileDialog.access = FileDialog.ACCESS_USERDATA
+	pass
 		
 func _on_SaveButton_pressed():
 	var _tmp = NodeManager.get_file_dialog().connect("hide", self, "on_hide_file_dialog")
 	if save_selected_area:
 		NodeManager.get_file_dialog().filters = PoolStringArray(["*.png;PNG", "*.jpg;JPEG"])
+		NodeManager.get_file_dialog().default_file_name = ""
 	else:
 		NodeManager.get_file_dialog().filters = PoolStringArray(["*.pex;Pixel Express", "*.png;PNG", "*.jpg;JPEG"])
+		NodeManager.get_file_dialog().default_file_name = StaticData.project_name
+		
 	NodeManager.get_file_dialog().popup_centered()
 	
 func on_hide_file_dialog():
