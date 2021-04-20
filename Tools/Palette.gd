@@ -2,9 +2,13 @@ extends Control
 class_name Palette
 
 var colors:Array
-
+export var default_colors = true
 func _ready():
-	make_default_palette()
+	if default_colors:
+		make_default_colors()
+	
+func clear_colors():
+	colors.clear()
 	
 func get_color_255(r, g, b):
 	return Color(r/255.0, g/255.0, b/255.0, 1)
@@ -29,7 +33,7 @@ func set_save_dic(dic:Dictionary):
 	var dic_colors:Dictionary = dic["colors"]
 	
 	for key in dic_colors.keys():
-		var color = Util.StringToColor(dic_colors[key])
+		var color = Color(dic_colors[key])
 		colors.append(color)
 		
 func set_color(index, color):
@@ -38,7 +42,7 @@ func set_color(index, color):
 		colors.append(color)
 	colors[index] = color
 	
-func make_default_palette():
+func make_default_colors():
 	colors.clear()
 	colors.append(get_color_255(245, 245, 245))
 	colors.append(get_color_255(0, 0, 0))

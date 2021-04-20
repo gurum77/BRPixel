@@ -122,7 +122,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "Palettes",
 "language": "GDScript",
-"path": "res://Palettes.gd"
+"path": "res://Tools/Palettes.gd"
 }, {
 "base": "Control",
 "class": "Pencil",

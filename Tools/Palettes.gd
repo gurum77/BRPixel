@@ -1,7 +1,7 @@
 extends Control
 class_name Palettes
 
-var palette = preload("res://Palette.tscn")
+var palette = preload("res://Tools/Palette.tscn")
 
 func get_palette(index)->Palette:
 	return get_child(index) as Palette

@@ -122,6 +122,7 @@ func unselect_all(except_file_button):
 		node.pressed = false
 		
 func popup_centered():
+	selected_file_paths.clear()
 	visible = true
 	result_ok = false
 	file_name_line_edit.text = default_file_name
@@ -152,10 +153,9 @@ func _on_OkButton_pressed():
 			$MessageBox.popup_centered()
 			return
 	else:
-		var nodes = file_button_parent.get_children()
-		for node in nodes:
-			var cur_file_button = node as FileButton
-			selected_file_paths.append(cur_file_button.get_file_path())
+		var file_name_with_ext = Util.get_file_name_with_ext(file_name_line_edit.text, default_extension, enabled_extenstions)
+		selected_file_paths.append(Util.get_file_path(dir.get_current_dir(), file_name_with_ext))
+
 		
 	result_ok = true
 	hide()

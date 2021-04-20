@@ -133,6 +133,9 @@ func save_project(path):
 		"pencil_thickness" : StaticData.pencil_thickness,
 		"pixel_perfect" : StaticData.pixel_perfect,
 		"delay_per_frame" : StaticData.delay_per_frame,
+		"current_frame_index" : StaticData.current_frame_index,
+		"current_layer_index" : StaticData.current_layer_index,
+		"current_palette_index" : StaticData.current_palette_index,
 		"frames" : get_save_dic_frames(),
 		"palettes" : get_save_dic_palettes()
 	}
@@ -194,6 +197,9 @@ func open_project(path):
 		StaticData.pencil_thickness = get_value(dic, "pencil_thickness", StaticData.pencil_thickness)
 		StaticData.pixel_perfect = get_value(dic, "pixel_perfect", StaticData.pixel_perfect)
 		StaticData.delay_per_frame = get_value(dic, "delay_per_frame", StaticData.delay_per_frame)
+		StaticData.current_frame_index = get_value(dic, "current_frame_index", StaticData.current_frame_index)
+		StaticData.current_layer_index = get_value(dic, "current_layer_index", StaticData.current_layer_index)
+		StaticData.current_palette_index = get_value(dic, "current_palette_index", StaticData.current_palette_index)
 		open_project_frames(dic)
 		open_project_palettes(dic)
 	open_file.close()
@@ -232,10 +238,6 @@ func open_project_frames(var dic:Dictionary):
 			continue
 		frame.set_save_dic(dic_frames[key])
 	
-	# 첫번째 frame을 현재 frame으로
-	StaticData.current_frame_index = 0
-	# 첫번째 layer를 현재 레이어로 설정 
-	StaticData.current_layer_index = 0
 	# frame button 갱신
 	NodeManager.get_frame_panel().regen_frame_buttons()
 	# laye button 갱신

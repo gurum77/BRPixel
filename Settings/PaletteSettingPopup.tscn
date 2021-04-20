@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Settings/PaletteSettingPopup.gd" type="Script" id=2]
+[ext_resource path="res://Assets/icon_palette_from_image.png" type="Texture" id=3]
+[ext_resource path="res://Assets/icon_save.png" type="Texture" id=4]
+[ext_resource path="res://ToolButtons/SubmenuPopupButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/icon_new.png" type="Texture" id=6]
+[ext_resource path="res://Assets/icon_delete_palette.png" type="Texture" id=7]
+[ext_resource path="res://Assets/icon_palette_from_library.png" type="Texture" id=8]
 
 [node name="PaletteSettingPopup" type="Control"]
 script = ExtResource( 2 )
@@ -11,7 +17,7 @@ __meta__ = {
 
 [node name="DraggablePopup" parent="." instance=ExtResource( 1 )]
 visible = true
-margin_right = 337.0
+margin_right = 423.0
 margin_bottom = 341.0
 
 [node name="GridContainer" type="GridContainer" parent="DraggablePopup"]
@@ -22,3 +28,131 @@ margin_top = 20.0
 margin_right = -20.0
 margin_bottom = -20.0
 columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewPaletteButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_right = 190.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 190, 50 )
+text = "New Palette"
+icon = ExtResource( 6 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PaletteFromImageButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_left = 194.0
+margin_right = 384.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 190, 50 )
+text = "New from Image"
+icon = ExtResource( 3 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PaletteFromLibraryButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_top = 54.0
+margin_right = 190.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 190, 50 )
+text = "New from Library"
+icon = ExtResource( 8 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PaletteFromLibraryButton2" type="Button" parent="DraggablePopup/GridContainer"]
+margin_left = 194.0
+margin_top = 54.0
+margin_right = 384.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 190, 50 )
+text = "New from Project"
+icon = ExtResource( 8 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="DraggablePopup/GridContainer"]
+margin_top = 108.0
+margin_right = 190.0
+margin_bottom = 112.0
+
+[node name="HSeparator2" type="HSeparator" parent="DraggablePopup/GridContainer"]
+margin_left = 194.0
+margin_top = 108.0
+margin_right = 384.0
+margin_bottom = 112.0
+
+[node name="SavePaletteButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_top = 116.0
+margin_right = 190.0
+margin_bottom = 166.0
+rect_min_size = Vector2( 190, 50 )
+text = "Save Palette"
+icon = ExtResource( 4 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeletePaletteButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_left = 194.0
+margin_top = 116.0
+margin_right = 384.0
+margin_bottom = 166.0
+rect_min_size = Vector2( 190, 50 )
+text = "Unload Palette"
+icon = ExtResource( 7 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator3" type="HSeparator" parent="DraggablePopup/GridContainer"]
+margin_top = 170.0
+margin_right = 190.0
+margin_bottom = 174.0
+
+[node name="HSeparator4" type="HSeparator" parent="DraggablePopup/GridContainer"]
+margin_left = 194.0
+margin_top = 170.0
+margin_right = 384.0
+margin_bottom = 174.0
+
+[node name="PaletteSizeSubmenuPopupButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 5 )]
+margin_top = 178.0
+margin_right = 190.0
+margin_bottom = 228.0
+text = "Palette Size"
+
+[node name="DraggableWindow" parent="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton" index="0"]
+margin_left = 214.083
+margin_right = 531.083
+
+[node name="BigButton" type="Button" parent="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton/DraggableWindow/HBoxContainer" index="0"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+
+[node name="MiddleButton" type="Button" parent="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton/DraggableWindow/HBoxContainer" index="1"]
+margin_left = 54.0
+margin_right = 104.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+
+[node name="SmallButton" type="Button" parent="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton/DraggableWindow/HBoxContainer" index="2"]
+margin_left = 108.0
+margin_right = 158.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+[connection signal="pressed" from="DraggablePopup/GridContainer/NewPaletteButton" to="." method="_on_NewPaletteButton_pressed"]
+
+[editable path="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton"]

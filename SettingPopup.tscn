@@ -82,6 +82,8 @@ expand_icon = true
 script = ExtResource( 8 )
 
 [node name="OpenFileDialog" parent="DraggablePopup/GridContainer/OpenButton" instance=ExtResource( 11 )]
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 
 [node name="SaveButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 54.0
@@ -97,6 +99,8 @@ __meta__ = {
 }
 
 [node name="SaveFileDialog" parent="DraggablePopup/GridContainer/SaveButton" instance=ExtResource( 12 )]
+current_dir = "/MyProjects/Godot/ExpertPixelEditor"
+current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 
 [node name="CanvasSizeButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_left = 134.0

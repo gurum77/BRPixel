@@ -16,7 +16,7 @@
 [ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
 [ext_resource path="res://ToolButtons/CircleButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://ToolButtons/CopyButton.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Palette.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Tools/Palette.tscn" type="PackedScene" id=17]
 [ext_resource path="res://ToolButtons/ColorButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ToolButtons/ColorPanel.gd" type="Script" id=19]
 [ext_resource path="res://DrawingArea.tscn" type="PackedScene" id=20]
@@ -80,7 +80,7 @@
 [ext_resource path="res://Assets/icon_palette_setting.png" type="Texture" id=78]
 [ext_resource path="res://Settings/PaletteSettingPopup.tscn" type="PackedScene" id=79]
 [ext_resource path="res://Settings/PaletteSettingButton.gd" type="Script" id=80]
-[ext_resource path="res://Palettes.gd" type="Script" id=81]
+[ext_resource path="res://Tools/Palettes.gd" type="Script" id=81]
 [ext_resource path="res://NumLabel.gd" type="Script" id=82]
 
 [sub_resource type="GDScript" id=1]
@@ -515,6 +515,9 @@ margin_bottom = 40.0
 [node name="TextureRect" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="1"]
 anchor_left = -0.02
 anchor_right = 0.98
+margin_left = 32.0
+margin_right = 9.0
+margin_bottom = 3.8147e-06
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
