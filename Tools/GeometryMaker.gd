@@ -303,13 +303,25 @@ static func get_pixels_in_rectangle(from:Vector2, to:Vector2, fill=false, thickn
 	
 static func get_pixels_by_thickness(position:Vector2, thickness:int)->Array:
 	var points : Array = []
-	var start := position - Vector2.ONE * (thickness >> 1)
-	var end := start + Vector2.ONE * thickness
-	for y in range(floor(start.y), floor(end.y)):
-		for x in range(floor(start.x), floor(end.x)):
-			var pos = Vector2(x, y)
-			pos = get_adjusted_point_by_tile_mode(pos)
-			points.append(pos)
+	if StaticData.brush_type == StaticData.BrushType.rectangle || thickness <= 2:
+		var start := position - Vector2.ONE * (thickness >> 1)
+		var end := start + Vector2.ONE * thickness
+		for y in range(floor(start.y), floor(end.y)):
+			for x in range(floor(start.x), floor(end.x)):
+				var pos = Vector2(x, y)
+				pos = get_adjusted_point_by_tile_mode(pos)
+				points.append(pos)
+	else:
+		
+		var from:Vector2
+		var to:Vector2
+		
+		from.x = floor(position.x - thickness / 2)
+		from.y = floor(position.y - thickness / 2)
+		to.x = from.x + (thickness - 1)
+		to.y = from.y + (thickness - 1)
+		points = GeometryMaker.get_pixels_in_circle(from, to, true, 1)
+
 	return points
 			
 static func append_valid_points(target:Array, src:Array):
