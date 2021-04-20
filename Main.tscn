@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -74,6 +74,12 @@
 [ext_resource path="res://Assets/icon_animation.png" type="Texture" id=72]
 [ext_resource path="res://DraggableFileDialog.tscn" type="PackedScene" id=73]
 [ext_resource path="res://MessageBox.tscn" type="PackedScene" id=74]
+[ext_resource path="res://Assets/icon_next2.png" type="Texture" id=75]
+[ext_resource path="res://Assets/icon_sort.png" type="Texture" id=76]
+[ext_resource path="res://Assets/icon_prev2.png" type="Texture" id=77]
+[ext_resource path="res://Assets/icon_palette_setting.png" type="Texture" id=78]
+[ext_resource path="res://Settings/PaletteSettingPopup.tscn" type="PackedScene" id=79]
+[ext_resource path="res://Settings/PaletteSettingButton.gd" type="Script" id=80]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -520,11 +526,76 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ColorPanel"]
+anchor_right = 1.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorPanel/VBoxContainer"]
+margin_right = 116.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+alignment = 1
+
+[node name="PaletteSettingButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer"]
+margin_left = 8.0
+margin_right = 38.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 78 )
+expand_icon = true
+script = ExtResource( 80 )
+
+[node name="PaletteSettingPopup" parent="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" instance=ExtResource( 79 )]
+
+[node name="NumLabel" type="Label" parent="UI/ColorPanel/VBoxContainer/HBoxContainer"]
+margin_left = 42.0
+margin_top = 7.0
+margin_right = 107.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 65, 0 )
+text = "1/1"
+align = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ColorPanel/VBoxContainer"]
+margin_top = 34.0
+margin_right = 116.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 30 )
+alignment = 1
+
+[node name="PrevButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer2"]
+margin_left = 9.0
+margin_right = 39.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 77 )
+expand_icon = true
+
+[node name="NextButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer2"]
+margin_left = 43.0
+margin_right = 73.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 75 )
+expand_icon = true
+
+[node name="SortButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer2"]
+margin_left = 77.0
+margin_right = 107.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 76 )
+expand_icon = true
+
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/ColorPanel"]
+anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 2.0
-margin_right = 2.0
+margin_left = -112.0
+margin_top = 70.0
 follow_focus = true
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -918,6 +989,7 @@ __meta__ = {
 [connection signal="pressed" from="UI/EditPanel/GridContainer/AddLayerButton" to="UI/EditPanel/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/DeleteLayerButton" to="UI/EditPanel/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/GridButton" to="UI/EditPanel/GridContainer/GridButton" method="_on_GridButton_pressed"]
+[connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" to="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" method="_on_PaletteSettingButton_pressed"]
 [connection signal="pressed" from="UI/SettingButton" to="UI/SettingButton" method="_on_SettingButton_pressed"]
 [connection signal="timeout" from="Canvas/AnimationTimer" to="Canvas" method="_on_AnimationTimer_timeout"]
 
