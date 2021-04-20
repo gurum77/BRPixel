@@ -20,6 +20,11 @@ func set_color(color):
 	else:
 		current_color_sign.modulate = Color.black
 	current_color_sign.modulate.a = 0.5
+	
+	# 실 데이타도 변경한다.
+	var palette = NodeManager.get_current_palette()
+	if palette != null:
+		palette.set_color(get_index(), color)
 
 func _on_ColorButton_gui_input(event):
 	if event is InputEventMouseButton:

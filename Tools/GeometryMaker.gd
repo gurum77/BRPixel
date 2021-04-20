@@ -313,11 +313,11 @@ static func get_pixels_by_thickness(position:Vector2, thickness:int)->Array:
 				points.append(pos)
 	else:
 		
-		var from:Vector2
-		var to:Vector2
+		var from:Vector2 = Vector2.ZERO
+		var to:Vector2 = Vector2.ZERO
 		
-		from.x = floor(position.x - thickness / 2)
-		from.y = floor(position.y - thickness / 2)
+		from.x = floor(position.x - thickness / 2.0)
+		from.y = floor(position.y - thickness / 2.0)
 		to.x = from.x + (thickness - 1)
 		to.y = from.y + (thickness - 1)
 		points = GeometryMaker.get_pixels_in_circle(from, to, true, 1)

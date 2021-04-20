@@ -53,8 +53,6 @@ func get_file_thumbnail_texture()->Texture:
 		var texture:ImageTexture = ImageTexture.new()
 		texture.create_from_image(thumbnail_layer.image)
 		return texture
-		
-		return thumbnail_layer.texture as ImageTexture
 	else:
 		return Define.fileThumbnailTexture
 

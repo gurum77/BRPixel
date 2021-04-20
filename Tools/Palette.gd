@@ -1,15 +1,42 @@
 extends Control
-
 class_name Palette
 
 var colors:Array
 
 func _ready():
 	make_default_palette()
-	StaticData.current_palette = self
 	
 func get_color_255(r, g, b):
 	return Color(r/255.0, g/255.0, b/255.0, 1)
+	
+func get_save_dic()->Dictionary:
+	var _save_dic:Dictionary
+	_save_dic["colors"] = get_save_dic_colors()
+	return _save_dic
+
+func get_save_dic_colors()->Dictionary:
+	var _save_dic:Dictionary
+	for i in colors.size():
+		var col = colors[i] as Color
+		_save_dic[i] = col.to_html()
+	return _save_dic
+	
+func set_save_dic(dic:Dictionary):
+	# 기존 color를 제거한다.
+	colors.clear()
+	if !dic.has("colors"):
+		return
+	var dic_colors:Dictionary = dic["colors"]
+	
+	for key in dic_colors.keys():
+		var color = Util.StringToColor(dic_colors[key])
+		colors.append(color)
+		
+func set_color(index, color):
+	var add_count = (index + 1) - colors.size()
+	for i in add_count:
+		colors.append(color)
+	colors[index] = color
 	
 func make_default_palette():
 	colors.clear()

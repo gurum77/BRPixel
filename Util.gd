@@ -1,5 +1,13 @@
 extends Node
 
+
+func StringToColor(string:String)->Color:
+	var strings = string.split(",")
+	if strings.size() != 4:
+		return Color.white
+	var color = Color(strings[0].to_float(), strings[1].to_float(), strings[2].to_float(), strings[3].to_float())
+	return color
+	
 # image를 복사한다.(offset 값과 함께)
 # 잘려 나갈 수 있다.
 func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int):

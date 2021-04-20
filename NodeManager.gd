@@ -10,10 +10,28 @@ var tile_mode_manager = null
 var setting_popup = null
 var symmetry_grips = null
 var frames:Frames = null
+var palettes:Palettes = null
 var file_dialog:DraggableFileDialog = null
+var color_panel:ColorPanel = null
 var preload_message_popup = preload("res://MessagePopup.tscn")
 var message_box:MessageBox = null
-
+func get_color_panel()->ColorPanel:
+	if color_panel == null:
+		color_panel = get_tree().root.get_node("Main/UI/ColorPanel")
+	return color_panel
+	
+func get_current_palette()->Palette:
+	var palettes = NodeManager.get_palettes()
+	if palettes == null:
+		return null
+	return palettes.get_palette(StaticData.current_palette_index)
+		
+		
+func get_palettes()->Palettes:
+	if palettes == null:
+		palettes = get_tree().root.get_node("Main/Palettes")
+	return palettes
+	
 func get_message_box()->MessageBox:
 	if message_box == null:
 		message_box = get_tree().root.get_node("Main/UI/MessageBox")

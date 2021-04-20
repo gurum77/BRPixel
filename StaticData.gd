@@ -8,9 +8,9 @@ enum SymmetryType{no, horizontal, vertical}
 enum BrushType{rectangle, circle}
 var current_tool = Tool.pencil
 var current_color = Color.black
-var current_palette = null
 var current_frame_index = 0
 var current_layer_index = 0
+var current_palette_index = 0
 var preview_layer = null
 
 var last_drawing_tool = null
@@ -133,7 +133,8 @@ func save_project(path):
 		"pencil_thickness" : StaticData.pencil_thickness,
 		"pixel_perfect" : StaticData.pixel_perfect,
 		"delay_per_frame" : StaticData.delay_per_frame,
-		"frames" : get_save_dic_frames()
+		"frames" : get_save_dic_frames(),
+		"palettes" : get_save_dic_palettes()
 	}
 	var save_file = File.new()
 	save_file.open(path, File.WRITE)
@@ -170,11 +171,12 @@ func open_image(parent, path):
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	pass
 
-func get_value(dic:Dictionary, key, default_value:int):
+func get_value(dic:Dictionary, key, default_value):
 	if dic.has(key):
 		return dic[key]
 	return default_value
-			
+		
+		
 func open_project(path):
 	var open_file = File.new()
 	open_file.open(path, File.READ)
@@ -193,6 +195,7 @@ func open_project(path):
 		StaticData.pixel_perfect = get_value(dic, "pixel_perfect", StaticData.pixel_perfect)
 		StaticData.delay_per_frame = get_value(dic, "delay_per_frame", StaticData.delay_per_frame)
 		open_project_frames(dic)
+		open_project_palettes(dic)
 	open_file.close()
 	
 	NodeManager.get_canvas().resize()
@@ -200,6 +203,19 @@ func open_project(path):
 	NodeManager.get_tile_mode_manager().init_tile_layers()
 	NodeManager.get_tile_mode_manager().update_force()
 	NodeManager.get_symmetry_grips().update_canvas_and_grips()
+		
+func open_project_palettes(var dic:Dictionary):
+	if !dic.has("palettes"):
+		return
+	var dic_palettes:Dictionary = dic["palettes"]
+	NodeManager.get_palettes().clear_palettes()
+	yield(get_tree().create_timer(0.1), "timeout")
+	for key in dic_palettes.keys():
+		var palette = NodeManager.get_palettes().add_palette()
+		if palette == null:
+			continue
+		palette.set_save_dic(dic_palettes[key])
+	NodeManager.get_color_panel().load_current_palette()
 		
 func open_project_frames(var dic:Dictionary):
 	if !dic.has("frames"):
@@ -232,5 +248,12 @@ func get_save_dic_frames()->Dictionary:
 	for node in nodes:
 		_save_dic[node.get_index()] = node.get_save_dic()
 	return _save_dic
+	
+func get_save_dic_palettes()->Dictionary:
+	var _save_dic:Dictionary
+	var nodes = NodeManager.get_palettes().get_children()
+	for node in nodes:
+		_save_dic[node.get_index()] = node.get_save_dic()
+	return _save_dic	
 	
 
