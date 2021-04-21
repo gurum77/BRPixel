@@ -29,7 +29,11 @@ func get_file_name_with_ext(file_name:String, default_ext:String, enabled_extens
 
 	return file_name + "." + default_ext
 	
-func get_file_path(directory_path, file_name)->String:
+func get_file_path(directory_path:String, file_name:String)->String:
+	if directory_path == null:
+		return file_name
+	if directory_path.right(directory_path.length()-1) != "/":
+		return directory_path + "/" + file_name
 	return directory_path + file_name
 	
 # layer에 사용되는 image를 만든다.

@@ -3,7 +3,7 @@ extends TextureRect
 var empty_color = true
 onready var current_color_sign = $CurrentColorSign
 onready var empty_color_sign = $EmptyColorSign
-
+onready var transparent_color_sign = $TransparentColorSign
 var pressed_position
 
 func clear_color():
@@ -13,12 +13,16 @@ func clear_color():
 	
 func set_color(color):
 	self_modulate = color
+	
 	$ColorPickerButton.visible = false
+	
 	empty_color = false
 	if color == Color.black:
 		current_color_sign.modulate = Color.white
 	else:
 		current_color_sign.modulate = Color.black
+	transparent_color_sign.visible = color.a == 0
+		
 	current_color_sign.modulate.a = 0.5
 	
 	# 실 데이타도 변경한다.

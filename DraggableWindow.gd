@@ -50,3 +50,5 @@ func _on_DraggableWindow_gui_input(event):
 
 func _on_TextureButton_pressed():
 	hide()
+	if get_parent() != null:
+		get_parent().hide()

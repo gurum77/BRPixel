@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Settings/PalettePreview.gd" type="Script" id=1]
+
+[node name="PalettePreview" type="GridContainer"]
+rect_min_size = Vector2( 0, 20 )
+columns = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameButton" type="Button" parent="."]
+margin_right = 150.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 150, 0 )
+text = "Palette name"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 154.0
+margin_right = 454.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 300, 20 )
+columns = 10
+[connection signal="pressed" from="NameButton" to="." method="_on_NameButton_pressed"]

@@ -156,7 +156,7 @@ __meta__ = {
 
 [node name="NewFolderNameLineEdit" type="LineEdit" parent="DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup/HBoxContainer"]
 margin_right = 200.0
-margin_bottom = 25.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 200, 24 )
 placeholder_text = "New folder name"
 __meta__ = {
@@ -166,7 +166,7 @@ __meta__ = {
 [node name="NewFolderOkButton" type="TextureButton" parent="DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup/HBoxContainer"]
 margin_left = 204.0
 margin_right = 229.0
-margin_bottom = 25.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 25, 25 )
 texture_normal = ExtResource( 5 )
 expand = true
@@ -194,24 +194,24 @@ __meta__ = {
 }
 
 [node name="FileNameLineEdit" type="LineEdit" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 170.0
-margin_right = 670.0
+margin_left = 163.0
+margin_right = 663.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 500, 40 )
 placeholder_text = "File name"
 
 [node name="OkButton" type="Button" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 674.0
-margin_right = 718.0
+margin_left = 667.0
+margin_right = 711.0
 margin_bottom = 40.0
 icon = ExtResource( 5 )
 flat = true
 
 [node name="SelectedFileNumsLabel" type="Label" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 722.0
-margin_top = 13.0
-margin_right = 828.0
-margin_bottom = 27.0
+margin_left = 715.0
+margin_top = 12.0
+margin_right = 835.0
+margin_bottom = 28.0
 text = "0 file(s) selected"
 
 [node name="MessageBox" parent="." instance=ExtResource( 6 )]
