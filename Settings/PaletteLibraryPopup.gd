@@ -2,6 +2,21 @@ extends Control
 
 var palette_preview_resource = preload("res://Settings/PalettePreview.tscn")
 var palettes = []
+var images = [
+			preload("res://Assets/palettes/aap-64-1x.png"),
+			preload("res://Assets/palettes/cc-29-1x.png"),
+			preload("res://Assets/palettes/endesga-32-1x.png"),
+			preload("res://Assets/palettes/endesga-64-1x.png"),
+			preload("res://Assets/palettes/famicube-1x.png"),
+			preload("res://Assets/palettes/fantasy-24-1x.png"),
+			preload("res://Assets/palettes/journey-1x.png"),
+			preload("res://Assets/palettes/lospec500-1x.png"),
+			preload("res://Assets/palettes/na16-1x.png"),
+			preload("res://Assets/palettes/oil-6-1x.png"),
+			preload("res://Assets/palettes/pear36-1x.png"),
+			preload("res://Assets/palettes/pico-8-1x.png")
+		
+			]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	make_library_palettes()
@@ -34,13 +49,11 @@ func make_library_palettes():
 				continue
 			
 			var file_path = Util.get_file_path(dir.get_current_dir(), file_name)
-			var image:Image = Image.new()
-			image.load(file_path)
-			
+			var texture = load(file_path)
 			
 			var new_palette = Palette.new()
 			new_palette.name = file_name.get_basename()
-			new_palette.set_palette_from_image(image)
+			new_palette.set_palette_from_image(texture.get_data())
 			new_palette.default_colors = false
 			palettes.append(new_palette)
 			file_name = dir.get_next()

@@ -28,6 +28,7 @@ var brush_type = BrushType.rectangle
 var horizontal_symmetry_position = 0
 var vertical_symmetry_position = 0
 var pencil_thickness = 1
+var palette_size = 50
 var pixel_perfect:bool = false
 var delay_per_frame = 0.3
 
@@ -131,6 +132,7 @@ func save_project(path):
 		"horizontal_symmetry_position" : StaticData.horizontal_symmetry_position,
 		"vertical_symmetry_position" : StaticData.vertical_symmetry_position,
 		"pencil_thickness" : StaticData.pencil_thickness,
+		"palette_size" : StaticData.palette_size,
 		"pixel_perfect" : StaticData.pixel_perfect,
 		"delay_per_frame" : StaticData.delay_per_frame,
 		"current_frame_index" : StaticData.current_frame_index,
@@ -195,6 +197,7 @@ func open_project(path):
 		StaticData.horizontal_symmetry_position = get_value(dic, "horizontal_symmetry_position", StaticData.horizontal_symmetry_position)
 		StaticData.vertical_symmetry_position = get_value(dic, "vertical_symmetry_position", StaticData.vertical_symmetry_position)
 		StaticData.pencil_thickness = get_value(dic, "pencil_thickness", StaticData.pencil_thickness)
+		StaticData.palette_size = get_value(dic, "palette_size", StaticData.palette_size)
 		StaticData.pixel_perfect = get_value(dic, "pixel_perfect", StaticData.pixel_perfect)
 		StaticData.delay_per_frame = get_value(dic, "delay_per_frame", StaticData.delay_per_frame)
 		StaticData.current_frame_index = get_value(dic, "current_frame_index", StaticData.current_frame_index)
@@ -209,6 +212,7 @@ func open_project(path):
 	NodeManager.get_tile_mode_manager().init_tile_layers()
 	NodeManager.get_tile_mode_manager().update_force()
 	NodeManager.get_symmetry_grips().update_canvas_and_grips()
+	NodeManager.get_color_panel().load_current_palette()
 		
 func open_project_palettes(var dic:Dictionary):
 	if !dic.has("palettes"):
