@@ -1160,7 +1160,6 @@ __meta__ = {
 [node name="Palette" parent="Palettes" instance=ExtResource( 17 )]
 
 [node name="Palette2" parent="Palettes" instance=ExtResource( 17 )]
-
 [connection signal="pressed" from="UI/EditPanel/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/FillButton" to="UI/EditPanel/GridContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/ChangeColorButton" to="UI/EditPanel/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
@@ -1175,7 +1174,11 @@ __meta__ = {
 [connection signal="timeout" from="Canvas/AnimationTimer" to="Canvas" method="_on_AnimationTimer_timeout"]
 
 [editable path="UI/EditPanel/GridContainer/ToolSettingPopupButton"]
+
 [editable path="UI/EditPanel/GridContainer/GeometryPopupButton"]
+
 [editable path="UI/EditPanel/GridContainer/SelectPopupButton"]
+
 [editable path="UI/EditPanel/GridContainer/SymmetryPopupButton"]
+
 [editable path="UI/EditPanel/GridContainer/AnimationPopupButton"]
