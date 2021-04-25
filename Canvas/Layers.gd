@@ -66,8 +66,10 @@ func get_child_index(child)->int:
 	return -1
 	
 # 모든 layer를 병합해서 하나의 이미지로 리턴
-func create_layers_image()->Image:
+func create_layers_image(background_color:Color=Color.transparent)->Image:
 	var image = Util.create_image(StaticData.canvas_width, StaticData.canvas_height)
+	if background_color != Color.transparent:
+		image.fill(background_color)
 	
 	# 모든 layer를 돌면서 image를 복사한다.
 	var nodes = get_normal_layers()

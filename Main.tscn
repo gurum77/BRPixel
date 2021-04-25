@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -82,6 +82,7 @@
 [ext_resource path="res://Settings/PaletteSettingButton.gd" type="Script" id=80]
 [ext_resource path="res://Tools/Palettes.gd" type="Script" id=81]
 [ext_resource path="res://NumLabel.gd" type="Script" id=82]
+[ext_resource path="res://Preview.tscn" type="PackedScene" id=83]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -943,6 +944,9 @@ visible = false
 [node name="MessageBox" parent="UI" instance=ExtResource( 74 )]
 visible = false
 
+[node name="Preview" parent="UI" instance=ExtResource( 83 )]
+popup_exclusive = true
+
 [node name="Canvas" type="TextureRect" parent="."]
 script = ExtResource( 3 )
 __meta__ = {
@@ -990,6 +994,7 @@ __meta__ = {
 [node name="Palette" parent="Palettes" instance=ExtResource( 17 )]
 
 [node name="Palette2" parent="Palettes" instance=ExtResource( 17 )]
+
 [connection signal="pressed" from="UI/EditPanel/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/FillButton" to="UI/EditPanel/GridContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/ChangeColorButton" to="UI/EditPanel/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
@@ -1004,11 +1009,7 @@ __meta__ = {
 [connection signal="timeout" from="Canvas/AnimationTimer" to="Canvas" method="_on_AnimationTimer_timeout"]
 
 [editable path="UI/EditPanel/GridContainer/ToolSettingPopupButton"]
-
 [editable path="UI/EditPanel/GridContainer/GeometryPopupButton"]
-
 [editable path="UI/EditPanel/GridContainer/SelectPopupButton"]
-
 [editable path="UI/EditPanel/GridContainer/SymmetryPopupButton"]
-
 [editable path="UI/EditPanel/GridContainer/AnimationPopupButton"]
