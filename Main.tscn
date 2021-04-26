@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -83,6 +83,8 @@
 [ext_resource path="res://Tools/Palettes.gd" type="Script" id=81]
 [ext_resource path="res://NumLabel.gd" type="Script" id=82]
 [ext_resource path="res://Preview.tscn" type="PackedScene" id=83]
+[ext_resource path="res://ToolButtons/RedoButton.tscn" type="PackedScene" id=84]
+[ext_resource path="res://ToolButtons/UndoButton.tscn" type="PackedScene" id=85]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -371,10 +373,14 @@ toggle_mode = true
 margin_left = 54.0
 margin_right = 104.0
 
+[node name="UndoButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 85 )]
+
+[node name="RedoButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 84 )]
+
 [node name="GridButton" type="Button" parent="UI/EditPanel/GridContainer"]
-margin_top = 378.0
+margin_top = 432.0
 margin_right = 50.0
-margin_bottom = 428.0
+margin_bottom = 482.0
 rect_min_size = Vector2( 50, 50 )
 toggle_mode = true
 icon = ExtResource( 40 )
@@ -383,23 +389,25 @@ script = ExtResource( 39 )
 
 [node name="TileModeButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 55 )]
 margin_left = 54.0
+margin_top = 432.0
 margin_right = 104.0
+margin_bottom = 482.0
 
 [node name="SaveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 8 )]
 margin_left = 0.0
-margin_top = 432.0
+margin_top = 486.0
 margin_right = 50.0
-margin_bottom = 482.0
+margin_bottom = 536.0
 
 [node name="OpenButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 10 )]
 margin_left = 54.0
-margin_top = 432.0
+margin_top = 486.0
 margin_right = 104.0
-margin_bottom = 482.0
+margin_bottom = 536.0
 
 [node name="SymmetryPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
-margin_top = 486.0
-margin_bottom = 536.0
+margin_top = 540.0
+margin_bottom = 590.0
 icon = ExtResource( 57 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SymmetryPopupButton" index="0"]
@@ -425,9 +433,9 @@ symmetry_type = 2
 
 [node name="AnimationPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
-margin_top = 486.0
+margin_top = 540.0
 margin_right = 104.0
-margin_bottom = 536.0
+margin_bottom = 590.0
 icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
