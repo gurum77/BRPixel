@@ -32,6 +32,7 @@ var palette_size = 50
 var pixel_perfect:bool = false
 var delay_per_frame = 0.3
 
+
 # selected area
 var selected_area = Rect2(0, 0, 0, 0)
 

@@ -37,7 +37,9 @@ func _input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(current_tool):
 		return
 
+	# 마우스를 떼면 undo commit
 	if InputManager.is_action_just_released_lbutton(_event)		:
+		UndoRedoManager.add_undo_draw_pixels_on_current_layer(NodeManager.get_current_layer().image)
 		drawn_points.clear()
 		
 	# 마우스를 이동하면 미리보기 점을 표시한다.
@@ -45,6 +47,8 @@ func _input(_event):
 		
 	# 처음 클릭하면 첫번째 점을 보관한다.
 	if InputManager.is_action_just_pressed_lbutton(_event):
+		UndoRedoManager.undo_data_for_draw_pixels_on_current_layer = NodeManager.get_current_layer().image.data
+		
 		pixel_perfect_drawer.reset()
 		start_point = get_local_mouse_position()
 		var points = GeometryMaker.get_pixels_in_line(start_point, start_point, StaticData.pencil_thickness)

@@ -219,6 +219,7 @@ InputManager="*res://InputManager.gd"
 Define="*res://Define.gd"
 Util="*res://Util.gd"
 ImageHelper="*res://ImageHelper.gd"
+UndoRedoManager="*res://Tools/UndoRedoManager.gd"
 
 [display]
 
