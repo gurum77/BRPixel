@@ -1104,10 +1104,10 @@ margin_bottom = -390.137
 
 [node name="DebugLabel" type="Label" parent="UI"]
 anchor_right = 1.0
-margin_left = 145.0
-margin_top = -38.0
-margin_right = -155.0
-margin_bottom = -8.0
+margin_left = 155.595
+margin_top = 18.4155
+margin_right = -144.405
+margin_bottom = 48.4155
 rect_min_size = Vector2( 100, 30 )
 text = "asdfasdfasdfasdfasdfsdf"
 align = 1

@@ -1,7 +1,5 @@
 extends Control
 
-var pressed = false
-
 var start_point = Vector2(0, 0)
 var end_point = Vector2(0, 0)
 func _ready():
@@ -23,21 +21,19 @@ func _input(_event):
 	InputManager.draw_preview_pixel_cursor(self, _event, StaticData.pencil_thickness)
 	
 	if InputManager.is_action_just_pressed_lbutton(_event):
+		UndoRedoManager.prepare_undo_for_draw_on_current_layer()
 		start_point = get_local_mouse_position()
-		pressed = true
 	elif InputManager.is_action_just_released_lbutton(_event):
-		# 빠르게 움직이면서 마우스를 떼면 두번 그려지는 현상을 방지하지 위해서 pressed일때만 사각형을 추가한다.
-		if pressed:
-			end_point = get_local_mouse_position()
-			if start_point == null:
-				start_point = end_point
-				
-			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
-			NodeManager.get_current_layer().set_pixels_by_current_color(points)
-			StaticData.preview_layer.clear(true)
-			pressed = false
+		end_point = get_local_mouse_position()
+		if start_point == null:
+			start_point = end_point
+			
+		var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
+		NodeManager.get_current_layer().set_pixels_by_current_color(points)
+		UndoRedoManager.commit_undo_for_draw_on_current_layer()
+		StaticData.preview_layer.clear(true)
 		
-	if pressed:
+	if InputManager.is_action_pressed_lbutton(_event):
 		end_point = get_local_mouse_position()
 		update()
 		

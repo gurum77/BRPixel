@@ -1,6 +1,6 @@
 extends Control
 class_name RectangleTool
-var pressed = false
+
 var fill = false
 var start_point = Vector2(0, 0)
 var end_point = Vector2(0, 0)
@@ -24,17 +24,15 @@ func _input(_event):
 	InputManager.draw_preview_pixel_cursor(self, _event, StaticData.pencil_thickness)
 	
 	if InputManager.is_action_just_pressed_lbutton(_event):
+		UndoRedoManager.prepare_undo_for_draw_on_current_layer()
 		start_point = get_local_mouse_position()
-		pressed = true
 	elif InputManager.is_action_just_released_lbutton(_event):
-		# 빠르게 움직이면서 마우스를 떼면 두번 그려지는 현상을 방지하지 위해서 pressed일때만 사각형을 추가한다.
-		if pressed:
-			end_point = get_local_mouse_position()
-			var points = GeometryMaker.get_pixels_in_rectangle(start_point, end_point, fill, StaticData.pencil_thickness)
-			NodeManager.get_current_layer().set_pixels_by_current_color(points)
-			StaticData.preview_layer.clear(true)
-			pressed = false
+		end_point = get_local_mouse_position()
+		var points = GeometryMaker.get_pixels_in_rectangle(start_point, end_point, fill, StaticData.pencil_thickness)
+		NodeManager.get_current_layer().set_pixels_by_current_color(points)
+		StaticData.preview_layer.clear(true)
+		UndoRedoManager.commit_undo_for_draw_on_current_layer()
 		
-	if pressed:
+	if InputManager.is_action_pressed_lbutton(_event):
 		end_point = get_local_mouse_position()
 		update()

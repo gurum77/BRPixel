@@ -6,6 +6,7 @@ var current_tool = StaticData.Tool.pencil
 var start_point
 var pixel_perfect_drawer = PixelPerfectDrawer.new()
 
+var released_lbutton_count = 0
 class PixelPerfectDrawer:
 	const neighbours = [Vector2(0, 1), Vector2(1, 0), Vector2(-1, 0), Vector2(0, -1)]
 	const corners = [Vector2(1, 1), Vector2(-1, -1), Vector2(-1, 1), Vector2(1, -1)]
@@ -37,24 +38,23 @@ func _input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(current_tool):
 		return
 
-	# 마우스를 떼면 undo commit
-	if InputManager.is_action_just_released_lbutton(_event)		:
-		UndoRedoManager.add_undo_draw_pixels_on_current_layer(NodeManager.get_current_layer().image)
-		drawn_points.clear()
-		
 	# 마우스를 이동하면 미리보기 점을 표시한다.
 	InputManager.draw_preview_pixel_cursor(self, _event, StaticData.pencil_thickness)
 		
 	# 처음 클릭하면 첫번째 점을 보관한다.
 	if InputManager.is_action_just_pressed_lbutton(_event):
-		UndoRedoManager.undo_data_for_draw_pixels_on_current_layer = NodeManager.get_current_layer().image.data
-		
+		UndoRedoManager.prepare_undo_for_draw_on_current_layer()
 		pixel_perfect_drawer.reset()
 		start_point = get_local_mouse_position()
 		var points = GeometryMaker.get_pixels_in_line(start_point, start_point, StaticData.pencil_thickness)
 		points = get_new_points(points)
 		set_pixels(points)
-	
+	# 마우스를 떼면 undo commit
+	elif InputManager.is_action_just_released_lbutton(_event):
+		released_lbutton_count += 1
+		UndoRedoManager.commit_undo_for_draw_on_current_layer()
+		drawn_points.clear()
+		
 	# 누르고 있는 동안 계속 그림
 	if start_point != null && InputManager.is_action_pressed_lbutton(_event):
 		var end_point = get_local_mouse_position()
@@ -64,7 +64,10 @@ func _input(_event):
 			points = get_new_points(points)
 			set_pixels(points)
 			start_point = end_point
-
+	
+func _process(delta):
+	NodeManager.get_debug_label().text = str(released_lbutton_count)
+	
 # pixel perfect가 활성화되었는지?
 func is_enabled_pixel_perfect()->bool:
 	if !StaticData.pixel_perfect:

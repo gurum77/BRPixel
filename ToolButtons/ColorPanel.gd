@@ -9,7 +9,6 @@ func load_current_palette():
 	var buttons = $ScrollContainer/GridContainer.get_children()
 	var palette:Palette = NodeManager.get_current_palette()
 	$ScrollContainer/GridContainer.columns = 100 / StaticData.palette_size
-	var scale:float = StaticData.palette_size / 50.0
 	for i in range(0, buttons.size()):
 		
 		buttons[i].rect_min_size.x = StaticData.palette_size

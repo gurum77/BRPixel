@@ -1,5 +1,7 @@
 extends Node
 
+var pressed_lbutton = false
+
 # 미리보기 cursor를 그린다.
 # cursor는 현재 점의 크기이다.
 func draw_preview_pixel_cursor(parent:Control, event, thickness):
@@ -22,16 +24,28 @@ func is_action_just_pressed_rbutton(_event)->bool:
 	return false
 	
 func is_action_just_pressed_lbutton(event)->bool:
+	# 두번 눌림현상 방지
+	if pressed_lbutton:
+		return false
+		
 	if Input.is_action_just_pressed("left_button"):
+		pressed_lbutton = true
 		return true
 	if event is InputEventScreenTouch && event.pressed:
+		pressed_lbutton = true
 		return true
 	return false
 
 func is_action_just_released_lbutton(event)->bool:
+	# 두번 뗌현상 방지
+	if !pressed_lbutton:
+		return false
+		
 	if Input.is_action_just_released("left_button"):
+		pressed_lbutton = false
 		return true
 	if event is InputEventScreenTouch && !event.pressed:
+		pressed_lbutton = false
 		return true
 	return false
 	

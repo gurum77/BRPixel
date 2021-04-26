@@ -15,13 +15,21 @@ var file_dialog:DraggableFileDialog = null
 var color_panel:ColorPanel = null
 var preload_message_popup = preload("res://MessagePopup.tscn")
 var message_box:MessageBox = null
+var debug_label:Label = null
+
+
+func get_debug_label()->Label:
+	if debug_label == null:
+		debug_label = get_tree().root.get_node("Main/UI/DebugLabel")
+	return debug_label
+	
 func get_color_panel()->ColorPanel:
 	if color_panel == null:
 		color_panel = get_tree().root.get_node("Main/UI/ColorPanel")
 	return color_panel
 	
 func get_current_palette()->Palette:
-	var palettes = NodeManager.get_palettes()
+	palettes = NodeManager.get_palettes()
 	if palettes == null:
 		return null
 	return palettes.get_palette(StaticData.current_palette_index)
