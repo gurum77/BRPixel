@@ -623,19 +623,23 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="UI/ColorPanel/ScrollContainer"]
 margin_right = 100.0
-margin_bottom = 1490.0
+margin_bottom = 2090.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 0
 columns = 2
 
 [node name="ColorButton" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_right = 50.0
 
 [node name="ColorButton2" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
 margin_left = 50.0
 margin_right = 100.0
 
 [node name="ColorButton3" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 60.0
+margin_right = 50.0
 margin_bottom = 110.0
 
 [node name="ColorButton4" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -645,7 +649,9 @@ margin_right = 100.0
 margin_bottom = 110.0
 
 [node name="ColorButton5" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 120.0
+margin_right = 50.0
 margin_bottom = 170.0
 
 [node name="ColorButton6" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -655,7 +661,9 @@ margin_right = 100.0
 margin_bottom = 170.0
 
 [node name="ColorButton7" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 180.0
+margin_right = 50.0
 margin_bottom = 230.0
 
 [node name="ColorButton8" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -665,7 +673,9 @@ margin_right = 100.0
 margin_bottom = 230.0
 
 [node name="ColorButton9" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 240.0
+margin_right = 50.0
 margin_bottom = 290.0
 
 [node name="ColorButton10" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -675,7 +685,9 @@ margin_right = 100.0
 margin_bottom = 290.0
 
 [node name="ColorButton11" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 300.0
+margin_right = 50.0
 margin_bottom = 350.0
 
 [node name="ColorButton12" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -685,7 +697,9 @@ margin_right = 100.0
 margin_bottom = 350.0
 
 [node name="ColorButton13" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 360.0
+margin_right = 50.0
 margin_bottom = 410.0
 
 [node name="ColorButton14" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -695,7 +709,9 @@ margin_right = 100.0
 margin_bottom = 410.0
 
 [node name="ColorButton15" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 420.0
+margin_right = 50.0
 margin_bottom = 470.0
 
 [node name="ColorButton16" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -705,7 +721,9 @@ margin_right = 100.0
 margin_bottom = 470.0
 
 [node name="ColorButton17" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 480.0
+margin_right = 50.0
 margin_bottom = 530.0
 
 [node name="ColorButton18" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -715,7 +733,9 @@ margin_right = 100.0
 margin_bottom = 530.0
 
 [node name="ColorButton19" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 540.0
+margin_right = 50.0
 margin_bottom = 590.0
 
 [node name="ColorButton20" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -725,7 +745,9 @@ margin_right = 100.0
 margin_bottom = 590.0
 
 [node name="ColorButton21" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 600.0
+margin_right = 50.0
 margin_bottom = 650.0
 
 [node name="ColorButton22" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -735,7 +757,9 @@ margin_right = 100.0
 margin_bottom = 650.0
 
 [node name="ColorButton23" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 660.0
+margin_right = 50.0
 margin_bottom = 710.0
 
 [node name="ColorButton24" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -745,7 +769,9 @@ margin_right = 100.0
 margin_bottom = 710.0
 
 [node name="ColorButton25" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 720.0
+margin_right = 50.0
 margin_bottom = 770.0
 
 [node name="ColorButton26" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -755,7 +781,9 @@ margin_right = 100.0
 margin_bottom = 770.0
 
 [node name="ColorButton27" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 780.0
+margin_right = 50.0
 margin_bottom = 830.0
 
 [node name="ColorButton28" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -765,7 +793,9 @@ margin_right = 100.0
 margin_bottom = 830.0
 
 [node name="ColorButton29" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 840.0
+margin_right = 50.0
 margin_bottom = 890.0
 
 [node name="ColorButton30" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -775,7 +805,9 @@ margin_right = 100.0
 margin_bottom = 890.0
 
 [node name="ColorButton31" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 900.0
+margin_right = 50.0
 margin_bottom = 950.0
 
 [node name="ColorButton32" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -785,7 +817,9 @@ margin_right = 100.0
 margin_bottom = 950.0
 
 [node name="ColorButton33" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 960.0
+margin_right = 50.0
 margin_bottom = 1010.0
 
 [node name="ColorButton34" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -795,7 +829,9 @@ margin_right = 100.0
 margin_bottom = 1010.0
 
 [node name="ColorButton35" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 1020.0
+margin_right = 50.0
 margin_bottom = 1070.0
 
 [node name="ColorButton36" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -805,7 +841,9 @@ margin_right = 100.0
 margin_bottom = 1070.0
 
 [node name="ColorButton37" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 1080.0
+margin_right = 50.0
 margin_bottom = 1130.0
 
 [node name="ColorButton38" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -815,7 +853,9 @@ margin_right = 100.0
 margin_bottom = 1130.0
 
 [node name="ColorButton39" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 1140.0
+margin_right = 50.0
 margin_bottom = 1190.0
 
 [node name="ColorButton40" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -825,7 +865,9 @@ margin_right = 100.0
 margin_bottom = 1190.0
 
 [node name="ColorButton41" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 1200.0
+margin_right = 50.0
 margin_bottom = 1250.0
 
 [node name="ColorButton42" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -835,7 +877,9 @@ margin_right = 100.0
 margin_bottom = 1250.0
 
 [node name="ColorButton43" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 1260.0
+margin_right = 50.0
 margin_bottom = 1310.0
 
 [node name="ColorButton44" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -845,7 +889,9 @@ margin_right = 100.0
 margin_bottom = 1310.0
 
 [node name="ColorButton45" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 1320.0
+margin_right = 50.0
 margin_bottom = 1370.0
 
 [node name="ColorButton46" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -855,7 +901,9 @@ margin_right = 100.0
 margin_bottom = 1370.0
 
 [node name="ColorButton47" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 1380.0
+margin_right = 50.0
 margin_bottom = 1430.0
 
 [node name="ColorButton48" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -865,7 +913,9 @@ margin_right = 100.0
 margin_bottom = 1430.0
 
 [node name="ColorButton49" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
 margin_top = 1440.0
+margin_right = 50.0
 margin_bottom = 1490.0
 
 [node name="ColorButton50" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
@@ -873,6 +923,126 @@ margin_left = 50.0
 margin_top = 1440.0
 margin_right = 100.0
 margin_bottom = 1490.0
+
+[node name="ColorButton51" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1500.0
+margin_right = 50.0
+margin_bottom = 1550.0
+
+[node name="ColorButton52" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1500.0
+margin_right = 100.0
+margin_bottom = 1550.0
+
+[node name="ColorButton53" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1560.0
+margin_right = 50.0
+margin_bottom = 1610.0
+
+[node name="ColorButton54" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1560.0
+margin_right = 100.0
+margin_bottom = 1610.0
+
+[node name="ColorButton55" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1620.0
+margin_right = 50.0
+margin_bottom = 1670.0
+
+[node name="ColorButton56" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1620.0
+margin_right = 100.0
+margin_bottom = 1670.0
+
+[node name="ColorButton57" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1680.0
+margin_right = 50.0
+margin_bottom = 1730.0
+
+[node name="ColorButton58" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1680.0
+margin_right = 100.0
+margin_bottom = 1730.0
+
+[node name="ColorButton59" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1740.0
+margin_right = 50.0
+margin_bottom = 1790.0
+
+[node name="ColorButton60" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1740.0
+margin_right = 100.0
+margin_bottom = 1790.0
+
+[node name="ColorButton61" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1800.0
+margin_right = 50.0
+margin_bottom = 1850.0
+
+[node name="ColorButton62" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1800.0
+margin_right = 100.0
+margin_bottom = 1850.0
+
+[node name="ColorButton63" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1860.0
+margin_right = 50.0
+margin_bottom = 1910.0
+
+[node name="ColorButton64" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1860.0
+margin_right = 100.0
+margin_bottom = 1910.0
+
+[node name="ColorButton65" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1920.0
+margin_right = 50.0
+margin_bottom = 1970.0
+
+[node name="ColorButton66" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1920.0
+margin_right = 100.0
+margin_bottom = 1970.0
+
+[node name="ColorButton67" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 1980.0
+margin_right = 50.0
+margin_bottom = 2030.0
+
+[node name="ColorButton68" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 1980.0
+margin_right = 100.0
+margin_bottom = 2030.0
+
+[node name="ColorButton69" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 0.0
+margin_top = 2040.0
+margin_right = 50.0
+margin_bottom = 2090.0
+
+[node name="ColorButton70" parent="UI/ColorPanel/ScrollContainer/GridContainer" instance=ExtResource( 18 )]
+margin_left = 50.0
+margin_top = 2040.0
+margin_right = 100.0
+margin_bottom = 2090.0
 
 [node name="LayerPanel" type="Panel" parent="UI"]
 anchor_top = 1.0

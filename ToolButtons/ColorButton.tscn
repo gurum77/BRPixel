@@ -7,9 +7,12 @@
 [ext_resource path="res://Assets/icon_transparent_rect.png" type="Texture" id=5]
 
 [node name="ColorButton" type="TextureRect"]
-margin_right = 50.0
+margin_left = 0.629944
+margin_right = 50.6299
 margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 2 )
+expand = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -40,10 +43,14 @@ __meta__ = {
 }
 
 [node name="EmptyColorSign" type="TextureRect" parent="."]
-margin_left = 8.80003
-margin_top = 9.59463
-margin_right = 38.8
-margin_bottom = 39.5946
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -15.0
+margin_right = 15.0
+margin_bottom = 15.0
 texture = ExtResource( 4 )
 expand = true
 __meta__ = {
@@ -58,5 +65,6 @@ anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="gui_input" from="." to="." method="_on_ColorButton_gui_input"]
 [connection signal="popup_closed" from="ColorPickerButton" to="." method="_on_ColorPickerButton_popup_closed"]

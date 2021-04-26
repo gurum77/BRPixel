@@ -1,14 +1,17 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Settings/PaletteSettingPopup.gd" type="Script" id=2]
 [ext_resource path="res://Assets/icon_palette_from_image.png" type="Texture" id=3]
 [ext_resource path="res://Assets/icon_save.png" type="Texture" id=4]
-[ext_resource path="res://ToolButtons/SubmenuPopupButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Settings/PaletteSizePopup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/icon_new.png" type="Texture" id=6]
 [ext_resource path="res://Assets/icon_delete_palette.png" type="Texture" id=7]
 [ext_resource path="res://Assets/icon_palette_from_library.png" type="Texture" id=8]
 [ext_resource path="res://Settings/PaletteLibraryPopup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/icon_open.png" type="Texture" id=10]
+[ext_resource path="res://Assets/icon_palette.png" type="Texture" id=11]
+[ext_resource path="res://Assets/icon_project.png" type="Texture" id=13]
 
 [node name="PaletteSettingPopup" type="Control"]
 script = ExtResource( 2 )
@@ -75,7 +78,7 @@ margin_right = 384.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 190, 50 )
 text = "New from Project"
-icon = ExtResource( 8 )
+icon = ExtResource( 13 )
 expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -104,14 +107,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DeletePaletteButton" type="Button" parent="DraggablePopup/GridContainer"]
+[node name="LoadPaletteButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_left = 194.0
 margin_top = 116.0
 margin_right = 384.0
 margin_bottom = 166.0
 rect_min_size = Vector2( 190, 50 )
-text = "Unload Palette"
-icon = ExtResource( 7 )
+text = "Load Palette"
+icon = ExtResource( 10 )
 expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -128,40 +131,43 @@ margin_top = 170.0
 margin_right = 384.0
 margin_bottom = 174.0
 
-[node name="PaletteSizeSubmenuPopupButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 5 )]
+[node name="ClosePaletteButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 178.0
 margin_right = 190.0
 margin_bottom = 228.0
+rect_min_size = Vector2( 190, 50 )
+text = "Close Palette"
+icon = ExtResource( 7 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PaletteSizeButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_left = 194.0
+margin_top = 178.0
+margin_right = 384.0
+margin_bottom = 228.0
+rect_min_size = Vector2( 190, 50 )
 text = "Palette Size"
-
-[node name="DraggableWindow" parent="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton" index="0"]
-margin_left = 214.083
-margin_right = 531.083
-
-[node name="BigButton" type="Button" parent="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton/DraggableWindow/HBoxContainer" index="0"]
-margin_right = 50.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-
-[node name="MiddleButton" type="Button" parent="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton/DraggableWindow/HBoxContainer" index="1"]
-margin_left = 54.0
-margin_right = 104.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
-
-[node name="SmallButton" type="Button" parent="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton/DraggableWindow/HBoxContainer" index="2"]
-margin_left = 108.0
-margin_right = 158.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+icon = ExtResource( 11 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PaletteLibraryPopup" parent="." instance=ExtResource( 9 )]
-margin_left = 330.676
-margin_top = 13.1678
-margin_right = 330.676
-margin_bottom = 13.1678
+margin_left = -561.817
+margin_top = 39.1467
+margin_right = -561.817
+margin_bottom = 39.1467
+
+[node name="PaletteSizePopup" parent="." instance=ExtResource( 5 )]
 [connection signal="pressed" from="DraggablePopup/GridContainer/NewPaletteButton" to="." method="_on_NewPaletteButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/PaletteFromImageButton" to="." method="_on_PaletteFromImageButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/PaletteFromLibraryButton" to="." method="_on_PaletteFromLibraryButton_pressed"]
-
-[editable path="DraggablePopup/GridContainer/PaletteSizeSubmenuPopupButton"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/PaletteFromProjectButton" to="." method="_on_PaletteFromProjectButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/SavePaletteButton" to="." method="_on_SavePaletteButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/LoadPaletteButton" to="." method="_on_LoadPaletteButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/ClosePaletteButton" to="." method="_on_ClosePaletteButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/PaletteSizeButton" to="." method="_on_PaletteSizeButton_pressed"]
