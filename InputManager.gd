@@ -23,11 +23,11 @@ func is_action_just_pressed_rbutton(_event)->bool:
 		return true
 	return false
 	
-func is_action_just_pressed_lbutton(event)->bool:
+func is_action_just_pressed_lbutton(event, check_double_pressed=true)->bool:
 	# 두번 눌림현상 방지
-	if pressed_lbutton:
+	if check_double_pressed && pressed_lbutton:
 		return false
-		
+
 	if Input.is_action_just_pressed("left_button"):
 		pressed_lbutton = true
 		return true
@@ -36,9 +36,9 @@ func is_action_just_pressed_lbutton(event)->bool:
 		return true
 	return false
 
-func is_action_just_released_lbutton(event)->bool:
+func is_action_just_released_lbutton(event, check_double_pressed=true)->bool:
 	# 두번 뗌현상 방지
-	if !pressed_lbutton:
+	if check_double_pressed && !pressed_lbutton:
 		return false
 		
 	if Input.is_action_just_released("left_button"):

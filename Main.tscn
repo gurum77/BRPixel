@@ -274,7 +274,6 @@ margin_bottom = 266.0
 icon = ExtResource( 36 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SelectPopupButton" index="0"]
-visible = false
 margin_left = 125.445
 margin_top = 3.466
 margin_right = 442.445
@@ -303,6 +302,7 @@ margin_top = 0.0
 margin_right = 212.0
 margin_bottom = 50.0
 icon = ExtResource( 50 )
+cut = true
 
 [node name="HorFlipButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 51 )]
 margin_left = 216.0

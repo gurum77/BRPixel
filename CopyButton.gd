@@ -36,6 +36,7 @@ func _on_CopyButton_pressed():
 		Util.show_message(self, "Clipboard", "No area is selected")
 		return
 
+	
 	var image = Util.create_image_from_selected_area()
 	
 	# clip boards 노드에 추가
@@ -59,7 +60,11 @@ func _on_CopyButton_pressed():
 	get_parent().get_parent().get_parent().resize()
 	
 	# 선택했던 영역은 삭제를 한다.
-	NodeManager.get_current_layer().erase_pixels_by_rect(StaticData.selected_area)
+	if cut:
+		UndoRedoManager.prepare_undo_for_draw_on_current_layer()
+		NodeManager.get_current_layer().erase_pixels_by_rect(StaticData.selected_area)
+		UndoRedoManager.append_undo_for_draw_on_current_layer_by_Rect(StaticData.selected_area)
+		UndoRedoManager.commit_undo_for_draw_on_current_layer()
 
 # 가장 오래된 clipboard를 삭제한다.
 func remove_oldest_clipboard():

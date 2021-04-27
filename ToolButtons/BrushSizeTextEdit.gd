@@ -15,7 +15,7 @@ func _process(_delta):
 
 
 func _on_BrushSizeTextEdit_gui_input(event):
-	if InputManager.is_action_just_released_lbutton(event):
+	if InputManager.is_action_just_pressed_lbutton(event):
 		select_all()
 		hslider.visible = !hslider.visible
 

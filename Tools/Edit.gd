@@ -35,18 +35,19 @@ func _input(event):
 		
 	
 	if InputManager.is_action_just_pressed_lbutton(event):
-		# 선택영역의 바깥쪽을 클릭하면 edit는 끝이 난다.
-		#  그립 위에 있다면 끝 아님
-		if !select.is_mouse_on_grip() && !StaticData.selected_area.has_point(get_global_mouse_position()):
-			finish_edit()
 		# grip위가 아니고 선택영역의 안쪽을 클릭하면 drag가 된다.
-		elif !select.is_mouse_on_grip() && StaticData.selected_area.has_point(get_global_mouse_position()):
+		if !select.is_mouse_on_grip() && StaticData.selected_area.has_point(get_global_mouse_position()):
 			drag_position = get_global_mouse_position()
 			set_grips_drag_start_point()
-			
 	# mouse l button을 떼면.. 마무리
 	elif InputManager.is_action_just_released_lbutton(event):
-		drag_position = null
+		# 선택영역의 바깥쪽을 클릭하면 edit는 끝이 난다.
+		#  그립 위에 있다면 끝 아님
+		# 반드시 lbutton released로 해야함. pressed하고 다음 액션으로 자동으로 넘어가고, released되면서 다음 액션이 동작해버림
+		if !select.is_mouse_on_grip() && !StaticData.selected_area.has_point(get_global_mouse_position()):
+			finish_edit()
+		else:
+			drag_position = null
 			
 	# mouse이동중 drag 효과
 	if InputManager.is_action_pressed_lbutton(event) && drag_position != null:
@@ -75,6 +76,7 @@ func move_grips(move):
 
 # edit
 func finish_edit():
+	UndoRedoManager.prepare_undo_for_draw_on_current_layer()
 	# 이미지의 크기를 조정한다.
 	var resized_image = make_resized_image()
 
@@ -86,6 +88,8 @@ func finish_edit():
 	# 이미지를 preview layer에 그린다.
 	NodeManager.get_current_layer().copy_image(resized_image, NodeManager.get_current_layer().image, StaticData.selected_area.position.x, StaticData.selected_area.position.y)
 	NodeManager.get_current_layer().update_texture()
+	UndoRedoManager.append_undo_for_draw_on_current_layer_by_2Rects(origin_selected_area, StaticData.selected_area)
+	UndoRedoManager.commit_undo_for_draw_on_current_layer()
 	NodeManager.get_preview_layer().clear()
 	
 	# select 영역 편집을 마무리 한다.(선택 영역 제거를 하고 마지막 실행했던 drawing tool을 실행)
@@ -104,4 +108,3 @@ func on_grip_moved(grip):
 
 	# preview layer에 이미지를 그린다.
 	Util.draw_image_on_preview_layer(resized_image, StaticData.selected_area.position)
-

@@ -188,6 +188,16 @@ func set_origin_pixels(origin_pixels:Array):
 	image.unlock()
 	update_texture()
 	
+# pixel, color 세트를 설정
+func set_pixel_with_colors(pixel_with_colors:Dictionary):
+	image.lock()
+	for pixel in pixel_with_colors.keys():
+		if !StaticData.inside_working_area(pixel):
+			continue
+		image.set_pixelv(pixel, pixel_with_colors[pixel])
+	image.unlock()
+	update_texture()
+	
 func set_pixels_by_color(points:Array, color:Color):
 	image.lock()
 	for point in points:

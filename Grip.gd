@@ -10,7 +10,6 @@ var start_point:Vector2
 var end_point:Vector2
 var preview = true	# 미리보기 중인지?
 var locked = false	# grip이 lock이 되면 drag를 하지않는다.
-
 onready var camera = get_tree().root.get_node_or_null("Main/Camera")
 
 func get_radius():
@@ -56,7 +55,6 @@ func _draw():
 func is_mouse_entered()->bool:
 	if preview:
 		return false
-		
 	var mouse_position = get_local_mouse_position()
 	var center_position = get_local_center_position()
 	if mouse_position.distance_to(center_position) < get_radius():
@@ -88,17 +86,19 @@ func _input(event):
 			end_point = get_global_mouse_position_as_int()
 			drag()
 		
-	if InputManager.is_action_just_pressed_lbutton(event):
+	if InputManager.is_action_just_pressed_lbutton(event, false):
 		if is_mouse_entered():
 			start_point = get_global_mouse_position_as_int()
 			update()
 			pressed = true
 			StaticData.dragging_grip = true
-	elif InputManager.is_action_just_released_lbutton(event):
+	elif InputManager.is_action_just_released_lbutton(event, false):
 		if pressed:
 			end_point = get_global_mouse_position_as_int()
 			pressed = false		
 			StaticData.dragging_grip = false
+	var v
+	v = 1
 	
 		
 func drag():
@@ -106,4 +106,5 @@ func drag():
 	update()
 	emit_signal("moved")
 	pass
+
 

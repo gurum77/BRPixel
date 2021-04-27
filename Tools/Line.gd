@@ -30,6 +30,7 @@ func _input(_event):
 			
 		var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
 		NodeManager.get_current_layer().set_pixels_by_current_color(points)
+		UndoRedoManager.append_undo_for_draw_on_current_layer(points)
 		UndoRedoManager.commit_undo_for_draw_on_current_layer()
 		StaticData.preview_layer.clear(true)
 		

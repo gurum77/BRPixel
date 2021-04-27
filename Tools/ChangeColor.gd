@@ -13,7 +13,10 @@ func _input(_event):
 	# image 사본을 복사한다.
 	var pos = NodeManager.get_current_layer().get_local_mouse_position()
 	var points = get_same_color_pixels(pos.x, pos.y)
+	UndoRedoManager.prepare_undo_for_draw_on_current_layer()
 	NodeManager.get_current_layer().set_pixels_by_current_color(points)
+	UndoRedoManager.append_undo_for_draw_on_current_layer(points)
+	UndoRedoManager.commit_undo_for_draw_on_current_layer()
 	
 func get_same_color_pixels(x:int, y:int)->Array:
 	var pixels:Array = []

@@ -17,6 +17,7 @@ func _input(_event):
 	var points = get_neighbouring_pixels(pos.x, pos.y)
 	UndoRedoManager.prepare_undo_for_draw_on_current_layer()
 	NodeManager.get_current_layer().set_pixels_by_current_color(points)
+	UndoRedoManager.append_undo_for_draw_on_current_layer(points)
 	UndoRedoManager.commit_undo_for_draw_on_current_layer()
 
 	

@@ -30,6 +30,7 @@ func _input(_event):
 		var points = GeometryMaker.get_pixels_in_circle(start_point, end_point, fill, StaticData.pencil_thickness)
 		NodeManager.get_current_layer().set_pixels_by_current_color(points)
 		StaticData.preview_layer.clear(true)
+		UndoRedoManager.append_undo_for_draw_on_current_layer(points)
 		UndoRedoManager.commit_undo_for_draw_on_current_layer()
 		
 	if InputManager.is_action_pressed_lbutton(_event):

@@ -8,6 +8,20 @@ func StringToColor(string:String)->Color:
 	var color = Color(strings[0].to_float(), strings[1].to_float(), strings[2].to_float(), strings[3].to_float())
 	return color
 	
+# image에서 color와 pixel을 묶어서 리턴
+func get_pixel_with_colors(image:Image, pixels:Array):
+	if image == null || pixels == null:
+		return
+		
+	var pixel_with_colors:Dictionary
+	image.lock()
+	for pixel in pixels:
+		pixel_with_colors[pixel] = image.get_pixelv(pixel)
+	image.unlock()
+	return pixel_with_colors
+		
+		
+	
 # image를 복사한다.(offset 값과 함께)
 # 잘려 나갈 수 있다.
 func copy_image(src_image:Image, target_image:Image, offset_x:int, offset_y:int):

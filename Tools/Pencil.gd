@@ -49,6 +49,7 @@ func _input(_event):
 		var points = GeometryMaker.get_pixels_in_line(start_point, start_point, StaticData.pencil_thickness)
 		points = get_new_points(points)
 		set_pixels(points)
+		UndoRedoManager.append_undo_for_draw_on_current_layer(points)
 	# 마우스를 떼면 undo commit
 	elif InputManager.is_action_just_released_lbutton(_event):
 		released_lbutton_count += 1
@@ -63,6 +64,7 @@ func _input(_event):
 			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
 			points = get_new_points(points)
 			set_pixels(points)
+			UndoRedoManager.append_undo_for_draw_on_current_layer(points)
 			start_point = end_point
 	
 func _process(delta):
