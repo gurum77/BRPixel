@@ -97,9 +97,6 @@ func _input(event):
 			end_point = get_global_mouse_position_as_int()
 			pressed = false		
 			StaticData.dragging_grip = false
-	var v
-	v = 1
-	
 		
 func drag():
 	rect_position = end_point

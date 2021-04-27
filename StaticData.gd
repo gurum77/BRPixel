@@ -92,6 +92,10 @@ func enabled_selected_area()->bool:
 # selected_area가 있다면 selected_area 안쪽만 유효함
 # selected_area가 없다면 canvas 크기 안쪽이면 유효함
 func inside_working_area(point)->bool:
+	if point.x < 0 || point.y < 0:
+		return false
+	if point.x >= StaticData.canvas_width || point.y >= StaticData.canvas_height:
+		return false
 	if !enabled_selected_area():
 		return true
 	return selected_area.has_point(point)

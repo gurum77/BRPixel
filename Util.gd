@@ -9,16 +9,18 @@ func StringToColor(string:String)->Color:
 	return color
 	
 # image에서 color와 pixel을 묶어서 리턴
-func get_pixel_with_colors(image:Image, pixels:Array):
+func get_pixel_with_colors(image:Image, pixels:Array)->Dictionary:
+	var _pixel_with_colors:Dictionary
 	if image == null || pixels == null:
-		return
+		return _pixel_with_colors
 		
-	var pixel_with_colors:Dictionary
 	image.lock()
 	for pixel in pixels:
-		pixel_with_colors[pixel] = image.get_pixelv(pixel)
+		if !StaticData.inside_working_area(pixel):
+			continue
+		_pixel_with_colors[pixel] = image.get_pixelv(pixel)
 	image.unlock()
-	return pixel_with_colors
+	return _pixel_with_colors
 		
 		
 	
@@ -149,7 +151,7 @@ func load_image_file(parent:Node, path:String)->Image:
 # 그립을 만들고 edit 모드를 실행한다.
 func run_edit_mode(pos:Vector2, width, height, use_preview_layer=true):
 	# select 기능 실행 되어 있지 않다면 실행을 한다.
-	var select:Select = NodeManager.get_tools().run_select_tool()
+	var select:Select = NodeManager.get_tools().run_select_tool(use_preview_layer)
 	
 	# 이미지크기 만큼의 grip을 만든다.
 	# grip을 만들면서 select area가 설정된

@@ -67,11 +67,13 @@ func find_edit_tool()->Node:
 	
 # select 기능을 실행한다.
 # 이미 실행 되어 있다면 실행하지 않는다.
-func run_select_tool()->Select:
+# use_preview_layer : true - select가 실행될때 preview layer를 초기화 하지 않도록 한다.
+func run_select_tool(use_preview_layer)->Select:
 	var select = find_select_tool()
 	if select != null:
 		return select
 	select = select_tool.instance()
+	select.use_preview_layer = use_preview_layer
 	NodeManager.get_tools().add_child(select)
 	return select
 	

@@ -9,11 +9,12 @@ var grips = []
 var color = Color.yellowgreen
 var boundary_color = Color.yellowgreen
 var edit_mode = false
+var use_preview_layer = false
 
 onready var grip_parent = self
 
 func _ready():
-	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.select)
+	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.select, !use_preview_layer)
 	color.a = 0.3
 	boundary_color.a = 1.0
 	StaticData.dragging_grip = false

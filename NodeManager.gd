@@ -18,6 +18,15 @@ var message_box:MessageBox = null
 var debug_label:Label = null
 
 
+func get_frame(frame_index:int)->Frame:
+	return NodeManager.get_frames().get_frame(frame_index)
+	
+func get_layer(frame_index:int, layer_index:int)->Layer:
+	var frame = NodeManager.get_frames().get_frame(frame_index)
+	if frame == null:
+		return null
+	return frame.get_layers().get_layer(layer_index)
+	
 func get_debug_label()->Label:
 	if debug_label == null:
 		debug_label = get_tree().root.get_node("Main/UI/DebugLabel")

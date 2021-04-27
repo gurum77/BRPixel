@@ -7,9 +7,11 @@ func _ready():
 	rect_position = Vector2(0, 0)
 
 # 이름이 없으면 자동으로 변경되는 것을 그냥 사용한다.
-func add_layer(name=null)->Layer:
+func add_layer(name=null, index=-1)->Layer:
 	var new_layer = layer_node.instance();
 	add_child(new_layer)
+	if index != -1:
+		move_child(new_layer, index)
 	if name != null:
 		new_layer.name = name
 	return new_layer

@@ -67,7 +67,7 @@ func _input(_event):
 			UndoRedoManager.append_undo_for_draw_on_current_layer(points)
 			start_point = end_point
 	
-func _process(delta):
+func _process(_delta):
 	NodeManager.get_debug_label().text = str(released_lbutton_count)
 	
 # pixel perfect가 활성화되었는지?
