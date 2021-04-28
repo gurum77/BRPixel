@@ -168,6 +168,21 @@ _global_script_classes=[ {
 "class": "Tools",
 "language": "GDScript",
 "path": "res://Tools/Tools.gd"
+}, {
+"base": "Node",
+"class": "UndoManager_AddLayer",
+"language": "GDScript",
+"path": "res://Tools/UndoManager_AddLayer.gd"
+}, {
+"base": "Node",
+"class": "UndoManager_DeleteLayer",
+"language": "GDScript",
+"path": "res://Tools/UndoManager_DeleteLayer.gd"
+}, {
+"base": "Node",
+"class": "UndoManager_DrawPixelsOnCurrentLayer",
+"language": "GDScript",
+"path": "res://Tools/UndoManager_DrawPixelsOnCurrentLayer.gd"
 } ]
 _global_script_class_icons={
 "AddFrameButtonOnFramePanel": "",
@@ -201,7 +216,10 @@ _global_script_class_icons={
 "Select": "",
 "SubmenuPopupButton": "",
 "TileModeManager": "",
-"Tools": ""
+"Tools": "",
+"UndoManager_AddLayer": "",
+"UndoManager_DeleteLayer": "",
+"UndoManager_DrawPixelsOnCurrentLayer": ""
 }
 
 [application]
@@ -219,7 +237,7 @@ InputManager="*res://InputManager.gd"
 Define="*res://Define.gd"
 Util="*res://Util.gd"
 ImageHelper="*res://ImageHelper.gd"
-UndoRedoManager="*res://Tools/UndoRedoManager.gd"
+UndoManager="*res://Tools/UndoManager.gd"
 
 [display]
 

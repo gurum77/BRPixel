@@ -76,7 +76,7 @@ func move_grips(move):
 
 # edit
 func finish_edit():
-	UndoRedoManager.prepare_undo_for_draw_on_current_layer()
+	UndoManager.prepare_undo_for_draw_on_current_layer()
 	# 이미지의 크기를 조정한다.
 	var resized_image = make_resized_image()
 
@@ -88,8 +88,8 @@ func finish_edit():
 	# 이미지를 preview layer에 그린다.
 	NodeManager.get_current_layer().copy_image(resized_image, NodeManager.get_current_layer().image, StaticData.selected_area.position.x, StaticData.selected_area.position.y)
 	NodeManager.get_current_layer().update_texture()
-	UndoRedoManager.append_undo_for_draw_on_current_layer_by_2Rects(origin_selected_area, StaticData.selected_area)
-	UndoRedoManager.commit_undo_for_draw_on_current_layer()
+	UndoManager.append_undo_for_draw_on_current_layer_by_2Rects(origin_selected_area, StaticData.selected_area)
+	UndoManager.commit_undo_for_draw_on_current_layer()
 	NodeManager.get_preview_layer().clear()
 	
 	# select 영역 편집을 마무리 한다.(선택 영역 제거를 하고 마지막 실행했던 drawing tool을 실행)

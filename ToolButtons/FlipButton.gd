@@ -19,11 +19,11 @@ func _on_FlipButton_pressed():
 		image.flip_y()
 	
 	# 다시 붙여 넣는다.
-	UndoRedoManager.prepare_undo_for_draw_on_current_layer()
+	UndoManager.prepare_undo_for_draw_on_current_layer()
 	NodeManager.get_current_layer().erase_pixels_by_rect(StaticData.selected_area)
 	NodeManager.get_current_layer().copy_image(image, NodeManager.get_current_layer().image, StaticData.selected_area.position.x, StaticData.selected_area.position.y)
 	NodeManager.get_current_layer().update_texture()
-	UndoRedoManager.append_undo_for_draw_on_current_layer_by_Rect(StaticData.selected_area)
-	UndoRedoManager.commit_undo_for_draw_on_current_layer()
+	UndoManager.append_undo_for_draw_on_current_layer_by_Rect(StaticData.selected_area)
+	UndoManager.commit_undo_for_draw_on_current_layer()
 	
 	

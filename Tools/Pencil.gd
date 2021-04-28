@@ -43,17 +43,17 @@ func _input(_event):
 		
 	# 처음 클릭하면 첫번째 점을 보관한다.
 	if InputManager.is_action_just_pressed_lbutton(_event):
-		UndoRedoManager.prepare_undo_for_draw_on_current_layer()
+		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
 		pixel_perfect_drawer.reset()
 		start_point = get_local_mouse_position()
 		var points = GeometryMaker.get_pixels_in_line(start_point, start_point, StaticData.pencil_thickness)
 		points = get_new_points(points)
 		set_pixels(points)
-		UndoRedoManager.append_undo_for_draw_on_current_layer(points)
+		UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(points)
 	# 마우스를 떼면 undo commit
 	elif InputManager.is_action_just_released_lbutton(_event):
 		released_lbutton_count += 1
-		UndoRedoManager.commit_undo_for_draw_on_current_layer()
+		UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
 		drawn_points.clear()
 		
 	# 누르고 있는 동안 계속 그림
@@ -64,7 +64,7 @@ func _input(_event):
 			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
 			points = get_new_points(points)
 			set_pixels(points)
-			UndoRedoManager.append_undo_for_draw_on_current_layer(points)
+			UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(points)
 			start_point = end_point
 	
 func _process(_delta):

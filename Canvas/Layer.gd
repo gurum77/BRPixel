@@ -13,20 +13,22 @@ enum ResizeDir{left_top, top, right_top, left, center, right, left_bottom, botto
 func _ready():
 	# 0,0으로 고정한다.
 	rect_position = Vector2(0, 0)
-	
 	texture = ImageTexture.new()
 	init_size()
-	
 	if !minimap_layer && !tile_layer: 
 		if preview_layer:
 			StaticData.preview_layer = self
 
+func copy(src_layer:Layer):
+	name = src_layer.name
+	init_size(src_layer.image.get_width(), src_layer.image.get_height())
+	visible = src_layer.visible
+	Util.copy_image(src_layer.image, image, 0, 0)
+	
 # 복제
 func clone()->Layer:
-	var layer = duplicate()
-	layer.name = name
-	layer.init_size(image.get_width(), image.get_height())
-	Util.copy_image(image, layer.image, 0, 0)
+	var layer = NodeManager.get_current_layers().layer_node.instance()
+	layer.copy(self)
 	return layer
 	
 func set_save_dic(dic:Dictionary, width=0, height=0):
@@ -146,6 +148,7 @@ func update_texture():
 		texture = ImageTexture.new()
 	texture.create_from_image(image)
 	texture.flags = 0	# filter 등 모든 롭션을 끔(2d pixel 스타일로 그려야 함)
+	
 	
 func clear(var update=false):
 	image.fill(Color.transparent)

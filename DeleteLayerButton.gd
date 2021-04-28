@@ -7,5 +7,5 @@ func _on_DeleteLayerButton_pressed():
 	if NodeManager.get_current_layers().get_child_count() == 1:
 		return
 
-	UndoRedoManager.prepare_undo_for_delete_layer()		
-	UndoRedoManager.commit_undo_for_delete_layer(StaticData.current_frame_index, StaticData.current_layer_index)
+	UndoManager.delete_layer.prepare_undo_for_delete_layer()		
+	UndoManager.delete_layer.commit_undo_for_delete_layer(StaticData.current_frame_index, StaticData.current_layer_index)

@@ -6,6 +6,8 @@ circle, select, edit, pick_color_from_canvas, brighter, darker}
 enum SymmetryType{no, horizontal, vertical}
 
 enum BrushType{rectangle, circle}
+var undo_redo:UndoRedo = UndoRedo.new()
+var undo_count = 0	# 임시로 사용하는 디버그용 데이타
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_frame_index = 0
