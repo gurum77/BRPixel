@@ -34,14 +34,14 @@ __meta__ = {
 
 [node name="TransparencyTitle" type="Label" parent="DraggablePopup/GridContainerTop"]
 margin_right = 150.0
-margin_bottom = 14.0
+margin_bottom = 16.0
 text = "Transparency"
 align = 1
 
 [node name="TransparencyHSlider" type="HSlider" parent="DraggablePopup/GridContainerTop"]
-margin_top = 18.0
+margin_top = 20.0
 margin_right = 150.0
-margin_bottom = 34.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 150, 16 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -133,6 +133,7 @@ margin_right = 324.0
 margin_bottom = 156.0
 text = "Merge with next"
 icon = ExtResource( 10 )
+
 [connection signal="value_changed" from="DraggablePopup/GridContainerTop/TransparencyHSlider" to="." method="_on_TransparencyHSlider_value_changed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/DuplicateButton" to="." method="_on_DuplicateLayerButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]

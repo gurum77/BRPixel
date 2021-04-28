@@ -73,7 +73,7 @@ func commit_undo_for_delete_layer(delete_frame_index:int, delete_layer_index:int
 	if layer == null:
 		return
 		
-	origin_layer = layer.duplicate()
+	origin_layer = layer.clone()
 	
 	undo_redo.create_action("delete_layer")
 	undo_redo.add_undo_method(self, "undo_delete_layer", origin_layer, origin_current_frame_index, origin_current_layer_index, delete_frame_index, delete_layer_index)
@@ -82,10 +82,12 @@ func commit_undo_for_delete_layer(delete_frame_index:int, delete_layer_index:int
 	undo_count += 1
 
 func undo_delete_layer(origin_layer:Layer, origin_current_frame_index:int, origin_current_layer_index:int, delete_frame_index:int, delete_layer_index:int):
-	var layer = NodeManager.get_frames().get_frame(delete_frame_index).get_layers().add_layer(origin_layer.name, delete_layer_index)
+	var frame = NodeManager.get_frames().get_frame(delete_frame_index)
+	var layer = frame.get_layers().add_layer_by_layer(origin_layer, delete_layer_index)
 	if layer == null:
 		return
-	NodeManager.get_layer_panel().update_layer_buttons()
+	layer.update_texture()
+	NodeManager.get_layer_panel().regen_layer_buttons()
 	
 func do_delete_layer(delete_frame_index:int, delete_layer_index:int):
 	# 현재 layer를 지우고 다음 layer를 현재 layer로 설정한다.

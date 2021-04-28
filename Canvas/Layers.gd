@@ -6,15 +6,19 @@ func _ready():
 	# 0,0으로 고정한다.
 	rect_position = Vector2(0, 0)
 
-# 이름이 없으면 자동으로 변경되는 것을 그냥 사용한다.
-func add_layer(name=null, index=-1)->Layer:
-	var new_layer = layer_node.instance();
+# new_layer를 추가한다.
+func add_layer_by_layer(new_layer:Layer, index=-1)->Layer:
 	add_child(new_layer)
 	if index != -1:
 		move_child(new_layer, index)
 	if name != null:
 		new_layer.name = name
 	return new_layer
+	
+# 이름이 없으면 자동으로 변경되는 것을 그냥 사용한다.
+func add_layer(name=null, index=-1)->Layer:
+	var new_layer = layer_node.instance();
+	return add_layer_by_layer(new_layer, index)
 	
 # 일반 레이어를 모두 가져온다.
 func get_normal_layers()->Array:

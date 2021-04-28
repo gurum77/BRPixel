@@ -86,13 +86,13 @@ func _input(event):
 			end_point = get_global_mouse_position_as_int()
 			drag()
 		
-	if InputManager.is_action_just_pressed_lbutton(event, false):
+	if InputManager.is_action_just_pressed_lbutton(event):
 		if is_mouse_entered():
 			start_point = get_global_mouse_position_as_int()
 			update()
 			pressed = true
 			StaticData.dragging_grip = true
-	elif InputManager.is_action_just_released_lbutton(event, false):
+	elif InputManager.is_action_just_released_lbutton(event):
 		if pressed:
 			end_point = get_global_mouse_position_as_int()
 			pressed = false		

@@ -7,6 +7,7 @@ export (bool) var tile_layer = false
 var unused:bool = false	# 사용 되지 않음.
 var image:Image
 enum ResizeDir{left_top, top, right_top, left, center, right, left_bottom, bottom, right_bottom}
+
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,13 @@ func _ready():
 		if preview_layer:
 			StaticData.preview_layer = self
 
+# 복제
+func clone()->Layer:
+	var layer = duplicate()
+	layer.name = name
+	layer.init_size(image.get_width(), image.get_height())
+	Util.copy_image(image, layer.image, 0, 0)
+	return layer
 	
 func set_save_dic(dic:Dictionary, width=0, height=0):
 	# image를 canvas 크기에 맞게 조절

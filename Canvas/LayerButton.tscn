@@ -59,6 +59,7 @@ margin_left = 23.3082
 margin_top = -315.72
 margin_right = 23.3082
 margin_bottom = -315.72
+
 [connection signal="gui_input" from="." to="." method="_on_LayerButton_gui_input"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="SettingButton" to="." method="_on_SettingButton_pressed"]
