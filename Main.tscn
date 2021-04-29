@@ -563,10 +563,10 @@ expand_icon = true
 script = ExtResource( 80 )
 
 [node name="PaletteSettingPopup" parent="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" instance=ExtResource( 79 )]
-margin_left = 177.289
-margin_top = 4.00905
-margin_right = 177.289
-margin_bottom = 4.00905
+margin_left = 167.289
+margin_top = 2.00905
+margin_right = 167.289
+margin_bottom = 2.00905
 
 [node name="NumLabel" type="Label" parent="UI/ColorPanel/VBoxContainer/HBoxContainer"]
 margin_left = 42.0

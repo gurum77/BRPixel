@@ -216,6 +216,7 @@ text = "0 file(s) selected"
 
 [node name="MessageBox" parent="." instance=ExtResource( 6 )]
 visible = false
+
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/AddFolderButton" to="." method="_on_AddFolderButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup/HBoxContainer/NewFolderOkButton" to="." method="_on_NewFolderOkButton_pressed"]
 [connection signal="text_changed" from="DraggableWindow/ColorRect/HBoxContainer2/FileNameLineEdit" to="." method="_on_FileNameLineEdit_text_changed"]

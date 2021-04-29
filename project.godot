@@ -170,16 +170,6 @@ _global_script_classes=[ {
 "path": "res://Tools/Tools.gd"
 }, {
 "base": "Node",
-"class": "UndoManager_AddLayer",
-"language": "GDScript",
-"path": "res://Tools/UndoManager_AddLayer.gd"
-}, {
-"base": "Node",
-"class": "UndoManager_DeleteLayer",
-"language": "GDScript",
-"path": "res://Tools/UndoManager_DeleteLayer.gd"
-}, {
-"base": "Node",
 "class": "UndoManager_DrawPixelsOnCurrentLayer",
 "language": "GDScript",
 "path": "res://Tools/UndoManager_DrawPixelsOnCurrentLayer.gd"
@@ -217,8 +207,6 @@ _global_script_class_icons={
 "SubmenuPopupButton": "",
 "TileModeManager": "",
 "Tools": "",
-"UndoManager_AddLayer": "",
-"UndoManager_DeleteLayer": "",
 "UndoManager_DrawPixelsOnCurrentLayer": ""
 }
 

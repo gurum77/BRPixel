@@ -23,7 +23,7 @@ __meta__ = {
 self_modulate = Color( 0.388235, 0.392157, 0.45098, 1 )
 margin_left = 0.0
 margin_right = 300.0
-margin_bottom = 60.0
+margin_bottom = 71.0
 rect_min_size = Vector2( 0, 60 )
 hide_close_button = true
 
@@ -33,22 +33,22 @@ anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
-margin_bottom = -10.0
+margin_bottom = -29.0
+custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MessageLabel" type="Label" parent="DraggableWindow/VBoxContainer"]
-margin_top = -1.0
 margin_right = 280.0
-margin_bottom = 13.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 60, 14 )
-text = "Message"
+text = "Messagedf"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DraggableWindow/VBoxContainer"]
-margin_top = 18.0
+margin_top = 26.0
 margin_right = 280.0
-margin_bottom = 48.0
+margin_bottom = 56.0
 rect_min_size = Vector2( 0, 20 )
 alignment = 1
 
@@ -75,6 +75,7 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
 texture_normal = ExtResource( 3 )
 expand = true
+
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_YesButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/HBoxContainer/OkButton" to="." method="_on_OkButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_NoButton_pressed"]

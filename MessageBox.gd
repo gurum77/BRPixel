@@ -31,9 +31,13 @@ func popup_centered():
 	$BackgroundPanel.rect_size.y = height
 	
 	update_controls()
+	
 	show()
 	$DraggableWindow.popup_centered()
-
+	
+	# 크기 조절
+	$DraggableWindow.rect_size.x = $DraggableWindow/VBoxContainer.rect_size.x + 20
+	$DraggableWindow.rect_size.y = $DraggableWindow/VBoxContainer.rect_size.y + 20
 
 func _on_YesButton_pressed():
 	result = Result.yes

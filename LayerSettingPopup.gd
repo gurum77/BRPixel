@@ -1,7 +1,7 @@
 extends Control
 
 var selected_layer:Layer
-
+var message_box:MessageBox
 func hide():
 	$DraggablePopup.hide()
 	
@@ -36,6 +36,18 @@ func _on_DeleteButton_pressed():
 	if NodeManager.get_current_layers().get_child_count() == 1:
 		return
 		
+	hide()
+	message_box = Util.show_yesno_message_box(tr("Do you really delete the selected layer.") + "\n" + tr("This operation cannot be undone."))
+	message_box.connect("hide", self, "on_DeleteLayerMessageBox_hide")
+
+func on_DeleteLayerMessageBox_hide():
+	popup_centered()
+	message_box.disconnect("hide", self, "on_DeleteLayerMessageBox_hide")
+	if message_box.result != MessageBox.Result.yes:
+		return
+	delete_selected_layer()
+	
+func delete_selected_layer():
 	# 현재 layer를 지우고 다음 layer를 현재 layer로 설정한다.
 	NodeManager.get_current_layers().remove_layer(selected_layer.get_index())
 	
@@ -82,27 +94,57 @@ func _on_TransparencyHSlider_value_changed(_value):
 # 이전 layer와 합치기
 func _on_MergeWithPrevButton_pressed():
 	# 이전 layer
-	var prev_layer:Layer = NodeManager.get_current_layers().get_layer(NodeManager.get_current_layer().get_index()-1)
+	var prev_layer:Layer = NodeManager.get_current_layers().get_layer(selected_layer.get_index()-1)
 	if prev_layer == null:
-		hide()
+		return
+		
+	hide()
+	message_box = Util.show_yesno_message_box(tr("Do you really merge with previous layer.") + "\n" + tr("This operation cannot be undone."))
+	message_box.connect("hide", self, "on_MergeWithPreviousLayer_hide")
+	
+func on_MergeWithPreviousLayer_hide():		
+	popup_centered()
+	message_box.disconnect("hide", self, "on_MergeWithPreviousLayer_hide")	
+	if message_box.result != MessageBox.Result.yes:
+		return
+		
+	# 이전 layer
+	var prev_layer:Layer = NodeManager.get_current_layers().get_layer(selected_layer.get_index()-1)
+	if prev_layer == null:
 		return
 		
 	# 이미지를 이전 layer로 복사
-	prev_layer.copy_image(NodeManager.get_current_layer().image, prev_layer.image, 0, 0)
+	prev_layer.copy_image(selected_layer.image, prev_layer.image, 0, 0)
+	prev_layer.update_texture()
 	
 	# 현재 layer 삭제
-	_on_DeleteButton_pressed()
+	delete_selected_layer()
 	
 	hide()
 		
 
-# 이후 layer와 합치기
+# 모든 layer 합치기
 func _on_MergeAllButton_pressed():
 	var layers = NodeManager.get_current_layers().get_normal_layers()
 	if layers == null || layers.size() < 2:
 		hide()
 		return
 	
+	hide()
+	message_box = Util.show_yesno_message_box(tr("Do you really merge all layers.") + "\n" + tr("This operation cannot be undone."))
+	message_box.connect("hide", self, "on_MergeAllLayers_hide")
+
+func on_MergeAllLayers_hide():
+	popup_centered()
+	message_box.disconnect("hide", self, "on_MergeAllLayers_hide")
+	if message_box.result != MessageBox.Result.yes:
+		return
+		
+	var layers = NodeManager.get_current_layers().get_normal_layers()
+	if layers == null || layers.size() < 2:
+		hide()
+		return
+		
 	# 모두 첫번째 layer로 합친다.
 	var first_layer = layers[0]
 	for layer in layers:
@@ -121,15 +163,31 @@ func _on_MergeAllButton_pressed():
 
 func _on_MergeWithNextButton_pressed():
 	# 다음 layer
-	var next_layer:Layer = NodeManager.get_current_layers().get_layer(NodeManager.get_current_layer().get_index()+1)
+	var next_layer:Layer = NodeManager.get_current_layers().get_layer(selected_layer.get_index()+1)
+	if next_layer == null:
+		hide()
+		return
+		
+	hide()
+	message_box = Util.show_yesno_message_box(tr("Do you really merge with next layer.") + "\n" + tr("This operation cannot be undone."))
+	message_box.connect("hide", self, "on_MergeWithNextLayer_hide")
+	
+func on_MergeWithNextLayer_hide():
+	popup_centered()
+	message_box.disconnect("hide", self, "on_MergeWithNextLayer_hide")
+	if message_box.result != MessageBox.Result.yes:
+		return
+		
+	# 다음 layer
+	var next_layer:Layer = NodeManager.get_current_layers().get_layer(selected_layer.get_index()+1)
 	if next_layer == null:
 		hide()
 		return
 		
 	# 이미지를 다음 layer로 복사
-	next_layer.copy_image(NodeManager.get_current_layer().image, next_layer.image, 0, 0)
-	
+	next_layer.copy_image(selected_layer.image, next_layer.image, 0, 0)
+	next_layer.update_texture()
 	# 현재 layer 삭제
-	_on_DeleteButton_pressed()
+	delete_selected_layer()
 	
 	hide()

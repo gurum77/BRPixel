@@ -59,6 +59,15 @@ func create_image(width, height)->Image:
 	tmp_image.create(width, height, false, Image.FORMAT_RGBA8)
 	return tmp_image
 
+# yes no message 를 화면에 표시한다.
+func show_yesno_message_box(message)->MessageBox:
+	NodeManager.get_message_box().enabled_ok_button = false
+	NodeManager.get_message_box().enabled_yes_button = true
+	NodeManager.get_message_box().enabled_no_button = true
+	NodeManager.get_message_box().message = message
+	NodeManager.get_message_box().popup_centered()
+	return NodeManager.get_message_box()
+	
 # error message를 화면에 표시한다.
 func show_error_message(parent, _err):
 	var message = "failed"

@@ -36,4 +36,8 @@ Save Palette,Save Palette,팔레트 저장
 Unload Palette,Unload Palette,팔레트 언로드
 Palette Size,Palette Size,팔레트 크기
 Preview,Preview,미리보기
-
+Do you really delete the current layer?,Do you really delete the current layer?,현재 레이어를 정말 삭제합니까?
+This operation cannot be undone.,This operation cannot be undone.,이 작업은 되돌릴 수 없습니다.
+Do you really delete the selected layer.,Do you really delete the selected layer.,선택한 레이어를 정말 삭제합니까?
+Do you really merge with previous layer.,Do you really merge with previous layer.,이전 레이어와 정말 합칩니까?
+Do you really merge all layers.,Do you really merge all layers.,모든 레이어를 정말 합칩니까?
