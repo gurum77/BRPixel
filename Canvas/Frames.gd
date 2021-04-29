@@ -6,6 +6,16 @@ var frame_node = preload("res://Canvas/Frame.tscn")
 func get_frame_count()->int:
 	return get_child_count()
 	
+# child의 인덱스를 리턴
+func get_child_index(child)->int:
+	var nodes = get_children()
+	var idx = 0
+	for node in nodes:
+		if node == child:
+			return idx
+		idx += 1
+	return -1
+		
 # frame을 리턴하는데, 없으면 만들어서 리턴한다.
 func get_frame(index, create_if_none=false)->Frame:
 	var nodes = get_children()
@@ -53,3 +63,15 @@ func clear_frames():
 	for node in nodes:
 		node.unused = true
 		node.call_deferred("queue_free")
+
+func remove_frame(index:int):
+	var frame = get_frame(index)	
+	if frame == null:
+		return
+	remove_child(frame)
+	frame.queue_free()
+	
+	# current_frame를 갱신
+	if index >= get_child_count():
+		index -= 1
+	StaticData.current_frame_index = index

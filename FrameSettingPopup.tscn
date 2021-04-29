@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/icon_duplicate_layer.png" type="Texture" id=2]
+[ext_resource path="res://FrameSettingPopup.gd" type="Script" id=3]
+[ext_resource path="res://Assets/icon_delete_layer_small.png" type="Texture" id=4]
+[ext_resource path="res://Assets/icon_move_up.png" type="Texture" id=5]
+[ext_resource path="res://Assets/icon_move_down.png" type="Texture" id=6]
+
+[node name="FrameSettingPopup" type="Control"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DraggablePopup" parent="." instance=ExtResource( 1 )]
+visible = true
+margin_right = 353.0
+margin_bottom = 250.0
+
+[node name="GridContainerTop" type="GridContainer" parent="DraggablePopup"]
+anchor_right = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = 60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TransparencyTitle" type="Label" parent="DraggablePopup/GridContainerTop"]
+margin_right = 150.0
+margin_bottom = 16.0
+text = "Transparency"
+align = 1
+
+[node name="TransparencyHSlider" type="HSlider" parent="DraggablePopup/GridContainerTop"]
+margin_top = 20.0
+margin_right = 150.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 150, 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="TextEdit" parent="DraggablePopup/GridContainerTop/TransparencyHSlider"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 10.7968
+margin_top = -10.8724
+margin_right = 50.7968
+margin_bottom = 11.1276
+text = "100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="DraggablePopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 68.0
+margin_right = -9.00003
+margin_bottom = -10.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DuplicateButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_right = 160.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 160, 0 )
+text = "Duplicate"
+icon = ExtResource( 2 )
+
+[node name="DeleteButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_left = 164.0
+margin_right = 324.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 160, 0 )
+text = "Delete"
+icon = ExtResource( 4 )
+
+[node name="MoveDownButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_top = 40.0
+margin_right = 160.0
+margin_bottom = 76.0
+text = "To down"
+icon = ExtResource( 6 )
+
+[node name="MoveUpButton" type="Button" parent="DraggablePopup/GridContainer"]
+margin_left = 164.0
+margin_top = 40.0
+margin_right = 324.0
+margin_bottom = 76.0
+text = "To up"
+icon = ExtResource( 5 )
+
+[connection signal="value_changed" from="DraggablePopup/GridContainerTop/TransparencyHSlider" to="." method="_on_TransparencyHSlider_value_changed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/DuplicateButton" to="." method="_on_DuplicateButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/MoveDownButton" to="." method="_on_MoveDownButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/MoveUpButton" to="." method="_on_MoveUpButton_pressed"]

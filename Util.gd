@@ -9,14 +9,20 @@ func StringToColor(string:String)->Color:
 	return color
 	
 # image에서 color와 pixel을 묶어서 리턴
-func get_pixel_with_colors(image:Image, pixels:Array)->Dictionary:
+func get_pixel_with_colors(image:Image, pixels:Array, only_inside_working_area:bool)->Dictionary:
 	var _pixel_with_colors:Dictionary
 	if image == null || pixels == null:
 		return _pixel_with_colors
 		
 	image.lock()
+	var width = image.get_width()
+	var height = image.get_height()
 	for pixel in pixels:
-		if !StaticData.inside_working_area(pixel):
+		if pixel.x < 0 || pixel.x >= width:
+			continue
+		if pixel.y < 0 || pixel.y >= height:
+			continue
+		if only_inside_working_area && !StaticData.inside_working_area(pixel):
 			continue
 		_pixel_with_colors[pixel] = image.get_pixelv(pixel)
 	image.unlock()

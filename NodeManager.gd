@@ -17,7 +17,15 @@ var preload_message_popup = preload("res://MessagePopup.tscn")
 var message_box:MessageBox = null
 var debug_label:Label = null
 
-
+func get_undo()->UndoRedo:
+	return get_current_layer().undo_redo
+	
+func get_undo_count()->int:
+	return get_current_layer().undo_count
+	
+func increase_undo_count():
+	get_current_layer().undo_count += 1
+	
 func get_frame(frame_index:int)->Frame:
 	return NodeManager.get_frames().get_frame(frame_index)
 	

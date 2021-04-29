@@ -44,16 +44,17 @@ func append_undo_for_draw_on_current_layer(var pixels:Array):
 func commit_undo_for_draw_on_current_layer():
 	var image = NodeManager.get_current_layer().image
 	
-	var origin_pixel_with_colors = Util.get_pixel_with_colors(origin_image, new_pixels.keys())
-	var new_pixel_with_colors = Util.get_pixel_with_colors(image, new_pixels.keys())
+	var origin_pixel_with_colors = Util.get_pixel_with_colors(origin_image, new_pixels.keys(), false)
+	var new_pixel_with_colors = Util.get_pixel_with_colors(image, new_pixels.keys(), false)
 	
-	StaticData.undo_redo.create_action("draw_pixels_on_current_layer")
+	NodeManager.get_undo().create_action("draw_pixels_on_current_layer")
 	
 #	undo_redo.add_undo_property(image, "data", undo_data_for_draw_pixels_on_current_layer)
-	StaticData.undo_redo.add_undo_method(self, "undo_draw_pixels_on_current_layer", StaticData.current_frame_index, StaticData.current_layer_index, origin_pixel_with_colors)
+	NodeManager.get_undo().add_undo_method(self, "undo_draw_pixels_on_current_layer", StaticData.current_frame_index, StaticData.current_layer_index, origin_pixel_with_colors)
 	
 #	undo_redo.add_do_property(image, "data", image.data)
-	StaticData.undo_redo.add_do_method(self, "do_draw_pixels_on_current_layer", StaticData.current_frame_index, StaticData.current_layer_index, new_pixel_with_colors)
+	NodeManager.get_undo().add_do_method(self, "do_draw_pixels_on_current_layer", StaticData.current_frame_index, StaticData.current_layer_index, new_pixel_with_colors)
 	
-	StaticData.undo_redo.commit_action()
-	StaticData.undo_count += 1
+	NodeManager.get_undo().commit_action()
+	NodeManager.increase_undo_count()
+	

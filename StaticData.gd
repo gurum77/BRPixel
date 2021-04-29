@@ -6,8 +6,7 @@ circle, select, edit, pick_color_from_canvas, brighter, darker}
 enum SymmetryType{no, horizontal, vertical}
 
 enum BrushType{rectangle, circle}
-var undo_redo:UndoRedo = UndoRedo.new()
-var undo_count = 0	# 임시로 사용하는 디버그용 데이타
+
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_frame_index = 0
@@ -37,7 +36,7 @@ var delay_per_frame = 0.3
 
 # selected area
 var selected_area = Rect2(0, 0, 0, 0)
-
+	
 # mosue 좌표가 tool에 적용하기에 부적합한지?
 func invalid_mouse_pos_for_tool(tool_type)->bool:
 	# mouse가 ui에 있으면 false

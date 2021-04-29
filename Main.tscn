@@ -440,9 +440,9 @@ icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
 margin_left = 108.083
-margin_top = -13.1892
+margin_top = -54.1892
 margin_right = 425.083
-margin_bottom = 56.8108
+margin_bottom = 15.8108
 
 [node name="FramePanel" type="Panel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
 margin_right = 600.0

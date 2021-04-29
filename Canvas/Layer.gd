@@ -6,8 +6,10 @@ export (bool) var minimap_layer = false
 export (bool) var tile_layer = false
 var unused:bool = false	# 사용 되지 않음.
 var image:Image
-enum ResizeDir{left_top, top, right_top, left, center, right, left_bottom, bottom, right_bottom}
+var undo_redo:UndoRedo = UndoRedo.new()
+var undo_count = 0	# 임시로 사용하는 디버그용 데이타
 
+enum ResizeDir{left_top, top, right_top, left, center, right, left_bottom, bottom, right_bottom}
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():

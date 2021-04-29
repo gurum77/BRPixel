@@ -37,3 +37,8 @@ func update_frame_preview(frame:Frame=null):
 func _on_Timer_timeout():
 	if is_current_frame():
 		update_frame_preview()
+
+
+func _on_SettingButton_pressed():
+	$SettingButton/FrameSettingPopup.selected_frame = get_frame()
+	$SettingButton/FrameSettingPopup.popup_centered()

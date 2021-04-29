@@ -9,6 +9,30 @@ func popup_centered():
 	$DraggablePopup/GridContainer/HideButton.pressed = !selected_layer.visible
 	$DraggablePopup/GridContainerTop/TransparencyHSlider.value = selected_layer.modulate.a * 100
 	$DraggablePopup.popup_centered()
+	
+	
+	# 마지막 layer의 버튼이면 다음과 합치기 disable
+	$DraggablePopup/GridContainer/MoveDownButton.disabled = !is_exist_prev_layer()
+	$DraggablePopup/GridContainer/MoveUpButton.disabled = !is_exist_next_layer()
+	$DraggablePopup/GridContainer/MergeWithPrevButton.disabled = !is_exist_prev_layer()
+	$DraggablePopup/GridContainer/MergeWithNextButton.disabled = !is_exist_next_layer()
+
+func is_exist_prev_layer()->bool:
+	if get_prev_layer() == null:
+		return false
+	return true
+
+func is_exist_next_layer()->bool:
+	if get_next_layer() == null:
+		return false
+	return true	
+		
+func get_prev_layer()->Layer:
+	return NodeManager.get_current_layers().get_layer(selected_layer.get_index()-1)
+	
+func get_next_layer()->Layer:
+	return NodeManager.get_current_layers().get_layer(selected_layer.get_index()+1)
+	
 
 # 레이어 복제
 func _on_DuplicateLayerButton_pressed():
@@ -60,10 +84,15 @@ func _on_MoveDownButton_pressed():
 	# 현재 index가 0이면 이동 불가
 	if selected_layer.get_index() == 0:
 		return
+		
 	# 이동	
 	NodeManager.get_current_layers().move_child(selected_layer, selected_layer.get_index()-1)
-	# 인덱스 갱신
-	NodeManager.get_current_layers().update_layer_index()
+	
+	# 현재 layer 한칸 내림
+	StaticData.current_layer_index -= 1
+	if StaticData.current_layer_index < 0:
+		StaticData.current_layer_index = 0
+	
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	
@@ -75,6 +104,12 @@ func _on_MoveUpButton_pressed():
 		return
 	# 이동	
 	NodeManager.get_current_layers().move_child(selected_layer, selected_layer.get_index()+1)
+	
+	# 현재 layer 한칸 올림
+	StaticData.current_layer_index += 1
+	if StaticData.current_layer_index >= NodeManager.get_current_layers().get_layer_count():
+		StaticData.current_layer_index = NodeManager.get_current_layers().get_layer_count()-1
+		
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
 
@@ -94,7 +129,7 @@ func _on_TransparencyHSlider_value_changed(_value):
 # 이전 layer와 합치기
 func _on_MergeWithPrevButton_pressed():
 	# 이전 layer
-	var prev_layer:Layer = NodeManager.get_current_layers().get_layer(selected_layer.get_index()-1)
+	var prev_layer:Layer = get_prev_layer()
 	if prev_layer == null:
 		return
 		
@@ -109,7 +144,7 @@ func on_MergeWithPreviousLayer_hide():
 		return
 		
 	# 이전 layer
-	var prev_layer:Layer = NodeManager.get_current_layers().get_layer(selected_layer.get_index()-1)
+	var prev_layer:Layer = get_prev_layer()
 	if prev_layer == null:
 		return
 		
@@ -163,7 +198,7 @@ func on_MergeAllLayers_hide():
 
 func _on_MergeWithNextButton_pressed():
 	# 다음 layer
-	var next_layer:Layer = NodeManager.get_current_layers().get_layer(selected_layer.get_index()+1)
+	var next_layer:Layer = get_next_layer()
 	if next_layer == null:
 		hide()
 		return
@@ -172,6 +207,7 @@ func _on_MergeWithNextButton_pressed():
 	message_box = Util.show_yesno_message_box(tr("Do you really merge with next layer.") + "\n" + tr("This operation cannot be undone."))
 	message_box.connect("hide", self, "on_MergeWithNextLayer_hide")
 	
+	
 func on_MergeWithNextLayer_hide():
 	popup_centered()
 	message_box.disconnect("hide", self, "on_MergeWithNextLayer_hide")
@@ -179,7 +215,7 @@ func on_MergeWithNextLayer_hide():
 		return
 		
 	# 다음 layer
-	var next_layer:Layer = NodeManager.get_current_layers().get_layer(selected_layer.get_index()+1)
+	var next_layer:Layer = get_next_layer()
 	if next_layer == null:
 		hide()
 		return
