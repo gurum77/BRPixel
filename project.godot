@@ -40,6 +40,11 @@ _global_script_classes=[ {
 "path": "res://ToolButtons/ColorPanel.gd"
 }, {
 "base": "Control",
+"class": "ColorSettingPopup",
+"language": "GDScript",
+"path": "res://Settings/ColorSettingPopup.gd"
+}, {
+"base": "Control",
 "class": "DraggableFileDialog",
 "language": "GDScript",
 "path": "res://DraggableFileDialog.gd"
@@ -181,6 +186,7 @@ _global_script_class_icons={
 "CircleTool": "",
 "ClipBoardButton": "",
 "ColorPanel": "",
+"ColorSettingPopup": "",
 "DraggableFileDialog": "",
 "DraggablePopup": "",
 "Edit": "",

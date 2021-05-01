@@ -23,15 +23,15 @@ func _input(_event):
 	InputManager.draw_preview_pixel_cursor(self, _event, StaticData.pencil_thickness)
 	
 	if InputManager.is_action_just_pressed_lbutton(_event):
-		UndoManager.prepare_undo_for_draw_on_current_layer()
+		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
 		start_point = get_local_mouse_position()
 	elif InputManager.is_action_just_released_lbutton(_event):
 		end_point = get_local_mouse_position()
 		var points = GeometryMaker.get_pixels_in_circle(start_point, end_point, fill, StaticData.pencil_thickness)
 		NodeManager.get_current_layer().set_pixels_by_current_color(points)
 		StaticData.preview_layer.clear(true)
-		UndoManager.append_undo_for_draw_on_current_layer(points)
-		UndoManager.commit_undo_for_draw_on_current_layer()
+		UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(points)
+		UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
 		
 	if InputManager.is_action_pressed_lbutton(_event):
 		end_point = get_local_mouse_position()

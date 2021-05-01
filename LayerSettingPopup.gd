@@ -62,7 +62,7 @@ func _on_DeleteButton_pressed():
 		
 	hide()
 	message_box = Util.show_yesno_message_box(tr("Do you really delete the selected layer.") + "\n" + tr("This operation cannot be undone."))
-	message_box.connect("hide", self, "on_DeleteLayerMessageBox_hide")
+	var _result = message_box.connect("hide", self, "on_DeleteLayerMessageBox_hide")
 
 func on_DeleteLayerMessageBox_hide():
 	popup_centered()
@@ -135,7 +135,7 @@ func _on_MergeWithPrevButton_pressed():
 		
 	hide()
 	message_box = Util.show_yesno_message_box(tr("Do you really merge with previous layer.") + "\n" + tr("This operation cannot be undone."))
-	message_box.connect("hide", self, "on_MergeWithPreviousLayer_hide")
+	var _result = message_box.connect("hide", self, "on_MergeWithPreviousLayer_hide")
 	
 func on_MergeWithPreviousLayer_hide():		
 	popup_centered()
@@ -167,7 +167,7 @@ func _on_MergeAllButton_pressed():
 	
 	hide()
 	message_box = Util.show_yesno_message_box(tr("Do you really merge all layers.") + "\n" + tr("This operation cannot be undone."))
-	message_box.connect("hide", self, "on_MergeAllLayers_hide")
+	var _result = message_box.connect("hide", self, "on_MergeAllLayers_hide")
 
 func on_MergeAllLayers_hide():
 	popup_centered()
@@ -205,7 +205,7 @@ func _on_MergeWithNextButton_pressed():
 		
 	hide()
 	message_box = Util.show_yesno_message_box(tr("Do you really merge with next layer.") + "\n" + tr("This operation cannot be undone."))
-	message_box.connect("hide", self, "on_MergeWithNextLayer_hide")
+	var _result = message_box.connect("hide", self, "on_MergeWithNextLayer_hide")
 	
 	
 func on_MergeWithNextLayer_hide():

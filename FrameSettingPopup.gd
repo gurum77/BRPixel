@@ -65,7 +65,7 @@ func _on_DeleteButton_pressed():
 		
 	hide()
 	message_box = Util.show_yesno_message_box(tr("Do you really delete the selected frame.") + "\n" + tr("This operation cannot be undone."))
-	message_box.connect("hide", self, "on_DeleteFrameMessageBox_hide")
+	var _result = message_box.connect("hide", self, "on_DeleteFrameMessageBox_hide")
 
 func on_DeleteFrameMessageBox_hide():
 	popup_centered()
@@ -114,6 +114,6 @@ func _on_MoveDownButton_pressed():
 	NodeManager.get_frame_panel().regen_frame_buttons()
 
 # 투명도 슬라이더 변경시..
-func _on_TransparencyHSlider_value_changed(value):
+func _on_TransparencyHSlider_value_changed(_value):
 	selected_frame.modulate.a = $DraggablePopup/GridContainerTop/TransparencyHSlider.value / 100.0
 	$DraggablePopup/GridContainerTop/TransparencyHSlider/TextEdit.text = str($DraggablePopup/GridContainerTop/TransparencyHSlider.value)

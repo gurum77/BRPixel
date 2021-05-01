@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ToolButtons/ColorButton.gd" type="Script" id=1]
 [ext_resource path="res://ToolButtons/ColorButton.png" type="Texture" id=2]
 [ext_resource path="res://white_rect_10x10.png" type="Texture" id=3]
 [ext_resource path="res://Assets/icon_plus.png" type="Texture" id=4]
 [ext_resource path="res://Assets/icon_transparent_rect.png" type="Texture" id=5]
+[ext_resource path="res://Assets/icon_setting_small.png" type="Texture" id=6]
 
 [node name="ColorButton" type="TextureRect"]
 margin_left = 0.629944
@@ -66,5 +67,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SettingButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture_normal = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="gui_input" from="." to="." method="_on_ColorButton_gui_input"]
 [connection signal="popup_closed" from="ColorPickerButton" to="." method="_on_ColorPickerButton_popup_closed"]
+[connection signal="pressed" from="SettingButton" to="." method="_on_SettingButton_pressed"]

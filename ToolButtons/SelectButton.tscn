@@ -7,4 +7,8 @@ margin_top = 324.0
 margin_right = 50.0
 margin_bottom = 344.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="." to="." method="_on_SelectButton_pressed"]

@@ -55,3 +55,8 @@ func _on_SaveFileDialog_file_selected(path):
 		else:
 			Util.show_message(self, "Save", "Save completed")
 
+func _process(_delta):
+	if save_selected_area:
+		disabled = !StaticData.enabled_selected_area()
+	else:
+		disabled = false

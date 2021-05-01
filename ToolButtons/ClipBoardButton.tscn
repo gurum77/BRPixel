@@ -6,9 +6,9 @@
 [node name="ClipBoardButton" type="Button"]
 margin_left = -0.793701
 margin_top = 323.206
-margin_right = 49.2063
-margin_bottom = 373.206
-rect_min_size = Vector2( 50, 50 )
+margin_right = 39.2063
+margin_bottom = 363.206
+rect_min_size = Vector2( 40, 40 )
 expand_icon = true
 script = ExtResource( 1 )
 __meta__ = {

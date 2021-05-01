@@ -2,8 +2,10 @@ extends TextureRect
 
 var empty_color = true
 onready var current_color_sign = $CurrentColorSign
+onready var setting_button = $SettingButton
 onready var empty_color_sign = $EmptyColorSign
 onready var transparent_color_sign = $TransparentColorSign
+
 var pressed_position
 
 func clear_color():
@@ -51,8 +53,10 @@ func _on_ColorButton_gui_input(event):
 func update_current_color_sign():
 	if StaticData.current_color == self_modulate:
 		current_color_sign.visible = true
+		setting_button.visible = true
 	else:
 		current_color_sign.visible = false
+		setting_button.visible = false
 		
 func update_none_sign():
 	empty_color_sign.visible = empty_color
@@ -66,3 +70,9 @@ func _process(_delta):
 func _on_ColorPickerButton_popup_closed():
 	StaticData.current_color = $ColorPickerButton.color
 	set_color(StaticData.current_color)
+	NodeManager.get_color_panel().load_current_palette()
+
+
+func _on_SettingButton_pressed():
+	NodeManager.get_color_setting_popup().color_index = get_index()
+	NodeManager.get_color_setting_popup().popup_centered()

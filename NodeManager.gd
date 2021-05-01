@@ -16,6 +16,12 @@ var color_panel:ColorPanel = null
 var preload_message_popup = preload("res://MessagePopup.tscn")
 var message_box:MessageBox = null
 var debug_label:Label = null
+var color_setting_popup:ColorSettingPopup = null
+
+func get_color_setting_popup()->ColorSettingPopup:
+	if color_setting_popup == null:
+		color_setting_popup = get_color_panel().get_node("ColorSettingPopup")
+	return color_setting_popup
 
 func get_undo()->UndoRedo:
 	return get_current_layer().undo_redo

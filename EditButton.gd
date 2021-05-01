@@ -7,3 +7,4 @@ func _on_EditButton_pressed():
 
 func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.edit)
+	disabled = !StaticData.enabled_selected_area()

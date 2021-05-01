@@ -1,13 +1,17 @@
 extends Control
-
+var message_box:MessageBox
 var palette_resource = preload("res://Tools/Palette.tscn")
-
+onready var close_palette_button = $DraggablePopup/GridContainer/ClosePaletteButton
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func popup_centered():
 	$DraggablePopup.popup_centered()
+	
+func _process(_delta):
+	var palette_count = NodeManager.get_palettes().get_palette_count()
+	close_palette_button.disabled = palette_count == 1
 
 func hide():
 	$DraggablePopup.hide()
@@ -113,6 +117,17 @@ func on_LoadPalette_FileDialog_hide():
 # 현재 palette를 닫는다.
 func _on_ClosePaletteButton_pressed():
 	if NodeManager.get_palettes().get_palette_count() <= 1:
+		return
+		
+	hide()
+	message_box = Util.show_yesno_message_box(tr("Do you really delete the current palette?") + "\n" + tr("This operation cannot be undone."))
+	var _result = message_box.connect("hide", self, "on_MessageBox_hide")
+	
+func on_MessageBox_hide():
+	message_box.disconnect("hide", self, "on_MessageBox_hide")
+	popup_centered()
+	
+	if message_box.result != MessageBox.Result.yes:
 		return
 		
 	var palette = NodeManager.get_current_palette()

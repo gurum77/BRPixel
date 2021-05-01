@@ -147,6 +147,10 @@ func set_selected_area_by_grip_points():
 # grip을 다시 만든다.
 func make_grips(preview):
 	clear_grips()
+	if start_point.is_equal_approx(end_point):
+		StaticData.clear_selected_area()
+		return
+		
 	grips.append(make_grip(Grip.Type.left_bottom, preview))
 	grips.append(make_grip(Grip.Type.right_bottom, preview))
 	grips.append(make_grip(Grip.Type.right_top, preview))

@@ -84,3 +84,8 @@ func set_palette_from_image(image:Image):
 	colors.clear()
 	for c in dic:
 		colors.append(c)
+
+# 팔레트의 칼라를 정렬한다.
+func sort():
+	colors.sort()
+	

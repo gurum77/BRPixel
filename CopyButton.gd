@@ -4,6 +4,9 @@ var clipboard_button = preload("res://ToolButtons/ClipBoardButton.tscn")
 # cut 기능인지?
 export var cut = false
 
+func _process(_delta):
+	disabled = !StaticData.enabled_selected_area()
+	
 # clipboard 갯수
 func get_clipboard_count()->int:
 	var nodes = get_parent().get_children()
@@ -61,10 +64,12 @@ func _on_CopyButton_pressed():
 	
 	# 선택했던 영역은 삭제를 한다.
 	if cut:
-		UndoManager.prepare_undo_for_draw_on_current_layer()
+		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
+		UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer_by_Rect(StaticData.selected_area)
 		NodeManager.get_current_layer().erase_pixels_by_rect(StaticData.selected_area)
-		UndoManager.append_undo_for_draw_on_current_layer_by_Rect(StaticData.selected_area)
-		UndoManager.commit_undo_for_draw_on_current_layer()
+		UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
+	# 선택영역은 어떤 동작을 하고 나면 없앤다.
+	StaticData.clear_selected_area()
 
 # 가장 오래된 clipboard를 삭제한다.
 func remove_oldest_clipboard():

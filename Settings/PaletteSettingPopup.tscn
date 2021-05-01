@@ -163,6 +163,7 @@ margin_right = -561.817
 margin_bottom = 39.1467
 
 [node name="PaletteSizePopup" parent="." instance=ExtResource( 5 )]
+
 [connection signal="pressed" from="DraggablePopup/GridContainer/NewPaletteButton" to="." method="_on_NewPaletteButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/PaletteFromImageButton" to="." method="_on_PaletteFromImageButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/PaletteFromLibraryButton" to="." method="_on_PaletteFromLibraryButton_pressed"]
