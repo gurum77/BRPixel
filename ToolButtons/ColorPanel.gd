@@ -24,8 +24,6 @@ func make_color_buttons():
 	
 func load_current_palette():
 	$ScrollContainer/GridContainer.columns = 100 / StaticData.palette_size
-	var palette:Palette = NodeManager.get_current_palette()
-	
 	# color button을 필요한 만큼 만든다.
 	make_color_buttons()
 	

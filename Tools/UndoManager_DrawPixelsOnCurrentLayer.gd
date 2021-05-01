@@ -57,4 +57,5 @@ func commit_undo_for_draw_on_current_layer():
 	
 	NodeManager.get_undo().commit_action()
 	NodeManager.increase_undo_count()
+	StaticData.preview_layer.clear()
 	

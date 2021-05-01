@@ -13,6 +13,7 @@ var current_frame_index = 0
 var current_layer_index = 0
 var current_palette_index = 0
 var preview_layer = null
+var cursor_layer = null
 
 var last_drawing_tool = null
 var fill_for_last_drawing_tool = true
