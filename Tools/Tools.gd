@@ -35,10 +35,17 @@ func init_to_start_tool(current_tool, tool_type, clear_preview_layer=true):
 	StaticData.current_tool = tool_type
 	
 	# 다른 툴을 모두 제거
-	if tool_type == StaticData.Tool.select:
-		NodeManager.clear_other_tools(current_tool, false)
-	else:
-		NodeManager.clear_other_tools(current_tool, true)
+	# select tool을 제거하는지?
+	var clear_select_tool = true
+	# edit는 제거하지 않는다.
+	# drawing tool(pen, line등)은 원래 제거하지 않았었지만, 선택영역만 그리기 상황이 혼돈을 유발해서 
+	# 제거하기로 함
+	# 추후, 여기에 대한 필요성이 발생하면 drawing tool 시작시 select tool을 제거할지 다시 고민하자.
+	if tool_type == StaticData.Tool.edit:
+		clear_select_tool = false
+	NodeManager.clear_other_tools(current_tool, !clear_select_tool)
+		
+	
 	
 # 마지막으로 실행한 그리기 툴을 실행한다.	
 # todo : 일단 pencil로 고정

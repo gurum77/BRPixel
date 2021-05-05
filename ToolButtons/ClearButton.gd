@@ -13,4 +13,5 @@ func _on_ClearButton_pressed():
 	NodeManager.get_current_layer().erase_pixels_by_rect(StaticData.selected_area)
 	UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
 
-	StaticData.clear_selected_area()
+	NodeManager.get_tools().finish_selected_area_editing()
+	

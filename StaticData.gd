@@ -181,7 +181,6 @@ func open_image(parent, path):
 
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
-	pass
 
 func get_value(dic:Dictionary, key, default_value):
 	if dic.has(key):

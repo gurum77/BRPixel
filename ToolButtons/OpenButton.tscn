@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/icon_open.png" type="Texture" id=1]
 [ext_resource path="res://OpenButton.gd" type="Script" id=2]
+[ext_resource path="res://Settings/ImportImage.tscn" type="PackedScene" id=3]
 
 [node name="OpenButton" type="Button"]
 margin_top = 270.0
@@ -14,4 +15,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ImportImage" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = 108.122
+margin_top = -128.145
+margin_right = 108.122
+margin_bottom = -128.145
+
 [connection signal="pressed" from="." to="." method="_on_OpenButton_pressed"]
+[connection signal="hide" from="ImportImage" to="." method="_on_ImportImage_hide"]

@@ -104,7 +104,8 @@ func _process(_delta):
 [node name="Main" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -1024.0
+margin_left = -1.12247
+margin_right = -1025.12
 margin_bottom = -600.0
 script = ExtResource( 1 )
 __meta__ = {
@@ -153,13 +154,13 @@ icon = ExtResource( 33 )
 margin_left = 75.0
 margin_top = -1.0
 margin_right = 379.0
-margin_bottom = 49.0
+margin_bottom = 39.0
 
 [node name="HBoxContainer" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow" index="1"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_top = -15.0
-margin_bottom = -15.0
+margin_top = -13.0
+margin_bottom = 13.0
 rect_min_size = Vector2( 100, 20 )
 
 [node name="BrushTypeButton" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 61 )]
@@ -281,6 +282,7 @@ margin_right = 104.0
 [node name="SelectPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
 margin_top = 216.0
 margin_bottom = 266.0
+toggle_mode = true
 icon = ExtResource( 36 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SelectPopupButton" index="0"]
@@ -290,7 +292,6 @@ margin_right = 442.445
 margin_bottom = 43.466
 
 [node name="HBoxContainer" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow" index="1"]
-margin_right = 155.0
 rect_min_size = Vector2( 100, 35 )
 
 [node name="SelectButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 29 )]
@@ -440,23 +441,33 @@ margin_bottom = 590.0
 icon = ExtResource( 57 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SymmetryPopupButton" index="0"]
-visible = false
-margin_left = 163.083
-margin_top = -68.1892
-margin_right = 480.083
-margin_bottom = -18.1892
+margin_left = 148.772
+margin_top = -112.068
+margin_right = 465.772
+margin_bottom = -72.0685
+
+[node name="HBoxContainer" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow" index="1"]
+margin_bottom = -10.0
+rect_min_size = Vector2( 100, 40 )
 
 [node name="NoSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 58 )]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
 
 [node name="HorizontalSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 58 )]
-margin_left = 54.0
-margin_right = 104.0
+margin_left = 44.0
+margin_right = 84.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 57 )
 symmetry_type = 1
 
 [node name="VerticalSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 58 )]
-margin_left = 108.0
-margin_right = 158.0
+margin_left = 88.0
+margin_right = 128.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 59 )
 symmetry_type = 2
 
@@ -468,10 +479,10 @@ margin_bottom = 590.0
 icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
-margin_left = 108.083
-margin_top = -54.1892
-margin_right = 425.083
-margin_bottom = 15.8108
+margin_left = 94.6135
+margin_top = -62.0464
+margin_right = 411.613
+margin_bottom = 7.95356
 
 [node name="FramePanel" type="Panel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
 margin_right = 600.0
@@ -845,10 +856,10 @@ margin_bottom = -390.137
 
 [node name="DebugLabel" type="Label" parent="UI"]
 anchor_right = 1.0
-margin_left = 155.595
-margin_top = -1.5845
-margin_right = -144.405
-margin_bottom = 28.4155
+margin_left = 438.0
+margin_top = -2.0
+margin_right = -271.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 100, 30 )
 text = "asdfasdfasdfasdfasdfsdf"
 align = 1

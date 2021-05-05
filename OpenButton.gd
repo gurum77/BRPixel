@@ -36,14 +36,12 @@ func on_hide_file_dialog():
 		if ext == "pex":
 			StaticData.open_project(file_path)
 		else:
-			StaticData.open_image(self, file_path)
+			$ImportImage.image_file_path = file_path
+			$ImportImage.popup_centered()
+			
 
-#	if add_image:
-#		file_dialog.filters = PoolStringArray(["*.png;PNG Image", "*.jpg,*.jpeg;JPEG Image", "*.bmp ; BMP Image", "*.hdr;Radiance HDR Image", "*.svg ; SVG Image", "*.tga ; TGA Image", "*.webp ; WebP Image"])
-#	else:
-#		file_dialog.filters = PoolStringArray(["*.pex;Pixel Express", "*.png;PNG Image", "*.jpg,*.jpeg;JPEG Image", "*.bmp ; BMP Image", "*.hdr;Radiance HDR Image", "*.svg ; SVG Image", "*.tga ; TGA Image", "*.webp ; WebP Image"])
-#	file_dialog.current_dir = "user://"
-#	file_dialog.invalidate()
-#	file_dialog.popup_centered()
-#	file_dialog.show()
 
+
+func _on_ImportImage_hide():
+#	StaticData.open_image(self, file_path)
+	pass

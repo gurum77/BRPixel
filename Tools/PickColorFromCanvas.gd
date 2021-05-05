@@ -12,7 +12,9 @@ func _input(event):
 	if InputManager.is_action_just_pressed_lbutton(event):
 		var pos = get_global_mouse_position()
 		NodeManager.get_current_layer().image.lock()
-		StaticData.current_color = NodeManager.get_current_layer().image.get_pixel(pos.x, pos.y)
+		var color = NodeManager.get_current_layer().image.get_pixel(pos.x, pos.y)
+		if color.a != 0:
+			StaticData.current_color = color
 		NodeManager.get_current_layer().image.unlock()
 		
 		NodeManager.get_tools().run_last_drawing_tool()

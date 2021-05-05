@@ -31,13 +31,15 @@ func resize():
 
 # 클릭을 하면 child를 우측으로 표시한다.
 func _on_SubmenuPopupButton_pressed():
-	if current_tool != null:
-		NodeManager.get_tools().add_child(current_tool.instance())
+	NodeManager.get_tools().add_child(NodeManager.get_tools().select_tool.instance())
 		
 	if $DraggableWindow.visible:
 		$DraggableWindow.hide()
 	else:
 		$DraggableWindow.show()
+
+func _process(_delta):
+	Util.press_current_tool_button(self, StaticData.Tool.select)		
 
 func _on_LineSettingButton_pressed():
 	pass # Replace with function body.

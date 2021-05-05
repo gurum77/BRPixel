@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://DraggableWindow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Settings/ImportImagePreview.gd" type="Script" id=2]
+[ext_resource path="res://Assets/icon_up_down.png" type="Texture" id=3]
+[ext_resource path="res://Settings/ImportImage.gd" type="Script" id=4]
+[ext_resource path="res://Assets/icon_brighter.png" type="Texture" id=5]
+
+[node name="ImportImage" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DraggableWindow" parent="." instance=ExtResource( 1 )]
+hide_close_button = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DraggableWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="DraggableWindow/VBoxContainer"]
+margin_right = 323.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 0, 300 )
+color = Color( 1, 1, 1, 0.0705882 )
+
+[node name="Preview" type="TextureRect" parent="DraggableWindow/VBoxContainer/Background"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -24.0
+margin_top = -24.0
+margin_right = 24.0
+margin_bottom = 24.0
+texture = ExtResource( 5 )
+stretch_mode = 4
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="DraggableWindow/VBoxContainer"]
+margin_top = 304.0
+margin_right = 323.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 0, 80 )
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AsSpriteSheetCheckButton" type="CheckButton" parent="DraggableWindow/VBoxContainer/GridContainer"]
+margin_right = 187.0
+margin_bottom = 40.0
+text = "As sprite sheet"
+
+[node name="SpinBox" type="SpinBox" parent="DraggableWindow/VBoxContainer/GridContainer"]
+margin_left = 191.0
+margin_right = 291.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 40 )
+custom_icons/updown = ExtResource( 3 )
+min_value = 1.0
+value = 1.0
+rounded = true
+align = 1
+
+[connection signal="value_changed" from="DraggableWindow/VBoxContainer/GridContainer/SpinBox" to="." method="_on_SpinBox_value_changed"]

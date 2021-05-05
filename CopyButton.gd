@@ -69,7 +69,8 @@ func _on_CopyButton_pressed():
 		NodeManager.get_current_layer().erase_pixels_by_rect(StaticData.selected_area)
 		UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
 	# 선택영역은 어떤 동작을 하고 나면 없앤다.
-	StaticData.clear_selected_area()
+	NodeManager.get_tools().finish_selected_area_editing()
+	
 
 # 가장 오래된 clipboard를 삭제한다.
 func remove_oldest_clipboard():
