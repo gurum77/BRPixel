@@ -3,15 +3,33 @@ extends Button
 export var save_selected_area = false
 	
 func _ready():
-	pass
+	pass	
 		
 func _on_SaveButton_pressed():
+	if !save_selected_area:
+		NodeManager.get_save_options_popup().connect("hide", self, "on_SaveOptionsPopup_hide")
+		NodeManager.get_save_options_popup().popup_centered()
+	else:
+		on_SaveOptionsPopup_hide()
+	
+func on_SaveOptionsPopup_hide():
+	if !save_selected_area:
+		NodeManager.get_save_options_popup().disconnect("hide", self, "on_SaveOptionsPopup_hide")
+		if NodeManager.get_save_options_popup().result != SaveOptionsPopup.Result.ok:
+			return
+		
+	# ok를 누르면 파일명을 입력받고 저장을 한다.
 	var _tmp = NodeManager.get_file_dialog().connect("hide", self, "on_hide_file_dialog")
 	if save_selected_area:
 		NodeManager.get_file_dialog().filters = PoolStringArray(["*.png;PNG", "*.jpg;JPEG"])
 		NodeManager.get_file_dialog().default_file_name = ""
 	else:
-		NodeManager.get_file_dialog().filters = PoolStringArray(["*.pex;Pixel Express", "*.png;PNG", "*.jpg;JPEG"])
+		if NodeManager.get_save_options_popup().format == SaveOptionsPopup.Format.pex:
+			NodeManager.get_file_dialog().filters = PoolStringArray(["*.pex;Pixel Express"])
+		elif NodeManager.get_save_options_popup().format == SaveOptionsPopup.Format.png:
+			NodeManager.get_file_dialog().filters = PoolStringArray(["*.png;PNG"])
+		elif NodeManager.get_save_options_popup().format == SaveOptionsPopup.Format.gif:
+			NodeManager.get_file_dialog().filters = PoolStringArray(["*.gif;GIF"])
 		NodeManager.get_file_dialog().default_file_name = StaticData.project_name
 		
 	NodeManager.get_file_dialog().popup_centered()
@@ -27,20 +45,11 @@ func on_hide_file_dialog():
 		if ext == "pex":
 			StaticData.save_project(selected_file)
 		else:
-			var error = StaticData.save_image(selected_file, save_selected_area)
+			var error = StaticData.save_image(selected_file, save_selected_area, NodeManager.get_save_options_popup().sprite_sheets_method)
 			if error != OK:
 				Util.show_error_message(self, error)
 			else:
 				Util.show_message(self, "Save", "Save completed")
-		
-
-#	if save_selected_area:
-#		$SaveFileDialog.filters = PoolStringArray(["*.png;PNG", "*.jpg;JPEG"])
-#	else:
-#		$SaveFileDialog.filters = PoolStringArray(["*.pex;Pixel Express", "*.png;PNG", "*.jpg;JPEG"])
-#	$SaveFileDialog.popup_centered()
-#	$SaveFileDialog.show()
-
 
 			
 func _on_SaveFileDialog_file_selected(path):

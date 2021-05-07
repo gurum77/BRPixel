@@ -75,3 +75,34 @@ func remove_frame(index:int):
 	if index >= get_child_count():
 		index -= 1
 	StaticData.current_frame_index = index
+
+# 모든 프레임을 각각의 image로 만들어서 배열로 리턴
+func create_all_frame_images()->Array:
+	var images = []
+	var frame_count = get_frame_count()
+	var nodes = get_children()
+	for node in nodes:
+		var frame = node as Frame
+		if frame == null:
+			continue
+		var image = frame.get_layers().create_layers_image()
+		images.append(image)
+		
+	return images
+	
+# 모든 프레임을 sprite sheet image로 만들어서 리턴
+func create_sprite_sheet_image()->Image:
+	var frame_count = get_frame_count()
+	var image = Util.create_image(StaticData.canvas_width * frame_count, StaticData.canvas_height)
+	var x = 0
+	var nodes = get_children()
+	for node in nodes:
+		var frame = node as Frame
+		if frame == null:
+			continue
+		var cur_image = frame.get_layers().create_layers_image()
+		var rect = Rect2(0, 0, cur_image.get_width(), cur_image.get_height())
+		var offset = Vector2(x, 0)
+		image.blit_rect(cur_image, rect, offset)
+		x += StaticData.canvas_width
+	return image

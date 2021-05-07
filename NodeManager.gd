@@ -17,7 +17,19 @@ var preload_message_popup = preload("res://MessagePopup.tscn")
 var message_box:MessageBox = null
 var debug_label:Label = null
 var color_setting_popup:ColorSettingPopup = null
+var import_image_popup:ImportImagePopup = null
+var save_options_popup:SaveOptionsPopup = null
 
+func get_save_options_popup()->SaveOptionsPopup:
+	if save_options_popup == null:
+		save_options_popup = get_tree().root.get_node("Main/UI/SaveOptionsPopup")
+	return save_options_popup
+	
+func get_import_image_popup()->ImportImagePopup:
+	if import_image_popup == null:
+		import_image_popup = get_tree().root.get_node("Main/UI/ImportImage")
+	return import_image_popup
+	
 func get_color_setting_popup()->ColorSettingPopup:
 	if color_setting_popup == null:
 		color_setting_popup = get_color_panel().get_node("ColorSettingPopup")

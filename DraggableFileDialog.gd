@@ -139,8 +139,13 @@ func popup_centered():
 	visible = true
 	result_ok = false
 	file_name_line_edit.text = default_file_name
+	
 	$DraggableWindow.popup_centered()
 	update_lsit()
+	
+	# filter가 하나라면 그걸 default ext로 준다.
+	if enabled_extenstions.size() == 1:
+		default_extension = enabled_extenstions.keys()[0]
 
 # 현재 directory에 폴더 생성
 func _on_AddFolderButton_pressed():

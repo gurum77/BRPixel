@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Grip.gd"
 }, {
+"base": "Control",
+"class": "ImportImagePopup",
+"language": "GDScript",
+"path": "res://Settings/ImportImage.gd"
+}, {
 "base": "Button",
 "class": "LanguageButton",
 "language": "GDScript",
@@ -155,6 +160,11 @@ _global_script_classes=[ {
 "path": "res://Tools/Rectangle.gd"
 }, {
 "base": "Control",
+"class": "SaveOptionsPopup",
+"language": "GDScript",
+"path": "res://Settings/SaveOptionsPopup.gd"
+}, {
+"base": "Control",
 "class": "Select",
 "language": "GDScript",
 "path": "res://Tools/Select.gd"
@@ -195,6 +205,7 @@ _global_script_class_icons={
 "FramePanel": "",
 "Frames": "",
 "Grip": "",
+"ImportImagePopup": "",
 "LanguageButton": "",
 "Layer": "",
 "LayerButton": "",
@@ -209,6 +220,7 @@ _global_script_class_icons={
 "Project": "",
 "Projects": "",
 "RectangleTool": "",
+"SaveOptionsPopup": "",
 "Select": "",
 "SubmenuPopupButton": "",
 "TileModeManager": "",

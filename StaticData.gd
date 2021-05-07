@@ -106,14 +106,28 @@ func _ready():
 	pass
 	
 # image로 저장한다.
-func save_image(path, selected_area_only):
-	var image:Image
+func save_image(path:String, selected_area_only, sprite_sheet=false):
 	if selected_area_only:
-		image = Util.create_image_from_selected_area()
+		var image:Image = Util.create_image_from_selected_area()
+		return image.save_png(path)
 	else:
-		image = NodeManager.get_current_layer().image
-	return image.save_png(path)
-	
+		if sprite_sheet:
+			var image:Image = NodeManager.get_frames().create_sprite_sheet_image()
+			return image.save_png(path)
+		else:
+			var err = OK
+			var images = NodeManager.get_frames().create_all_frame_images()
+			var num = 1
+			var basename = path.get_basename()
+			var ext = path.get_extension()
+			for image in images:
+				var cur_path = "%s_%d.%s"%[basename,num,ext]
+				var cur_err = image.save_png(cur_path)
+				if cur_err != OK:
+					err = FAILED
+				num += 1
+			return err
+	return FAILED
 	
 # thumbnail저장을 위한 layer를 만든다.
 # 현재 작업중인 frame을 저장한다.

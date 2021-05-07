@@ -16,28 +16,40 @@ __meta__ = {
 [node name="DraggablePopup" parent="." instance=ExtResource( 1 )]
 visible = true
 margin_right = 353.0
-margin_bottom = 250.0
+margin_bottom = 155.0
+
+[node name="FrameInfoLabel" type="Label" parent="DraggablePopup"]
+anchor_right = 1.0
+margin_top = 5.0
+margin_bottom = 16.0
+text = "1 of 1 frame"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="GridContainerTop" type="GridContainer" parent="DraggablePopup"]
 anchor_right = 1.0
 margin_left = 20.0
-margin_top = 20.0
+margin_top = 36.0
 margin_right = -20.0
 margin_bottom = 60.0
+columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TransparencyTitle" type="Label" parent="DraggablePopup/GridContainerTop"]
-margin_right = 150.0
+margin_right = 97.0
 margin_bottom = 16.0
 text = "Transparency"
 align = 1
 
 [node name="TransparencyHSlider" type="HSlider" parent="DraggablePopup/GridContainerTop"]
-margin_top = 20.0
-margin_right = 150.0
-margin_bottom = 36.0
+margin_left = 101.0
+margin_right = 251.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 150, 16 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -62,8 +74,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 68.0
-margin_right = -9.00003
-margin_bottom = -10.0
+margin_right = -9.0
+margin_bottom = -28.0
 columns = 2
 __meta__ = {
 "_edit_use_anchors_": false

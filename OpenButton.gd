@@ -2,6 +2,7 @@ extends Button
 
 export var add_image = false
 func _ready():
+	
 	pass
 
 func _on_OpenButton_pressed():
@@ -36,15 +37,17 @@ func on_hide_file_dialog():
 		if ext == "pex":
 			StaticData.open_project(file_path)
 		else:
-			$ImportImage.image_file_path = file_path
-			$ImportImage.popup_centered()
+			NodeManager.get_import_image_popup().connect("hide", self, "_on_ImportImage_hide")
+			NodeManager.get_import_image_popup().image_file_path = file_path
+			NodeManager.get_import_image_popup().popup_centered()
 			
 
 
 
 func _on_ImportImage_hide():
-	var rows = $ImportImage.preview.rows
-	var cols = $ImportImage.preview.cols
+	NodeManager.get_import_image_popup().disconnect("hide", self, "_on_ImportImage_hide")
+	var rows = NodeManager.get_import_image_popup().preview.rows
+	var cols = NodeManager.get_import_image_popup().preview.cols
 	
-	if $ImportImage.result_ok:
-		StaticData.open_image(self, $ImportImage.image_file_path, rows, cols)
+	if NodeManager.get_import_image_popup().result_ok:
+		StaticData.open_image(self, NodeManager.get_import_image_popup().image_file_path, rows, cols)

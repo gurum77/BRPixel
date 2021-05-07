@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -87,6 +87,9 @@
 [ext_resource path="res://ToolButtons/UndoButton.tscn" type="PackedScene" id=85]
 [ext_resource path="res://ToolButtons/ClearButton.tscn" type="PackedScene" id=86]
 [ext_resource path="res://Settings/ColorSettingPopup.tscn" type="PackedScene" id=87]
+[ext_resource path="res://Settings/ImportImage.tscn" type="PackedScene" id=88]
+[ext_resource path="res://FrameInfoLabel.gd" type="Script" id=89]
+[ext_resource path="res://Settings/SaveOptionsPopup.tscn" type="PackedScene" id=90]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -479,14 +482,14 @@ margin_bottom = 590.0
 icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
-margin_left = 94.6135
-margin_top = -62.0464
-margin_right = 411.613
-margin_bottom = 7.95356
+margin_left = 95.0
+margin_top = -62.0
+margin_right = 734.0
+margin_bottom = 18.0
 
 [node name="FramePanel" type="Panel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
 margin_right = 600.0
-margin_bottom = 70.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 600, 70 )
 script = ExtResource( 63 )
 __meta__ = {
@@ -530,23 +533,45 @@ margin_bottom = 26.0
 [node name="EndButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 70 )]
 margin_bottom = 26.0
 
-[node name="DelayLabel" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+[node name="DummyLabel2" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
 margin_left = 220.0
 margin_top = 5.0
-margin_right = 332.0
+margin_right = 240.0
+margin_bottom = 21.0
+text = "    "
+
+[node name="DelayLabel" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+margin_left = 244.0
+margin_top = 5.0
+margin_right = 356.0
 margin_bottom = 21.0
 text = "Delay Per Frame"
 
 [node name="DelayLineEdit" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 71 )]
-margin_left = 336.0
-margin_right = 406.0
+margin_left = 360.0
+margin_right = 430.0
 margin_bottom = 26.0
+
+[node name="DummyLabel" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+margin_left = 434.0
+margin_top = 5.0
+margin_right = 454.0
+margin_bottom = 21.0
+text = "    "
+
+[node name="FrameInfoLabel" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+margin_left = 458.0
+margin_top = 5.0
+margin_right = 558.0
+margin_bottom = 21.0
+text = "1 of 30 frames"
+script = ExtResource( 89 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
 margin_top = 30.0
 margin_right = 600.0
-margin_bottom = 70.0
-rect_min_size = Vector2( 0, 40 )
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -876,6 +901,12 @@ visible = false
 
 [node name="Preview" parent="UI" instance=ExtResource( 83 )]
 popup_exclusive = true
+
+[node name="ImportImage" parent="UI" instance=ExtResource( 88 )]
+visible = false
+
+[node name="SaveOptionsPopup" parent="UI" instance=ExtResource( 90 )]
+visible = false
 
 [node name="Canvas" type="TextureRect" parent="."]
 script = ExtResource( 3 )
