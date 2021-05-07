@@ -154,32 +154,51 @@ func save_project(path):
 	save_file.close()
 
 # 이미지를 open 한다.
-func open_image(parent, path):
+func open_image(parent, path, var rows=1, var cols=1):
 	var image:Image = Util.load_image_file(self, path)
 	if image == null:
 		return
+		
+	var width = image.get_width() / cols
+	var height = image.get_height() / rows
+	
 	# 이미지의 크기가 허용치를 벗어나면 오픈 불가
-	if image.get_width() < Define.min_canvas_size || image.get_height() < Define.min_canvas_size:
+	if width < Define.min_canvas_size || height < Define.min_canvas_size:
 		Util.show_error_message(parent, "Image is too small.")
 		return
-	if image.get_width() > Define.max_canvas_size || image.get_height() > Define.max_canvas_size:
+	if width > Define.max_canvas_size || height > Define.max_canvas_size:
 		Util.show_error_message(parent, "Image is too large.")
 		return
 	# canvas 사이즈 설정
-	StaticData.canvas_width = image.get_width()
-	StaticData.canvas_height = image.get_height()
+	StaticData.canvas_width = width
+	StaticData.canvas_height = height
 	NodeManager.get_canvas().resize()
 	
-	# layer를 하나로 만든다.
-	NodeManager.get_current_layers().clear_normal_layers()
-	var new_layer = NodeManager.get_current_layers().add_layer()
-	new_layer.image = image
-	new_layer.update_texture()
+	# frame을 필요한 만큼 만든다.
+	NodeManager.get_frames().clear_frames()
+	var rects = Util.get_rects(image.get_width(), image.get_height(), rows, cols)
+	for rect in rects:
+		# frame 추가
+		var frame = NodeManager.get_frames().add_frame()
+		if frame == null:
+			continue
+
+		# layer
+		var layer = frame.get_layers().get_layer(0)
+		if layer == null:
+			continue
+			
+		# rect만큼 이미지를 뜯어 온다.
+		layer.image = Util.get_image_in_rect(image, rect)
+		layer.update_texture()
+	
 		
-	# 첫번째 layer를 현재 레이어로 설정 
+	# 첫번째 frame, layer를 현재 레이어로 설정 
+	StaticData.current_frame_index = 0
 	StaticData.current_layer_index = 0
 
-	# laye button 갱신
+	# frame, layer button 갱신
+	NodeManager.get_frame_panel().regen_frame_buttons()
 	NodeManager.get_layer_panel().regen_layer_buttons()
 
 func get_value(dic:Dictionary, key, default_value):

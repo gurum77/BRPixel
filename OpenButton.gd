@@ -43,5 +43,8 @@ func on_hide_file_dialog():
 
 
 func _on_ImportImage_hide():
-#	StaticData.open_image(self, file_path)
-	pass
+	var rows = $ImportImage.preview.rows
+	var cols = $ImportImage.preview.cols
+	
+	if $ImportImage.result_ok:
+		StaticData.open_image(self, $ImportImage.image_file_path, rows, cols)

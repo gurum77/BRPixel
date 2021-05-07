@@ -1,7 +1,7 @@
 extends Control
 class_name DraggableFileDialog
 var file_button = preload("res://FileButton.tscn")
-var path = "user://"
+var path = "c://"
 var dir = Directory.new()
 var result_ok = true
 var selected_file_paths = []	# 선택한 파일 경로들
@@ -11,6 +11,7 @@ onready var file_name_line_edit = $DraggableWindow/ColorRect/HBoxContainer2/File
 onready var selected_file_nums_label = $DraggableWindow/ColorRect/HBoxContainer2/SelectedFileNumsLabel
 onready var new_folder_name_Line_edit = $DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup/HBoxContainer/NewFolderNameLineEdit
 onready var new_folder_name_popup = $DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup
+onready var drive_button = $DraggableWindow/HBoxContainer/DriveButton
 export var multi_selection = false	# 여러개 선택 가능한지?
 export var save_file_dialog = true	# 저장인지?
 export var default_extension = "pex"
@@ -20,10 +21,20 @@ export var default_file_name = ""	# 기본 파일 명
 # 표시 가능한 확장자
 var enabled_extenstions:Dictionary
 func _ready():
+	if is_windows():
+		path = "c://"
+	else:
+		path = "user://"
 	dir.open(path)
 	update_lsit()
 	
+func is_windows():
+	if OS.get_name() == "Windows":
+		return true
+	return false
+	
 # 접근 가능한 root인지?
+# windows는 무제한 접근가능
 func is_root():
 	return dir.get_current_dir() == path
 		
@@ -33,6 +44,7 @@ func get_last_selected_file_path()->String:
 	return selected_file_paths[selected_file_paths.size()-1]
 	
 func get_directorie_names()->Array:
+	var is_windows = is_windows()
 	var is_root = is_root()
 	dir.list_dir_end()
 	dir.list_dir_begin()
@@ -40,9 +52,10 @@ func get_directorie_names()->Array:
 	var file_name = dir.get_next()
 	while file_name != "":
 		if dir.current_is_dir() && file_name != ".":
-			if is_root && file_name == "..":
-				file_name = dir.get_next()
-				continue
+			if !is_windows:
+				if is_root && file_name == "..":
+					file_name = dir.get_next()
+					continue
 			directories.append(file_name)
 		file_name = dir.get_next()
 	return directories
@@ -162,7 +175,7 @@ func _on_OkButton_pressed():
 
 # 경로 표시줄을 업데이트 한다.
 func update_path_line_edit():
-	$DraggableWindow/PathLineEdit.text = dir.get_current_dir()
+	$DraggableWindow/HBoxContainer/PathLineEdit.text = dir.get_current_dir()
 	
 # 파일명이 변경될 때 마다 실제 파일이 있는지 확인하고 선택을 해준다.
 func _on_FileNameLineEdit_text_changed(new_text):
@@ -195,3 +208,6 @@ func _on_MessageBox_hide():
 	if $MessageBox.result == $MessageBox.Result.yes:
 		result_ok = true
 		hide()
+
+
+

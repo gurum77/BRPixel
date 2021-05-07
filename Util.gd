@@ -1,6 +1,10 @@
 extends Node
 
+# src image에서 rect만큼 떼어내서 image를 만들어 리턴한
+func get_image_in_rect(src_image:Image, rect:Rect2)->Image:
+	return src_image.get_rect(rect)
 
+	
 func StringToColor(string:String)->Color:
 	var strings = string.split(",")
 	if strings.size() != 4:
@@ -200,3 +204,20 @@ func draw_image_on_preview_layer(image:Image, pos):
 	preview_layer.init_size(max(image.get_width(), StaticData.canvas_width), max(image.get_height(), StaticData.canvas_height))
 	preview_layer.copy_image(image, preview_layer.image, pos.x, pos.y)
 	preview_layer.update_texture()
+
+func get_rects(width, height, _rows, _cols)->Array:
+	var rects = []
+	var x = 0
+	var y = 0
+	var w = width / _cols
+	var h = height / _rows
+	
+	for row in _rows:
+		x = 0 
+		for col in _cols:
+			var rect:Rect2 = Rect2(x, y, w, h)
+			rects.append(rect)
+			x = x + w	
+		y = y + h
+		
+	return rects	
