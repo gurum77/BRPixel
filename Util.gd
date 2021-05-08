@@ -1,5 +1,35 @@
 extends Node
 
+# texture rect에 preview image를 그린다.
+# 반드시 parent가 있어야 함.
+func update_preview_image(_preview:TextureRect, _image:Image):
+	if _image == null:
+		return
+		
+	var image_width = _image.get_width()
+	var image_height = _image.get_height()
+	
+	# 이미지가 texture보다 크다면 scale에 margin은 0으로 하고 expand를 true 한다.
+	# 이미지가 texture보다 작다면 keep centered 로 하고 expand는 false를 한다.
+	if image_width > _preview.rect_size.x || image_height > _preview.rect_size.y:
+		_preview.expand = true
+		_preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	else:
+		_preview.expand = false
+		_preview.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
+
+	# preview에 image를 그린다
+	_preview.texture = ImageTexture.new()
+	_preview.texture.create_from_image(_image)
+	_preview.texture.flags = 0	# filter 등 모든 롭션을 끔(2d pixel 스타일로 그려야 함)
+	_preview.update()
+	_preview.rect_position.x = _preview.get_parent().rect_size.x / 2 - image_width / 2
+	_preview.rect_position.y = _preview.get_parent().rect_size.y / 2 - image_height / 2
+	_preview.margin_bottom = 0
+	_preview.margin_left = 0
+	_preview.margin_right = 0
+	_preview.margin_top = 0
+	
 # src image에서 rect만큼 떼어내서 image를 만들어 리턴한
 func get_image_in_rect(src_image:Image, rect:Rect2)->Image:
 	return src_image.get_rect(rect)

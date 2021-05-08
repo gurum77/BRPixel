@@ -127,7 +127,6 @@ func save_image(path:String, selected_area_only, sprite_sheet=false):
 					err = FAILED
 				num += 1
 			return err
-	return FAILED
 	
 # thumbnail저장을 위한 layer를 만든다.
 # 현재 작업중인 frame을 저장한다.

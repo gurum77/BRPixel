@@ -19,7 +19,13 @@ var debug_label:Label = null
 var color_setting_popup:ColorSettingPopup = null
 var import_image_popup:ImportImagePopup = null
 var save_options_popup:SaveOptionsPopup = null
+var preview:Preview = null
 
+func get_preview()->Preview:
+	if preview == null:
+		preview = get_tree().root.get_node("Main/UI/Preview")
+	return preview
+	
 func get_save_options_popup()->SaveOptionsPopup:
 	if save_options_popup == null:
 		save_options_popup = get_tree().root.get_node("Main/UI/SaveOptionsPopup")
@@ -36,9 +42,13 @@ func get_color_setting_popup()->ColorSettingPopup:
 	return color_setting_popup
 
 func get_undo()->UndoRedo:
+	if get_current_layer() == null:
+		return null
 	return get_current_layer().undo_redo
 	
 func get_undo_count()->int:
+	if get_current_layer() == null:
+		return 0
 	return get_current_layer().undo_count
 	
 func increase_undo_count():

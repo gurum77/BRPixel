@@ -79,7 +79,6 @@ func remove_frame(index:int):
 # 모든 프레임을 각각의 image로 만들어서 배열로 리턴
 func create_all_frame_images()->Array:
 	var images = []
-	var frame_count = get_frame_count()
 	var nodes = get_children()
 	for node in nodes:
 		var frame = node as Frame

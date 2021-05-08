@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/icon_canvas_size.png" type="Texture" id=1]
 [ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://SaveFileDialog.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Settings/LanguagePopup.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/icon_language_48.png" type="Texture" id=14]
+[ext_resource path="res://Settings/PreviewCheckButton.tscn" type="PackedScene" id=15]
 
 [node name="SettingPopup" type="Control"]
 margin_right = 10.0
@@ -27,7 +28,7 @@ __meta__ = {
 visible = true
 margin_left = -1.0
 margin_right = 308.0
-margin_bottom = 376.0
+margin_bottom = 221.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DraggablePopup"]
 anchor_right = 1.0
@@ -39,11 +40,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProjectNameLabel" type="Label" parent="DraggablePopup/HBoxContainer"]
-margin_top = 2.0
+[node name="Label" type="Label" parent="DraggablePopup/HBoxContainer"]
+margin_top = 5.0
 margin_right = 89.0
-margin_bottom = 18.0
+margin_bottom = 21.0
 text = "Project name"
+
+[node name="ProjectNameLabel" type="LineEdit" parent="DraggablePopup/HBoxContainer"]
+margin_left = 93.0
+margin_right = 268.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 175, 0 )
+text = "Untitled"
+placeholder_text = "Input project name..."
+caret_blink = true
 
 [node name="GridContainer" type="GridContainer" parent="DraggablePopup"]
 anchor_right = 1.0
@@ -66,14 +76,14 @@ icon = ExtResource( 5 )
 expand_icon = true
 
 [node name="NewPopup" parent="DraggablePopup/GridContainer/NewButton" instance=ExtResource( 6 )]
-margin_left = -290.718
-margin_top = -114.491
-margin_right = -290.718
-margin_bottom = -114.491
+margin_left = -334.372
+margin_top = -149.236
+margin_right = -334.372
+margin_bottom = -149.236
 
 [node name="OpenButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_left = 134.0
-margin_right = 264.0
+margin_right = 268.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 130, 50 )
 text = "Open"
@@ -101,7 +111,7 @@ __meta__ = {
 [node name="CanvasSizeButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_left = 134.0
 margin_top = 54.0
-margin_right = 264.0
+margin_right = 268.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 130, 50 )
 text = "Canvas Size"
@@ -129,6 +139,9 @@ margin_top = 10.7028
 margin_right = 334.329
 margin_bottom = 10.7028
 
+[node name="PreviewCheckButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 15 )]
+
+[connection signal="text_changed" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_text_changed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/NewButton" to="." method="_on_NewButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/OpenButton" to="DraggablePopup/GridContainer/OpenButton" method="_on_OpenButton_pressed"]
 [connection signal="file_selected" from="DraggablePopup/GridContainer/OpenButton/OpenFileDialog" to="DraggablePopup/GridContainer/OpenButton" method="_on_OpenFileDialog_file_selected"]

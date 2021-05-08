@@ -2,8 +2,14 @@ extends Button
 
 
 func _process(_delta):
-	disabled = !NodeManager.get_undo().has_redo()
+	var undo = NodeManager.get_undo()
+	if undo == null:
+		return
+	disabled = !undo.has_redo()
 
 func _on_RedoButton_pressed():
+	var undo = NodeManager.get_undo()
+	if undo == null:
+		return
 	NodeManager.get_tools().finish_selected_area_editing()
-	var _result = NodeManager.get_undo().redo()
+	var _result = undo.redo()

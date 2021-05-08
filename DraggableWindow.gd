@@ -1,5 +1,5 @@
 extends TextureRect
-
+class_name DraggableWindow
 var drag_position = null
 var active_color
 export var full_screen = false

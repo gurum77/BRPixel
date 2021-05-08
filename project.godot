@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://DraggablePopup.gd"
 }, {
+"base": "TextureRect",
+"class": "DraggableWindow",
+"language": "GDScript",
+"path": "res://DraggableWindow.gd"
+}, {
 "base": "Control",
 "class": "Edit",
 "language": "GDScript",
@@ -144,6 +149,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Tools/Pencil.gd"
 }, {
+"base": "WindowDialog",
+"class": "Preview",
+"language": "GDScript",
+"path": "res://Preview.gd"
+}, {
 "base": "Control",
 "class": "Project",
 "language": "GDScript",
@@ -199,6 +209,7 @@ _global_script_class_icons={
 "ColorSettingPopup": "",
 "DraggableFileDialog": "",
 "DraggablePopup": "",
+"DraggableWindow": "",
 "Edit": "",
 "FileButton": "",
 "Frame": "",
@@ -217,6 +228,7 @@ _global_script_class_icons={
 "PalettePreview": "",
 "Palettes": "",
 "Pencil": "",
+"Preview": "",
 "Project": "",
 "Projects": "",
 "RectangleTool": "",
@@ -249,6 +261,7 @@ UndoManager="*res://Tools/UndoManager.gd"
 
 window/handheld/orientation="sensor"
 window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [gui]
 

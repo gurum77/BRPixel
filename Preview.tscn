@@ -4,11 +4,10 @@
 [ext_resource path="res://white_rect_10x10.png" type="Texture" id=2]
 
 [node name="Preview" type="WindowDialog"]
-visible = true
-margin_left = 760.03
-margin_top = 23.0662
-margin_right = 862.03
-margin_bottom = 123.066
+margin_left = 782.356
+margin_top = 32.5514
+margin_right = 884.356
+margin_bottom = 132.551
 rect_min_size = Vector2( 100, 100 )
 window_title = "Preview"
 resizable = true
@@ -17,23 +16,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
 
 [connection signal="mouse_entered" from="." to="." method="_on_Preview_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Preview_mouse_exited"]

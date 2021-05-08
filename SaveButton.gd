@@ -7,7 +7,7 @@ func _ready():
 		
 func _on_SaveButton_pressed():
 	if !save_selected_area:
-		NodeManager.get_save_options_popup().connect("hide", self, "on_SaveOptionsPopup_hide")
+		var _result = NodeManager.get_save_options_popup().connect("hide", self, "on_SaveOptionsPopup_hide")
 		NodeManager.get_save_options_popup().popup_centered()
 	else:
 		on_SaveOptionsPopup_hide()

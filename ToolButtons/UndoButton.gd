@@ -3,9 +3,15 @@ extends Button
 
 
 func _process(_delta):
-	disabled = !NodeManager.get_undo().has_undo()
+	var undo = NodeManager.get_undo()
+	if undo == null:
+		return
+	disabled = !undo.has_undo()
 	text = str(NodeManager.get_undo_count())
 
 func _on_UndoButton_pressed():
+	var undo = NodeManager.get_undo()
+	if undo == null:
+		return
 	NodeManager.get_tools().finish_selected_area_editing()
-	var _result = NodeManager.get_undo().undo()
+	var _result = undo.undo()

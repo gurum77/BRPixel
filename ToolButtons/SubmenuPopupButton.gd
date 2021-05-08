@@ -31,8 +31,6 @@ func resize():
 
 # 클릭을 하면 child를 우측으로 표시한다.
 func _on_SubmenuPopupButton_pressed():
-	NodeManager.get_tools().add_child(NodeManager.get_tools().select_tool.instance())
-		
 	if $DraggableWindow.visible:
 		$DraggableWindow.hide()
 	else:

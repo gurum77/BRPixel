@@ -41,3 +41,7 @@ func _on_NewButton_pressed():
 # language button
 func _on_LanguageButton_pressed():
 	$DraggablePopup/GridContainer/LanguageButton/LanguagePopup.popup_centered()
+
+# 프로젝트 이름 변경
+func _on_ProjectNameLabel_text_changed(new_text):
+	StaticData.project_name = new_text

@@ -4,7 +4,7 @@ var dir = Directory.new()
 var file_dialog:DraggableFileDialog = null
 func _ready():
 	file_dialog = get_parent().get_parent().get_parent()
-	get_popup().connect("id_pressed", self, "on_id_pressed")
+	var _result = get_popup().connect("id_pressed", self, "on_id_pressed")
 	
 
 func update_text():
