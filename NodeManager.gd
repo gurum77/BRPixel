@@ -113,7 +113,10 @@ func get_frames()->Frames:
 	return frames
 	
 func get_current_frame()->Frame:
-	return get_frames().get_frame(StaticData.current_frame_index)
+	var _frames = get_frames()
+	if _frames == null:
+		return null
+	return _frames.get_frame(StaticData.current_frame_index)
 	
 func get_current_layers()->Layers:
 	if get_current_frame() == null:

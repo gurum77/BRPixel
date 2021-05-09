@@ -60,6 +60,7 @@ margin_right = 178.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 120, 25 )
 custom_fonts/font = SubResource( 1 )
+editable = false
 placeholder_text = "Input layer name"
 caret_blink = true
 caret_blink_speed = 0.5

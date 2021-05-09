@@ -10,6 +10,8 @@ extends Control
 func _ready():
 	# project name은 번역하면 안됨
 	$DraggablePopup/HBoxContainer/ProjectNameLabel.set_message_translation(false)
+	# 포커스는 클릭할 때만 들어가게 해야함
+	$DraggablePopup/HBoxContainer/ProjectNameLabel.focus_mode = Control.FOCUS_CLICK
 
 	pass
 
@@ -45,3 +47,11 @@ func _on_LanguageButton_pressed():
 # 프로젝트 이름 변경
 func _on_ProjectNameLabel_text_changed(new_text):
 	StaticData.project_name = new_text
+
+
+func _on_ProjectNameLabel_focus_entered():
+	$DraggablePopup/HBoxContainer/ProjectNameLabel.editable = true
+
+
+func _on_ProjectNameLabel_focus_exited():
+	$DraggablePopup/HBoxContainer/ProjectNameLabel.editable = false

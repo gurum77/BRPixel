@@ -11,6 +11,7 @@ func get_layer()->Layer:
 	return layer_button.get_layer()
 	
 func _ready():
+	$HBoxContainer/NameLineEdit.focus_mode = Control.FOCUS_CLICK
 	update_control()
 	
 func is_current_layer()->bool:
@@ -24,11 +25,16 @@ func update_control(layer:Layer=null):
 		$CurrentLayerSign.visible = false
 		return
 	$HBoxContainer/VisibleButton.pressed = layer.visible
-	$HBoxContainer/NameLineEdit.text = layer.name
+	# focus가 없을때만 layer name을 갱신한다.
+	# 안그러면 layer name이 편집이 안됨
+	if !$HBoxContainer/NameLineEdit.has_focus():	
+		$HBoxContainer/NameLineEdit.text = layer.name
 	
 func _process(_delta):
 	update_control()
 	current_layer_sign.visible = is_current_layer()
+	if !current_layer_sign.visible:
+		$HBoxContainer/NameLineEdit.editable = false
 
 
 func _on_VisibleButton_pressed():
@@ -75,6 +81,8 @@ func _on_NameLineEdit_focus_exited():
 	# layer 이름을 설정한다.	
 	NodeManager.get_frames().set_layer_name(get_layer_index(), new_text)
 	
+	
+	
 
 
 func _on_LayerSettingButton_pressed():
@@ -83,8 +91,9 @@ func _on_LayerSettingButton_pressed():
 
 func update_all_layer_info_control():
 	NodeManager.get_layer_panel().update_layer_buttons()
-	
+		
 func _on_NameLineEdit_focus_entered():
+	$HBoxContainer/NameLineEdit.editable = true
 	var layer = get_layer()
 	if layer == null:
 		return
@@ -99,3 +108,5 @@ func _on_NameLineEdit_focus_entered():
 func _on_LayerButton_gui_input(event):
 	if InputManager.is_action_just_pressed_lbutton(event):
 		_on_NameLineEdit_focus_entered()
+
+

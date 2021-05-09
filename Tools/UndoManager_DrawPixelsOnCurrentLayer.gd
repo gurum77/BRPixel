@@ -46,9 +46,6 @@ func cancel_undo_for_draw_on_current_layer():
 	NodeManager.get_debug_label().text = "cancel"
 	if origin_image == null || new_pixels == null:
 		return
-		
-	var image = NodeManager.get_current_layer().image
-	
 	var origin_pixel_with_colors = Util.get_pixel_with_colors(origin_image, new_pixels.keys(), false)
 	if origin_pixel_with_colors == null || origin_pixel_with_colors.size() == 0:
 		return

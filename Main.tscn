@@ -153,10 +153,10 @@ margin_right = 104.0
 icon = ExtResource( 33 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton" index="0"]
-margin_left = 75.0
-margin_top = -1.0
-margin_right = 379.0
-margin_bottom = 39.0
+margin_left = 64.6819
+margin_top = 0.587402
+margin_right = 368.682
+margin_bottom = 40.5874
 
 [node name="HBoxContainer" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow" index="1"]
 anchor_top = 0.5
@@ -205,10 +205,10 @@ margin_top = 108.0
 margin_bottom = 158.0
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/GeometryPopupButton" index="0"]
-margin_left = 123.777
-margin_top = -0.930901
-margin_right = 440.777
-margin_bottom = 39.0691
+margin_left = 118.221
+margin_top = 0.656501
+margin_right = 435.221
+margin_bottom = 40.6565
 
 [node name="HBoxContainer" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow" index="1"]
 rect_min_size = Vector2( 100, 40 )
@@ -288,10 +288,10 @@ toggle_mode = true
 icon = ExtResource( 36 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SelectPopupButton" index="0"]
-margin_left = 125.445
-margin_top = 3.466
-margin_right = 442.445
-margin_bottom = 43.466
+margin_left = 115.921
+margin_top = 4.2597
+margin_right = 432.921
+margin_bottom = 44.2597
 
 [node name="HBoxContainer" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow" index="1"]
 rect_min_size = Vector2( 100, 35 )
@@ -443,10 +443,10 @@ margin_bottom = 590.0
 icon = ExtResource( 57 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SymmetryPopupButton" index="0"]
-margin_left = 148.772
-margin_top = -112.068
-margin_right = 465.772
-margin_bottom = -72.0685
+margin_left = 118.772
+margin_top = 6.93201
+margin_right = 435.772
+margin_bottom = 46.9315
 
 [node name="HBoxContainer" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow" index="1"]
 margin_bottom = -10.0
@@ -481,10 +481,10 @@ margin_bottom = 590.0
 icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
-margin_left = 93.0
-margin_top = -24.0
-margin_right = 732.0
-margin_bottom = 56.0
+margin_left = 64.0
+margin_top = 172.0
+margin_right = 703.0
+margin_bottom = 252.0
 
 [node name="FramePanel" type="Panel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
 margin_right = 600.0
@@ -880,6 +880,10 @@ visible = false
 visible = false
 
 [node name="LayerSettingPopup" parent="UI" instance=ExtResource( 25 )]
+margin_left = 15.9723
+margin_top = -259.089
+margin_right = 15.9723
+margin_bottom = -259.089
 
 [node name="Canvas" type="TextureRect" parent="."]
 script = ExtResource( 3 )
