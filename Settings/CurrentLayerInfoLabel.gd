@@ -1,6 +1,6 @@
 extends Label
 
-func _process(delta):
+func _process(_delta):
 	var layer_count = 1
 	var layers = NodeManager.get_current_layers()
 	if layers != null:

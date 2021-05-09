@@ -13,7 +13,7 @@ func update_frame_buttons():
 		if node is AddFrameButtonOnFramePanel:
 			continue
 		node.update()
-		node.update_frame()
+		node.update_frame_preview()
 		
 # frame button을 다시 만든다.
 func regen_frame_buttons():

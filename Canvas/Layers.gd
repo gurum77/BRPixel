@@ -33,7 +33,7 @@ func add_layer(name=null, index=-1)->Layer:
 # 새 layer 이름을 리턴
 func get_new_layer_name()->String:
 	# Layer뒤의 마지막수
-	var last_num = 1
+	var last_num = 0
 	var nodes = get_normal_layers()
 	for node in nodes:
 		var layer = node as Layer
@@ -69,6 +69,20 @@ func clear_normal_layers():
 		layer.unused = true
 		layer.call_deferred("queue_free")
 			
+func get_layer_count():
+	return get_normal_layers().size()
+
+# 바로 옆(이전, 이후) layer를 리턴한다.
+func get_side_layer(index, prev:bool)->Layer:
+	var side_index = index
+	if prev:
+		side_index -= 1
+	else:
+		side_index += 1
+	return get_layer(side_index)
+		
+	
+		
 func get_layer(index)->Layer:
 	var nodes = get_normal_layers()
 	if index < 0 || index >= nodes.size():

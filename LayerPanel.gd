@@ -10,6 +10,7 @@ func update_layer_buttons():
 	var nodes = layer_button_parent.get_children()
 	for node in nodes:
 		if node is LayerInfo:
+			node.update_layer_preview()
 			node.update_control()
 	update_all_visible_button()
 		

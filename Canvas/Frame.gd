@@ -32,13 +32,31 @@ func set_save_dic(dic:Dictionary):
 		
 func get_layers()->Layers:
 	return $Layers as Layers
+	
+# layer의 이름을 변경한다.
+func set_layer_name(index:int, new_name:String):
+	
+	var frame_count = NodeManager.get_frames().get_frame_count()
+	for frame_index in frame_count:
+		var frame = NodeManager.get_frames().get_frame(frame_index)
+		if frame == null:
+			continue
+		var layer = frame.get_layers().get_layer(index)
+		if layer == null:
+			continue
+		layer.name = new_name
+	
 
 func make_layers():
 	get_layers().clear_normal_layers()
 	# 첫번째 frame의 layer 갯수
-	var layer_count = NodeManager.get_frames().get_frame(0).get_layers().get_normal_layers().size()
+	var first_frame = NodeManager.get_frames().get_frame(0)
+	var layer_count = first_frame.get_layers().get_normal_layers().size()
 	for i in layer_count:
+		var first_layer = first_frame.get_layers().get_layer(i)
 		var _layer = get_layers().add_layer()
+		_layer.copy_properties(first_layer)
+		
 
 # 현재 frame이 아니라면 가린다.
 func _process(_delta):

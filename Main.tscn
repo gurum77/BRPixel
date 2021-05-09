@@ -889,6 +889,8 @@ __meta__ = {
 
 [node name="Frames" parent="Canvas" instance=ExtResource( 64 )]
 
+[node name="Layer 1" parent="Canvas/Frames/Frame/Layers" index="0" instance=ExtResource( 4 )]
+
 [node name="PreviewLayer" parent="Canvas" instance=ExtResource( 4 )]
 light_mask = -2147483647
 margin_left = 1.0
@@ -947,3 +949,5 @@ __meta__ = {
 [editable path="UI/EditPanel/GridContainer/SelectPopupButton"]
 [editable path="UI/EditPanel/GridContainer/SymmetryPopupButton"]
 [editable path="UI/EditPanel/GridContainer/AnimationPopupButton"]
+[editable path="Canvas/Frames"]
+[editable path="Canvas/Frames/Frame"]

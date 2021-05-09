@@ -6,6 +6,11 @@ var message_box:MessageBox
 func hide():
 	$DraggablePopup.hide()
 	
+func get_selected_layer_index():
+	if selected_layer == null:
+		return 0
+	return selected_layer.get_index()
+	
 func popup_centered():
 	if selected_layer == null:
 		return
@@ -43,16 +48,8 @@ func _on_DuplicateLayerButton_pressed():
 	if selected_layer == null:
 		return
 	
-	# layer를 하나 만든다.
-	var new_layer = NodeManager.get_current_layers().add_layer()
+	NodeManager.get_frames().duplicate_layer(get_selected_layer_index())
 	
-	# 이미지를 복사한다.
-	new_layer.copy_image(selected_layer.image, new_layer.image, 0, 0)
-	
-	# 새로운 layer의 위치를 selected_layer 뒤로 이동
-	var selected_layer_index = NodeManager.get_current_layers().get_child_index(selected_layer)
-	if selected_layer_index > -1:
-		NodeManager.get_current_layers().move_child(new_layer, selected_layer_index+1)
 	
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
@@ -76,11 +73,19 @@ func on_DeleteLayerMessageBox_hide():
 	delete_selected_layer()
 	
 func delete_selected_layer():
+	if selected_layer == null:
+		return
+	
 	# 현재 layer를 지우고 다음 layer를 현재 layer로 설정한다.
-	NodeManager.get_current_layers().remove_layer(selected_layer.get_index())
+	NodeManager.get_frames().remove_layer(selected_layer.get_index())
+	
+	# frame button도 재생성
+	NodeManager.get_frame_panel().update_frame_buttons()
 	
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
+	
+	
 
 
 # 아래로 이동
@@ -88,9 +93,9 @@ func _on_MoveDownButton_pressed():
 	# 현재 index가 0이면 이동 불가
 	if selected_layer.get_index() == 0:
 		return
-		
-	# 이동	
-	NodeManager.get_current_layers().move_child(selected_layer, selected_layer.get_index()-1)
+	# 이동
+	NodeManager.get_frames().move_layer(get_selected_layer_index(), true)
+	
 	
 	# 현재 layer 한칸 내림
 	StaticData.current_layer_index -= 1
@@ -103,16 +108,21 @@ func _on_MoveDownButton_pressed():
 
 # 위로 이동
 func _on_MoveUpButton_pressed():
-	# 현재 index가 마지막이면 이동 불가
-	if selected_layer.get_index() == NodeManager.get_current_layers().get_child_count()-1:
+	var current_layers = NodeManager.get_current_layers()
+	if current_layers == null:
 		return
-	# 이동	
-	NodeManager.get_current_layers().move_child(selected_layer, selected_layer.get_index()+1)
+	
+	# 현재 index가 마지막이면 이동 불가
+	if selected_layer.get_index() == current_layers.get_child_count()-1:
+		return
+		
+	# 이동
+	NodeManager.get_frames().move_layer(get_selected_layer_index(), false)
 	
 	# 현재 layer 한칸 올림
 	StaticData.current_layer_index += 1
-	if StaticData.current_layer_index >= NodeManager.get_current_layers().get_layer_count():
-		StaticData.current_layer_index = NodeManager.get_current_layers().get_layer_count()-1
+	if StaticData.current_layer_index >= current_layers.get_layer_count():
+		StaticData.current_layer_index = current_layers.get_layer_count()-1
 		
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
@@ -126,8 +136,9 @@ func _on_HideButton_pressed():
 
 # 투명도 슬라이더 변경시..
 func _on_TransparencyHSlider_value_changed(_value):
-	selected_layer.modulate.a = $DraggablePopup/GridContainerTop/TransparencyHSlider.value / 100.0
+	NodeManager.get_frames().set_alpha(get_selected_layer_index(), $DraggablePopup/GridContainerTop/TransparencyHSlider.value / 100.0)
 	$DraggablePopup/GridContainerTop/TransparencyHSlider/TextEdit.text = str($DraggablePopup/GridContainerTop/TransparencyHSlider.value)
+	
 
 
 # 이전 layer와 합치기
@@ -146,18 +157,12 @@ func on_MergeWithPreviousLayer_hide():
 	message_box.disconnect("hide", self, "on_MergeWithPreviousLayer_hide")	
 	if message_box.result != MessageBox.Result.yes:
 		return
-		
-	# 이전 layer
-	var prev_layer:Layer = get_prev_layer()
-	if prev_layer == null:
-		return
-		
-	# 이미지를 이전 layer로 복사
-	prev_layer.copy_image(selected_layer.image, prev_layer.image, 0, 0)
-	prev_layer.update_texture()
 	
-	# 현재 layer 삭제
-	delete_selected_layer()
+	# layer를 합친다.	
+	NodeManager.get_frames().merge_layer_with(get_selected_layer_index(), true)
+	
+	# layer button을 재생성 한다.
+	NodeManager.get_layer_panel().regen_layer_buttons()		
 	
 	hide()
 		
@@ -179,27 +184,14 @@ func on_MergeAllLayers_hide():
 	if message_box.result != MessageBox.Result.yes:
 		return
 		
-	var layers = NodeManager.get_current_layers().get_normal_layers()
-	if layers == null || layers.size() < 2:
-		hide()
-		return
-		
-	# 모두 첫번째 layer로 합친다.
-	var first_layer = layers[0]
-	for layer in layers:
-		if layer == first_layer:
-			continue
-		first_layer.copy_image(layer.image, first_layer.image, 0, 0)
-		layer.unused = true
-		layer.call_deferred("queue_free")
+	NodeManager.get_frames().merge_all_layers()
 	
-	StaticData.current_layer_index = 0
-	NodeManager.get_current_layer().update_texture()
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()		
 	hide()
 
 
+# 다음 layer와 합치기를 한다.
 func _on_MergeWithNextButton_pressed():
 	# 다음 layer
 	var next_layer:Layer = get_next_layer()
@@ -211,23 +203,16 @@ func _on_MergeWithNextButton_pressed():
 	message_box = Util.show_yesno_message_box(tr("Do you really merge with next layer.") + "\n" + tr("This operation cannot be undone."))
 	var _result = message_box.connect("hide", self, "on_MergeWithNextLayer_hide")
 	
-	
+
 func on_MergeWithNextLayer_hide():
 	popup_centered()
 	message_box.disconnect("hide", self, "on_MergeWithNextLayer_hide")
 	if message_box.result != MessageBox.Result.yes:
 		return
 		
-	# 다음 layer
-	var next_layer:Layer = get_next_layer()
-	if next_layer == null:
-		hide()
-		return
-		
-	# 이미지를 다음 layer로 복사
-	next_layer.copy_image(selected_layer.image, next_layer.image, 0, 0)
-	next_layer.update_texture()
-	# 현재 layer 삭제
-	delete_selected_layer()
+	NodeManager.get_frames().merge_layer_with(get_selected_layer_index(), false)
+	
+	# layer button을 재생성 한다.
+	NodeManager.get_layer_panel().regen_layer_buttons()		
 	
 	hide()

@@ -4,7 +4,7 @@ class_name LayerInfo
 onready var layer_button = $HBoxContainer/LayerButton
 onready var current_layer_sign = $CurrentLayerSign
 
-func update_layer_preview(layer:Layer):
+func update_layer_preview(layer:Layer=null):
 	layer_button.update_layer_preview(layer)
 
 func get_layer()->Layer:
@@ -15,6 +15,7 @@ func _ready():
 	
 func is_current_layer()->bool:
 	return layer_button.is_current_layer()
+
 	
 func update_control(layer:Layer=null):
 	if layer == null:
@@ -26,17 +27,22 @@ func update_control(layer:Layer=null):
 	$HBoxContainer/NameLineEdit.text = layer.name
 	
 func _process(_delta):
+	update_control()
 	current_layer_sign.visible = is_current_layer()
 
 
 func _on_VisibleButton_pressed():
-	var layer = get_layer()
-	if layer == null:
-		return
-	layer.visible = $HBoxContainer/VisibleButton.pressed
+	var frames = NodeManager.get_frames()
+	frames.set_layer_visible(get_layer_index(), $HBoxContainer/VisibleButton.pressed)
 	update_control()
 	NodeManager.get_layer_panel().update_all_visible_button()
 
+func get_layer_index()->int:
+	var layer = get_layer()
+	if layer == null:
+		return 0
+	return layer.get_index()
+	
 func is_valid_layer_name(name)->bool:
 	if name == null || name == "":
 		return false
@@ -66,11 +72,9 @@ func _on_NameLineEdit_focus_exited():
 		update_control()
 		return
 		
-	var layer = get_layer()
-	if layer == null:
-		return
-		
-	layer.name = new_text
+	# layer 이름을 설정한다.	
+	NodeManager.get_frames().set_layer_name(get_layer_index(), new_text)
+	
 
 
 func _on_LayerSettingButton_pressed():

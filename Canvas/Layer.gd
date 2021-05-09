@@ -151,6 +151,11 @@ func update_texture():
 	texture.create_from_image(image)
 	texture.flags = 0	# filter 등 모든 롭션을 끔(2d pixel 스타일로 그려야 함)
 	
+# layer의 속성을 복사한다.
+func copy_properties(src_layer:Layer):
+	name = src_layer.name
+	visible = src_layer.visible
+	modulate.a = src_layer.modulate.a
 	
 func clear(var update=false):
 	image.fill(Color.transparent)
