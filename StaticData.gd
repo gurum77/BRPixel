@@ -1,6 +1,6 @@
 extends Node
 
-enum Tool{pencil, line, rectangle, eraser, fill, change_color, 
+enum Tool{zoom, pencil, line, rectangle, eraser, fill, change_color, 
 circle, select, edit, pick_color_from_canvas, brighter, darker}
 
 enum SymmetryType{no, horizontal, vertical}
@@ -41,8 +41,12 @@ var selected_area = Rect2(0, 0, 0, 0)
 # mosue 좌표가 tool에 적용하기에 부적합한지?
 func invalid_mouse_pos_for_tool(tool_type)->bool:
 	# mouse가 ui에 있으면 false
-	if StaticData.mouse_inside_ui:
+	var pos = NodeManager.get_drawing_area().get_global_mouse_position()
+	var rect = Rect2(NodeManager.get_drawing_area().rect_global_position, NodeManager.get_drawing_area().rect_size)
+	if !rect.has_point(pos):
 		return true
+#	if StaticData.mouse_inside_ui:
+#		return true
 		
 	# 같은 tool이 아니면 false
 	if StaticData.current_tool != tool_type:

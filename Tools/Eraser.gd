@@ -4,7 +4,7 @@ var start_point
 func _ready():
 	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.eraser)
 	
-func _input(_event):
+func drawing_area_input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.eraser):
 		return
 		

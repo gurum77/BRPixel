@@ -1,7 +1,7 @@
 extends Button
 
 func _on_PencilButton_pressed():
-	run()
+	pass
 	
 func run():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().pencil_tool.instance())
@@ -14,3 +14,7 @@ func _process(_delta):
 
 func _on_PencilSettingButton_pressed():
 	$PencilSettingButton/PencilSettingPopup.popup_centered()
+
+
+func _on_PencilButton_button_up():
+	run()

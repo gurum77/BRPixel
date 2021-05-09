@@ -5,7 +5,7 @@ extends Control
 func _ready():
 	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.pick_color_from_canvas)
 
-func _input(event):
+func drawing_area_input(event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.pick_color_from_canvas):
 		return
 

@@ -21,7 +21,13 @@ var import_image_popup:ImportImagePopup = null
 var save_options_popup:SaveOptionsPopup = null
 var preview:Preview = null
 var layer_setting_popup:LayerSettingPopup = null
+var drawing_area:Control = null
 
+func get_drawing_area()->Control:
+	if drawing_area == null:
+		drawing_area = get_tree().root.get_node("Main/UI/DrawingArea")
+	return drawing_area
+	
 func get_layer_setting_popup()->LayerSettingPopup:
 	if layer_setting_popup == null:
 		layer_setting_popup = get_tree().root.get_node("Main/UI/LayerSettingPopup")

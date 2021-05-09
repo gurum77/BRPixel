@@ -34,7 +34,7 @@ func _ready():
 	NodeManager.get_tools().init_to_start_tool(self, current_tool)
 	drawn_points.clear()
 	
-func _input(_event):
+func drawing_area_input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(current_tool):
 		return
 
@@ -42,7 +42,14 @@ func _input(_event):
 	InputManager.draw_preview_pixel_cursor(self, _event, StaticData.pencil_thickness)
 		
 	# 처음 클릭하면 첫번째 점을 보관한다.
+	# test
+	if _event is InputEventScreenTouch && _event.pressed:
+		NodeManager.get_debug_label().text = "touch"
+	elif _event is InputEventScreenTouch && !_event.pressed:
+		NodeManager.get_debug_label().text = "untouch"
+		
 	if InputManager.is_action_just_pressed_lbutton(_event):
+		NodeManager.get_debug_label().text = "lbutton pressed"
 		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
 		pixel_perfect_drawer.reset()
 		start_point = get_local_mouse_position()
@@ -95,6 +102,7 @@ func set_pixels(points):
 		for point in points:
 			pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, point, StaticData.current_color)
 		NodeManager.get_current_layer().image.unlock()	
+		NodeManager.get_current_layer().update_texture()
 	else:
 		NodeManager.get_current_layer().set_pixels_by_current_color(points)
 	

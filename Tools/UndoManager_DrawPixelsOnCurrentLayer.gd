@@ -41,6 +41,25 @@ func append_undo_for_draw_on_current_layer(var pixels:Array):
 	for pixel in pixels:
 		new_pixels[pixel] = true
 	
+# 그리기를 취소한다.
+func cancel_undo_for_draw_on_current_layer():
+	NodeManager.get_debug_label().text = "cancel"
+	if origin_image == null || new_pixels == null:
+		return
+		
+	var image = NodeManager.get_current_layer().image
+	
+	var origin_pixel_with_colors = Util.get_pixel_with_colors(origin_image, new_pixels.keys(), false)
+	if origin_pixel_with_colors == null || origin_pixel_with_colors.size() == 0:
+		return
+	var layer = NodeManager.get_current_layer()
+	layer.set_pixel_with_colors(origin_pixel_with_colors)
+	
+	NodeManager.get_debug_label().text = str(origin_pixel_with_colors.size())
+	
+	origin_image = null
+	new_pixels.clear()
+		
 func commit_undo_for_draw_on_current_layer():
 	var image = NodeManager.get_current_layer().image
 	
@@ -61,4 +80,7 @@ func commit_undo_for_draw_on_current_layer():
 	NodeManager.get_undo().commit_action()
 	NodeManager.increase_undo_count()
 	StaticData.preview_layer.clear()
+	
+	origin_image = null
+	new_pixels.clear()
 	

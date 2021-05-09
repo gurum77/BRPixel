@@ -29,7 +29,7 @@ func make_resized_image()->Image:
 	resized_image.resize(StaticData.selected_area.size.x, StaticData.selected_area.size.y, Image.INTERPOLATE_LANCZOS)
 	return resized_image
 	
-func _input(event):
+func drawing_area_input(event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.edit):
 		return
 		

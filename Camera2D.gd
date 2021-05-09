@@ -58,6 +58,9 @@ func _input(event):
 			last_drag_position = event.position
 		else:
 			events.erase(event.index)
+			# zoom을 하다가 손을 떼면 마지막 drawing tool을 실행
+			if event.index > 0 && events.size() == 0:
+				NodeManager.get_tools().run_last_drawing_tool()
 			
 	elif event is InputEventScreenDrag:
 		if events.size() != 2:
@@ -80,6 +83,11 @@ func _input(event):
 			var new_zoom_level = last_zoom_level * (last_drag_distance / drag_distance)
 			_update_zoom_by_new_zoom_level(new_zoom_level, center_position)
 			last_drag_position = event.position
+			
+			# zooming 이라면 현재 tool을 zoom으로 변경
+			# 지금 그리기 중이었던 명령은 취소를 한다.
+			UndoManager.draw_pixels_on_current_layer.cancel_undo_for_draw_on_current_layer()
+			StaticData.current_tool = StaticData.Tool.zoom
 	# 아닌지
 	else:
 		if event.is_action_pressed("cam_drag"):

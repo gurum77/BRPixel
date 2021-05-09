@@ -3,6 +3,8 @@ extends Button
 export var fill = false
 
 func _on_CircleButton_pressed():
+	pass
+func run():
 	var circle = NodeManager.get_tools().circle_tool.instance()
 	circle.fill = fill
 	NodeManager.get_tools().add_child(circle)
@@ -24,3 +26,7 @@ func _process(_delta):
 	
 	if pressed != is_current_tool:
 		pressed = is_current_tool
+
+
+func _on_CircleButton_button_up():
+	run()

@@ -17,7 +17,7 @@ func _draw():
 		
 	return points
 		
-func _input(_event):
+func drawing_area_input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.rectangle):
 		return
 		

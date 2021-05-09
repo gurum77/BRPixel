@@ -12,7 +12,7 @@ func _draw():
 	StaticData.preview_layer.clear()
 	StaticData.preview_layer.set_pixels_by_current_color(points)
 		
-func _input(_event):
+func drawing_area_input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.line):
 		return
 	if StaticData.current_tool != StaticData.Tool.line:
