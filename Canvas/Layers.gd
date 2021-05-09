@@ -25,7 +25,27 @@ func add_layer(name=null, index=-1)->Layer:
 		move_child(new_layer, index)
 	if name != null:
 		new_layer.name = name
+	else:
+		new_layer.name = get_new_layer_name()
+	
 	return new_layer
+	
+# 새 layer 이름을 리턴
+func get_new_layer_name()->String:
+	# Layer뒤의 마지막수
+	var last_num = 1
+	var nodes = get_normal_layers()
+	for node in nodes:
+		var layer = node as Layer
+		var layer_name:String = layer.name
+		if !layer_name.begins_with("Layer "):
+			continue
+		var num_text = layer_name.replace("Layer ", "")
+		var num = num_text.to_int()
+		if num > last_num:
+			last_num = num
+	
+	return "Layer %d" % [last_num+1]
 	
 # 일반 레이어를 모두 가져온다.
 func get_normal_layers()->Array:

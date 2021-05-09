@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -23,8 +23,8 @@
 [ext_resource path="res://Assets/icon_add_image.png" type="Texture" id=21]
 [ext_resource path="res://EditPanel.gd" type="Script" id=22]
 [ext_resource path="res://AddLayerButton.gd" type="Script" id=23]
-[ext_resource path="res://LayerPanel.gd" type="Script" id=24]
-[ext_resource path="res://Canvas/LayerButton.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Settings/LayerPanel.tscn" type="PackedScene" id=24]
+[ext_resource path="res://LayerSettingPopup.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Canvas/FrameButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://DeleteLayerButton.gd" type="Script" id=27]
 [ext_resource path="res://ToolButtons/MoveButton.tscn" type="PackedScene" id=28]
@@ -40,7 +40,6 @@
 [ext_resource path="res://Assets/icon_fill.png" type="Texture" id=38]
 [ext_resource path="res://GridButton.gd" type="Script" id=39]
 [ext_resource path="res://Assets/icon_grid.png" type="Texture" id=40]
-[ext_resource path="res://AddLayerButtonOnLayerPanel.tscn" type="PackedScene" id=41]
 [ext_resource path="res://Assets/icon_setting.png" type="Texture" id=42]
 [ext_resource path="res://SettingPopup.tscn" type="PackedScene" id=43]
 [ext_resource path="res://SettingButton.gd" type="Script" id=44]
@@ -482,10 +481,10 @@ margin_bottom = 590.0
 icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
-margin_left = 95.0
-margin_top = -62.0
-margin_right = 734.0
-margin_bottom = 18.0
+margin_left = 93.0
+margin_top = -24.0
+margin_right = 732.0
+margin_bottom = 56.0
 
 [node name="FramePanel" type="Panel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
 margin_right = 600.0
@@ -821,40 +820,12 @@ rect_min_size = Vector2( 33, 33 )
 margin_left = 130.0
 margin_right = 130.0
 
-[node name="LayerPanel" type="Panel" parent="UI"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 150.0
-margin_top = -40.0
-margin_right = -150.0
-grow_vertical = 0
-rect_min_size = Vector2( 0, 40 )
-script = ExtResource( 24 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/LayerPanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-scroll_vertical_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/LayerPanel/ScrollContainer"]
-margin_right = 84.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LayerButton" parent="UI/LayerPanel/ScrollContainer/HBoxContainer" instance=ExtResource( 25 )]
-
-[node name="AddLayerButtonOnLayerPanel" parent="UI/LayerPanel/ScrollContainer/HBoxContainer" instance=ExtResource( 41 )]
-margin_left = 44.0
-margin_right = 84.0
+[node name="LayerPanel" parent="UI" instance=ExtResource( 24 )]
+anchor_bottom = 0.0
+margin_left = -360.0
+margin_top = 161.0
+margin_right = -120.0
+margin_bottom = 361.0
 
 [node name="SettingButton" type="TextureButton" parent="UI"]
 anchor_left = 1.0
@@ -907,6 +878,8 @@ visible = false
 
 [node name="SaveOptionsPopup" parent="UI" instance=ExtResource( 90 )]
 visible = false
+
+[node name="LayerSettingPopup" parent="UI" instance=ExtResource( 25 )]
 
 [node name="Canvas" type="TextureRect" parent="."]
 script = ExtResource( 3 )

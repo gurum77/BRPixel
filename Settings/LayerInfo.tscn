@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/icon_visible_on.png" type="Texture" id=1]
+[ext_resource path="res://Assets/icon_visible_off.png" type="Texture" id=2]
+[ext_resource path="res://Canvas/LayerButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Settings/LayerInfo.gd" type="Script" id=4]
+[ext_resource path="res://Settings/LayerSettingButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Fonts/neodgm_pro.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 14
+font_data = ExtResource( 6 )
+
+[node name="LayerInfo" type="Control"]
+margin_right = 220.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 220, 25 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentLayerSign" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 1.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( 111, 13.5 )
+color = Color( 0.486275, 0.588235, 0.505882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 220.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisibleButton" type="TextureButton" parent="HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+toggle_mode = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+expand = true
+
+[node name="LayerButton" parent="HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 29.0
+margin_right = 54.0
+
+[node name="NameLineEdit" type="LineEdit" parent="HBoxContainer"]
+margin_left = 58.0
+margin_right = 178.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 120, 25 )
+custom_fonts/font = SubResource( 1 )
+placeholder_text = "Input layer name"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="LayerSettingButton" parent="HBoxContainer" instance=ExtResource( 5 )]
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = 182.0
+margin_top = 0.0
+margin_right = 207.0
+margin_bottom = 25.0
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="HBoxContainer/VisibleButton" to="." method="_on_VisibleButton_pressed"]
+[connection signal="gui_input" from="HBoxContainer/LayerButton" to="." method="_on_LayerButton_gui_input"]
+[connection signal="focus_entered" from="HBoxContainer/NameLineEdit" to="." method="_on_NameLineEdit_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/NameLineEdit" to="." method="_on_NameLineEdit_focus_exited"]
+[connection signal="pressed" from="HBoxContainer/LayerSettingButton" to="." method="_on_LayerSettingButton_pressed"]

@@ -46,6 +46,9 @@ func commit_undo_for_draw_on_current_layer():
 	
 	var origin_pixel_with_colors = Util.get_pixel_with_colors(origin_image, new_pixels.keys(), false)
 	var new_pixel_with_colors = Util.get_pixel_with_colors(image, new_pixels.keys(), false)
+	if new_pixel_with_colors == null || new_pixel_with_colors.size() == 0:
+		return
+	
 	
 	NodeManager.get_undo().create_action("draw_pixels_on_current_layer")
 	

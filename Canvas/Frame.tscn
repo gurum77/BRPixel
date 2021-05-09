@@ -20,6 +20,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Layer" parent="Layers" instance=ExtResource( 3 )]
+[node name="Layer 1" parent="Layers" instance=ExtResource( 3 )]
 light_mask = -2147483647
 stretch_mode = 3

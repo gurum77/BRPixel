@@ -20,7 +20,13 @@ var color_setting_popup:ColorSettingPopup = null
 var import_image_popup:ImportImagePopup = null
 var save_options_popup:SaveOptionsPopup = null
 var preview:Preview = null
+var layer_setting_popup:LayerSettingPopup = null
 
+func get_layer_setting_popup()->LayerSettingPopup:
+	if layer_setting_popup == null:
+		layer_setting_popup = get_tree().root.get_node("Main/UI/LayerSettingPopup")
+	return layer_setting_popup
+	
 func get_preview()->Preview:
 	if preview == null:
 		preview = get_tree().root.get_node("Main/UI/Preview")

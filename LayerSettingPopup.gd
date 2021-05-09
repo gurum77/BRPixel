@@ -1,4 +1,5 @@
 extends Control
+class_name LayerSettingPopup
 
 var selected_layer:Layer
 var message_box:MessageBox
@@ -6,6 +7,9 @@ func hide():
 	$DraggablePopup.hide()
 	
 func popup_centered():
+	if selected_layer == null:
+		return
+		
 	$DraggablePopup/GridContainer/HideButton.pressed = !selected_layer.visible
 	$DraggablePopup/GridContainerTop/TransparencyHSlider.value = selected_layer.modulate.a * 100
 	$DraggablePopup.popup_centered()

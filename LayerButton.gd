@@ -17,12 +17,20 @@ func update_layer_preview(layer=null):
 	$Layer.modulate.a = layer.modulate.a
 	$Layer.update_texture()
 	
-
+func get_layer_index()->int:
+	var layers = NodeManager.get_current_layers()
+	if layers == null:
+		return 0
+		
+	var layer_count = layers.get_normal_layers().size()
+	var idx = get_parent().get_parent().get_index()
+	return layer_count - idx - 1
+	
 func is_current_layer()->bool:
 	if NodeManager.get_current_layer() == null:
 		return false
 		
-	if NodeManager.get_current_layer().get_index() == get_index():
+	if NodeManager.get_current_layer().get_index() == get_layer_index():
 		return true
 	return false
 
@@ -34,10 +42,10 @@ func get_layer()->Layer:
 	if NodeManager.get_current_layers() == null:
 		return null
 		
-	return NodeManager.get_current_layers().get_layer(get_index())
+	return NodeManager.get_current_layers().get_layer(get_layer_index())
 	
 func update():
-	# tree에 추가되지 않은 상태에서는 get_index()가 없으므로 일시적으로 null일 수 있음
+	# tree에 추가되지 않은 상태에서는 get_layer_index()가 없으므로 일시적으로 null일 수 있음
 	if get_layer() == null:
 		$CurrentLayerSign.visible = false
 		return
@@ -46,18 +54,14 @@ func update():
 		modulate = Color.white
 	else:
 		modulate = Color.darkgray
-	$CurrentLayerSign.visible = is_current_layer()
+#	$CurrentLayerSign.visible = is_current_layer()
 
 
 func _on_LayerButton_gui_input(event):
 	# L 버튼 클릭시 현재 layer로 설정
-	if InputManager.is_action_just_pressed_lbutton(event):
-		StaticData.current_layer_index = get_index()
-	elif InputManager.is_action_just_pressed_rbutton(event):
+#	if InputManager.is_action_just_pressed_lbutton(event):
+#		StaticData.current_layer_index = get_layer_index()
+	if InputManager.is_action_just_pressed_rbutton(event):
 		get_layer().toggle_visible()
 		update()
 			
-
-func _on_SettingButton_pressed():
-	$SettingButton/LayerSettingPopup.selected_layer = get_layer()
-	$SettingButton/LayerSettingPopup.popup_centered()
