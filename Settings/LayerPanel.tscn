@@ -2,10 +2,11 @@
 
 [ext_resource path="res://Settings/LayerInfo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/icon_visible_on.png" type="Texture" id=2]
-[ext_resource path="res://AddLayerButtonOnLayerPanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ToolButtons/AddLayerButtonOnLayerPanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/icon_visible_off.png" type="Texture" id=4]
 [ext_resource path="res://Settings/CurrentLayerInfoLabel.gd" type="Script" id=5]
 [ext_resource path="res://LayerPanel.gd" type="Script" id=6]
+
 
 [node name="LayerPanel" type="WindowDialog"]
 anchor_left = 1.0

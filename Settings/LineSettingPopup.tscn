@@ -3,6 +3,7 @@
 [ext_resource path="res://Settings/LineSettingPopup.gd" type="Script" id=1]
 [ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=2]
 
+
 [node name="LineSettingPopup" type="Control"]
 script = ExtResource( 1 )
 __meta__ = {

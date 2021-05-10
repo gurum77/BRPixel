@@ -184,6 +184,7 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="DraggablePopup/GridContainer/PresetButtons/16x16Button" to="." method="_on_16x16Button_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/PresetButtons/32x32Button" to="." method="_on_32x32Button_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/PresetButtons/64x64Button" to="." method="_on_64x64Button_pressed"]

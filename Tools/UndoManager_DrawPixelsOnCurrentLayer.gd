@@ -81,3 +81,6 @@ func commit_undo_for_draw_on_current_layer():
 	origin_image = null
 	new_pixels.clear()
 	
+	# commit을 할때 마다 auto_save를 한다.
+	StaticData.save_auto_saved_project()
+	

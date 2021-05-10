@@ -3,7 +3,7 @@ class_name LayerPanel
 
 var layer_button_node = preload("res://Canvas/LayerButton.tscn")
 var layer_info_noide = preload("res://Settings/LayerInfo.tscn")
-var add_layer_button_on_layer_panel = preload("res://AddLayerButtonOnLayerPanel.tscn")
+var add_layer_button_on_layer_panel = preload("res://ToolButtons/AddLayerButtonOnLayerPanel.tscn")
 onready var layer_button_parent = $VBoxContainer/ScrollContainer/HBoxContainer
 # layer button의 layer 갱
 func update_layer_buttons():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -40,8 +40,9 @@
 [ext_resource path="res://Assets/icon_fill.png" type="Texture" id=38]
 [ext_resource path="res://GridButton.gd" type="Script" id=39]
 [ext_resource path="res://Assets/icon_grid.png" type="Texture" id=40]
+[ext_resource path="res://ToolButtons/NewButton.tscn" type="PackedScene" id=41]
 [ext_resource path="res://Assets/icon_setting.png" type="Texture" id=42]
-[ext_resource path="res://SettingPopup.tscn" type="PackedScene" id=43]
+[ext_resource path="res://Settings/SettingPopup.tscn" type="PackedScene" id=43]
 [ext_resource path="res://SettingButton.gd" type="Script" id=44]
 [ext_resource path="res://Tools/BrighterButton.tscn" type="PackedScene" id=45]
 [ext_resource path="res://PickColorFromCanvasButton.gd" type="Script" id=46]
@@ -63,7 +64,7 @@
 [ext_resource path="res://ToolButtons/BrushSizeTextEdit.tscn" type="PackedScene" id=62]
 [ext_resource path="res://FramePanel.gd" type="Script" id=63]
 [ext_resource path="res://Canvas/Frames.tscn" type="PackedScene" id=64]
-[ext_resource path="res://AddFrameButtonOnFramePanel.tscn" type="PackedScene" id=65]
+[ext_resource path="res://ToolButtons/AddFrameButtonOnFramePanel.tscn" type="PackedScene" id=65]
 [ext_resource path="res://PlayButton.tscn" type="PackedScene" id=66]
 [ext_resource path="res://PrevButton.tscn" type="PackedScene" id=67]
 [ext_resource path="res://NextButton.tscn" type="PackedScene" id=68]
@@ -425,21 +426,9 @@ margin_top = 432.0
 margin_right = 104.0
 margin_bottom = 482.0
 
-[node name="SaveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 8 )]
-margin_left = 0.0
-margin_top = 486.0
-margin_right = 50.0
-margin_bottom = 536.0
-
-[node name="OpenButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 10 )]
-margin_left = 54.0
-margin_top = 486.0
-margin_right = 104.0
-margin_bottom = 536.0
-
 [node name="SymmetryPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
-margin_top = 540.0
-margin_bottom = 590.0
+margin_top = 486.0
+margin_bottom = 536.0
 icon = ExtResource( 57 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SymmetryPopupButton" index="0"]
@@ -475,9 +464,9 @@ symmetry_type = 2
 
 [node name="AnimationPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
-margin_top = 540.0
+margin_top = 486.0
 margin_right = 104.0
-margin_bottom = 590.0
+margin_bottom = 536.0
 icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
@@ -591,6 +580,31 @@ anchor_right = 0.98
 margin_left = 32.0
 margin_right = 9.0
 margin_bottom = 3.8147e-06
+
+[node name="HSeparator" type="HSeparator" parent="UI/EditPanel/GridContainer"]
+margin_top = 540.0
+margin_right = 50.0
+margin_bottom = 544.0
+
+[node name="HSeparator2" type="HSeparator" parent="UI/EditPanel/GridContainer"]
+margin_left = 54.0
+margin_top = 540.0
+margin_right = 104.0
+margin_bottom = 544.0
+
+[node name="NewButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 41 )]
+
+[node name="OpenButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 10 )]
+margin_left = 54.0
+margin_top = 548.0
+margin_right = 104.0
+margin_bottom = 598.0
+
+[node name="SaveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 8 )]
+margin_left = 0.0
+margin_top = 602.0
+margin_right = 50.0
+margin_bottom = 652.0
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )

@@ -3,7 +3,7 @@ extends TextureRect
 
 func _process(_delta):
 	update()
-	$DebugLabel.text = str(get_frame().get_layers().get_layer_count())
+#	$DebugLabel.text = str(get_frame().get_layers().get_layer_count())
 
 func update():
 	$CurrentFrameSign.visible = is_current_frame()

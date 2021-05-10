@@ -2,6 +2,7 @@
 
 [ext_resource path="res://Settings/PaletteSizeButton.gd" type="Script" id=1]
 
+
 [node name="PaletteSizeButton" type="Button"]
 margin_right = 50.0
 margin_bottom = 50.0

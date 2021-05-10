@@ -55,11 +55,14 @@ func _on_OkButton_pressed():
 	
 	# frame을 모두 제거하고 1개만 추가한다.
 	NodeManager.get_frames().clear_frames()
-	
 	# 한타임 돌고 와야함(그래야 tree가 갱신됨)
 	yield(get_tree().create_timer(0.1), "timeout")
 	
-	var _frame = NodeManager.get_frames().add_frame("Frame1")
+	var _frame = NodeManager.get_frames().add_frame("Frame1", false)
+	
+	# layer도 하나 추가한다.
+	_frame.get_layers().add_layer("Layer 1")
+	
 	# 한타임 돌고 와야함(그래야 tree가 갱신됨)
 	yield(get_tree().create_timer(0.1), "timeout")
 	
@@ -76,7 +79,9 @@ func _on_OkButton_pressed():
 	
 	$DraggablePopup.hide()
 	NodeManager.get_setting_popup().hide()
-	
+
+	# 새파일을 auto save
+	StaticData.save_auto_saved_project()	
 
 
 func _on_CancelButton_pressed():

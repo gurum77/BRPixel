@@ -2,7 +2,7 @@ extends Panel
 class_name FramePanel
 
 var frame_button_node = preload("res://Canvas/FrameButton.tscn")
-var add_frame_button_on_frame_panel = preload("res://AddFrameButtonOnFramePanel.tscn")
+var add_frame_button_on_frame_panel = preload("res://ToolButtons/AddFrameButtonOnFramePanel.tscn")
 onready var frame_button_parent = $VBoxContainer/ScrollContainer/HBoxContainer
 
 # frame button을 다시 만들지는 않고 갱신만 한다.

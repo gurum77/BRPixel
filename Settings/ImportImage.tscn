@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/icon_cancel.png" type="Texture" id=6]
 [ext_resource path="res://Assets/icon_ok.png" type="Texture" id=7]
 
+
 [node name="ImportImage" type="Control"]
 script = ExtResource( 4 )
 __meta__ = {

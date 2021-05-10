@@ -95,20 +95,20 @@ func sync_layer_properties_by_first_layer():
 			
 		
 # 이름이 없으면 자동으로 변경되는 것을 그냥 사용한다.
-func add_frame(name=null)->Frame:
+func add_frame(name=null, make_layers_as_first_frame=true)->Frame:
 	var new_frame = frame_node.instance();
 	add_child(new_frame)
 	if name != null:
 		new_frame.name = name
 	
-	# frame을 추가하면 layer의 갯수를 맞춘다.
-	# frame이 1개라면 그냥 둔다.(기본 1개 그대로 둔다)
-	if get_child_count() == 1:
-		return new_frame
-		
-	new_frame.make_layers()
-#	yield(get_tree().create_timer(0.1), "timeout")
-#	sync_layer_properties_by_first_layer()
+	
+	if make_layers_as_first_frame:
+		# frame을 추가하면 layer의 갯수를 맞춘다.
+		# frame이 1개라면 그냥 둔다.(기본 1개 그대로 둔다)
+		if get_child_count() == 1:
+			return new_frame
+			
+		new_frame.make_layers()
 	return new_frame
 
 func clear_frames():

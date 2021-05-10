@@ -1,31 +1,31 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Assets/icon_canvas_size.png" type="Texture" id=1]
-[ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=2]
-[ext_resource path="res://SettingPopup.gd" type="Script" id=3]
-[ext_resource path="res://CanvasSizePopup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/icon_new.png" type="Texture" id=5]
-[ext_resource path="res://NewPopup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Assets/icon_open.png" type="Texture" id=7]
-[ext_resource path="res://OpenButton.gd" type="Script" id=8]
-[ext_resource path="res://SaveButton.gd" type="Script" id=9]
-[ext_resource path="res://Assets/icon_save.png" type="Texture" id=10]
+[ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://OpenButton.gd" type="Script" id=2]
+[ext_resource path="res://SaveButton.gd" type="Script" id=3]
+[ext_resource path="res://Settings/SettingPopup.gd" type="Script" id=4]
+[ext_resource path="res://Assets/icon_save.png" type="Texture" id=5]
+[ext_resource path="res://Assets/icon_open.png" type="Texture" id=6]
+[ext_resource path="res://Assets/icon_canvas_size.png" type="Texture" id=7]
+[ext_resource path="res://Assets/icon_language_48.png" type="Texture" id=8]
+[ext_resource path="res://Assets/icon_new.png" type="Texture" id=9]
+[ext_resource path="res://Settings/CanvasSizePopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://OpenFileDialog.tscn" type="PackedScene" id=11]
-[ext_resource path="res://SaveFileDialog.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Settings/LanguagePopup.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/icon_language_48.png" type="Texture" id=14]
+[ext_resource path="res://Settings/LanguagePopup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Settings/LayerCheckButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://NewPopup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Settings/PreviewCheckButton.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Settings/LayerCheckButton.tscn" type="PackedScene" id=16]
+[ext_resource path="res://SaveFileDialog.tscn" type="PackedScene" id=16]
 
 [node name="SettingPopup" type="Control"]
 margin_right = 10.0
 margin_bottom = 9.0
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DraggablePopup" parent="." instance=ExtResource( 2 )]
+[node name="DraggablePopup" parent="." instance=ExtResource( 1 )]
 visible = true
 margin_left = -1.0
 margin_right = 308.0
@@ -74,10 +74,10 @@ margin_right = 130.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 130, 50 )
 text = "New"
-icon = ExtResource( 5 )
+icon = ExtResource( 9 )
 expand_icon = true
 
-[node name="NewPopup" parent="DraggablePopup/GridContainer/NewButton" instance=ExtResource( 6 )]
+[node name="NewPopup" parent="DraggablePopup/GridContainer/NewButton" instance=ExtResource( 14 )]
 margin_left = -334.372
 margin_top = -149.236
 margin_right = -334.372
@@ -89,9 +89,9 @@ margin_right = 268.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 130, 50 )
 text = "Open"
-icon = ExtResource( 7 )
+icon = ExtResource( 6 )
 expand_icon = true
-script = ExtResource( 8 )
+script = ExtResource( 2 )
 
 [node name="OpenFileDialog" parent="DraggablePopup/GridContainer/OpenButton" instance=ExtResource( 11 )]
 current_dir = "/MyProjects/Godot/ExpertPixelEditor"
@@ -103,14 +103,14 @@ margin_right = 130.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 130, 50 )
 text = "Save"
-icon = ExtResource( 10 )
+icon = ExtResource( 5 )
 expand_icon = true
-script = ExtResource( 9 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SaveFileDialog" parent="DraggablePopup/GridContainer/SaveButton" instance=ExtResource( 12 )]
+[node name="SaveFileDialog" parent="DraggablePopup/GridContainer/SaveButton" instance=ExtResource( 16 )]
 current_dir = "/MyProjects/Godot/ExpertPixelEditor"
 current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 
@@ -121,10 +121,10 @@ margin_right = 268.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 130, 50 )
 text = "Canvas Size"
-icon = ExtResource( 1 )
+icon = ExtResource( 7 )
 expand_icon = true
 
-[node name="CanvasSizePopup" parent="DraggablePopup/GridContainer/CanvasSizeButton" instance=ExtResource( 4 )]
+[node name="CanvasSizePopup" parent="DraggablePopup/GridContainer/CanvasSizeButton" instance=ExtResource( 10 )]
 margin_left = -335.599
 margin_top = 49.3211
 margin_right = -316.599
@@ -136,10 +136,10 @@ margin_right = 130.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 130, 50 )
 text = "Language"
-icon = ExtResource( 14 )
+icon = ExtResource( 8 )
 expand_icon = true
 
-[node name="LanguagePopup" parent="DraggablePopup/GridContainer/LanguageButton" instance=ExtResource( 13 )]
+[node name="LanguagePopup" parent="DraggablePopup/GridContainer/LanguageButton" instance=ExtResource( 12 )]
 margin_left = 334.329
 margin_top = 10.7028
 margin_right = 334.329
@@ -147,7 +147,7 @@ margin_bottom = 10.7028
 
 [node name="PreviewCheckButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 15 )]
 
-[node name="LayerCheckButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 16 )]
+[node name="LayerCheckButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 13 )]
 
 [connection signal="focus_entered" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_focus_entered"]
 [connection signal="focus_exited" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_focus_exited"]

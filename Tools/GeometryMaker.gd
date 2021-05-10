@@ -325,8 +325,11 @@ static func get_pixels_by_thickness(position:Vector2, thickness:int)->Array:
 	return points
 			
 static func append_valid_points(target:Array, src:Array):
+	var layer = NodeManager.get_current_layer()
+	if layer == null:
+		return
 	for pos in src:
-		if NodeManager.get_current_layer().has_point(pos):
+		if layer.has_point(pos):
 			target.append(pos)
 	
 # symmetry된 point를 리턴한다.

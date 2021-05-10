@@ -4,6 +4,7 @@
 [ext_resource path="res://Settings/PaletteSizeButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Settings/PaletteSizePopup.gd" type="Script" id=3]
 
+
 [node name="PaletteSizePopup" type="Control"]
 script = ExtResource( 3 )
 __meta__ = {

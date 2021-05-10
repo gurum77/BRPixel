@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/icon_palette.png" type="Texture" id=11]
 [ext_resource path="res://Assets/icon_project.png" type="Texture" id=13]
 
+
 [node name="PaletteSettingPopup" type="Control"]
 script = ExtResource( 2 )
 __meta__ = {

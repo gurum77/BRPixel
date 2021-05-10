@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/icon_up_arrow.png" type="Texture" id=7]
 [ext_resource path="res://Settings/ColorSettingPopup.gd" type="Script" id=8]
 
+
 [node name="ColorSettingPopup" type="Control"]
 script = ExtResource( 8 )
 __meta__ = {

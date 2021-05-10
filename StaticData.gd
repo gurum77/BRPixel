@@ -224,10 +224,12 @@ func get_value(dic:Dictionary, key, default_value):
 	return default_value
 		
 		
-func open_project(path):
+func open_project(path)->bool:
+	var _result = false
 	var open_file = File.new()
 	open_file.open(path, File.READ)
 	if open_file.get_position() < open_file.get_len():
+		_result = true
 		var dic = parse_json(open_file.get_line())
 		StaticData.project_name = get_value(dic, "project_name", StaticData.project_name)
 		StaticData.canvas_width = get_value(dic, "canvas_width", StaticData.canvas_width)
@@ -255,7 +257,13 @@ func open_project(path):
 	NodeManager.get_tile_mode_manager().update_force()
 	NodeManager.get_symmetry_grips().update_canvas_and_grips()
 	NodeManager.get_color_panel().load_current_palette()
+	return _result
 		
+func save_auto_saved_project():
+	save_project(Define.auto_saved_project_file)
+func open_auto_saved_project()->bool:
+	return open_project(Define.auto_saved_project_file)
+	
 func open_project_palettes(var dic:Dictionary):
 	if !dic.has("palettes"):
 		return
@@ -279,7 +287,7 @@ func open_project_frames(var dic:Dictionary):
 	yield(get_tree().create_timer(0.1), "timeout")
 	
 	for key in dic_frames.keys():
-		var frame = NodeManager.get_frames().add_frame()
+		var frame = NodeManager.get_frames().add_frame(null, false)
 		if frame == null:
 			continue
 		frame.set_save_dic(dic_frames[key])

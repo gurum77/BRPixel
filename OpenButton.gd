@@ -35,7 +35,7 @@ func on_hide_file_dialog():
 		var ext = file_path.get_extension()
 		ext = ext.to_lower()
 		if ext == "pex":
-			StaticData.open_project(file_path)
+			var _result = StaticData.open_project(file_path)
 		else:
 			var _result = NodeManager.get_import_image_popup().connect("hide", self, "_on_ImportImage_hide")
 			NodeManager.get_import_image_popup().image_file_path = file_path
