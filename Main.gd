@@ -12,5 +12,5 @@ func _ready():
 
 func load_last_project():
 	if StaticData.open_auto_saved_project():
-		Util.show_message(self, "Hello", "The last project was recovered.")
+		Util.show_message(self, "Hello", "The last project was recovered.", 1.5)
 	pass

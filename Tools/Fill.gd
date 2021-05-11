@@ -79,5 +79,7 @@ func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 			to_check_queue.append(idx)
 			
 	NodeManager.get_current_layer().image.unlock()
+	
+	GeometryMaker.append_symmetry_pixels(pixels)
 	return pixels
 	

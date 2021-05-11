@@ -3,8 +3,8 @@ extends CheckBox
 
 
 func _process(_delta):
-	if pressed != StaticData.pixel_perfect:
-		pressed = StaticData.pixel_perfect
+	pressed = StaticData.pixel_perfect
+	disabled = StaticData.pencil_thickness > 1
 
 
 func _on_PixelPerfectCheckBox_toggled(button_pressed):

@@ -76,6 +76,13 @@ rect_min_size = Vector2( 30, 30 )
 texture_normal = ExtResource( 3 )
 expand = true
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_YesButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/HBoxContainer/OkButton" to="." method="_on_OkButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_NoButton_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

@@ -52,8 +52,9 @@ margin_left = 93.0
 margin_right = 268.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 175, 0 )
+focus_mode = 1
 text = "Untitled"
-editable = false
+clear_button_enabled = true
 placeholder_text = "Input project name..."
 caret_blink = true
 
@@ -94,8 +95,6 @@ expand_icon = true
 script = ExtResource( 2 )
 
 [node name="OpenFileDialog" parent="DraggablePopup/GridContainer/OpenButton" instance=ExtResource( 11 )]
-current_dir = "/MyProjects/Godot/ExpertPixelEditor"
-current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 
 [node name="SaveButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 54.0
@@ -111,8 +110,6 @@ __meta__ = {
 }
 
 [node name="SaveFileDialog" parent="DraggablePopup/GridContainer/SaveButton" instance=ExtResource( 16 )]
-current_dir = "/MyProjects/Godot/ExpertPixelEditor"
-current_path = "/MyProjects/Godot/ExpertPixelEditor/"
 
 [node name="CanvasSizeButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_left = 134.0
@@ -149,8 +146,6 @@ margin_bottom = 10.7028
 
 [node name="LayerCheckButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 13 )]
 
-[connection signal="focus_entered" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_focus_entered"]
-[connection signal="focus_exited" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_focus_exited"]
 [connection signal="text_changed" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_text_changed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/NewButton" to="." method="_on_NewButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/OpenButton" to="DraggablePopup/GridContainer/OpenButton" method="_on_OpenButton_pressed"]

@@ -59,11 +59,20 @@ margin_left = 58.0
 margin_right = 178.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 120, 25 )
+focus_mode = 1
 custom_fonts/font = SubResource( 1 )
 editable = false
 placeholder_text = "Input layer name"
 caret_blink = true
 caret_blink_speed = 0.5
+
+[node name="SetCurrentLayerButton" type="Button" parent="HBoxContainer/NameLineEdit"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LayerSettingButton" parent="HBoxContainer" instance=ExtResource( 5 )]
 anchor_left = 0.0
@@ -79,4 +88,6 @@ margin_bottom = 25.0
 [connection signal="gui_input" from="HBoxContainer/LayerButton" to="." method="_on_LayerButton_gui_input"]
 [connection signal="focus_entered" from="HBoxContainer/NameLineEdit" to="." method="_on_NameLineEdit_focus_entered"]
 [connection signal="focus_exited" from="HBoxContainer/NameLineEdit" to="." method="_on_NameLineEdit_focus_exited"]
+[connection signal="gui_input" from="HBoxContainer/NameLineEdit" to="." method="_on_NameLineEdit_gui_input"]
+[connection signal="button_up" from="HBoxContainer/NameLineEdit/SetCurrentLayerButton" to="." method="_on_SetCurrentLayerButton_button_up"]
 [connection signal="pressed" from="HBoxContainer/LayerSettingButton" to="." method="_on_LayerSettingButton_pressed"]

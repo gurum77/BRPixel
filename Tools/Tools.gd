@@ -9,6 +9,8 @@ var rectangle_tool = preload("res://Tools/Rectangle.tscn")
 var line_tool = preload("res://Tools/Line.tscn")
 var fill_tool = preload("res://Tools/Fill.tscn")
 var change_color = preload("res://Tools/ChangeColor.tscn")
+var darker_tool = preload("res://Tools/Darker.tscn")
+var brighter_tool = preload("res://Tools/Brighter.tscn")
 
 # selected area 편집을 마무리 한다.
 # 선택 영역을 해제하고, 마지막으로 실행했던 drawing tool을 실행한다.

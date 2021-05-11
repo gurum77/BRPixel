@@ -1,6 +1,6 @@
 extends Button
 class_name SubmenuPopupButton
-var current_tool = null
+export (StaticData.Tool) var current_tool = StaticData.Tool.none
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,16 +28,37 @@ func resize():
 	var close_button_width = 0
 	$DraggableWindow.rect_size.x = total_width + margins + sparations + close_button_width
 
+func run_current_tool():
+	if current_tool == StaticData.Tool.none:
+		return
+		
+	if current_tool == StaticData.Tool.line:
+		NodeManager.get_tools().add_child(NodeManager.get_tools().line_tool.instance())
+		StaticData.last_drawing_tool = NodeManager.get_tools().line_tool
+	elif current_tool == StaticData.Tool.rectangle:
+		NodeManager.get_tools().add_child(NodeManager.get_tools().rectangle_tool.instance())
+		StaticData.last_drawing_tool = NodeManager.get_tools().rectangle_tool
+	elif current_tool == StaticData.Tool.circle:
+		NodeManager.get_tools().add_child(NodeManager.get_tools().circle_tool.instance())
+		StaticData.last_drawing_tool = NodeManager.get_tools().circle_tool
+	elif current_tool == StaticData.Tool.select:
+		NodeManager.get_tools().add_child(NodeManager.get_tools().select_tool.instance())
+		
 
+		
 # 클릭을 하면 child를 우측으로 표시한다.
 func _on_SubmenuPopupButton_pressed():
+	# current_tool을 바로 실행한다.
+	run_current_tool()
+	
 	if $DraggableWindow.visible:
 		$DraggableWindow.hide()
 	else:
 		$DraggableWindow.show()
 
 func _process(_delta):
-	Util.press_current_tool_button(self, StaticData.Tool.select)		
+	Util.press_current_tool_button(self, current_tool)		
+		
 
 func _on_LineSettingButton_pressed():
 	pass # Replace with function body.

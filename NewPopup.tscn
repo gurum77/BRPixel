@@ -41,8 +41,10 @@ margin_left = 99.0
 margin_right = 263.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 150, 20 )
+focus_mode = 1
 text = "untitled"
 align = 1
+clear_button_enabled = true
 placeholder_text = "Project name"
 
 [node name="HSeparator" type="HSeparator" parent="DraggablePopup/GridContainer"]
@@ -68,6 +70,7 @@ margin_top = 38.0
 margin_right = 263.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 150, 20 )
+focus_mode = 1
 text = "32"
 align = 1
 
@@ -83,6 +86,7 @@ margin_top = 68.0
 margin_right = 263.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 150, 20 )
+focus_mode = 1
 text = "32"
 align = 1
 

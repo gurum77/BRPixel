@@ -1,6 +1,6 @@
 extends Node
 
-enum Tool{zoom, pencil, line, rectangle, eraser, fill, change_color, 
+enum Tool{none, zoom, pencil, line, rectangle, eraser, fill, change_color, 
 circle, select, edit, pick_color_from_canvas, brighter, darker}
 
 enum SymmetryType{no, horizontal, vertical}

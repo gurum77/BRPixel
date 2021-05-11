@@ -15,9 +15,16 @@ func popup_centered():
 	if selected_layer == null:
 		return
 		
+	update_controls()
+func update_controls():
 	$DraggablePopup/GridContainer/HideButton.pressed = !selected_layer.visible
 	$DraggablePopup/GridContainerTop/TransparencyHSlider.value = selected_layer.modulate.a * 100
 	$DraggablePopup.popup_centered()
+	
+	# layer가 하나 밖에 없다면 delete/모드합치기 버튼 disable
+	var layers = NodeManager.get_current_layers()
+	$DraggablePopup/GridContainer/DeleteButton.disabled = layers == null || layers.get_layer_count() == 1
+	$DraggablePopup/GridContainer/MergeAllButton.disabled = layers == null || layers.get_layer_count() == 1
 	
 	
 	# 마지막 layer의 버튼이면 다음과 합치기 disable
@@ -53,6 +60,8 @@ func _on_DuplicateLayerButton_pressed():
 	
 	# laye button 갱신
 	NodeManager.get_layer_panel().regen_layer_buttons()
+	
+	update_controls()
 
 
 # 레이어 삭제
@@ -85,6 +94,7 @@ func delete_selected_layer():
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	
+	update_controls()
 	
 
 
@@ -104,6 +114,8 @@ func _on_MoveDownButton_pressed():
 	
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
+	
+	update_controls()
 	
 
 # 위로 이동
@@ -126,6 +138,8 @@ func _on_MoveUpButton_pressed():
 		
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
+	
+	update_controls()
 
 # 숨김 
 func _on_HideButton_pressed():
@@ -152,6 +166,7 @@ func _on_MergeWithPrevButton_pressed():
 	message_box = Util.show_yesno_message_box(tr("Do you really merge with previous layer.") + "\n" + tr("This operation cannot be undone."))
 	var _result = message_box.connect("hide", self, "on_MergeWithPreviousLayer_hide")
 	
+	
 func on_MergeWithPreviousLayer_hide():		
 	popup_centered()
 	message_box.disconnect("hide", self, "on_MergeWithPreviousLayer_hide")	
@@ -165,6 +180,7 @@ func on_MergeWithPreviousLayer_hide():
 	NodeManager.get_layer_panel().regen_layer_buttons()		
 	
 	hide()
+	
 		
 
 # 모든 layer 합치기

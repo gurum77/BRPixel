@@ -123,17 +123,19 @@ func set_submenu_popup_button_current_tool(submenu_button:Button, current_tool):
 # 현재 tool인 경우 버튼을 press한다
 func press_current_tool_button(button, current_tool):
 	var need_to_pressed = false
-	if StaticData.current_tool == current_tool:
+	var ct = current_tool
+	if StaticData.current_tool == ct:
 		need_to_pressed = true
 	if button.pressed != need_to_pressed:
 		button.pressed = need_to_pressed
 	
 # message는 popup으로 보여준다.
-func show_message(_parent, _title="", message=""):
+func show_message(_parent, _title="", message="", wait_sec=-1):
 	NodeManager.get_message_box().enabled_yes_button = false
 	NodeManager.get_message_box().enabled_no_button = false
 	NodeManager.get_message_box().enabled_ok_button = true
 	NodeManager.get_message_box().message = message
+	NodeManager.get_message_box().wait_sec = wait_sec
 	NodeManager.get_message_box().popup_centered()
 	
 #	var dlg = AcceptDialog.new()

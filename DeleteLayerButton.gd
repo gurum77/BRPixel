@@ -3,11 +3,19 @@ extends Button
 
 var message_box
 func _on_DeleteLayerButton_pressed():
+	var layers = NodeManager.get_current_layers()
+	if layers == null:
+		return
+		
 	# layer가 하나밖에 없으면 삭제 불가
-	if NodeManager.get_current_layers().get_child_count() == 1:
+	if layers.get_child_count() == 1:
 		return
 	message_box = Util.show_yesno_message_box(tr("Do you really delete the current layer?") + "\n" + tr("This operation cannot be undone."))
 	message_box.connect("hide", self, "on_MessageBox_hide")
+func _process(_delta):
+	var layers = NodeManager.get_current_layers()
+	if layers != null:
+		disabled = layers.get_child_count() == 1
 	
 func on_MessageBox_hide():
 	message_box.disconnect("hide", self, "on_MessageBox_hide")

@@ -49,9 +49,3 @@ func _on_ProjectNameLabel_text_changed(new_text):
 	StaticData.project_name = new_text
 
 
-func _on_ProjectNameLabel_focus_entered():
-	$DraggablePopup/HBoxContainer/ProjectNameLabel.editable = true
-
-
-func _on_ProjectNameLabel_focus_exited():
-	$DraggablePopup/HBoxContainer/ProjectNameLabel.editable = false

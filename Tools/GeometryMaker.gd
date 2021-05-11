@@ -259,6 +259,8 @@ static func get_pixels_in_circle(from:Vector2, to:Vector2, fill, thickness:int=1
 		pos = GeometryMaker.get_adjusted_point_by_tile_mode(pos)
 		if NodeManager.get_current_layer().has_point(pos):
 			pixels.append(pos)
+			
+	append_symmetry_pixels(pixels)
 	return pixels
 	
 # 두점 사이의 사각형에 대한 pixel을 만들어서 리턴
@@ -363,7 +365,7 @@ static func append_symmetry_pixels(points):
 		
 	
 # 두점 사이의 선에 대한 pixel을 만들어서 리턴
-static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1)->Array:
+static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1, apply_symmetry:bool=true)->Array:
 	var points : Array = []
 	
 	if from == null || to == null:
@@ -404,5 +406,6 @@ static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1)->Arr
 #	if NodeManager.get_current_layer().has_point(to):
 #		points.append(to)
 	
-	append_symmetry_pixels(points)
+	if apply_symmetry:
+		append_symmetry_pixels(points)
 	return points

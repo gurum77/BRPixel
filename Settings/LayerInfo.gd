@@ -35,6 +35,7 @@ func _process(_delta):
 	current_layer_sign.visible = is_current_layer()
 	if !current_layer_sign.visible:
 		$HBoxContainer/NameLineEdit.editable = false
+		$HBoxContainer/NameLineEdit/SetCurrentLayerButton.visible = true
 
 
 func _on_VisibleButton_pressed():
@@ -93,7 +94,10 @@ func update_all_layer_info_control():
 	NodeManager.get_layer_panel().update_layer_buttons()
 		
 func _on_NameLineEdit_focus_entered():
-	$HBoxContainer/NameLineEdit.editable = true
+#	set_current_layer()
+	pass
+	
+func set_current_layer():
 	var layer = get_layer()
 	if layer == null:
 		return
@@ -110,3 +114,20 @@ func _on_LayerButton_gui_input(event):
 		_on_NameLineEdit_focus_entered()
 
 
+
+
+func _on_NameLineEdit_gui_input(event):
+	if !is_current_layer() && InputManager.is_action_just_released_lbutton(event):
+		set_current_layer()
+	elif is_current_layer() && InputManager.is_action_just_pressed_lbutton(event):
+		$HBoxContainer/NameLineEdit.editable = true
+		
+
+
+
+
+
+# 버튼을 누르면 현재 layer로 설정하고 사라진다.
+func _on_SetCurrentLayerButton_button_up():
+	set_current_layer()
+	$HBoxContainer/NameLineEdit/SetCurrentLayerButton.visible =false

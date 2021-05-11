@@ -98,7 +98,9 @@ script/source = "extends Button
 
 func _on_ChangeColorButton_pressed():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().change_color.instance())
-	StaticData.last_drawing_tool = NodeManager.get_tools().change_color
+	# change color는 last drawing tool에 등록하지 말자.
+	# 당황 스러운 상황이 많이 발생하기 때문.
+#	StaticData.last_drawing_tool = NodeManager.get_tools().change_color
 
 func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.change_color)
@@ -124,6 +126,8 @@ script = ExtResource( 2 )
 
 [node name="DrawingArea" parent="UI" instance=ExtResource( 20 )]
 modulate = Color( 1, 1, 0, 0 )
+anchor_left = 0.00104284
+anchor_right = 1.00104
 margin_left = 108.0
 margin_top = 6.0
 margin_right = -122.0
@@ -204,6 +208,8 @@ toggle_mode = true
 [node name="GeometryPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
 margin_top = 108.0
 margin_bottom = 158.0
+toggle_mode = true
+current_tool = 3
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/GeometryPopupButton" index="0"]
 margin_left = 118.221
@@ -287,6 +293,7 @@ margin_top = 216.0
 margin_bottom = 266.0
 toggle_mode = true
 icon = ExtResource( 36 )
+current_tool = 9
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SelectPopupButton" index="0"]
 margin_left = 115.921
@@ -835,6 +842,7 @@ margin_left = 130.0
 margin_right = 130.0
 
 [node name="LayerPanel" parent="UI" instance=ExtResource( 24 )]
+visible = true
 anchor_bottom = 0.0
 margin_left = -360.0
 margin_top = 161.0
@@ -865,6 +873,7 @@ margin_right = -447.818
 margin_bottom = -390.137
 
 [node name="DebugLabel" type="Label" parent="UI"]
+visible = false
 anchor_right = 1.0
 margin_left = 438.0
 margin_top = -2.0
@@ -885,6 +894,11 @@ visible = false
 visible = false
 
 [node name="Preview" parent="UI" instance=ExtResource( 83 )]
+visible = true
+margin_left = 1051.46
+margin_top = 24.0757
+margin_right = 1153.46
+margin_bottom = 124.076
 popup_exclusive = true
 
 [node name="ImportImage" parent="UI" instance=ExtResource( 88 )]

@@ -5,8 +5,9 @@ var drawn_points:Dictionary = Dictionary()	# 마우스를 떼기 전에 한번 �
 var current_tool = StaticData.Tool.pencil
 var start_point
 var pixel_perfect_drawer = PixelPerfectDrawer.new()
-
+var symmetry_pixel_perfect_drawer = PixelPerfectDrawer.new()
 var released_lbutton_count = 0
+var draw_symmetry_pixels = false	# symmetry pixel을 그리는 차례인지?
 class PixelPerfectDrawer:
 	const neighbours = [Vector2(0, 1), Vector2(1, 0), Vector2(-1, 0), Vector2(0, -1)]
 	const corners = [Vector2(1, 1), Vector2(-1, -1), Vector2(-1, 1), Vector2(1, -1)]
@@ -15,10 +16,21 @@ class PixelPerfectDrawer:
 	func reset() -> void:
 		last_pixels = [null, null]
 
+	func set_symmetry_pixel(image:Image, position:Vector2, color:Color):
+		if StaticData.symmetry_type != StaticData.SymmetryType.no:
+			var symmetry_position = GeometryMaker.get_symmetry_pixel(position)
+			if NodeManager.get_current_layer().has_point(symmetry_position):
+				image.set_pixelv(symmetry_position, color)
+				var symmetry_positions = []
+				symmetry_positions.append(symmetry_position)
+				UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(symmetry_positions)
+				
+				
 	func set_pixel(image: Image, position: Vector2, color: Color) -> void:
 		var color_old = image.get_pixelv(position)
 		last_pixels.push_back([position, color_old])
 		image.set_pixelv(position, color)
+		
 
 		var corner = last_pixels.pop_front()
 		var neighbour = last_pixels[0]
@@ -27,7 +39,8 @@ class PixelPerfectDrawer:
 			return
 
 		if position - corner[0] in corners and position - neighbour[0] in neighbours:
-			image.set_pixel(neighbour[0].x, neighbour[0].y, neighbour[1])
+			image.set_pixelv(neighbour[0], neighbour[1])
+			
 			last_pixels[0] = corner
 			
 func _ready():
@@ -52,11 +65,13 @@ func drawing_area_input(_event):
 		NodeManager.get_debug_label().text = "lbutton pressed"
 		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
 		pixel_perfect_drawer.reset()
+		symmetry_pixel_perfect_drawer.reset()
 		start_point = get_local_mouse_position()
-		var points = GeometryMaker.get_pixels_in_line(start_point, start_point, StaticData.pencil_thickness)
+		var points = GeometryMaker.get_pixels_in_line(start_point, start_point, StaticData.pencil_thickness, false)
 		points = get_new_points(points)
 		set_pixels(points)
 		UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(points)
+		set_symmetry_pixels(points)
 	# 마우스를 떼면 undo commit
 	elif InputManager.is_action_just_released_lbutton(_event):
 		released_lbutton_count += 1
@@ -68,13 +83,30 @@ func drawing_area_input(_event):
 		var end_point = get_local_mouse_position()
 		# 다른 점이면 그린다.
 		if !is_same_pixels(start_point, end_point):
-			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness)
+			var points = GeometryMaker.get_pixels_in_line(start_point, end_point, StaticData.pencil_thickness, false)
 			points = get_new_points(points)
 			set_pixels(points)
 			UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(points)
+			set_symmetry_pixels(points)
 			start_point = end_point
 	
-
+# symmetry pixels를 적용한다.
+func set_symmetry_pixels(points):
+	if StaticData.symmetry_type == StaticData.SymmetryType.no:
+		return
+	var symmetry_points = []
+	for point in points:
+		var new_point = GeometryMaker.get_symmetry_pixel(point)
+		if new_point == null:
+			continue
+		symmetry_points.append(new_point)
+	draw_symmetry_pixels = true
+	set_pixels(symmetry_points)
+	UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(symmetry_points)
+	draw_symmetry_pixels = false
+	
+		
+	
 # pixel perfect가 활성화되었는지?
 func is_enabled_pixel_perfect()->bool:
 	if !StaticData.pixel_perfect:
@@ -99,8 +131,14 @@ func is_same_pixels(point1, point2)->bool:
 func set_pixels(points):
 	if is_enabled_pixel_perfect():
 		NodeManager.get_current_layer().image.lock()
+		
 		for point in points:
-			pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, point, StaticData.current_color)
+			if draw_symmetry_pixels:
+				symmetry_pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, point, StaticData.current_color)
+			else:
+				pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, point, StaticData.current_color)
+		
+		
 		NodeManager.get_current_layer().image.unlock()	
 		NodeManager.get_current_layer().update_texture()
 	else:
