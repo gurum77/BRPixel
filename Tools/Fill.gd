@@ -21,36 +21,66 @@ func drawing_area_input(_event):
 	UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
 
 	
-func is_inside_canvas(x, y)->bool:
-	return NodeManager.get_current_layer().has_point(Vector2(x, y))
+func is_inside_canvas(image:Image, x, y)->bool:
+	if x < 0 || y < 0:
+		return false
+	if x >= image.get_width() || y >= image.get_height():
+		return false
+	return true
 	
 func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 	var pixels:Array = []
 	
-	if !NodeManager.get_current_layer().has_point(Vector2(pos_x, pos_y)):
+	var image = NodeManager.get_current_layer().image
+	if !is_inside_canvas(image, pos_x, pos_y):
 		return pixels;
+#	if !NodeManager.get_current_layer().has_point(Vector2(pos_x, pos_y)):
+#		return pixels;
 	
 	var to_check_queue = []
 	var checked_queue:Dictionary = Dictionary()
 	
 	to_check_queue.append(GeometryMaker.to_1D(pos_x, pos_y, StaticData.canvas_width))
 	
-	NodeManager.get_current_layer().image.lock()
+	image.lock()
 	
-	var color = NodeManager.get_current_layer().image.get_pixel(pos_x, pos_y)
+	var width = image.get_width()
+	var height = image.get_height()
 	
+	var start_time = OS.get_ticks_msec()
+	var to2Ds = []
+	var to1Ds = [[]]
+	var idx_tmp = 0
+	to2Ds.resize(width * height)
+	to1Ds.resize(width)
+	for x in width:
+		to1Ds[x] = []
+		to1Ds[x].resize(height)
+	
+	for x in width:
+		for y in height:
+			idx_tmp = GeometryMaker.to_1D(x, y, width)
+			to1Ds[x][y] = idx_tmp
+			to2Ds[idx_tmp] = Vector2(x, y)
+			
+	
+	var color = image.get_pixel(pos_x, pos_y)
+	var count = 0
 	while not to_check_queue.empty():
 		var idx = to_check_queue.pop_front()
-		var p = GeometryMaker.to_2D(idx, StaticData.canvas_width)
+		var p = to2Ds[idx] # GeometryMaker.to_2D(idx, width)
+
+		count += 1
 		
 		if checked_queue.has(idx):
 			continue
 		checked_queue[idx] = true
 		
-		if !is_inside_canvas(p.x, p.y):
+		if !is_inside_canvas(image, p.x, p.y):
 			continue
-		if NodeManager.get_current_layer().image.get_pixel(p.x, p.y) != color:
+		if image.get_pixel(p.x, p.y) != color:
 			continue
+		
 		
 		# add to result
 		pixels.append(p)
@@ -58,27 +88,28 @@ func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 		# check neighbours
 		var x = p.x - 1
 		var y = p.y
-		if is_inside_canvas(x, y):
-			idx = GeometryMaker.to_1D(x, y, StaticData.canvas_width)
+		if is_inside_canvas(image, x, y):
+			idx = to1Ds[x][y]# GeometryMaker.to_1D(x, y, width)
 			to_check_queue.append(idx)
 		
 		x = p.x + 1
-		if is_inside_canvas(x, y):
-			idx = GeometryMaker.to_1D(x, y, StaticData.canvas_width)
+		if is_inside_canvas(image, x, y):
+			idx = to1Ds[x][y]# GeometryMaker.to_1D(x, y, width)
 			to_check_queue.append(idx)
 		
 		x = p.x
 		y = p.y - 1
-		if is_inside_canvas(x, y):
-			idx = GeometryMaker.to_1D(x, y, StaticData.canvas_width)
+		if is_inside_canvas(image, x, y):
+			idx = to1Ds[x][y]# GeometryMaker.to_1D(x, y, width)
 			to_check_queue.append(idx)
 		
 		y = p.y + 1
-		if is_inside_canvas(x, y):
-			idx = GeometryMaker.to_1D(x, y, StaticData.canvas_width)
+		if is_inside_canvas(image, x, y):
+			idx = to1Ds[x][y]# GeometryMaker.to_1D(x, y, width)
 			to_check_queue.append(idx)
 			
-	NodeManager.get_current_layer().image.unlock()
+	image.unlock()
+	var elapsed_time = OS.get_ticks_msec() - start_time
 	
 	GeometryMaker.append_symmetry_pixels(pixels)
 	return pixels
