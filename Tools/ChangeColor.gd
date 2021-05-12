@@ -1,5 +1,5 @@
 extends Control
-
+class_name ChangeColorTool
 func _ready():
 	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.change_color)
 	
@@ -7,7 +7,7 @@ func drawing_area_input(_event):
 	if StaticData.invalid_mouse_pos_for_tool(StaticData.Tool.change_color):
 		return
 	
-	if !InputManager.is_action_just_pressed_lbutton(_event):
+	if !InputManager.is_action_just_released_lbutton(_event):
 		return
 		
 	# image 사본을 복사한다.

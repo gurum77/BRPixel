@@ -11,8 +11,8 @@ func popup_centered():
 	
 	
 	# 마지막 layer의 버튼이면 다음과 합치기 disable
-	$DraggablePopup/GridContainer/MoveDownButton.disabled = !is_exist_prev_frame()
-	$DraggablePopup/GridContainer/MoveUpButton.disabled = !is_exist_next_frame()
+	$DraggablePopup/GridContainer/MoveFrontButton.disabled = !is_exist_prev_frame()
+	$DraggablePopup/GridContainer/MoveRearButton.disabled = !is_exist_next_frame()
 	
 	update_frame_info()
 

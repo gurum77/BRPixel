@@ -98,9 +98,7 @@ script/source = "extends Button
 
 func _on_ChangeColorButton_pressed():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().change_color.instance())
-	# change color는 last drawing tool에 등록하지 말자.
-	# 당황 스러운 상황이 많이 발생하기 때문.
-#	StaticData.last_drawing_tool = NodeManager.get_tools().change_color
+	StaticData.last_drawing_tool = NodeManager.get_tools().change_color
 
 func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.change_color)
@@ -116,11 +114,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Camera" type="Camera2D" parent="."]
-offset = Vector2( 33, 33 )
-current = true
-script = ExtResource( 2 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -873,7 +866,6 @@ margin_right = -447.818
 margin_bottom = -390.137
 
 [node name="DebugLabel" type="Label" parent="UI"]
-visible = false
 anchor_right = 1.0
 margin_left = 438.0
 margin_top = -2.0
@@ -912,6 +904,11 @@ margin_left = 15.9723
 margin_top = -259.089
 margin_right = 15.9723
 margin_bottom = -259.089
+
+[node name="Camera" type="Camera2D" parent="."]
+offset = Vector2( 33, 33 )
+current = true
+script = ExtResource( 2 )
 
 [node name="Canvas" type="TextureRect" parent="."]
 script = ExtResource( 3 )

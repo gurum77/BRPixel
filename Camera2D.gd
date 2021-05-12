@@ -44,13 +44,29 @@ func get_angle()->float:
 	var vec1 = events[0].relative.normalized() as Vector2
 	var vec2 = events[1].relative.normalized() as Vector2
 	return abs(vec1.angle_to(vec2))
-	
-func _input(event):
-	if StaticData.mouse_inside_ui:
-		return
 
+func is_touch_inside_drawing_area(event)->bool:
+	var rect = NodeManager.get_drawing_area().get_rect()
+	if rect.position.x > event.position.x:
+		return false
+	if rect.position.y > event.position.y:
+		return false
+	if rect.end.x < event.position.x:
+		return false
+	if rect.end.y < event.position.y:
+		return false
+		
+	return true
+	
+# gui input은 event.index 1 이 안됨. 
+# zoom이 제대로 되게 하려면 Camera는 반드시 DrawingArea node 뒤에 위치해야
+func _input(event):
+		
 	# touch screen drag인지?
 	if event is InputEventScreenTouch:
+		if !is_touch_inside_drawing_area(event):
+			return
+			
 		if event.pressed:
 			events[event.index] = event
 			last_drag_distance = get_drag_distance()
@@ -58,11 +74,17 @@ func _input(event):
 			last_drag_position = event.position
 		else:
 			events.erase(event.index)
+			NodeManager.get_debug_label().text = "events.erase(event.index) %d" % event.index
 			# zoom을 하다가 손을 떼면 마지막 drawing tool을 실행
-			if event.index > 0 && events.size() == 0:
+			# 동작중이던 drawing tool을 종료하는 효과가 있음.
+			if StaticData.current_tool == StaticData.Tool.zoom && events.size() == 0:
+				NodeManager.get_debug_label().text = "NodeManager.get_tools().run_last_drawing_tool()"
 				NodeManager.get_tools().run_last_drawing_tool()
 			
 	elif event is InputEventScreenDrag:
+		if !is_touch_inside_drawing_area(event):
+			return
+			
 		if events.size() != 2:
 			return
 		
@@ -90,6 +112,10 @@ func _input(event):
 			StaticData.current_tool = StaticData.Tool.zoom
 	# 아닌지
 	else:
+		if StaticData.mouse_inside_ui:
+			return
+
+
 		if event.is_action_pressed("cam_drag"):
 			_drag = true
 			debug_label.text = "cam_drag"

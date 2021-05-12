@@ -4,8 +4,8 @@
 [ext_resource path="res://Assets/icon_duplicate_layer.png" type="Texture" id=2]
 [ext_resource path="res://FrameSettingPopup.gd" type="Script" id=3]
 [ext_resource path="res://Assets/icon_delete_layer_small.png" type="Texture" id=4]
-[ext_resource path="res://Assets/icon_move_up.png" type="Texture" id=5]
-[ext_resource path="res://Assets/icon_move_down.png" type="Texture" id=6]
+[ext_resource path="res://Assets/icon_move_front.png" type="Texture" id=5]
+[ext_resource path="res://Assets/icon_move_rear.png" type="Texture" id=6]
 
 [node name="FrameSettingPopup" type="Control"]
 script = ExtResource( 3 )
@@ -96,23 +96,23 @@ rect_min_size = Vector2( 160, 0 )
 text = "Delete"
 icon = ExtResource( 4 )
 
-[node name="MoveDownButton" type="Button" parent="DraggablePopup/GridContainer"]
+[node name="MoveFrontButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 40.0
 margin_right = 160.0
 margin_bottom = 76.0
-text = "To down"
-icon = ExtResource( 6 )
+text = "To front"
+icon = ExtResource( 5 )
 
-[node name="MoveUpButton" type="Button" parent="DraggablePopup/GridContainer"]
+[node name="MoveRearButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_left = 164.0
 margin_top = 40.0
 margin_right = 324.0
 margin_bottom = 76.0
-text = "To up"
-icon = ExtResource( 5 )
+text = "To rear"
+icon = ExtResource( 6 )
 
 [connection signal="value_changed" from="DraggablePopup/GridContainerTop/TransparencyHSlider" to="." method="_on_TransparencyHSlider_value_changed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/DuplicateButton" to="." method="_on_DuplicateButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
-[connection signal="pressed" from="DraggablePopup/GridContainer/MoveDownButton" to="." method="_on_MoveDownButton_pressed"]
-[connection signal="pressed" from="DraggablePopup/GridContainer/MoveUpButton" to="." method="_on_MoveUpButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/MoveFrontButton" to="." method="_on_MoveDownButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/MoveRearButton" to="." method="_on_MoveUpButton_pressed"]

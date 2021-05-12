@@ -1,5 +1,5 @@
 extends Control
-
+class_name FillTool
 func _ready():
 	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.fill)
 	
@@ -8,7 +8,7 @@ func drawing_area_input(_event):
 		return
 	
 		
-	if !InputManager.is_action_just_pressed_lbutton(_event):
+	if !InputManager.is_action_just_released_lbutton(_event):
 		return
 		
 	# image 사본을 복사한다.
@@ -47,7 +47,6 @@ func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 	var width = image.get_width()
 	var height = image.get_height()
 	
-	var start_time = OS.get_ticks_msec()
 	var to2Ds = []
 	var to1Ds = [[]]
 	var idx_tmp = 0
@@ -65,12 +64,10 @@ func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 			
 	
 	var color = image.get_pixel(pos_x, pos_y)
-	var count = 0
 	while not to_check_queue.empty():
 		var idx = to_check_queue.pop_front()
 		var p = to2Ds[idx] # GeometryMaker.to_2D(idx, width)
 
-		count += 1
 		
 		if checked_queue.has(idx):
 			continue
@@ -109,7 +106,6 @@ func get_neighbouring_pixels(pos_x: int, pos_y: int) -> Array:
 			to_check_queue.append(idx)
 			
 	image.unlock()
-	var elapsed_time = OS.get_ticks_msec() - start_time
 	
 	GeometryMaker.append_symmetry_pixels(pixels)
 	return pixels

@@ -116,7 +116,7 @@ icon = ExtResource( 7 )
 margin_top = 80.0
 margin_right = 160.0
 margin_bottom = 116.0
-text = "Merge with prev"
+text = "Merge with down"
 icon = ExtResource( 8 )
 
 [node name="MergeWithNextButton" type="Button" parent="DraggablePopup/GridContainer"]
@@ -124,7 +124,7 @@ margin_left = 164.0
 margin_top = 80.0
 margin_right = 324.0
 margin_bottom = 116.0
-text = "Merge with next"
+text = "Merge with up"
 icon = ExtResource( 10 )
 
 [node name="MergeAllButton" type="Button" parent="DraggablePopup/GridContainer"]

@@ -46,6 +46,9 @@ func is_action_just_pressed_lbutton(event)->bool:
 	return false
 
 func is_action_just_released_lbutton(event)->bool:
+	if is_touch_screen_zoom_event(event):
+		return false
+
 	if event.is_action_released("left_button"):
 		return true
 	if event is InputEventScreenTouch && !event.pressed:

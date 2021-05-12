@@ -1,4 +1,5 @@
 extends Pencil
+class_name BrighterTool
 
 func _ready():
 	current_tool = StaticData.Tool.brighter

@@ -1,5 +1,5 @@
 extends Control
-
+class_name LineTool
 var start_point = Vector2(0, 0)
 var end_point = Vector2(0, 0)
 func _ready():

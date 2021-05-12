@@ -11,7 +11,31 @@ var fill_tool = preload("res://Tools/Fill.tscn")
 var change_color = preload("res://Tools/ChangeColor.tscn")
 var darker_tool = preload("res://Tools/Darker.tscn")
 var brighter_tool = preload("res://Tools/Brighter.tscn")
+var eraser_tool = preload("res://Tools/Eraser.tscn")
 
+func is_drawing_tool(tool_node:Node)->bool:
+	if tool_node is LineTool:
+		return true
+	if tool_node is CircleTool:
+		return true
+	if tool_node is RectangleTool:
+		return true
+	if tool_node is FillTool:
+		return true
+	if tool_node is ChangeColorTool:
+		return true
+	return false
+	
+# 현재 진행중인 drawing tool을 종료시킨다.
+func finish_current_drawing_tool():
+	var nodes = get_children()
+	for node in nodes:
+		if !is_drawing_tool(node):
+			continue
+			
+		node.queue_free()
+	
+		
 # selected area 편집을 마무리 한다.
 # 선택 영역을 해제하고, 마지막으로 실행했던 drawing tool을 실행한다.
 func finish_selected_area_editing():

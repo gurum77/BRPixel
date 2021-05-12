@@ -1,5 +1,5 @@
 extends Pencil
-
+class_name DarkerTool
 func _ready():
 	current_tool = StaticData.Tool.darker
 	._ready()

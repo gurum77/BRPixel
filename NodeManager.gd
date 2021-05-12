@@ -22,7 +22,11 @@ var save_options_popup:SaveOptionsPopup = null
 var preview:Preview = null
 var layer_setting_popup:LayerSettingPopup = null
 var drawing_area:Control = null
-
+var camera:Camera2D = null
+func get_camera()->Camera2D:
+	if camera == null:
+		camera = get_tree().root.get_node("Main/Camera")
+	return camera
 func get_drawing_area()->Control:
 	if drawing_area == null:
 		drawing_area = get_tree().root.get_node("Main/UI/DrawingArea")

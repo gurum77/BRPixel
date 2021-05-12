@@ -22,10 +22,12 @@ Duplicate,Duplicate,복제
 Delete,Delete,삭제
 To down,To down,아래로 이동
 To up,To up,위로 이동
+To front,To front,앞으로 이동
+To rear,To rear,뒤로 이동
 Hide,Hide,숨기기
 Merge all,Merge all,모두 합치기
-Merge with prev,Merge with prev,이전과 합치기
-Merge with next,Merge with next,다음과 합치기
+Merge with down,Merge with down,아래와 합치기
+Merge with up,Merge with up,위와 합치기
 Transparency,Transparency,투명도
 Project name,Project name,프로젝트 명
 New Palette,New Palette,새 팔레트
