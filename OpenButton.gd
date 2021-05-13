@@ -9,9 +9,9 @@ func _on_OpenButton_pressed():
 	var _tmp = NodeManager.get_file_dialog().connect("hide", self, "on_hide_file_dialog")
 	NodeManager.get_file_dialog().save_file_dialog = false
 	if add_image:
-		NodeManager.get_file_dialog().filters = PoolStringArray(["*.png;PNG Image", "*.jpg,*.jpeg;JPEG Image", "*.bmp ; BMP Image", "*.hdr;Radiance HDR Image", "*.svg ; SVG Image", "*.tga ; TGA Image", "*.webp ; WebP Image"])
+		NodeManager.get_file_dialog().filters = PoolStringArray(["*.png;PNG Image", "*.jpg,*.jpeg;JPEG Image", "*.bmp;BMP Image", "*.hdr;Radiance HDR Image", "*.svg;SVG Image", "*.tga;TGA Image", "*.webp;WebP Image"])
 	else:
-		NodeManager.get_file_dialog().filters = PoolStringArray(["*.pex;Pixel Express", "*.png;PNG Image", "*.jpg,*.jpeg;JPEG Image", "*.bmp ; BMP Image", "*.hdr;Radiance HDR Image", "*.svg ; SVG Image", "*.tga ; TGA Image", "*.webp ; WebP Image"])
+		NodeManager.get_file_dialog().filters = PoolStringArray(["*.pex;Pixel Express", "*.png;PNG Image", "*.jpg,*.jpeg;JPEG Image", "*.bmp;BMP Image", "*.hdr;Radiance HDR Image", "*.svg;SVG Image", "*.tga;TGA Image", "*.webp;WebP Image"])
 	NodeManager.get_file_dialog().popup_centered()
 
 func on_hide_file_dialog():

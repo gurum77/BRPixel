@@ -68,6 +68,7 @@ func get_file_names()->Array:
 	while file_name != "":
 		if !dir.current_is_dir():
 			var ext = file_name.get_extension()
+			ext = ext.to_lower()
 			if enabled_extenstions.has(ext):
 				files.append(file_name)
 		file_name = dir.get_next()
@@ -83,8 +84,9 @@ func update_lsit():
 		var splits = text.split(";", true, 1)
 		if splits.size() == 0:
 			continue
-			
-		enabled_extenstions[splits[0].get_extension()] = true
+		var ext = splits[0].get_extension()
+		ext = ext.to_lower()
+		enabled_extenstions[ext] = true
 	
 	var nodes = file_button_parent.get_children()
 	for node in nodes:

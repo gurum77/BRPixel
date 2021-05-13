@@ -12,7 +12,7 @@ func _ready():
 		rect_size.x = width
 		rect_size.y = height
 
-	hint_tooltip = name
+#	hint_tooltip = name
 	active_color = self_modulate
 	if hide_close_button:
 		$CloseButton.hide()

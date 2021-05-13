@@ -7,13 +7,26 @@ export var is_directory = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Label.text = file_name
+	hint_tooltip = file_name
+	# 빠르게 기본 썸네일을 표시하고..(pex는 빠르게 열 수 있으므로 바로 표시한다)`
 	if is_directory:
 		$ThumbnailTexture.texture = Define.directoryThumbnailTexture
 	else:
-		$ThumbnailTexture.texture	= get_file_thumbnail_texture()
+		if is_pex_file():
+			$ThumbnailTexture.texture	= get_file_thumbnail_texture()
+		else:
+			$ThumbnailTexture.texture	= Define.fileThumbnailTexture
+
+	# 실제 썸네일을 그리는건 시간이 걸리므로 yield로 일단 제어를 넘기고 실제 썸네일을 그린다.
+	yield(get_tree().create_timer(0.2), "timeout")
 	
-	$Label.text = file_name
-	hint_tooltip = file_name
+	if is_directory:
+		$ThumbnailTexture.texture = Define.directoryThumbnailTexture
+	else:
+		if !is_pex_file():
+			$ThumbnailTexture.texture	= get_file_thumbnail_texture()
+
 
 func create_image_with_background(image:Image)->Image:
 	var white_image:Image = image.duplicate()
@@ -23,9 +36,13 @@ func create_image_with_background(image:Image)->Image:
 		
 # 파일의 thumbnail texture를 리턴한다.
 func get_file_thumbnail_texture()->Texture:
+	var file_path = get_file_path()
 	if is_image_file():
+		
 		var image:Image = Image.new()
-		var _res = image.load(get_file_path())
+		var _res = image.load(file_path)
+		if _res != OK:
+			return Define.fileThumbnailTexture
 		image = create_image_with_background(image)
 		
 		var texture:ImageTexture = ImageTexture.new()
@@ -33,7 +50,7 @@ func get_file_thumbnail_texture()->Texture:
 		return texture
 	elif is_pex_file():
 		var open_file = File.new()
-		if open_file.open(get_file_path(), File.READ) != OK:
+		if open_file.open(file_path, File.READ) != OK:
 			return Define.fileThumbnailTexture
 			
 		if open_file.get_position() >= open_file.get_len():
@@ -64,7 +81,7 @@ func is_pex_file()->bool:
 	
 func is_image_file()->bool:
 	var ext = file_name.get_extension()
-	if ext == "png" || ext == "jpg" || ext == "jpeg":
+	if ext == "png" || ext == "jpg" || ext == "jpeg" || ext == "bmp":
 		return true
 	return false
 	
