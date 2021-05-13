@@ -164,6 +164,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://MessageBox.gd"
 }, {
+"base": "Button",
+"class": "OpenButton",
+"language": "GDScript",
+"path": "res://OpenButton.gd"
+}, {
 "base": "Reference",
 "class": "OriginPixel",
 "language": "GDScript",
@@ -271,6 +276,7 @@ _global_script_class_icons={
 "Layers": "",
 "LineTool": "",
 "MessageBox": "",
+"OpenButton": "",
 "OriginPixel": "",
 "Palette": "",
 "PalettePreview": "",

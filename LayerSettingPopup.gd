@@ -232,3 +232,20 @@ func on_MergeWithNextLayer_hide():
 	NodeManager.get_layer_panel().regen_layer_buttons()		
 	
 	hide()
+
+
+func _on_ClearButton_pressed():
+	if selected_layer == null:
+		return
+	var clear_area = Rect2(0, 0, StaticData.canvas_width, StaticData.canvas_height)
+	UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
+	UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer_by_Rect(clear_area)
+	NodeManager.get_current_layer().erase_pixels_by_rect(clear_area)
+	UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
+
+	NodeManager.get_tools().finish_selected_area_editing()
+
+
+# 이미지 붙여 넣기
+func _on_AttachImageButton_pressed():
+	pass # Replace with function body.

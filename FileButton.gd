@@ -18,14 +18,14 @@ func _ready():
 		else:
 			$ThumbnailTexture.texture	= Define.fileThumbnailTexture
 
-	# 실제 썸네일을 그리는건 시간이 걸리므로 yield로 일단 제어를 넘기고 실제 썸네일을 그린다.
-	yield(get_tree().create_timer(0.2), "timeout")
-	
-	if is_directory:
-		$ThumbnailTexture.texture = Define.directoryThumbnailTexture
-	else:
-		if !is_pex_file():
-			$ThumbnailTexture.texture	= get_file_thumbnail_texture()
+#	# 실제 썸네일을 그리는건 시간이 걸리므로 yield로 일단 제어를 넘기고 실제 썸네일을 그린다.
+#	yield(get_tree().create_timer(0.2), "timeout")
+#
+#	if is_directory:
+#		$ThumbnailTexture.texture = Define.directoryThumbnailTexture
+#	else:
+#		if !is_pex_file():
+#			$ThumbnailTexture.texture	= get_file_thumbnail_texture()
 
 
 func create_image_with_background(image:Image)->Image:

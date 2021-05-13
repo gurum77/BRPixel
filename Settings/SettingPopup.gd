@@ -25,6 +25,7 @@ func hide():
 	
 func popup_centered():
 	$DraggablePopup.popup_centered()
+	$DraggablePopup.rect_position.y = $DraggablePopup.rect_position.y - $DraggablePopup.rect_size.y / 2
 	update_controls()
 	
 func update_controls():

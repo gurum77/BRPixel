@@ -10,9 +10,9 @@ extends Control
 func _ready():
 	$DraggablePopup/GridContainer/TitleTextEdit.set_message_translation(false)
 
-
 func popup_centered():
 	$DraggablePopup.popup_centered()
+	$DraggablePopup.rect_position.y = $DraggablePopup.rect_position.y - $DraggablePopup.rect_size.y/2
 
 func _on_16x16Button_pressed():
 	$DraggablePopup/GridContainer/WidthTextEdit.text = "16"
