@@ -39,7 +39,7 @@ func on_hide_file_dialog():
 			var _result = StaticData.open_project(file_path)
 		else:
 			var _result = NodeManager.get_import_image_popup().connect("hide", self, "_on_ImportImage_hide")
-			NodeManager.get_import_image_6popup().image_file_path = file_path
+			NodeManager.get_import_image_popup().image_file_path = file_path
 			NodeManager.get_import_image_popup().popup_centered()
 			
 

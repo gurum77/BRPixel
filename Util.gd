@@ -188,16 +188,19 @@ func load_image_file(parent:Node, path:String)->Image:
 	var format = image.get_format()
 	if format == Image.FORMAT_RGBA8:
 		return image
-	# format이 안 맞으면 같은 크기로 만들어서 복사해서 리턴
-	var image_tmp = NodeManager.get_current_layer().create_image(image.get_width(), image.get_height())
-	image.lock()
-	image_tmp.lock()
-	for x in image.get_width():
-		for y in image.get_height():
-			image_tmp.set_pixel(x, y, image.get_pixel(x, y))
-	image.unlock()
-	image_tmp.unlock()
-	return image_tmp
+	# format이 안 맞으면 format을 변경해서 리턴
+	image.convert(Image.FORMAT_RGBA8)
+	return image
+#	var image_tmp = NodeManager.get_current_layer().create_image(image.get_width(), image.get_height())
+#	image.lock()
+#	image_tmp.lock()
+#
+#	for x in image.get_width():
+#		for y in image.get_height():
+#			image_tmp.set_pixel(x, y, image.get_pixel(x, y))
+#	image.unlock()
+#	image_tmp.unlock()
+#	return image_tmp
 	
 # 그립을 만들고 edit 모드를 실행한다.
 func run_edit_mode(pos:Vector2, width, height, use_preview_layer=true):

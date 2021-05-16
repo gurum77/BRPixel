@@ -4,9 +4,9 @@
 [ext_resource path="res://white_rect_1x1_transparent.png" type="Texture" id=2]
 
 [node name="FileButton" type="TextureButton"]
-margin_right = 70.0
-margin_bottom = 70.0
-rect_min_size = Vector2( 70, 70 )
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
 mouse_filter = 1
 toggle_mode = true
 texture_pressed = ExtResource( 2 )

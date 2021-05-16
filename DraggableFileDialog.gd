@@ -5,6 +5,7 @@ var path = "c://"
 var dir = Directory.new()
 var result_ok = true
 var selected_file_paths = []	# 선택한 파일 경로들
+var visible_other_controls:Dictionary
 
 onready var file_button_parent = $DraggableWindow/ScrollContainer/GridContainer
 onready var file_name_line_edit = $DraggableWindow/ColorRect/HBoxContainer2/FileNameLineEdit
@@ -17,6 +18,9 @@ export var save_file_dialog = true	# 저장인지?
 export var default_extension = "pex"
 export var filters:PoolStringArray	# filter
 export var default_file_name = ""	# 기본 파일 명
+
+export var file_button_size = Vector2(150, 100)
+export var file_button_offset = Vector2(20, 20)
 
 # 표시 가능한 확장자
 var enabled_extenstions:Dictionary
@@ -78,6 +82,10 @@ func update_lsit():
 	# 현재 경로 갱신
 	update_path_line_edit()
 	
+	var grid = file_button_parent as GridContainer
+	if grid != null:
+		grid.set("custom_constants/vseparation", file_button_offset.y)
+		grid.set("custom_constants/hseparation", file_button_offset.x)
 	enabled_extenstions.clear()
 	for filter in filters:
 		var text = filter as String
@@ -109,6 +117,8 @@ func add_file_buttons(names:Array, is_directory):
 		ins.is_directory = is_directory
 		ins.directory_path = dir.get_current_dir()
 		ins.file_name = name
+		ins.rect_min_size = file_button_size
+		ins.rect_size = file_button_size
 		var _tmp = ins.connect("pressed", self, "on_file_button_pressed", [ins])
 		file_button_parent.add_child(ins)
 			
@@ -135,8 +145,31 @@ func unselect_all(except_file_button):
 		if except_file_button == node:
 			continue
 		node.pressed = false
-		
+	
+	
+func hide_other_control(control:Control):
+	visible_other_controls[control] = control.visible
+	control.hide()
+	
+func show_other_control(control:Control):
+	if visible_other_controls.has(control):
+		if visible_other_controls[control]:
+			control.show()
+		else:
+			control.hide()
+	else:
+		control.show()
+	
+func hide_other_controls():
+	hide_other_control(NodeManager.get_layer_panel())	
+	hide_other_control(NodeManager.get_preview())	
+	
+func show_other_controls():
+	show_other_control(NodeManager.get_layer_panel())	
+	show_other_control(NodeManager.get_preview())	
+	
 func popup_centered():
+	hide_other_controls()
 	selected_file_paths.clear()
 	visible = true
 	result_ok = false
@@ -148,6 +181,14 @@ func popup_centered():
 	# filter가 하나라면 그걸 default ext로 준다.
 	if enabled_extenstions.size() == 1:
 		default_extension = enabled_extenstions.keys()[0]
+		
+	# 그리드의 columns 설정
+	var grid = file_button_parent as GridContainer
+	if grid != null:
+		var rect_size = $DraggableWindow.rect_size
+		grid.columns = rect_size.x / (file_button_size.x + file_button_offset.x)
+	
+	
 
 # 현재 directory에 폴더 생성
 func _on_AddFolderButton_pressed():
@@ -218,3 +259,7 @@ func _on_MessageBox_hide():
 
 
 
+
+
+func _on_DraggableFileDialog_hide():
+	show_other_controls()

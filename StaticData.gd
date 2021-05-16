@@ -191,6 +191,9 @@ func open_image(parent, path, var rows=1, var cols=1):
 	StaticData.canvas_height = height
 	NodeManager.get_canvas().resize()
 	
+	# preview layer 다시 설정
+	StaticData.preview_layer.init_size()
+	
 	# frame을 필요한 만큼 만든다.
 	NodeManager.get_frames().clear_frames()
 	var rects = Util.get_rects(image.get_width(), image.get_height(), rows, cols)

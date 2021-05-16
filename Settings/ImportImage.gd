@@ -6,6 +6,7 @@ onready var preview = $DraggableWindow/VBoxContainer/Background/Preview
 onready var background = $DraggableWindow/VBoxContainer/Background
 onready var src_label = $DraggableWindow/VBoxContainer/InfoVBoxContainer/SourceInfoLabel
 onready var tar_label = $DraggableWindow/VBoxContainer/InfoVBoxContainer/TargetInfoLabel
+onready var error_label  = $DraggableWindow/VBoxContainer/InfoVBoxContainer/ErrorLabel
 var result_ok = false
 	
 func popup_centered():
@@ -27,6 +28,25 @@ func update_infomations():
 	var target_image_height = preview.texture.get_height() / preview.rows
 	var frames = preview.cols * preview.rows
 	tar_label.text = "%s : %d x %d, %d %s" % [tr("Target image"), target_image_width, target_image_height, frames, tr("frame")]
+	
+	# error message
+	if is_too_big_image():
+		error_label.text = "Maximum image size is %d." % [Define.max_canvas_size]
+		$DraggableWindow/VBoxContainer/Container/OkButton.disabled = true
+		$DraggableWindow/VBoxContainer/Container/OkButton.modulate = Color.darkgray
+	else:
+		error_label.text = ""
+		$DraggableWindow/VBoxContainer/Container/OkButton.disabled = false
+		$DraggableWindow/VBoxContainer/Container/OkButton.modulate = Color.white
+	
+func is_too_big_image()->bool:
+	var target_image_width = preview.texture.get_width() / preview.cols
+	var target_image_height = preview.texture.get_height() / preview.rows
+	if target_image_width > Define.max_canvas_size:
+		return true
+	if target_image_height > Define.max_canvas_size:
+		return true
+	return false
 
 func _on_SpinBox_value_changed(value):
 	preview.cols = value

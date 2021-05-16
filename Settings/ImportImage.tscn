@@ -8,7 +8,6 @@
 [ext_resource path="res://Assets/icon_cancel.png" type="Texture" id=6]
 [ext_resource path="res://Assets/icon_ok.png" type="Texture" id=7]
 
-
 [node name="ImportImage" type="Control"]
 script = ExtResource( 4 )
 __meta__ = {
@@ -50,7 +49,7 @@ __meta__ = {
 [node name="InfoVBoxContainer" type="VBoxContainer" parent="DraggableWindow/VBoxContainer"]
 margin_top = 304.0
 margin_right = 580.0
-margin_bottom = 354.0
+margin_bottom = 360.0
 
 [node name="SourceInfoLabel" type="Label" parent="DraggableWindow/VBoxContainer/InfoVBoxContainer"]
 margin_right = 580.0
@@ -63,17 +62,16 @@ margin_right = 580.0
 margin_bottom = 36.0
 text = "Target image : 64 x 64, 13 frames"
 
-[node name="Panel2" type="ColorRect" parent="DraggableWindow/VBoxContainer/InfoVBoxContainer"]
+[node name="ErrorLabel" type="Label" parent="DraggableWindow/VBoxContainer/InfoVBoxContainer"]
 margin_top = 40.0
 margin_right = 580.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 0, 10 )
-color = Color( 1, 1, 1, 0 )
+margin_bottom = 56.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
 
 [node name="GridContainer" type="GridContainer" parent="DraggableWindow/VBoxContainer"]
-margin_top = 358.0
+margin_top = 364.0
 margin_right = 580.0
-margin_bottom = 398.0
+margin_bottom = 404.0
 grow_horizontal = 2
 columns = 5
 __meta__ = {
@@ -123,16 +121,16 @@ rounded = true
 align = 1
 
 [node name="Panel" type="ColorRect" parent="DraggableWindow/VBoxContainer"]
-margin_top = 402.0
+margin_top = 408.0
 margin_right = 580.0
-margin_bottom = 412.0
+margin_bottom = 418.0
 rect_min_size = Vector2( 0, 10 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="Container" type="HBoxContainer" parent="DraggableWindow/VBoxContainer"]
-margin_top = 416.0
+margin_top = 422.0
 margin_right = 580.0
-margin_bottom = 448.0
+margin_bottom = 454.0
 custom_constants/separation = 20
 alignment = 1
 

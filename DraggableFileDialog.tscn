@@ -10,10 +10,12 @@
 [ext_resource path="res://DriveButton.gd" type="Script" id=8]
 
 [node name="DraggableFileDialog" type="Control"]
+visible = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+file_button_size = Vector2( 200, 100 )
 
 [node name="DraggableWindow" parent="." instance=ExtResource( 1 )]
 anchor_right = 1.0
@@ -23,11 +25,11 @@ margin_bottom = 500.0
 full_screen = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DraggableWindow"]
-anchor_right = 1.0
+anchor_right = 1.012
 anchor_bottom = 1.0
 margin_left = 20.0
 margin_top = 70.0
-margin_right = -20.0
+margin_right = -108.0
 margin_bottom = -60.0
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -35,11 +37,11 @@ __meta__ = {
 }
 
 [node name="GridContainer" type="GridContainer" parent="DraggableWindow/ScrollContainer"]
-margin_right = 972.0
-margin_bottom = 150.0
+margin_right = 884.0
+margin_bottom = 210.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 12
-columns = 12
+columns = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -47,64 +49,72 @@ __meta__ = {
 [node name="FileButton" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
 
 [node name="FileButton2" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 82.0
-margin_right = 152.0
+margin_left = 112.0
+margin_right = 212.0
 
 [node name="FileButton3" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 164.0
-margin_right = 234.0
+margin_left = 224.0
+margin_right = 324.0
 
 [node name="FileButton4" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 246.0
-margin_right = 316.0
+margin_left = 336.0
+margin_right = 436.0
 
 [node name="FileButton5" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 328.0
-margin_right = 398.0
+margin_left = 448.0
+margin_right = 548.0
 
 [node name="FileButton6" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 410.0
-margin_right = 480.0
+margin_left = 560.0
+margin_right = 660.0
 
 [node name="FileButton7" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 492.0
-margin_right = 562.0
+margin_left = 672.0
+margin_right = 772.0
 
 [node name="FileButton8" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 574.0
-margin_right = 644.0
+margin_left = 784.0
+margin_right = 884.0
 
 [node name="FileButton9" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 656.0
-margin_right = 726.0
+margin_top = 110.0
+margin_bottom = 210.0
 
 [node name="FileButton10" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 738.0
-margin_right = 808.0
+margin_left = 112.0
+margin_top = 110.0
+margin_right = 212.0
+margin_bottom = 210.0
 
 [node name="FileButton11" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 820.0
-margin_right = 890.0
+margin_left = 224.0
+margin_top = 110.0
+margin_right = 324.0
+margin_bottom = 210.0
 
 [node name="FileButton12" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 902.0
-margin_right = 972.0
+margin_left = 336.0
+margin_top = 110.0
+margin_right = 436.0
+margin_bottom = 210.0
 
 [node name="FileButton13" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_top = 80.0
-margin_bottom = 150.0
+margin_left = 448.0
+margin_top = 110.0
+margin_right = 548.0
+margin_bottom = 210.0
 
 [node name="FileButton14" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 82.0
-margin_top = 80.0
-margin_right = 152.0
-margin_bottom = 150.0
+margin_left = 560.0
+margin_top = 110.0
+margin_right = 660.0
+margin_bottom = 210.0
 
 [node name="FileButton15" parent="DraggableWindow/ScrollContainer/GridContainer" instance=ExtResource( 3 )]
-margin_left = 164.0
-margin_top = 80.0
-margin_right = 234.0
-margin_bottom = 150.0
+margin_left = 672.0
+margin_top = 110.0
+margin_right = 772.0
+margin_bottom = 210.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DraggableWindow"]
 anchor_right = 1.0
@@ -231,6 +241,7 @@ text = "0 file(s) selected"
 [node name="MessageBox" parent="." instance=ExtResource( 6 )]
 visible = false
 
+[connection signal="hide" from="." to="." method="_on_DraggableFileDialog_hide"]
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/DriveButton" to="DraggableWindow/HBoxContainer/DriveButton" method="_on_DriveButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/AddFolderButton" to="." method="_on_AddFolderButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup/HBoxContainer/NewFolderOkButton" to="." method="_on_NewFolderOkButton_pressed"]

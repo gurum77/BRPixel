@@ -879,9 +879,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DraggableFileDialog" parent="UI" instance=ExtResource( 73 )]
-visible = false
-
 [node name="MessageBox" parent="UI" instance=ExtResource( 74 )]
 visible = false
 
@@ -904,6 +901,8 @@ margin_left = 15.9723
 margin_top = -259.089
 margin_right = 15.9723
 margin_bottom = -259.089
+
+[node name="DraggableFileDialog" parent="UI" instance=ExtResource( 73 )]
 
 [node name="Camera" type="Camera2D" parent="."]
 offset = Vector2( 33, 33 )
