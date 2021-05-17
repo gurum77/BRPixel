@@ -903,6 +903,7 @@ margin_right = 15.9723
 margin_bottom = -259.089
 
 [node name="DraggableFileDialog" parent="UI" instance=ExtResource( 73 )]
+visible = false
 
 [node name="Camera" type="Camera2D" parent="."]
 offset = Vector2( 33, 33 )

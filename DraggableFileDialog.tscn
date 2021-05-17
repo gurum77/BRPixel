@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://DraggableWindow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://DraggableFileDialog.gd" type="Script" id=2]
@@ -8,6 +8,12 @@
 [ext_resource path="res://MessageBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/icon_drive.png" type="Texture" id=7]
 [ext_resource path="res://DriveButton.gd" type="Script" id=8]
+[ext_resource path="res://Assets/icon_detail_view.png" type="Texture" id=9]
+[ext_resource path="res://Assets/icon_thumbnail_view.png" type="Texture" id=10]
+[ext_resource path="res://Assets/icon_sort_by_date.png" type="Texture" id=11]
+[ext_resource path="res://Assets/icon_sort_by_name.png" type="Texture" id=12]
+[ext_resource path="res://Assets/icon_sort_by_date_r.png" type="Texture" id=13]
+[ext_resource path="res://Assets/icon_sort_by_name_r.png" type="Texture" id=14]
 
 [node name="DraggableFileDialog" type="Control"]
 script = ExtResource( 2 )
@@ -19,7 +25,8 @@ file_button_size = Vector2( 200, 100 )
 [node name="DraggableWindow" parent="." instance=ExtResource( 1 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 998.218
+margin_left = -2.0
+margin_right = 1118.0
 margin_bottom = 500.0
 full_screen = true
 
@@ -192,11 +199,36 @@ rect_min_size = Vector2( 25, 25 )
 texture_normal = ExtResource( 5 )
 expand = true
 
-[node name="DetailViewButton" type="CheckButton" parent="DraggableWindow/HBoxContainer"]
+[node name="DetailViewButton" type="TextureButton" parent="DraggableWindow/HBoxContainer"]
 margin_left = 752.0
-margin_right = 907.0
+margin_right = 792.0
 margin_bottom = 40.0
-text = "Detail view"
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+expand = true
+
+[node name="SortByNameButton" type="TextureButton" parent="DraggableWindow/HBoxContainer"]
+margin_left = 796.0
+margin_right = 836.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+pressed = true
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 12 )
+expand = true
+
+[node name="SortByDateButton" type="TextureButton" parent="DraggableWindow/HBoxContainer"]
+margin_left = 840.0
+margin_right = 880.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 11 )
+expand = true
 
 [node name="ColorRect" type="ColorRect" parent="DraggableWindow"]
 anchor_top = 1.0
@@ -221,23 +253,23 @@ __meta__ = {
 }
 
 [node name="FileNameLineEdit" type="LineEdit" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 163.0
-margin_right = 663.0
+margin_left = 224.0
+margin_right = 724.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 500, 40 )
 placeholder_text = "File name"
 
 [node name="OkButton" type="Button" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 667.0
-margin_right = 711.0
+margin_left = 728.0
+margin_right = 772.0
 margin_bottom = 40.0
 icon = ExtResource( 5 )
 flat = true
 
 [node name="SelectedFileNumsLabel" type="Label" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 715.0
+margin_left = 776.0
 margin_top = 12.0
-margin_right = 835.0
+margin_right = 896.0
 margin_bottom = 28.0
 text = "0 file(s) selected"
 
@@ -249,6 +281,8 @@ visible = false
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/AddFolderButton" to="." method="_on_AddFolderButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup/HBoxContainer/NewFolderOkButton" to="." method="_on_NewFolderOkButton_pressed"]
 [connection signal="toggled" from="DraggableWindow/HBoxContainer/DetailViewButton" to="." method="_on_DetailViewButton_toggled"]
+[connection signal="pressed" from="DraggableWindow/HBoxContainer/SortByNameButton" to="." method="_on_SortByNameButton_pressed"]
+[connection signal="pressed" from="DraggableWindow/HBoxContainer/SortByDateButton" to="." method="_on_SortByDateButton_pressed"]
 [connection signal="text_changed" from="DraggableWindow/ColorRect/HBoxContainer2/FileNameLineEdit" to="." method="_on_FileNameLineEdit_text_changed"]
 [connection signal="pressed" from="DraggableWindow/ColorRect/HBoxContainer2/OkButton" to="." method="_on_OkButton_pressed"]
 [connection signal="hide" from="MessageBox" to="." method="_on_MessageBox_hide"]

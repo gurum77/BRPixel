@@ -4,9 +4,11 @@ var file_button = preload("res://FileButton.tscn")
 var file_detailview_button = preload("res://FileDetailViewButton.tscn")
 var path = "c://"
 var dir = Directory.new()
+var file = File.new()
 var result_ok = true
 var selected_file_paths = []	# 선택한 파일 경로들
 var visible_other_controls:Dictionary
+var selected_file_nums = 0	# 선택되어 있는 파일 개수
 
 onready var file_button_parent = $DraggableWindow/ScrollContainer/GridContainer
 onready var file_name_line_edit = $DraggableWindow/ColorRect/HBoxContainer2/FileNameLineEdit
@@ -14,6 +16,9 @@ onready var selected_file_nums_label = $DraggableWindow/ColorRect/HBoxContainer2
 onready var new_folder_name_Line_edit = $DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup/HBoxContainer/NewFolderNameLineEdit
 onready var new_folder_name_popup = $DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup
 onready var drive_button = $DraggableWindow/HBoxContainer/DriveButton
+onready var sort_by_name_button = $DraggableWindow/HBoxContainer/SortByNameButton
+onready var sort_by_date_button = $DraggableWindow/HBoxContainer/SortByDateButton
+
 export var multi_selection = false	# 여러개 선택 가능한지?
 export var save_file_dialog = true	# 저장인지?
 export var default_extension = "pex"
@@ -23,6 +28,10 @@ export var default_file_name = ""	# 기본 파일 명
 export var file_button_size = Vector2(150, 100)
 export var file_detailview_button_size = Vector2(300, 30)
 export var file_button_offset = Vector2(20, 20)
+export var file_detailview_button_offset = Vector2(10, 5)
+
+enum Sort{by_name, by_name_r, by_date, by_date_r}
+var sort_method = Sort.by_name
 
 # 표시 가능한 확장자
 var enabled_extenstions:Dictionary
@@ -33,6 +42,7 @@ func _ready():
 		path = "user://"
 	dir.open(path)
 	update_lsit()
+	
 	
 func is_windows():
 	if OS.get_name() == "Windows":
@@ -49,6 +59,56 @@ func get_last_selected_file_path()->String:
 		return ""
 	return selected_file_paths[selected_file_paths.size()-1]
 	
+func sort_by_name(s1:String, s2:String):
+	if s1 == "..":
+		return true
+	if s2 == "..":
+		return false
+	if s1.to_lower() > s2.to_lower():
+		return true
+	return false
+	
+func sort_by_name_r(s1:String, s2:String):
+	if s1 == "..":
+		return true
+	if s2 == "..":
+		return false
+	if s1.to_lower() < s2.to_lower():
+		return true
+	return false	
+func sort_by_date(s1:String, s2:String):
+	if s1 == "..":
+		return true
+	if s2 == "..":
+		return false
+	var path1 = Util.get_file_path(dir.get_current_dir(), s1)
+	var path2 = Util.get_file_path(dir.get_current_dir(), s2)
+	if file.get_modified_time(path1) > file.get_modified_time(path2):
+		return true
+	return false
+func sort_by_date_r(s1:String, s2:String):
+	if s1 == "..":
+		return true
+	if s2 == "..":
+		return false
+	var path1 = Util.get_file_path(dir.get_current_dir(), s1)
+	var path2 = Util.get_file_path(dir.get_current_dir(), s2)
+	if file.get_modified_time(path1) < file.get_modified_time(path2):
+		return true
+	return false	
+		
+func sort_files(files:Array):
+	if sort_method == Sort.by_name:
+		files.sort_custom(self, "sort_by_name")
+		pass
+	elif sort_method == Sort.by_name_r:
+		files.sort_custom(self, "sort_by_name_r")
+		pass
+	elif sort_method == Sort.by_date:
+		files.sort_custom(self, "sort_by_date")
+	elif sort_method == Sort.by_date_r:
+		files.sort_custom(self, "sort_by_date_r")
+	
 func get_directorie_names()->Array:
 	var is_windows = is_windows()
 	var is_root = is_root()
@@ -57,13 +117,14 @@ func get_directorie_names()->Array:
 	var directories = []
 	var file_name = dir.get_next()
 	while file_name != "":
-		if dir.current_is_dir() && file_name != ".":
+		if dir.current_is_dir() && file_name != "." && !file_name.begins_with("$"):
 			if !is_windows:
 				if is_root && file_name == "..":
 					file_name = dir.get_next()
 					continue
 			directories.append(file_name)
 		file_name = dir.get_next()
+	sort_files(directories)
 	return directories
 	
 func get_file_names()->Array:
@@ -78,16 +139,14 @@ func get_file_names()->Array:
 			if enabled_extenstions.has(ext):
 				files.append(file_name)
 		file_name = dir.get_next()
+	sort_files(files)
 	return files
 	
 func update_lsit():
 	# 현재 경로 갱신
 	update_path_line_edit()
 	
-	var grid = file_button_parent as GridContainer
-	if grid != null:
-		grid.set("custom_constants/vseparation", file_button_offset.y)
-		grid.set("custom_constants/hseparation", file_button_offset.x)
+	
 	enabled_extenstions.clear()
 	for filter in filters:
 		var text = filter as String
@@ -209,9 +268,14 @@ func set_grid_columns():
 	if grid != null:
 		if is_detail_view():
 			grid.columns = 1
+			grid.set("custom_constants/vseparation", file_detailview_button_offset.y)
+			grid.set("custom_constants/hseparation", file_detailview_button_offset.x)
 		else:
 			var rect_size = $DraggableWindow.rect_size
 			grid.columns = rect_size.x / (file_button_size.x + file_button_offset.x)
+			grid.set("custom_constants/vseparation", file_button_offset.y)
+			grid.set("custom_constants/hseparation", file_button_offset.x)
+		
 		
 # 현재 directory에 폴더 생성
 func _on_AddFolderButton_pressed():
@@ -222,6 +286,7 @@ func is_exist_file(_file_name)->bool:
 	return dir.file_exists(_file_name)
 	
 func _on_OkButton_pressed():
+		
 	# 선택한 파일
 	selected_file_paths.clear()
 	
@@ -237,6 +302,10 @@ func _on_OkButton_pressed():
 			$MessageBox.popup_centered()
 			return
 	else:
+		# 열기인 경우 반드시 파일이 1개 선택되어 있어야 함
+		if selected_file_nums != 1:
+			return
+
 		var file_name_with_ext = Util.get_file_name_with_ext(file_name_line_edit.text, default_extension, enabled_extenstions)
 		selected_file_paths.append(Util.get_file_path(dir.get_current_dir(), file_name_with_ext))
 
@@ -249,19 +318,30 @@ func update_path_line_edit():
 	$DraggableWindow/HBoxContainer/PathLineEdit.text = dir.get_current_dir()
 	
 # 파일명이 변경될 때 마다 실제 파일이 있는지 확인하고 선택을 해준다.
+# 하나만 선택되는 경우라면 line edit에 그 파일명을 적어준다.
 func _on_FileNameLineEdit_text_changed(new_text):
+	var last_selected_file_name = ""
+	var is_directory = true
 	var nums = 0
 	var nodes = file_button_parent.get_children()
 	for node in nodes:
-		var btn = node as FileButton
-		if new_text != "" && btn.file_name.begins_with(new_text):
-			btn.pressed = true
+		if new_text != "" && node.file_name.begins_with(new_text):
+			last_selected_file_name = node.file_name
+			is_directory = node.is_directory
+			node.pressed = true
 			nums += 1
 		else:
-			btn.pressed = false
+			node.pressed = false
 	update_selected_file_nums_label(nums)
+
+	# 한개만 선택된 경우라면 자동완성한다.	
+	if nums == 1 && !is_directory:
+		$DraggableWindow/ColorRect/HBoxContainer2/FileNameLineEdit.text = last_selected_file_name
+		$DraggableWindow/ColorRect/HBoxContainer2/FileNameLineEdit.caret_position = last_selected_file_name.length()
+		
 			
 func update_selected_file_nums_label(nums):
+	selected_file_nums = nums
 	selected_file_nums_label.text = str(nums) + tr(" file(s) selected")
 
 # 새 폴더를 만든다.
@@ -290,4 +370,20 @@ func _on_DraggableFileDialog_hide():
 # 자세히 보기 
 func _on_DetailViewButton_toggled(button_pressed):
 	set_grid_columns()
+	update_lsit()
+
+
+func _on_SortByNameButton_pressed():
+	if sort_by_name_button.pressed:
+		sort_method = Sort.by_name
+	else:
+		sort_method = Sort.by_name_r
+	update_lsit()
+	
+
+func _on_SortByDateButton_pressed():
+	if sort_by_date_button.pressed:
+		sort_method = Sort.by_date
+	else:
+		sort_method = Sort.by_date_r
 	update_lsit()

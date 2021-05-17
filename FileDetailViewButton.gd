@@ -19,6 +19,7 @@ func _ready():
 	var minute = datetime["minute"]
 	var second = datetime["second"]
 	$HBoxContainer/ModifiedDateLabel.text = "%d-%d-%d %d:%d:%d" % [year, month, day, hour, minute, second]
+		
 	hint_tooltip = file_name
 	# 빠르게 기본 썸네일을 표시하고..(pex는 빠르게 열 수 있으므로 바로 표시한다)`
 	if is_directory:
