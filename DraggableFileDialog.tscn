@@ -10,7 +10,6 @@
 [ext_resource path="res://DriveButton.gd" type="Script" id=8]
 
 [node name="DraggableFileDialog" type="Control"]
-visible = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -123,14 +122,12 @@ margin_top = 10.0
 margin_right = -63.9998
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 40 )
-alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DriveButton" type="MenuButton" parent="DraggableWindow/HBoxContainer"]
-margin_left = 173.0
-margin_right = 273.0
+margin_right = 100.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 0 )
 text = "C:"
@@ -142,8 +139,8 @@ __meta__ = {
 }
 
 [node name="PathLineEdit" type="LineEdit" parent="DraggableWindow/HBoxContainer"]
-margin_left = 277.0
-margin_right = 877.0
+margin_left = 104.0
+margin_right = 704.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 600, 0 )
 editable = false
@@ -152,8 +149,8 @@ __meta__ = {
 }
 
 [node name="AddFolderButton" type="Button" parent="DraggableWindow/HBoxContainer"]
-margin_left = 881.0
-margin_right = 921.0
+margin_left = 708.0
+margin_right = 748.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 4 )
@@ -194,6 +191,12 @@ margin_bottom = 26.0
 rect_min_size = Vector2( 25, 25 )
 texture_normal = ExtResource( 5 )
 expand = true
+
+[node name="DetailViewButton" type="CheckButton" parent="DraggableWindow/HBoxContainer"]
+margin_left = 752.0
+margin_right = 907.0
+margin_bottom = 40.0
+text = "Detail view"
 
 [node name="ColorRect" type="ColorRect" parent="DraggableWindow"]
 anchor_top = 1.0
@@ -245,6 +248,7 @@ visible = false
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/DriveButton" to="DraggableWindow/HBoxContainer/DriveButton" method="_on_DriveButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/AddFolderButton" to="." method="_on_AddFolderButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup/HBoxContainer/NewFolderOkButton" to="." method="_on_NewFolderOkButton_pressed"]
+[connection signal="toggled" from="DraggableWindow/HBoxContainer/DetailViewButton" to="." method="_on_DetailViewButton_toggled"]
 [connection signal="text_changed" from="DraggableWindow/ColorRect/HBoxContainer2/FileNameLineEdit" to="." method="_on_FileNameLineEdit_text_changed"]
 [connection signal="pressed" from="DraggableWindow/ColorRect/HBoxContainer2/OkButton" to="." method="_on_OkButton_pressed"]
 [connection signal="hide" from="MessageBox" to="." method="_on_MessageBox_hide"]

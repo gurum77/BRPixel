@@ -1,6 +1,7 @@
 extends Control
 class_name DraggableFileDialog
 var file_button = preload("res://FileButton.tscn")
+var file_detailview_button = preload("res://FileDetailViewButton.tscn")
 var path = "c://"
 var dir = Directory.new()
 var result_ok = true
@@ -20,6 +21,7 @@ export var filters:PoolStringArray	# filter
 export var default_file_name = ""	# 기본 파일 명
 
 export var file_button_size = Vector2(150, 100)
+export var file_detailview_button_size = Vector2(300, 30)
 export var file_button_offset = Vector2(20, 20)
 
 # 표시 가능한 확장자
@@ -112,13 +114,25 @@ func update_lsit():
 	
 	
 func add_file_buttons(names:Array, is_directory):
+	var detail_view = is_detail_view()
+	var button_size = file_button_size
+	if detail_view:
+		button_size = file_detailview_button_size
+		button_size.x = $DraggableWindow.rect_size.x - 50
+		
 	for name in names:
-		var ins:FileButton = file_button.instance()
+		var ins
+		
+		if detail_view:
+			ins = file_detailview_button.instance()
+		else:
+			ins = file_button.instance()
+		
 		ins.is_directory = is_directory
 		ins.directory_path = dir.get_current_dir()
 		ins.file_name = name
-		ins.rect_min_size = file_button_size
-		ins.rect_size = file_button_size
+		ins.rect_min_size = button_size
+		ins.rect_size = button_size
 		var _tmp = ins.connect("pressed", self, "on_file_button_pressed", [ins])
 		file_button_parent.add_child(ins)
 			
@@ -129,7 +143,7 @@ func enabled_multiple_selection()->bool:
 	
 # 파일을 선택하면 선택 표시만 한다.
 # 디렉토리를 선택하면 이동한다.
-func on_file_button_pressed(_file_button:FileButton):
+func on_file_button_pressed(_file_button):
 	if _file_button.is_directory:
 		dir.change_dir(_file_button.file_name)
 		update_lsit()
@@ -183,13 +197,22 @@ func popup_centered():
 		default_extension = enabled_extenstions.keys()[0]
 		
 	# 그리드의 columns 설정
+	set_grid_columns()
+	
+# 자세히 보기 인지?
+func is_detail_view():
+	return $DraggableWindow/HBoxContainer/DetailViewButton.pressed
+	
+# 그리드 columns 설정
+func set_grid_columns():
 	var grid = file_button_parent as GridContainer
 	if grid != null:
-		var rect_size = $DraggableWindow.rect_size
-		grid.columns = rect_size.x / (file_button_size.x + file_button_offset.x)
-	
-	
-
+		if is_detail_view():
+			grid.columns = 1
+		else:
+			var rect_size = $DraggableWindow.rect_size
+			grid.columns = rect_size.x / (file_button_size.x + file_button_offset.x)
+		
 # 현재 directory에 폴더 생성
 func _on_AddFolderButton_pressed():
 	$DraggableWindow/HBoxContainer/AddFolderButton/NewFolderNamePopup.popup_centered()
@@ -263,3 +286,8 @@ func _on_MessageBox_hide():
 
 func _on_DraggableFileDialog_hide():
 	show_other_controls()
+
+# 자세히 보기 
+func _on_DetailViewButton_toggled(button_pressed):
+	set_grid_columns()
+	update_lsit()

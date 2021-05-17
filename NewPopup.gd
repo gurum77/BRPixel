@@ -78,6 +78,7 @@ func _on_OkButton_pressed():
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	
 	$DraggablePopup.hide()
+	
 	NodeManager.get_setting_popup().hide()
 
 	# 새파일을 auto save

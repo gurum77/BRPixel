@@ -310,6 +310,7 @@ Define="*res://Define.gd"
 Util="*res://Util.gd"
 ImageHelper="*res://ImageHelper.gd"
 UndoManager="*res://Tools/UndoManager.gd"
+FileManager="*res://FileManager.gd"
 
 [display]
 

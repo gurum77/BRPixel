@@ -35,7 +35,11 @@ func _draw():
 	if !draw_forced && !is_enabled_draw():
 		return
 		
-	var image = NodeManager.get_current_layers().create_layers_image()
+	var layers = NodeManager.get_current_layers()
+	if layers == null:
+		return
+		
+	var image = layers.create_layers_image()
 		
 	# preview layer도 복사한다.
 	StaticData.preview_layer.copy_image(StaticData.preview_layer.image, image, 0, 0)
