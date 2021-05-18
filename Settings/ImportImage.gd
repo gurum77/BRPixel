@@ -14,6 +14,9 @@ func popup_centered():
 	show()
 	$DraggableWindow.popup_centered()
 	var image = Util.load_image_file(self, image_file_path)
+	if image == null:
+		hide()
+		return
 	Util.update_preview_image(preview, image)
 	update_infomations()
 

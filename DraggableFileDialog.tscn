@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/icon_sort_by_name_r.png" type="Texture" id=14]
 
 [node name="DraggableFileDialog" type="Control"]
+visible = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -25,18 +26,18 @@ file_button_size = Vector2( 200, 100 )
 [node name="DraggableWindow" parent="." instance=ExtResource( 1 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -2.0
-margin_right = 1118.0
-margin_bottom = 500.0
+margin_left = 0.0
+margin_right = 1280.0
+margin_bottom = 800.0
 full_screen = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DraggableWindow"]
-anchor_right = 1.012
+anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
 margin_top = 70.0
-margin_right = -108.0
-margin_bottom = -60.0
+margin_right = -20.0
+margin_bottom = -50.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -253,23 +254,23 @@ __meta__ = {
 }
 
 [node name="FileNameLineEdit" type="LineEdit" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 224.0
-margin_right = 724.0
+margin_left = 304.0
+margin_right = 804.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 500, 40 )
 placeholder_text = "File name"
 
 [node name="OkButton" type="Button" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 728.0
-margin_right = 772.0
+margin_left = 808.0
+margin_right = 852.0
 margin_bottom = 40.0
 icon = ExtResource( 5 )
 flat = true
 
 [node name="SelectedFileNumsLabel" type="Label" parent="DraggableWindow/ColorRect/HBoxContainer2"]
-margin_left = 776.0
+margin_left = 856.0
 margin_top = 12.0
-margin_right = 896.0
+margin_right = 976.0
 margin_bottom = 28.0
 text = "0 file(s) selected"
 

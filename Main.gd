@@ -1,11 +1,15 @@
 extends Control
 
+func on_size_changed():
+	if NodeManager.file_dialog != null:
+		NodeManager.file_dialog.resize()
 
 func _ready():
 	$Camera.zoom_fit()
 	$UI/ColorPanel.load_current_palette()
 	$UI/EditPanel/GridContainer/PencilButton.run()
 	$UI/Preview.show()
+	var _result = get_tree().root.connect("size_changed", self, "on_size_changed")
 	
 	# test
 #
@@ -32,3 +36,7 @@ func load_last_project():
 	if StaticData.open_auto_saved_project():
 		Util.show_message(self, "Hello", "The last project was recovered.", 1.5)
 	pass
+
+
+func _on_Main_resized():
+	pass # Replace with function body.

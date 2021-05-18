@@ -108,8 +108,8 @@ func _process(_delta):
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.12247
-margin_right = -1025.12
-margin_bottom = -600.0
+margin_right = -1281.12
+margin_bottom = -800.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -903,7 +903,9 @@ margin_right = 15.9723
 margin_bottom = -259.089
 
 [node name="DraggableFileDialog" parent="UI" instance=ExtResource( 73 )]
-visible = false
+margin_right = -1280.0
+margin_bottom = -800.0
+file_button_size = Vector2( 140, 100 )
 
 [node name="Camera" type="Camera2D" parent="."]
 offset = Vector2( 33, 33 )

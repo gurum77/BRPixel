@@ -372,6 +372,9 @@ func _on_DetailViewButton_toggled(button_pressed):
 	set_grid_columns()
 	update_lsit()
 
+func resize():
+	if visible:
+		popup_centered()
 
 func _on_SortByNameButton_pressed():
 	if sort_by_name_button.pressed:

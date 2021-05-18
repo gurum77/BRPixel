@@ -6,11 +6,9 @@ export var full_screen = false
 export var hide_close_button = false
 func _ready():
 	if full_screen:
-		var width = ProjectSettings.get("display/window/size/width")
-		var height = ProjectSettings.get("display/window/size/height")
+		var size = get_viewport_rect().size
 		rect_global_position = Vector2.ZERO
-		rect_size.x = width
-		rect_size.y = height
+		rect_size = size
 
 #	hint_tooltip = name
 	active_color = self_modulate
@@ -30,8 +28,11 @@ func popup_centered():
 	visible = true
 	
 #	var window_size = OS.get_window_safe_area().size
-	var width = ProjectSettings.get("display/window/size/width")
-	var height = ProjectSettings.get("display/window/size/height")
+	var size = get_viewport_rect().size
+	var width = size.x #ProjectSettings.get("display/window/size/width")
+	var height = size.y #ProjectSettings.get("display/window/size/height")
+	if full_screen:
+		rect_size = size
 	rect_global_position.x = width / 2 - rect_size.x / 2
 	rect_global_position.y = height / 2 - rect_size.y / 2
 

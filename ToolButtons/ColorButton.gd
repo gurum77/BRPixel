@@ -41,7 +41,8 @@ func _on_ColorButton_gui_input(event):
 			pressed_position = get_global_mouse_position()
 		else:
 			# drag 상황이 아닐때만 색을 선택한
-			if pressed_position.distance_squared_to(get_global_mouse_position()) < 3:
+			var dist = pressed_position.distance_squared_to(get_global_mouse_position())
+			if dist < 100:
 				if !empty_color:
 					StaticData.current_color = self_modulate
 				else:
