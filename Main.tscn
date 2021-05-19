@@ -482,14 +482,14 @@ icon = ExtResource( 72 )
 
 [node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
 margin_left = 64.0
-margin_top = 172.0
-margin_right = 703.0
-margin_bottom = 252.0
+margin_top = 231.0
+margin_right = 1034.0
+margin_bottom = 311.0
 
 [node name="FramePanel" type="Panel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
-margin_right = 600.0
+margin_right = 900.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 600, 70 )
+rect_min_size = Vector2( 900, 70 )
 script = ExtResource( 63 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -504,7 +504,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
-margin_right = 600.0
+margin_right = 900.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 0, 15 )
 __meta__ = {
@@ -568,7 +568,7 @@ script = ExtResource( 89 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
 margin_top = 30.0
-margin_right = 600.0
+margin_right = 900.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 0, 50 )
 __meta__ = {
@@ -624,6 +624,7 @@ self_modulate = Color( 0, 0, 0, 1 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -116.0
 grow_horizontal = 0
 rect_min_size = Vector2( 116, 0 )
 script = ExtResource( 19 )

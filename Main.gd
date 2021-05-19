@@ -3,6 +3,8 @@ extends Control
 func on_size_changed():
 	if NodeManager.file_dialog != null:
 		NodeManager.file_dialog.resize()
+	
+
 
 func _ready():
 	$Camera.zoom_fit()
