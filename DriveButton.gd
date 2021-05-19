@@ -3,8 +3,13 @@ extends MenuButton
 var dir = Directory.new()
 var file_dialog:DraggableFileDialog = null
 func _ready():
-	file_dialog = get_parent().get_parent().get_parent()
-	var _result = get_popup().connect("id_pressed", self, "on_id_pressed")
+	# windows용일때만 표시
+	if OS.get_name() == "Windows":
+		visible = true
+		file_dialog = get_parent().get_parent().get_parent()
+		var _result = get_popup().connect("id_pressed", self, "on_id_pressed")
+	else:
+		visible = false
 	
 
 func update_text():
@@ -18,6 +23,7 @@ func on_id_pressed(ID):
 	
 func _on_DriveButton_pressed():
 	get_popup().clear()
+	# 선택 가능한 drive 목록을 메뉴로 추가한다.
 	var drive_count = dir.get_drive_count()
 	for index  in drive_count:
 		var drive = dir.get_drive(index)

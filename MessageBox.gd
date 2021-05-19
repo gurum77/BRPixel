@@ -63,6 +63,10 @@ func _on_OkButton_pressed():
 
 
 func _on_Timer_timeout():
+	# 자동으로 사라지기는 일회용이다.
+	# 사용하고 나서 사용안함으로 설정해준다.
+	wait_sec = -1
+	
 	# 자동으로 사라질때는 서서히 사라지게 한다.
 	$Tween.interpolate_property(self, "modulate", Color.white, Color.transparent, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()

@@ -1,7 +1,7 @@
 extends Button
 
 export var save_selected_area = false
-	
+
 func _ready():
 	pass	
 		
@@ -12,6 +12,7 @@ func _on_SaveButton_pressed():
 	else:
 		on_SaveOptionsPopup_hide()
 	
+# save option popup이 닫히면 파일 dialog를 띄운다.
 func on_SaveOptionsPopup_hide():
 	if !save_selected_area:
 		NodeManager.get_save_options_popup().disconnect("hide", self, "on_SaveOptionsPopup_hide")
@@ -34,6 +35,7 @@ func on_SaveOptionsPopup_hide():
 		
 	NodeManager.get_file_dialog().popup_centered()
 	
+# file dialog가 닫히면 선택한 옵션과 파일명으로 저장한다.
 func on_hide_file_dialog():
 	NodeManager.get_file_dialog().disconnect("hide", self, "on_hide_file_dialog")
 	if !NodeManager.get_file_dialog().result_ok:
@@ -50,6 +52,7 @@ func on_hide_file_dialog():
 				Util.show_error_message(self, error)
 			else:
 				Util.show_message(self, "Save", "Save completed")
+		
 
 			
 func _on_SaveFileDialog_file_selected(path):

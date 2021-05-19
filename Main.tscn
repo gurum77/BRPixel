@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -90,6 +90,10 @@
 [ext_resource path="res://Settings/ImportImage.tscn" type="PackedScene" id=88]
 [ext_resource path="res://FrameInfoLabel.gd" type="Script" id=89]
 [ext_resource path="res://Settings/SaveOptionsPopup.tscn" type="PackedScene" id=90]
+[ext_resource path="res://CaptionLabel.gd" type="Script" id=91]
+[ext_resource path="res://Fonts/neodgm_pro.ttf" type="DynamicFontData" id=92]
+[ext_resource path="res://ToolButtons/ShareButton.tscn" type="PackedScene" id=93]
+[ext_resource path="res://ToolButtons/ShareSelectedAreaButton.tscn" type="PackedScene" id=94]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -103,6 +107,11 @@ func _on_ChangeColorButton_pressed():
 func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.change_color)
 "
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 92 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -352,18 +361,20 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 save_selected_area = true
 
-[node name="AddImageButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="8" instance=ExtResource( 10 )]
-margin_left = 352.0
+[node name="ShareSelectedAreaButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="8" instance=ExtResource( 94 )]
+
+[node name="AddImageButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="9" instance=ExtResource( 10 )]
+margin_left = 396.0
 margin_top = 0.0
-margin_right = 392.0
+margin_right = 436.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 21 )
 add_image = true
 
-[node name="Separator" type="TextureRect" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="9"]
-margin_left = 396.0
-margin_right = 406.0
+[node name="Separator" type="TextureRect" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="10"]
+margin_left = 440.0
+margin_right = 450.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 10, 40 )
 texture = ExtResource( 47 )
@@ -605,6 +616,8 @@ margin_left = 0.0
 margin_top = 602.0
 margin_right = 50.0
 margin_bottom = 652.0
+
+[node name="ShareButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 93 )]
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -866,15 +879,32 @@ margin_right = -447.818
 margin_bottom = -390.137
 
 [node name="DebugLabel" type="Label" parent="UI"]
+visible = false
 anchor_right = 1.0
 margin_left = 438.0
-margin_top = -2.0
+margin_top = 19.0
 margin_right = -271.0
-margin_bottom = 28.0
+margin_bottom = 49.0
 rect_min_size = Vector2( 100, 30 )
 text = "asdfasdfasdfasdfasdfsdf"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CaptionLabel" type="Label" parent="UI"]
+anchor_right = 1.0
+margin_left = 100.0
+margin_right = -100.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 100, 30 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.866667, 0.85098, 0.85098, 1 )
+text = "project information"
+align = 1
+valign = 1
+script = ExtResource( 91 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

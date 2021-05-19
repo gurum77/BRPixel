@@ -10,6 +10,8 @@ onready var error_label  = $DraggableWindow/VBoxContainer/InfoVBoxContainer/Erro
 var result_ok = false
 	
 func popup_centered():
+	$DraggableWindow/VBoxContainer/GridContainer/ColsSpinBox.get_line_edit().focus_mode  = Control.FOCUS_NONE
+	$DraggableWindow/VBoxContainer/GridContainer/RowsSpinBox.get_line_edit().focus_mode  = Control.FOCUS_NONE
 	result_ok = false
 	show()
 	$DraggableWindow.popup_centered()

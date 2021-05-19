@@ -35,6 +35,7 @@ var sort_method = Sort.by_name
 
 # 표시 가능한 확장자
 var enabled_extenstions:Dictionary
+
 func _ready():
 	if is_windows():
 		path = "c://"
@@ -43,6 +44,9 @@ func _ready():
 	dir.open(path)
 	update_lsit()
 	
+	var godot_get_image = PluginManager.get_godot_get_image()
+	if godot_get_image != null:
+		godot_get_image.connect("image_request_completed", self, "_on_image_request_completed")
 	
 func is_windows():
 	if OS.get_name() == "Windows":
@@ -258,6 +262,9 @@ func popup_centered():
 	# 그리드의 columns 설정
 	set_grid_columns()
 	
+	# 저장용인 경우 photo button은 비활성화 한다.
+	$DraggableWindow/HBoxContainer/PhotoButton.disabled = save_file_dialog
+	
 # 자세히 보기 인지?
 func is_detail_view():
 	return $DraggableWindow/HBoxContainer/DetailViewButton.pressed
@@ -361,14 +368,11 @@ func _on_MessageBox_hide():
 		hide()
 
 
-
-
-
 func _on_DraggableFileDialog_hide():
 	show_other_controls()
 
 # 자세히 보기 
-func _on_DetailViewButton_toggled(button_pressed):
+func _on_DetailViewButton_toggled(_button_pressed):
 	set_grid_columns()
 	update_lsit()
 
@@ -390,3 +394,30 @@ func _on_SortByDateButton_pressed():
 	else:
 		sort_method = Sort.by_date_r
 	update_lsit()
+
+
+# photo를 누르면 godot get image plugin을 통해서 이미지 가져오기를 실행한다.
+func _on_PhotoButton_pressed():
+	var godot_get_image = PluginManager.get_godot_get_image()
+	if godot_get_image != null:
+		godot_get_image.getGalleryImage()
+	
+
+# photo에서 이미지 가져오기를 성공하면..
+# 이미지 파일로 저장하고 file dialog를 닫는다.
+func _on_image_request_completed(dict):
+	for img_buffer in dict.values():
+		var image = Image.new()
+		var error = image.load_jpg_from_buffer(img_buffer)
+		if error != OK:
+			Util.show_error_message(self, error)
+		else:
+			yield(get_tree(), "idle_frame")
+			var file_path = OS.get_user_data_dir() + "/brpixel_get_image_from_gallery_____.png" 
+			image.save_png(file_path)
+			selected_file_nums = 1
+			selected_file_paths.append(file_path)
+			result_ok = true
+			hide()
+			break
+			

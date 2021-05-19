@@ -1,6 +1,7 @@
 extends Control
 class_name SaveOptionsPopup
 
+
 onready var pex_button = $DraggableWindow/VBoxContainer/VBoxContainer/FormatOptions/PexButton
 onready var png_button = $DraggableWindow/VBoxContainer/VBoxContainer/FormatOptions/PngButton
 onready var gif_button = $DraggableWindow/VBoxContainer/VBoxContainer/FormatOptions/GifButton
@@ -12,6 +13,7 @@ enum Result{ok, cancel}
 var format = Format.pex
 var result = Result.cancel
 var sprite_sheets_method = true
+
 func popup_centered():
 	show()
 	$DraggableWindow.popup_centered()
@@ -33,11 +35,6 @@ func update_method_buttons():
 	separate_files_button.disabled = sprite_sheet_button.disabled
 	separate_files_button.pressed = !sprite_sheets_method
 	
-	
-	
-
-	
-
 			
 			
 func update_preview():
@@ -58,6 +55,8 @@ func _on_OkButton_pressed():
 func _on_CancelButton_pressed():
 	result = Result.cancel
 	hide()
+
+
 
 
 func _on_PexButton_pressed():

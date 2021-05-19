@@ -129,6 +129,10 @@ func press_current_tool_button(button, current_tool):
 	if button.pressed != need_to_pressed:
 		button.pressed = need_to_pressed
 	
+# 안드로이드 전용이라는 메세지를 표시한다.
+func show_android_only_message(_parent):
+	Util.show_message(_parent, "Caution!", "Android only", 2)
+		
 # message는 popup으로 보여준다.
 func show_message(_parent, _title="", message="", wait_sec=-1):
 	NodeManager.get_message_box().enabled_yes_button = false

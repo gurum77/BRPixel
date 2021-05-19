@@ -84,7 +84,7 @@ func on_DeleteLayerMessageBox_hide():
 func delete_selected_layer():
 	if selected_layer == null:
 		return
-	
+
 	# 현재 layer를 지우고 다음 layer를 현재 layer로 설정한다.
 	NodeManager.get_frames().remove_layer(selected_layer.get_index())
 	
@@ -94,7 +94,8 @@ func delete_selected_layer():
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
 	
-	update_controls()
+	# 지우고 나면 창을 숨긴다.
+	hide()
 	
 
 
