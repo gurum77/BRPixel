@@ -47,7 +47,9 @@ func on_hide_file_dialog():
 		if ext == "pex":
 			StaticData.save_project(selected_file)
 		else:
-			var error = StaticData.save_image(selected_file, save_selected_area, NodeManager.get_save_options_popup().sprite_sheets_method)
+			var sprite_sheet = NodeManager.get_save_options_popup().sprite_sheets_method
+			var scale = NodeManager.get_save_options_popup().get_image_scale()
+			var error = StaticData.save_image(selected_file, save_selected_area, sprite_sheet, scale)
 			if error != OK:
 				Util.show_error_message(self, error)
 			else:

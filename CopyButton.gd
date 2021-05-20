@@ -19,7 +19,6 @@ func get_clipboard_count()->int:
 # 첫번째 clipboard 리턴(가장 최근 clipboard이다)
 func get_first_clipboard()->ClipBoardButton:
 	var nodes = get_parent().get_children()
-	var clipboard:ClipBoardButton
 	for node in nodes:
 		if node is ClipBoardButton:
 			return node as ClipBoardButton

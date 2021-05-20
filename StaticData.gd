@@ -109,14 +109,21 @@ func inside_working_area(point)->bool:
 func _ready():
 	pass
 	
+func resize_image_by_scale(image, scale):
+	if scale != 1:
+		image.resize(image.get_width() * scale, image.get_height() * scale, Image.INTERPOLATE_NEAREST)
+			
 # image로 저장한다.
-func save_image(path:String, selected_area_only, sprite_sheet=false):
+func save_image(path:String, selected_area_only, sprite_sheet=false, scale=1):
 	if selected_area_only:
 		var image:Image = Util.create_image_from_selected_area()
+		resize_image_by_scale(image, scale)
 		return image.save_png(path)
 	else:
 		if sprite_sheet:
 			var image:Image = NodeManager.get_frames().create_sprite_sheet_image()
+			resize_image_by_scale(image, scale)
+
 			return image.save_png(path)
 		else:
 			var err = OK
@@ -125,6 +132,7 @@ func save_image(path:String, selected_area_only, sprite_sheet=false):
 			var basename = path.get_basename()
 			var ext = path.get_extension()
 			for image in images:
+				resize_image_by_scale(image, scale)
 				var cur_path = "%s_%d.%s"%[basename,num,ext]
 				var cur_err = image.save_png(cur_path)
 				if cur_err != OK:

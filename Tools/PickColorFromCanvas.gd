@@ -10,7 +10,9 @@ func drawing_area_input(event):
 		return
 
 	if InputManager.is_action_just_pressed_lbutton(event):
-		var pos = get_global_mouse_position()
+		var pos = get_local_mouse_position()
+		pos.x = floor(pos.x)
+		pos.y = floor(pos.y)
 		NodeManager.get_current_layer().image.lock()
 		var color = NodeManager.get_current_layer().image.get_pixel(pos.x, pos.y)
 		if color.a != 0:
