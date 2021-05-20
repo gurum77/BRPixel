@@ -16,6 +16,15 @@ func get_clipboard_count()->int:
 			clipboard_count += 1
 	return clipboard_count
 	
+# 첫번째 clipboard 리턴(가장 최근 clipboard이다)
+func get_first_clipboard()->ClipBoardButton:
+	var nodes = get_parent().get_children()
+	var clipboard:ClipBoardButton
+	for node in nodes:
+		if node is ClipBoardButton:
+			return node as ClipBoardButton
+	return null
+	
 # 마지막 clipboard 리턴(가장 오래된 clipboard이다)
 func get_last_clipboard()->ClipBoardButton:
 	var nodes = get_parent().get_children()
@@ -34,7 +43,7 @@ func move_clipboard_to_first_position(clipboard):
 		idx += 1
 	get_parent().move_child(clipboard, idx)
 	
-func _on_CopyButton_pressed():
+func on_CopyButton_pressed():
 	if !StaticData.enabled_selected_area():
 		Util.show_message(self, "Clipboard", "No area is selected")
 		return

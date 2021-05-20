@@ -5,7 +5,8 @@ class_name ClipBoardButton
 var clipboard_position:Vector2
 var unused = false	# 사용되지 않음(삭제 예정)
 
-func _on_ClipBoardButton_pressed():
+
+func on_ClipBoardButton_pressed():
 	# texturerect의 texture에서 이미지를 따옴
 	var image:Image = Image.new()
 	image.copy_from($TextureRect.texture.get_data())
@@ -15,5 +16,3 @@ func _on_ClipBoardButton_pressed():
 		clipboard_position = Vector2(0, 0)
 	
 	Util.AttachImageWithEditTool(image, clipboard_position)
-	
-	

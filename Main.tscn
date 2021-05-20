@@ -130,10 +130,10 @@ __meta__ = {
 modulate = Color( 1, 1, 0, 0 )
 anchor_left = 0.00104284
 anchor_right = 1.00104
-margin_left = 109.587
+margin_left = 110.665
 margin_top = 6.0
-margin_right = -120.413
-margin_bottom = -45.0
+margin_right = -119.331
+margin_bottom = -12.0
 
 [node name="EditPanel" type="Panel" parent="UI"]
 anchor_bottom = 1.0
@@ -996,6 +996,7 @@ __meta__ = {
 [connection signal="pressed" from="UI/EditPanel/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/FillButton" to="UI/EditPanel/GridContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/ChangeColorButton" to="UI/EditPanel/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton" to="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton" method="on_CopyButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/AddLayerButton" to="UI/EditPanel/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/DeleteLayerButton" to="UI/EditPanel/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/GridContainer/GridButton" to="UI/EditPanel/GridContainer/GridButton" method="_on_GridButton_pressed"]

@@ -42,3 +42,19 @@ func load_last_project():
 
 func _on_Main_resized():
 	pass # Replace with function body.
+
+func _input(event):
+	if event.is_action_pressed("copy"):
+		if StaticData.enabled_selected_area():
+			NodeManager.get_copy_button().on_CopyButton_pressed()
+	elif event.is_action_pressed("cut"):
+		if StaticData.enabled_selected_area():
+			NodeManager.get_cut_button().on_CopyButton_pressed()
+	elif event.is_action_pressed("paste"):
+		var first_clipboard = NodeManager.get_copy_button().get_first_clipboard()
+		if first_clipboard != null:
+			first_clipboard.on_ClipBoardButton_pressed()
+	elif event.is_action_pressed("undo"):
+		NodeManager.get_undo_button().on_UndoButton_pressed()
+	elif event.is_action_pressed("redo"):
+		NodeManager.get_redo_button().on_RedoButton_pressed()

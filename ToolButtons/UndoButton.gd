@@ -9,7 +9,7 @@ func _process(_delta):
 	disabled = !undo.has_undo()
 #	text = str(NodeManager.get_undo_count())
 
-func _on_UndoButton_pressed():
+func on_UndoButton_pressed():
 	var undo = NodeManager.get_undo()
 	if undo == null:
 		return

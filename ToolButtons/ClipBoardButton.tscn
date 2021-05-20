@@ -35,4 +35,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="." to="." method="_on_ClipBoardButton_pressed"]
+[connection signal="pressed" from="." to="." method="on_ClipBoardButton_pressed"]

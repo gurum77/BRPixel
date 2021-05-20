@@ -12,4 +12,8 @@ rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 1 )
 expand_icon = true
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="." to="." method="_on_CopyButton_pressed"]

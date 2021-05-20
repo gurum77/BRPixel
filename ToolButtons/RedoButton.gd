@@ -7,7 +7,7 @@ func _process(_delta):
 		return
 	disabled = !undo.has_redo()
 
-func _on_RedoButton_pressed():
+func on_RedoButton_pressed():
 	var undo = NodeManager.get_undo()
 	if undo == null:
 		return
