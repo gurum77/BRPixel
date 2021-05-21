@@ -26,6 +26,8 @@ func drawing_area_input(_event):
 		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
 		start_point = get_local_mouse_position()
 	elif InputManager.is_action_just_released_lbutton(_event):
+		if start_point == null:
+			return
 		end_point = get_local_mouse_position()
 		var points = GeometryMaker.get_pixels_in_circle(start_point, end_point, fill, StaticData.pencil_thickness)
 		NodeManager.get_current_layer().set_pixels_by_current_color(points)

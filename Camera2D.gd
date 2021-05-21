@@ -79,6 +79,9 @@ func _input(event):
 			# 동작중이던 drawing tool을 종료하는 효과가 있음.
 			if StaticData.current_tool == StaticData.Tool.zoom && events.size() == 0:
 				NodeManager.get_debug_label().text = "NodeManager.get_tools().run_last_drawing_tool()"
+				# 0.1초후에 drawing tool을 실행한다.
+				# 바로 해버리면 drawing tool에 event가 가서 원치않는 그림이 그려지기도 하기 때문 
+				yield(get_tree().create_timer(0.1), "timeout")
 				NodeManager.get_tools().run_last_drawing_tool()
 			
 	elif event is InputEventScreenDrag:

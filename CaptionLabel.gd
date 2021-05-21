@@ -9,4 +9,4 @@ func _process(_delta):
 	var project_name = StaticData.project_name
 	var w = StaticData.canvas_width
 	var h = StaticData.canvas_height
-	text = "%s - %d x %d, %d frames, %d layers" % [project_name, w, h, frames.get_frame_count(), cur_frame.get_layers().get_child_count()]
+	text = "%s   [ %d x %d, %d frame(s), %d layer(s) ]" % [project_name, w, h, frames.get_frame_count(), cur_frame.get_layers().get_child_count()]

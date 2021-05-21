@@ -13,7 +13,7 @@ __meta__ = {
 
 [node name="DraggablePopup" parent="." instance=ExtResource( 2 )]
 visible = true
-margin_right = 299.0
+margin_right = 357.0
 margin_bottom = 229.0
 
 [node name="GridContainer" type="GridContainer" parent="DraggablePopup"]
@@ -38,9 +38,9 @@ text = "Project name"
 
 [node name="TitleTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
 margin_left = 99.0
-margin_right = 263.0
+margin_right = 319.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 150, 20 )
+rect_min_size = Vector2( 220, 20 )
 focus_mode = 1
 text = "untitled"
 align = 1
@@ -55,7 +55,7 @@ margin_bottom = 34.0
 [node name="HSeparator2" type="HSeparator" parent="DraggablePopup/GridContainer"]
 margin_left = 99.0
 margin_top = 30.0
-margin_right = 263.0
+margin_right = 319.0
 margin_bottom = 34.0
 
 [node name="WidthLabel" type="Label" parent="DraggablePopup/GridContainer"]
@@ -67,7 +67,7 @@ text = "Width"
 [node name="WidthTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
 margin_left = 99.0
 margin_top = 38.0
-margin_right = 263.0
+margin_right = 319.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 150, 20 )
 focus_mode = 1
@@ -83,7 +83,7 @@ text = "Height"
 [node name="HeightTextEdit" type="LineEdit" parent="DraggablePopup/GridContainer"]
 margin_left = 99.0
 margin_top = 68.0
-margin_right = 263.0
+margin_right = 319.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 150, 20 )
 focus_mode = 1
@@ -99,7 +99,7 @@ text = "	"
 [node name="PresetButtons" type="HBoxContainer" parent="DraggablePopup/GridContainer"]
 margin_left = 99.0
 margin_top = 98.0
-margin_right = 263.0
+margin_right = 319.0
 margin_bottom = 120.0
 
 [node name="16x16Button" type="Button" parent="DraggablePopup/GridContainer/PresetButtons"]
@@ -131,7 +131,7 @@ margin_bottom = 143.0
 [node name="PresetButtons2" type="HBoxContainer" parent="DraggablePopup/GridContainer"]
 margin_left = 99.0
 margin_top = 124.0
-margin_right = 263.0
+margin_right = 319.0
 margin_bottom = 146.0
 
 [node name="128x128Button" type="Button" parent="DraggablePopup/GridContainer/PresetButtons2"]
@@ -156,7 +156,7 @@ margin_bottom = 154.0
 [node name="HSeparator4" type="HSeparator" parent="DraggablePopup/GridContainer"]
 margin_left = 99.0
 margin_top = 150.0
-margin_right = 263.0
+margin_right = 319.0
 margin_bottom = 154.0
 
 [node name="OkButton" type="TextureButton" parent="DraggablePopup"]

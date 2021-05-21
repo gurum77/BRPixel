@@ -1,5 +1,6 @@
 extends Node
 
+var version:float = 0.1
 var min_canvas_size:int = 1
 var max_canvas_size:int = 1024
 var max_clipboard_count:int = 3	# clipboard 최대 갯수

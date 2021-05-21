@@ -1,5 +1,7 @@
 extends Node
 	
+
+	
 # texture rect에 preview image를 그린다.
 # 반드시 parent가 있어야 함.
 func update_preview_image(_preview:TextureRect, _image:Image):

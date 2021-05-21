@@ -11,6 +11,7 @@ func _ready():
 	$DraggablePopup/GridContainer/TitleTextEdit.set_message_translation(false)
 
 func popup_centered():
+	$DraggablePopup/GridContainer/TitleTextEdit.text = StaticData.get_new_project_name()
 	$DraggablePopup.popup_centered()
 	$DraggablePopup.rect_position.y = $DraggablePopup.rect_position.y - $DraggablePopup.rect_size.y/2
 

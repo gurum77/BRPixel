@@ -20,7 +20,7 @@ var fill_for_last_drawing_tool = true
 
 var mouse_inside_ui:bool = false
 var dragging_grip:bool = false	# grip을 dragging중인지?
-var project_name = "untitled"
+var project_name = get_new_project_name()
 var canvas_width = 64
 var canvas_height = 64
 var enabled_grid = true
@@ -37,6 +37,12 @@ var delay_per_frame = 0.3
 
 # selected area
 var selected_area = Rect2(0, 0, 0, 0)
+	
+# 새 프로젝트의 이름 리턴
+func get_new_project_name()->String:
+	var dt = OS.get_datetime()
+	var new_name = "untitled %02d-%02d-%04d %02d:%02d" % [dt["month"], dt["day"], dt["year"], dt["hour"], dt["minute"]]
+	return new_name
 	
 # mosue 좌표가 tool에 적용하기에 부적합한지?
 func invalid_mouse_pos_for_tool(tool_type)->bool:
@@ -238,7 +244,10 @@ func get_value(dic:Dictionary, key, default_value):
 func open_project(path)->bool:
 	var _result = false
 	var open_file = File.new()
-	open_file.open(path, File.READ)
+	var _err = open_file.open(path, File.READ)
+	if _err != 0:
+		return false
+		
 	if open_file.get_position() < open_file.get_len():
 		_result = true
 		var dic = parse_json(open_file.get_line())

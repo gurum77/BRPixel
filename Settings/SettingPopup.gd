@@ -30,6 +30,11 @@ func popup_centered():
 	
 func update_controls():
 	$DraggablePopup/HBoxContainer/ProjectNameLabel.text = StaticData.project_name
+	$DraggablePopup/VBoxContainer/VersionLabel.text = get_version_text()
+	
+func get_version_text()->String:
+	return "Version %.1f(made by Godot 3.3)" % [Define.version]
+	
 	
 # canvas size button
 func _on_CanvasSizeButton_pressed():
@@ -50,3 +55,11 @@ func _on_ProjectNameLabel_text_changed(new_text):
 	StaticData.project_name = new_text
 
 
+
+
+func _on_HomeButton_pressed():
+	var _result = OS.shell_open("https://blog.naver.com/hileejaeho/222357691687")
+
+
+func _on_EmailButton_pressed():
+	var _result = OS.shell_open("mailto:hileejaeho@gmail.com")

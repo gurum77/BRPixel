@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://OpenButton.gd" type="Script" id=2]
@@ -16,6 +16,13 @@
 [ext_resource path="res://NewPopup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Settings/PreviewCheckButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://SaveFileDialog.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Fonts/neodgm_pro.ttf" type="DynamicFontData" id=17]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 1
+outline_color = Color( 0.741176, 0.337255, 0.337255, 1 )
+font_data = ExtResource( 17 )
 
 [node name="SettingPopup" type="Control"]
 margin_right = 10.0
@@ -28,13 +35,13 @@ __meta__ = {
 [node name="DraggablePopup" parent="." instance=ExtResource( 1 )]
 visible = true
 margin_left = -1.0
-margin_right = 308.0
-margin_bottom = 253.0
+margin_right = 332.0
+margin_bottom = 377.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DraggablePopup"]
 anchor_right = 1.0
 margin_left = 20.0
-margin_top = 10.0
+margin_top = 20.0
 margin_right = -20.0
 rect_min_size = Vector2( 0, 20 )
 __meta__ = {
@@ -62,33 +69,33 @@ caret_blink = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
-margin_top = 40.0
-margin_right = -20.0
-margin_bottom = -20.0
+margin_top = 50.0
+margin_right = -19.0
+margin_bottom = -88.0
 columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NewButton" type="Button" parent="DraggablePopup/GridContainer"]
-margin_right = 130.0
+margin_right = 145.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 130, 50 )
+rect_min_size = Vector2( 145, 50 )
 text = "New"
 icon = ExtResource( 9 )
 expand_icon = true
 
 [node name="NewPopup" parent="DraggablePopup/GridContainer/NewButton" instance=ExtResource( 14 )]
-margin_left = -334.372
+margin_left = -386.372
 margin_top = -149.236
-margin_right = -334.372
+margin_right = -386.372
 margin_bottom = -149.236
 
 [node name="OpenButton" type="Button" parent="DraggablePopup/GridContainer"]
-margin_left = 134.0
-margin_right = 268.0
+margin_left = 149.0
+margin_right = 294.0
 margin_bottom = 50.0
-rect_min_size = Vector2( 130, 50 )
+rect_min_size = Vector2( 145, 50 )
 text = "Open"
 icon = ExtResource( 6 )
 expand_icon = true
@@ -98,9 +105,9 @@ script = ExtResource( 2 )
 
 [node name="SaveButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 54.0
-margin_right = 130.0
+margin_right = 145.0
 margin_bottom = 104.0
-rect_min_size = Vector2( 130, 50 )
+rect_min_size = Vector2( 145, 50 )
 text = "Save"
 icon = ExtResource( 5 )
 expand_icon = true
@@ -112,11 +119,11 @@ __meta__ = {
 [node name="SaveFileDialog" parent="DraggablePopup/GridContainer/SaveButton" instance=ExtResource( 16 )]
 
 [node name="CanvasSizeButton" type="Button" parent="DraggablePopup/GridContainer"]
-margin_left = 134.0
+margin_left = 149.0
 margin_top = 54.0
-margin_right = 268.0
+margin_right = 294.0
 margin_bottom = 104.0
-rect_min_size = Vector2( 130, 50 )
+rect_min_size = Vector2( 145, 50 )
 text = "Canvas Size"
 icon = ExtResource( 7 )
 expand_icon = true
@@ -129,9 +136,9 @@ margin_bottom = 65.3211
 
 [node name="LanguageButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 108.0
-margin_right = 130.0
+margin_right = 145.0
 margin_bottom = 158.0
-rect_min_size = Vector2( 130, 50 )
+rect_min_size = Vector2( 145, 50 )
 text = "Language"
 icon = ExtResource( 8 )
 expand_icon = true
@@ -143,8 +150,53 @@ margin_right = 334.329
 margin_bottom = 10.7028
 
 [node name="PreviewCheckButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 15 )]
+margin_left = 149.0
+margin_right = 294.0
+rect_min_size = Vector2( 145, 0 )
 
 [node name="LayerCheckButton" parent="DraggablePopup/GridContainer" instance=ExtResource( 13 )]
+margin_right = 145.0
+rect_min_size = Vector2( 145, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DraggablePopup"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -130.0
+margin_right = -30.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AppNameLabel" type="Label" parent="DraggablePopup/VBoxContainer"]
+margin_top = 13.0
+margin_right = 273.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 1 )
+text = "BRPixel"
+
+[node name="VersionLabel" type="Label" parent="DraggablePopup/VBoxContainer"]
+margin_top = 49.0
+margin_right = 273.0
+margin_bottom = 65.0
+text = "Version 1.0 (made by Godot 3.3)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmailButton" type="Button" parent="DraggablePopup/VBoxContainer"]
+margin_top = 69.0
+margin_right = 273.0
+margin_bottom = 91.0
+text = "Send e-mail"
+
+[node name="HomeButton" type="Button" parent="DraggablePopup/VBoxContainer"]
+margin_top = 95.0
+margin_right = 273.0
+margin_bottom = 117.0
+text = "Go to Home page"
 
 [connection signal="text_changed" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_text_changed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/NewButton" to="." method="_on_NewButton_pressed"]
@@ -154,3 +206,5 @@ margin_bottom = 10.7028
 [connection signal="file_selected" from="DraggablePopup/GridContainer/SaveButton/SaveFileDialog" to="DraggablePopup/GridContainer/SaveButton" method="_on_SaveFileDialog_file_selected"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/CanvasSizeButton" to="." method="_on_CanvasSizeButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/LanguageButton" to="." method="_on_LanguageButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/VBoxContainer/EmailButton" to="." method="_on_EmailButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/VBoxContainer/HomeButton" to="." method="_on_HomeButton_pressed"]
