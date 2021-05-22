@@ -95,7 +95,7 @@ func find_edit_tool()->Node:
 	var nodes = get_children()
 	for node in nodes:
 		if node is Edit:
-			return node as Edit
+			return node as Node
 	return null
 	
 # select 기능을 실행한다.

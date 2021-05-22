@@ -21,7 +21,7 @@ func _ready():
 	var nodes = select.get_children()
 	for node in nodes:
 		if node is Grip:
-			node.connect("moved", self, "on_grip_moved", [node as Grip])
+			node.connect("moved", self, "on_grip_moved", [node])
 	
 # 새롭게 변경된 select area로 이미지를 만든다.
 func make_resized_image()->Image:
