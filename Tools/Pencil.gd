@@ -57,12 +57,15 @@ func drawing_area_input(_event):
 	# 처음 클릭하면 첫번째 점을 보관한다.
 	# test
 	if _event is InputEventScreenTouch && _event.pressed:
-		NodeManager.get_debug_label().text = "touch"
+
+#		NodeManager.get_debug_label().text = "touch"
+		pass
 	elif _event is InputEventScreenTouch && !_event.pressed:
-		NodeManager.get_debug_label().text = "untouch"
+#		NodeManager.get_debug_label().text = "untouch"
+		pass
 		
 	if InputManager.is_action_just_pressed_lbutton(_event):
-		NodeManager.get_debug_label().text = "lbutton pressed"
+#		NodeManager.get_debug_label().text = "lbutton pressed"
 		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
 		pixel_perfect_drawer.reset()
 		symmetry_pixel_perfect_drawer.reset()

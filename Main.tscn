@@ -130,69 +130,78 @@ __meta__ = {
 modulate = Color( 1, 1, 0, 0 )
 anchor_left = 0.00104284
 anchor_right = 1.00104
-margin_left = 110.665
-margin_top = 6.0
-margin_right = -119.331
-margin_bottom = -12.0
+margin_left = 109.998
+margin_top = 5.33258
+margin_right = -119.998
+margin_bottom = -12.6674
 
 [node name="EditPanel" type="Panel" parent="UI"]
 anchor_bottom = 1.0
-margin_right = 105.0
-rect_min_size = Vector2( 105, 0 )
+margin_right = 120.0
+rect_min_size = Vector2( 120, 0 )
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="UI/EditPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/EditPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="UI/EditPanel/ScrollContainer"]
+margin_right = 104.0
+margin_bottom = 652.0
 columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPickerButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 11 )]
+[node name="ColorPickerButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 11 )]
 
-[node name="ToolSettingPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
+[node name="ToolSettingPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
 margin_right = 104.0
 icon = ExtResource( 33 )
 
-[node name="DraggableWindow" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton" index="0"]
-margin_left = 64.6819
-margin_top = 0.587402
-margin_right = 368.682
-margin_bottom = 40.5874
+[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton" index="0"]
+margin_left = 63.6819
+margin_top = 25.5874
+margin_right = 367.682
+margin_bottom = 65.5874
 
-[node name="HBoxContainer" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow" index="1"]
+[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow" index="1"]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -13.0
 margin_bottom = 13.0
 rect_min_size = Vector2( 100, 20 )
 
-[node name="BrushTypeButton" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 61 )]
+[node name="BrushTypeButton" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 61 )]
 margin_bottom = 26.0
 
-[node name="BrushSizeTextEdit" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 62 )]
+[node name="BrushSizeTextEdit" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 62 )]
 margin_left = 29.0
 margin_right = 99.0
 margin_bottom = 26.0
 
-[node name="BrushSizeUnitsLabel" type="Label" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="2"]
+[node name="BrushSizeUnitsLabel" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="2"]
 margin_left = 103.0
 margin_top = 5.0
 margin_right = 119.0
 margin_bottom = 21.0
 text = "px"
 
-[node name="PixelPerfectCheckBox" parent="UI/EditPanel/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 54 )]
+[node name="PixelPerfectCheckBox" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 54 )]
 margin_left = 123.0
 margin_right = 245.0
 margin_bottom = 26.0
 
-[node name="PickColorFromCanvasButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="PickColorFromCanvasButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 54.0
 margin_right = 50.0
 margin_bottom = 104.0
@@ -202,34 +211,34 @@ icon = ExtResource( 32 )
 expand_icon = true
 script = ExtResource( 46 )
 
-[node name="PencilButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 7 )]
+[node name="PencilButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 7 )]
 margin_top = 54.0
 margin_bottom = 104.0
 toggle_mode = true
 
-[node name="GeometryPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
+[node name="GeometryPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_top = 108.0
 margin_bottom = 158.0
 toggle_mode = true
 current_tool = 3
 
-[node name="DraggableWindow" parent="UI/EditPanel/GridContainer/GeometryPopupButton" index="0"]
+[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton" index="0"]
 margin_left = 118.221
 margin_top = 0.656501
 margin_right = 435.221
 margin_bottom = 40.6565
 
-[node name="HBoxContainer" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow" index="1"]
+[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow" index="1"]
 rect_min_size = Vector2( 100, 40 )
 
-[node name="LineButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 9 )]
+[node name="LineButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 9 )]
 margin_top = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 toggle_mode = true
 
-[node name="RectangleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 6 )]
+[node name="RectangleButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 6 )]
 margin_left = 44.0
 margin_top = 0.0
 margin_right = 84.0
@@ -237,7 +246,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 toggle_mode = true
 
-[node name="FillRectangleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 6 )]
+[node name="FillRectangleButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 6 )]
 margin_left = 88.0
 margin_top = 0.0
 margin_right = 128.0
@@ -247,7 +256,7 @@ toggle_mode = true
 icon = ExtResource( 48 )
 fill = true
 
-[node name="CircleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 15 )]
+[node name="CircleButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 15 )]
 margin_left = 132.0
 margin_top = 0.0
 margin_right = 172.0
@@ -255,7 +264,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 toggle_mode = true
 
-[node name="FillCircleButton" parent="UI/EditPanel/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 15 )]
+[node name="FillCircleButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 15 )]
 margin_left = 176.0
 margin_top = 0.0
 margin_right = 216.0
@@ -265,7 +274,7 @@ toggle_mode = true
 icon = ExtResource( 49 )
 fill = true
 
-[node name="FillButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="FillButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_left = 54.0
 margin_top = 108.0
 margin_right = 104.0
@@ -276,7 +285,7 @@ icon = ExtResource( 38 )
 expand_icon = true
 script = ExtResource( 14 )
 
-[node name="ChangeColorButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="ChangeColorButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 162.0
 margin_right = 50.0
 margin_bottom = 212.0
@@ -286,27 +295,27 @@ icon = ExtResource( 37 )
 expand_icon = true
 script = SubResource( 1 )
 
-[node name="EraserButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 12 )]
+[node name="EraserButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 12 )]
 margin_left = 54.0
 margin_right = 104.0
 
-[node name="SelectPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
+[node name="SelectPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_top = 216.0
 margin_bottom = 266.0
 toggle_mode = true
 icon = ExtResource( 36 )
 current_tool = 9
 
-[node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SelectPopupButton" index="0"]
+[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton" index="0"]
 margin_left = 115.921
 margin_top = 4.2597
 margin_right = 432.921
 margin_bottom = 44.2597
 
-[node name="HBoxContainer" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow" index="1"]
+[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow" index="1"]
 rect_min_size = Vector2( 100, 35 )
 
-[node name="SelectButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 29 )]
+[node name="SelectButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 29 )]
 margin_top = 0.0
 margin_right = 40.0
 margin_bottom = 40.0
@@ -315,21 +324,21 @@ toggle_mode = true
 icon = ExtResource( 36 )
 expand_icon = true
 
-[node name="EditButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 31 )]
+[node name="EditButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 31 )]
 margin_left = 44.0
 margin_right = 84.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 toggle_mode = true
 
-[node name="CopyButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 16 )]
+[node name="CopyButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 16 )]
 margin_left = 88.0
 margin_top = 0.0
 margin_right = 128.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="CutButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 16 )]
+[node name="CutButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 16 )]
 margin_left = 132.0
 margin_top = 0.0
 margin_right = 172.0
@@ -338,22 +347,22 @@ rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 50 )
 cut = true
 
-[node name="ClearButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 86 )]
+[node name="ClearButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 86 )]
 
-[node name="HorFlipButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="5" instance=ExtResource( 51 )]
+[node name="HorFlipButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="5" instance=ExtResource( 51 )]
 margin_left = 220.0
 margin_right = 260.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="VertFlipButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="6" instance=ExtResource( 51 )]
+[node name="VertFlipButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="6" instance=ExtResource( 51 )]
 margin_left = 264.0
 margin_right = 304.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 52 )
 
-[node name="SaveSelectedAreaButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="7" instance=ExtResource( 8 )]
+[node name="SaveSelectedAreaButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="7" instance=ExtResource( 8 )]
 margin_left = 308.0
 margin_top = 0.0
 margin_right = 348.0
@@ -361,9 +370,9 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 save_selected_area = true
 
-[node name="ShareSelectedAreaButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="8" instance=ExtResource( 94 )]
+[node name="ShareSelectedAreaButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="8" instance=ExtResource( 94 )]
 
-[node name="AddImageButton" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="9" instance=ExtResource( 10 )]
+[node name="AddImageButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="9" instance=ExtResource( 10 )]
 margin_left = 396.0
 margin_top = 0.0
 margin_right = 436.0
@@ -372,7 +381,7 @@ rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 21 )
 add_image = true
 
-[node name="Separator" type="TextureRect" parent="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="10"]
+[node name="Separator" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="10"]
 margin_left = 440.0
 margin_right = 450.0
 margin_bottom = 40.0
@@ -380,7 +389,7 @@ rect_min_size = Vector2( 10, 40 )
 texture = ExtResource( 47 )
 expand = true
 
-[node name="AddLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="AddLayerButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_left = 54.0
 margin_top = 216.0
 margin_right = 104.0
@@ -390,7 +399,7 @@ icon = ExtResource( 34 )
 expand_icon = true
 script = ExtResource( 23 )
 
-[node name="DeleteLayerButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="DeleteLayerButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 270.0
 margin_right = 50.0
 margin_bottom = 320.0
@@ -399,29 +408,29 @@ icon = ExtResource( 35 )
 expand_icon = true
 script = ExtResource( 27 )
 
-[node name="BrighterButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 45 )]
+[node name="BrighterButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 45 )]
 margin_left = 54.0
 margin_top = 270.0
 margin_right = 104.0
 margin_bottom = 320.0
 toggle_mode = true
 
-[node name="DarkerButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 53 )]
+[node name="DarkerButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 53 )]
 margin_left = 0.0
 margin_top = 324.0
 margin_right = 50.0
 margin_bottom = 374.0
 toggle_mode = true
 
-[node name="MoveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 28 )]
+[node name="MoveButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 28 )]
 margin_left = 54.0
 margin_right = 104.0
 
-[node name="UndoButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 85 )]
+[node name="UndoButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 85 )]
 
-[node name="RedoButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 84 )]
+[node name="RedoButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 84 )]
 
-[node name="GridButton" type="Button" parent="UI/EditPanel/GridContainer"]
+[node name="GridButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 432.0
 margin_right = 50.0
 margin_bottom = 482.0
@@ -431,33 +440,33 @@ icon = ExtResource( 40 )
 expand_icon = true
 script = ExtResource( 39 )
 
-[node name="TileModeButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 55 )]
+[node name="TileModeButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 55 )]
 margin_left = 54.0
 margin_top = 432.0
 margin_right = 104.0
 margin_bottom = 482.0
 
-[node name="SymmetryPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
+[node name="SymmetryPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_top = 486.0
 margin_bottom = 536.0
 icon = ExtResource( 57 )
 
-[node name="DraggableWindow" parent="UI/EditPanel/GridContainer/SymmetryPopupButton" index="0"]
+[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton" index="0"]
 margin_left = 118.772
-margin_top = 6.93201
+margin_top = -20.068
 margin_right = 435.772
-margin_bottom = 46.9315
+margin_bottom = 19.9315
 
-[node name="HBoxContainer" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow" index="1"]
+[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton/DraggableWindow" index="1"]
 margin_bottom = -10.0
 rect_min_size = Vector2( 100, 40 )
 
-[node name="NoSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 58 )]
+[node name="NoSymmetryButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 58 )]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="HorizontalSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 58 )]
+[node name="HorizontalSymmetryButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 58 )]
 margin_left = 44.0
 margin_right = 84.0
 margin_bottom = 40.0
@@ -465,7 +474,7 @@ rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 57 )
 symmetry_type = 1
 
-[node name="VerticalSymmetryButton" parent="UI/EditPanel/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 58 )]
+[node name="VerticalSymmetryButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 58 )]
 margin_left = 88.0
 margin_right = 128.0
 margin_bottom = 40.0
@@ -473,151 +482,159 @@ rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 59 )
 symmetry_type = 2
 
-[node name="AnimationPopupButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 13 )]
+[node name="AnimationPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
 margin_top = 486.0
 margin_right = 104.0
 margin_bottom = 536.0
 icon = ExtResource( 72 )
 
-[node name="DraggableWindow" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="0"]
+[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton" index="0"]
 margin_left = 64.0
-margin_top = 231.0
-margin_right = 1034.0
-margin_bottom = 311.0
+margin_top = 26.0
+margin_right = 619.0
+margin_bottom = 106.0
 
-[node name="FramePanel" type="Panel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
-margin_right = 900.0
+[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow" index="1"]
+margin_right = 5.0
+
+[node name="FramePanel" type="Panel" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
+margin_right = 530.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 900, 70 )
+rect_min_size = Vector2( 530, 70 )
 script = ExtResource( 63 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 4.00003
+margin_right = -12.0
+margin_bottom = 4.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
-margin_right = 900.0
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
+margin_right = 518.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 0, 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 69 )]
+[node name="StartButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 69 )]
 margin_bottom = 26.0
 
-[node name="PrevButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 67 )]
+[node name="PrevButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 67 )]
 margin_left = 44.0
 margin_right = 84.0
 margin_bottom = 26.0
 
-[node name="PlayButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 66 )]
+[node name="PlayButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 66 )]
 margin_left = 88.0
 margin_right = 128.0
 margin_bottom = 26.0
 
-[node name="NextButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 68 )]
+[node name="NextButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 68 )]
 margin_left = 132.0
 margin_right = 172.0
 margin_bottom = 26.0
 
-[node name="EndButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 70 )]
+[node name="EndButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 70 )]
 margin_bottom = 26.0
 
-[node name="DummyLabel2" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+[node name="DummyLabel2" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
 margin_left = 220.0
 margin_top = 5.0
-margin_right = 240.0
+margin_right = 235.0
 margin_bottom = 21.0
-text = "    "
+text = "   "
 
-[node name="DelayLabel" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
-margin_left = 244.0
+[node name="DelayLabel" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+margin_left = 239.0
 margin_top = 5.0
-margin_right = 356.0
+margin_right = 351.0
 margin_bottom = 21.0
 text = "Delay Per Frame"
 
-[node name="DelayLineEdit" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 71 )]
-margin_left = 360.0
-margin_right = 430.0
+[node name="DelayLineEdit" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 71 )]
+margin_left = 355.0
+margin_right = 425.0
 margin_bottom = 26.0
 
-[node name="DummyLabel" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
-margin_left = 434.0
+[node name="DummyLabel" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+margin_left = 429.0
 margin_top = 5.0
-margin_right = 454.0
+margin_right = 444.0
 margin_bottom = 21.0
-text = "    "
+text = "   "
 
-[node name="FrameInfoLabel" type="Label" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
-margin_left = 458.0
+[node name="FrameInfoLabel" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+margin_left = 448.0
 margin_top = 5.0
-margin_right = 558.0
+margin_right = 496.0
 margin_bottom = 21.0
-text = "1 of 30 frames"
+text = "1 of 30"
 script = ExtResource( 89 )
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
 margin_top = 30.0
-margin_right = 900.0
+margin_right = 518.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 0, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer"]
 margin_right = 84.0
 margin_bottom = 40.0
 
-[node name="FrameButton" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 26 )]
+[node name="FrameButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 26 )]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="AddFrameButtonOnFramePanel" parent="UI/EditPanel/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 65 )]
+[node name="AddFrameButtonOnFramePanel" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 65 )]
 
-[node name="TextureRect" parent="UI/EditPanel/GridContainer/AnimationPopupButton" index="1"]
+[node name="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton" index="1"]
 anchor_left = -0.02
 anchor_right = 0.98
 margin_left = 32.0
 margin_right = 9.0
 margin_bottom = 3.8147e-06
 
-[node name="HSeparator" type="HSeparator" parent="UI/EditPanel/GridContainer"]
+[node name="HSeparator" type="HSeparator" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 540.0
 margin_right = 50.0
 margin_bottom = 544.0
 
-[node name="HSeparator2" type="HSeparator" parent="UI/EditPanel/GridContainer"]
+[node name="HSeparator2" type="HSeparator" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_left = 54.0
 margin_top = 540.0
 margin_right = 104.0
 margin_bottom = 544.0
 
-[node name="NewButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 41 )]
+[node name="NewButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 41 )]
 
-[node name="OpenButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 10 )]
+[node name="OpenButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_left = 54.0
 margin_top = 548.0
 margin_right = 104.0
 margin_bottom = 598.0
 
-[node name="SaveButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 8 )]
+[node name="SaveButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 8 )]
 margin_left = 0.0
 margin_top = 602.0
 margin_right = 50.0
 margin_bottom = 652.0
 
-[node name="ShareButton" parent="UI/EditPanel/GridContainer" instance=ExtResource( 93 )]
+[node name="ShareButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 93 )]
+
+[node name="SubmenuPopups" type="Control" parent="UI/EditPanel"]
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -706,8 +723,10 @@ expand_icon = true
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -112.0
-margin_top = 70.0
+margin_left = -113.414
+margin_top = 71.4142
+margin_right = -1.41418
+margin_bottom = 1.41418
 follow_focus = true
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -849,12 +868,11 @@ margin_left = 130.0
 margin_right = 130.0
 
 [node name="LayerPanel" parent="UI" instance=ExtResource( 24 )]
-visible = true
-anchor_bottom = 0.0
-margin_left = -360.0
-margin_top = 161.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = 164.0
 margin_right = -120.0
-margin_bottom = 361.0
+margin_bottom = -236.0
 
 [node name="SettingButton" type="TextureButton" parent="UI"]
 anchor_left = 1.0
@@ -862,9 +880,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -172.0
-margin_top = -101.0
+margin_top = -142.0
 margin_right = -124.0
-margin_bottom = -51.0
+margin_bottom = -92.0
 texture_normal = ExtResource( 42 )
 expand = true
 script = ExtResource( 44 )
@@ -915,10 +933,12 @@ visible = false
 
 [node name="Preview" parent="UI" instance=ExtResource( 83 )]
 visible = true
-margin_left = 1051.46
-margin_top = 24.0757
-margin_right = 1153.46
-margin_bottom = 124.076
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -224.586
+margin_top = 26.0
+margin_right = -122.586
+margin_bottom = 126.0
 popup_exclusive = true
 
 [node name="ImportImage" parent="UI" instance=ExtResource( 88 )]
@@ -928,10 +948,12 @@ visible = false
 visible = false
 
 [node name="LayerSettingPopup" parent="UI" instance=ExtResource( 25 )]
-margin_left = 15.9723
-margin_top = -259.089
-margin_right = 15.9723
-margin_bottom = -259.089
+anchor_top = -0.00296967
+anchor_bottom = -0.00296967
+margin_left = 17.7541
+margin_top = -296.507
+margin_right = 17.7541
+margin_bottom = -296.507
 
 [node name="DraggableFileDialog" parent="UI" instance=ExtResource( 73 )]
 margin_right = -1280.0
@@ -993,13 +1015,13 @@ __meta__ = {
 
 [node name="Palette2" parent="Palettes" instance=ExtResource( 17 )]
 
-[connection signal="pressed" from="UI/EditPanel/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/GridContainer/FillButton" to="UI/EditPanel/GridContainer/FillButton" method="_on_FillButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/GridContainer/ChangeColorButton" to="UI/EditPanel/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton" to="UI/EditPanel/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton" method="on_CopyButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/GridContainer/AddLayerButton" to="UI/EditPanel/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/GridContainer/DeleteLayerButton" to="UI/EditPanel/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/GridContainer/GridButton" to="UI/EditPanel/GridContainer/GridButton" method="_on_GridButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/FillButton" to="UI/EditPanel/ScrollContainer/GridContainer/FillButton" method="_on_FillButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton" to="UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton" to="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton" method="on_CopyButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/GridButton" to="UI/EditPanel/ScrollContainer/GridContainer/GridButton" method="_on_GridButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" to="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" method="_on_PaletteSettingButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer2/PrevButton" to="UI/ColorPanel" method="_on_PrevButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer2/NextButton" to="UI/ColorPanel" method="_on_NextButton_pressed"]
@@ -1007,10 +1029,10 @@ __meta__ = {
 [connection signal="pressed" from="UI/SettingButton" to="UI/SettingButton" method="_on_SettingButton_pressed"]
 [connection signal="timeout" from="Canvas/AnimationTimer" to="Canvas" method="_on_AnimationTimer_timeout"]
 
-[editable path="UI/EditPanel/GridContainer/ToolSettingPopupButton"]
-[editable path="UI/EditPanel/GridContainer/GeometryPopupButton"]
-[editable path="UI/EditPanel/GridContainer/SelectPopupButton"]
-[editable path="UI/EditPanel/GridContainer/SymmetryPopupButton"]
-[editable path="UI/EditPanel/GridContainer/AnimationPopupButton"]
+[editable path="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton"]
+[editable path="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton"]
+[editable path="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton"]
+[editable path="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton"]
+[editable path="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton"]
 [editable path="Canvas/Frames"]
 [editable path="Canvas/Frames/Frame"]

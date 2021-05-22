@@ -25,7 +25,6 @@ func hide():
 	
 func popup_centered():
 	$DraggablePopup.popup_centered()
-	$DraggablePopup.rect_position.y = $DraggablePopup.rect_position.y - $DraggablePopup.rect_size.y / 2
 	update_controls()
 	
 func update_controls():
@@ -63,3 +62,7 @@ func _on_HomeButton_pressed():
 
 func _on_EmailButton_pressed():
 	var _result = OS.shell_open("mailto:hileejaeho@gmail.com")
+
+
+func _on_DownloadAndroidAppButton_pressed():
+	var _result = OS.shell_open("https://play.google.com/store/apps/details?id=com.br.brpixel")

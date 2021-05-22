@@ -6,6 +6,7 @@ func _ready():
 	pass	
 		
 func _on_SaveButton_pressed():
+	NodeManager.get_setting_popup().hide()
 	if !save_selected_area:
 		var _result = NodeManager.get_save_options_popup().connect("hide", self, "on_SaveOptionsPopup_hide")
 		NodeManager.get_save_options_popup().popup_centered()
@@ -26,13 +27,14 @@ func on_SaveOptionsPopup_hide():
 		NodeManager.get_file_dialog().default_file_name = ""
 	else:
 		if NodeManager.get_save_options_popup().format == SaveOptionsPopup.Format.pex:
-			NodeManager.get_file_dialog().filters = PoolStringArray(["*.pex;Pixel Express"])
+			NodeManager.get_file_dialog().filters = PoolStringArray(["*.pex;BRPixel"])
 		elif NodeManager.get_save_options_popup().format == SaveOptionsPopup.Format.png:
 			NodeManager.get_file_dialog().filters = PoolStringArray(["*.png;PNG"])
 		elif NodeManager.get_save_options_popup().format == SaveOptionsPopup.Format.gif:
 			NodeManager.get_file_dialog().filters = PoolStringArray(["*.gif;GIF"])
 		NodeManager.get_file_dialog().default_file_name = StaticData.project_name
 		
+	NodeManager.get_file_dialog().save_file_dialog = true
 	NodeManager.get_file_dialog().popup_centered()
 	
 # file dialog가 닫히면 선택한 옵션과 파일명으로 저장한다.

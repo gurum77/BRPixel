@@ -10,13 +10,10 @@
 [node name="LayerPanel" type="WindowDialog"]
 anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -319.14
-margin_top = 167.81
-margin_right = -79.1395
-margin_bottom = -232.19
-grow_vertical = 0
-rect_min_size = Vector2( 240, 200 )
+margin_left = -200.0
+margin_bottom = 200.0
+grow_horizontal = 0
+rect_min_size = Vector2( 200, 200 )
 window_title = "Layer"
 resizable = true
 script = ExtResource( 6 )
@@ -29,14 +26,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_right = -48.0
+margin_bottom = -6.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 232.0
+margin_right = 182.0
 margin_bottom = 30.0
 
 [node name="VisibleAllButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
@@ -68,9 +65,9 @@ script = ExtResource( 5 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 margin_top = 34.0
-margin_right = 232.0
+margin_right = 182.0
 margin_bottom = 184.0
-rect_min_size = Vector2( 200, 150 )
+rect_min_size = Vector2( 170, 150 )
 follow_focus = true
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -78,13 +75,14 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
-margin_right = 220.0
+margin_right = 170.0
 margin_bottom = 200.0
 grow_vertical = 0
 rect_min_size = Vector2( 0, 200 )
 custom_constants/vseparation = 3
 
 [node name="LayerInfo" parent="VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 1 )]
+margin_right = 170.0
 
 [connection signal="resized" from="." to="." method="_on_LayerPanel_resized"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VisibleAllButton" to="." method="_on_VisibleAllButton_pressed"]

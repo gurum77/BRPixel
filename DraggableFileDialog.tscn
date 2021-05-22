@@ -148,19 +148,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PhotoButton" type="MenuButton" parent="DraggableWindow/HBoxContainer"]
+[node name="PhotoButton" type="Button" parent="DraggableWindow/HBoxContainer"]
 margin_left = 104.0
 margin_right = 204.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 0 )
-focus_mode = 2
 text = "Photo"
 icon = ExtResource( 16 )
 expand_icon = true
 script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PathLineEdit" type="LineEdit" parent="DraggableWindow/HBoxContainer"]
 margin_left = 208.0

@@ -36,7 +36,7 @@ __meta__ = {
 visible = true
 margin_left = -1.0
 margin_right = 332.0
-margin_bottom = 377.0
+margin_bottom = 418.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DraggablePopup"]
 anchor_right = 1.0
@@ -163,40 +163,46 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 30.0
-margin_top = -130.0
+margin_top = -155.0
 margin_right = -30.0
+margin_bottom = -25.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AppNameLabel" type="Label" parent="DraggablePopup/VBoxContainer"]
-margin_top = 13.0
 margin_right = 273.0
-margin_bottom = 45.0
+margin_bottom = 32.0
 custom_fonts/font = SubResource( 1 )
 text = "BRPixel"
 
 [node name="VersionLabel" type="Label" parent="DraggablePopup/VBoxContainer"]
-margin_top = 49.0
+margin_top = 36.0
 margin_right = 273.0
-margin_bottom = 65.0
+margin_bottom = 52.0
 text = "Version 1.0 (made by Godot 3.3)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EmailButton" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 69.0
+margin_top = 56.0
 margin_right = 273.0
-margin_bottom = 91.0
+margin_bottom = 78.0
 text = "Send e-mail"
 
 [node name="HomeButton" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 95.0
+margin_top = 82.0
 margin_right = 273.0
-margin_bottom = 117.0
+margin_bottom = 104.0
 text = "Go to Home page"
+
+[node name="DownloadAndroidAppButton" type="Button" parent="DraggablePopup/VBoxContainer"]
+margin_top = 108.0
+margin_right = 273.0
+margin_bottom = 130.0
+text = "Download Android App."
 
 [connection signal="text_changed" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_text_changed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/NewButton" to="." method="_on_NewButton_pressed"]
@@ -208,3 +214,4 @@ text = "Go to Home page"
 [connection signal="pressed" from="DraggablePopup/GridContainer/LanguageButton" to="." method="_on_LanguageButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/VBoxContainer/EmailButton" to="." method="_on_EmailButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/VBoxContainer/HomeButton" to="." method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/VBoxContainer/DownloadAndroidAppButton" to="." method="_on_DownloadAndroidAppButton_pressed"]

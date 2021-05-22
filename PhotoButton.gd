@@ -1,4 +1,4 @@
-extends MenuButton
+extends Button
 
 
 # Declare member variables here. Examples:

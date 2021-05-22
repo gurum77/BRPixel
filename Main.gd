@@ -5,11 +5,23 @@ func on_size_changed():
 		NodeManager.file_dialog.resize()
 	
 
+# 모든 윈도우 drive를 한번씩 오픈한다.
+
+
 
 func _ready():
+	# android가 아닐때는 stretch mode를 disable로 해야 함(아이콘 크기를 유지)
+	if OS.get_name() != "Android":
+		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_EXPAND, Vector2(1280, 800), 1)
+		NodeManager.get_layer_panel().rect_position.x += 300
+		NodeManager.get_frame_panel().get_parent().get_parent().rect_position.y += 200
+	else:
+		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_EXPAND, Vector2(800, 600), 1)
+	
+	Util.init_valid_drives()
 	$Camera.zoom_fit()
 	$UI/ColorPanel.load_current_palette()
-	$UI/EditPanel/GridContainer/PencilButton.run()
+	$UI/EditPanel/ScrollContainer/GridContainer/PencilButton.run()
 	$UI/Preview.show()
 	var _result = get_tree().root.connect("size_changed", self, "on_size_changed")
 	

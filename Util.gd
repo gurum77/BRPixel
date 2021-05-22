@@ -1,6 +1,21 @@
 extends Node
-	
+var valid_drives:Array = []
 
+func get_drive(idx)->String:
+	if idx < 0 || idx >= valid_drives.size():
+		return ""
+	return valid_drives[idx]
+	
+func get_drive_count()->int:
+	return valid_drives.size()
+	
+func init_valid_drives():
+	var dir = Directory.new()
+	var drives = ["A:", "B:", "C:", "D:", "E:", "F:", "G:", "H:", "I:", "J:", "K:", "L:", "M:", "N:", "O:", "P:", "Q:", "R:", "S:", "T:", "U:", "V:", "W:", "X:", "Y:", "Z:"]
+	for dr in drives:
+		var _result = dir.open(dr)
+		if _result == OK:
+			valid_drives.append(dr)
 	
 # texture rect에 preview image를 그린다.
 # 반드시 parent가 있어야 함.
@@ -133,7 +148,7 @@ func press_current_tool_button(button, current_tool):
 	
 # 안드로이드 전용이라는 메세지를 표시한다.
 func show_android_only_message(_parent):
-	Util.show_message(_parent, "Caution!", "Android only", 2)
+	Util.show_message(_parent, "Caution!", "Android App. only", 2)
 		
 # message는 popup으로 보여준다.
 func show_message(_parent, _title="", message="", wait_sec=-1):
