@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 
 func _on_EraserButton_pressed():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().eraser_tool.instance())
@@ -10,3 +10,7 @@ func _process(_delta):
 
 func _on_EraserSettingPopupButton_pressed():
 	$EraserSettingPopupButton/EraserSettingPopup.popup_centered()
+
+
+func _on_EraserButton_gui_input(event):
+	run_gui_input(event)

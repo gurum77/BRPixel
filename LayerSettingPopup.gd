@@ -247,6 +247,3 @@ func _on_ClearButton_pressed():
 	NodeManager.get_tools().finish_selected_area_editing()
 
 
-# 이미지 붙여 넣기
-func _on_AttachImageButton_pressed():
-	pass # Replace with function body.

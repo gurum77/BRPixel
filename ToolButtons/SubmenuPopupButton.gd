@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 class_name SubmenuPopupButton
 export (StaticData.Tool) var current_tool = StaticData.Tool.none
 export (NodePath) var popup_node_path = null
@@ -73,3 +73,7 @@ func _on_LineSettingButton_pressed():
 	pass # Replace with function body.
 
 
+
+
+func _on_SubmenuPopupButton_gui_input(event):
+	run_gui_input(event)

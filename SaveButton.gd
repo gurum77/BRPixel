@@ -1,10 +1,13 @@
-extends Button
-
+extends TextureRectButton
+class_name SaveButton
 export var save_selected_area = false
 
 func _ready():
 	pass	
 		
+func run():
+	_on_SaveButton_pressed()
+	
 func _on_SaveButton_pressed():
 	NodeManager.get_setting_popup().hide()
 	if !save_selected_area:
@@ -76,3 +79,7 @@ func _process(_delta):
 		disabled = !StaticData.enabled_selected_area()
 	else:
 		disabled = false
+
+
+func _on_SaveButton_gui_input(event):
+	run_gui_input(event)

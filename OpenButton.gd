@@ -1,9 +1,11 @@
-extends Button
+extends TextureRectButton
 class_name OpenButton
 
 export var add_image = false
 
-				
+func run():
+	_on_OpenButton_pressed()
+	
 func _on_OpenButton_pressed():
 		
 	var _tmp = NodeManager.get_file_dialog().connect("hide", self, "on_hide_file_dialog")
@@ -52,3 +54,7 @@ func _on_ImportImage_hide():
 	if NodeManager.get_import_image_popup().result_ok:
 		StaticData.open_image(self, NodeManager.get_import_image_popup().image_file_path, rows, cols)
 		NodeManager.get_camera().zoom_fit()
+
+
+func _on_OpenButton_gui_input(event):
+	run_gui_input(event)

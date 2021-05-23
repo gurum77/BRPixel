@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://DraggableWindow.gd" type="Script" id=1]
-[ext_resource path="res://ToolButtons/SymmetryButton.gd" type="Script" id=2]
 [ext_resource path="res://Assets/icon_close.png" type="Texture" id=3]
 [ext_resource path="res://Assets/icon_drag.png" type="Texture" id=4]
-[ext_resource path="res://Assets/icon_no_symmetry.png" type="Texture" id=5]
 [ext_resource path="res://Assets/icon_vertical_symmetry.png" type="Texture" id=6]
 [ext_resource path="res://Assets/icon_horizontal_symmetry.png" type="Texture" id=7]
 [ext_resource path="res://ToolButtons/SymmetryButton.tscn" type="PackedScene" id=8]
@@ -50,44 +48,25 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="NoSymmetryButton" type="Button" parent="HBoxContainer" instance=ExtResource( 8 )]
+[node name="NoSymmetryButton" parent="HBoxContainer" instance=ExtResource( 8 )]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
-icon = ExtResource( 5 )
-expand_icon = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="HorizontalSymmetryButton" type="Button" parent="HBoxContainer" instance=ExtResource( 8 )]
+[node name="HorizontalSymmetryButton" parent="HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 44.0
 margin_right = 84.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
 icon = ExtResource( 7 )
-expand_icon = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 symmetry_type = 1
 
-[node name="VerticalSymmetryButton" type="Button" parent="HBoxContainer" instance=ExtResource( 8 )]
+[node name="VerticalSymmetryButton" parent="HBoxContainer" instance=ExtResource( 8 )]
 margin_left = 88.0
 margin_right = 128.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
 icon = ExtResource( 6 )
-expand_icon = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 symmetry_type = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -105,6 +84,3 @@ __meta__ = {
 
 [connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/NoSymmetryButton" to="HBoxContainer/NoSymmetryButton" method="_on_SymmetryButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/HorizontalSymmetryButton" to="HBoxContainer/HorizontalSymmetryButton" method="_on_SymmetryButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/VerticalSymmetryButton" to="HBoxContainer/VerticalSymmetryButton" method="_on_SymmetryButton_pressed"]

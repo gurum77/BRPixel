@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -25,9 +25,12 @@
 [ext_resource path="res://AddLayerButton.gd" type="Script" id=23]
 [ext_resource path="res://Settings/LayerPanel.tscn" type="PackedScene" id=24]
 [ext_resource path="res://LayerSettingPopup.tscn" type="PackedScene" id=25]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=26]
 [ext_resource path="res://DeleteLayerButton.gd" type="Script" id=27]
 [ext_resource path="res://ToolButtons/MoveButton.tscn" type="PackedScene" id=28]
+[ext_resource path="res://tool_button_background.png" type="Texture" id=29]
 [ext_resource path="res://Grips.gd" type="Script" id=30]
+[ext_resource path="res://Assets/icon_no_symmetry.png" type="Texture" id=31]
 [ext_resource path="res://Assets/icon_pick_color_from_canvas.png" type="Texture" id=32]
 [ext_resource path="res://Assets/icon_tool_setting.png" type="Texture" id=33]
 [ext_resource path="res://Assets/icon_add_layer.png" type="Texture" id=34]
@@ -46,7 +49,6 @@
 [ext_resource path="res://Tools/DarkerButton.tscn" type="PackedScene" id=53]
 [ext_resource path="res://ToolButtons/TileModeButton.tscn" type="PackedScene" id=55]
 [ext_resource path="res://Canvas/TileModeManager.tscn" type="PackedScene" id=56]
-[ext_resource path="res://Assets/icon_horizontal_symmetry.png" type="Texture" id=57]
 [ext_resource path="res://Canvas/SymmetryGrips.tscn" type="PackedScene" id=60]
 [ext_resource path="res://Canvas/Frames.tscn" type="PackedScene" id=64]
 [ext_resource path="res://Assets/icon_animation.png" type="Texture" id=72]
@@ -71,7 +73,7 @@
 [ext_resource path="res://ToolButtons/ShareButton.tscn" type="PackedScene" id=93]
 
 [sub_resource type="GDScript" id=1]
-script/source = "extends Button
+script/source = "extends TextureRectButton
 
 
 
@@ -81,6 +83,10 @@ func _on_ChangeColorButton_pressed():
 
 func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.change_color)
+
+
+func _on_ChangeColorButton_gui_input(event):
+	run_gui_input(event)
 "
 
 [sub_resource type="DynamicFont" id=2]
@@ -102,7 +108,7 @@ __meta__ = {
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="DrawingArea" parent="UI" instance=ExtResource( 20 )]
-modulate = Color( 1, 1, 0, 0 )
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.00104284
 anchor_right = 1.00104
 margin_left = 109.998
@@ -122,8 +128,9 @@ __meta__ = {
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/EditPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
-scroll_horizontal_enabled = false
+margin_left = 5.0
+margin_top = 5.0
+margin_bottom = -5.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -141,96 +148,95 @@ __meta__ = {
 [node name="ToolSettingPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
 margin_right = 104.0
-icon = ExtResource( 33 )
+texture = ExtResource( 33 )
 popup_node_path = NodePath("../../../SubmenuPopups/ToolSettingPopup")
 
-[node name="PickColorFromCanvasButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
+[node name="PickColorFromCanvasButton" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 54.0
 margin_right = 50.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 50, 50 )
-toggle_mode = true
-icon = ExtResource( 32 )
-expand_icon = true
+texture = ExtResource( 32 )
+stretch_mode = 4
 script = ExtResource( 46 )
+background = ExtResource( 26 )
 
 [node name="PencilButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 7 )]
 margin_top = 54.0
 margin_bottom = 104.0
-toggle_mode = true
+focus_mode = 1
 
 [node name="GeometryPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_top = 108.0
 margin_bottom = 158.0
-toggle_mode = true
 current_tool = 3
 popup_node_path = NodePath("../../../SubmenuPopups/GeometryPopup")
 
-[node name="FillButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
+[node name="FillButton" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_left = 54.0
 margin_top = 108.0
 margin_right = 104.0
 margin_bottom = 158.0
 rect_min_size = Vector2( 50, 50 )
-toggle_mode = true
-icon = ExtResource( 38 )
-expand_icon = true
+texture = ExtResource( 38 )
+stretch_mode = 4
 script = ExtResource( 14 )
+background = ExtResource( 29 )
 
-[node name="ChangeColorButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
+[node name="ChangeColorButton" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 162.0
 margin_right = 50.0
 margin_bottom = 212.0
 rect_min_size = Vector2( 50, 50 )
-toggle_mode = true
-icon = ExtResource( 37 )
-expand_icon = true
+texture = ExtResource( 37 )
+stretch_mode = 4
 script = SubResource( 1 )
+background = ExtResource( 29 )
 
 [node name="EraserButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 12 )]
 margin_left = 54.0
 margin_right = 104.0
+background = ExtResource( 29 )
 
 [node name="SelectPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_top = 216.0
 margin_bottom = 266.0
-toggle_mode = true
-icon = ExtResource( 36 )
+texture = ExtResource( 36 )
 current_tool = 9
 popup_node_path = NodePath("../../../SubmenuPopups/SelectPopup")
 
-[node name="AddLayerButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
+[node name="AddLayerButton" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_left = 54.0
 margin_top = 216.0
 margin_right = 104.0
 margin_bottom = 266.0
 rect_min_size = Vector2( 50, 50 )
-icon = ExtResource( 34 )
-expand_icon = true
+texture = ExtResource( 34 )
+stretch_mode = 4
 script = ExtResource( 23 )
+background = ExtResource( 29 )
 
-[node name="DeleteLayerButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
+[node name="DeleteLayerButton" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 270.0
 margin_right = 50.0
 margin_bottom = 320.0
 rect_min_size = Vector2( 50, 50 )
-icon = ExtResource( 35 )
-expand_icon = true
+texture = ExtResource( 35 )
+stretch_mode = 4
 script = ExtResource( 27 )
+background = ExtResource( 29 )
 
 [node name="BrighterButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 45 )]
 margin_left = 54.0
 margin_top = 270.0
 margin_right = 104.0
 margin_bottom = 320.0
-toggle_mode = true
 
 [node name="DarkerButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 53 )]
 margin_left = 0.0
 margin_top = 324.0
 margin_right = 50.0
 margin_bottom = 374.0
-toggle_mode = true
 
 [node name="MoveButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 28 )]
 margin_left = 54.0
@@ -240,15 +246,16 @@ margin_right = 104.0
 
 [node name="RedoButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 84 )]
 
-[node name="GridButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
+[node name="GridButton" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 432.0
 margin_right = 50.0
 margin_bottom = 482.0
 rect_min_size = Vector2( 50, 50 )
-toggle_mode = true
-icon = ExtResource( 40 )
-expand_icon = true
+texture = ExtResource( 40 )
+stretch_mode = 4
 script = ExtResource( 39 )
+toggle_mode = true
+background = ExtResource( 29 )
 
 [node name="TileModeButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 55 )]
 margin_left = 54.0
@@ -259,7 +266,7 @@ margin_bottom = 482.0
 [node name="SymmetryPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_top = 486.0
 margin_bottom = 536.0
-icon = ExtResource( 57 )
+texture = ExtResource( 31 )
 popup_node_path = NodePath("../../../SubmenuPopups/SymmetryPopup")
 
 [node name="AnimationPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
@@ -267,7 +274,7 @@ margin_left = 54.0
 margin_top = 486.0
 margin_right = 104.0
 margin_bottom = 536.0
-icon = ExtResource( 72 )
+texture = ExtResource( 72 )
 popup_node_path = NodePath("../../../SubmenuPopups/AnimationPopup")
 
 [node name="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton" index="0"]
@@ -305,8 +312,6 @@ margin_bottom = 652.0
 [node name="ShareButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 93 )]
 
 [node name="SubmenuPopups" type="Control" parent="UI/EditPanel"]
-margin_right = 40.0
-margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -671,27 +676,43 @@ __meta__ = {
 }
 
 [node name="Frames" parent="Canvas" instance=ExtResource( 64 )]
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="Frame" parent="Canvas/Frames" index="0"]
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="Layers" parent="Canvas/Frames/Frame" index="0"]
+margin_right = 0.0
+margin_bottom = 0.0
+mouse_filter = 2
 
 [node name="Layer 1" parent="Canvas/Frames/Frame/Layers" index="0" instance=ExtResource( 4 )]
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="PreviewLayer" parent="Canvas" instance=ExtResource( 4 )]
 light_mask = -2147483647
 margin_left = 1.0
-margin_right = 41.0
+margin_right = 1.0
+margin_bottom = 0.0
 stretch_mode = 3
 preview_layer = true
 
 [node name="Grips" type="Control" parent="Canvas"]
-margin_right = 40.0
-margin_bottom = 40.0
 script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TileModeManager" parent="Canvas" instance=ExtResource( 56 )]
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="SymmetryGrips" parent="Canvas" instance=ExtResource( 60 )]
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="AnimationTimer" type="Timer" parent="Canvas"]
 autostart = true
@@ -703,22 +724,30 @@ __meta__ = {
 }
 
 [node name="Palettes" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
 script = ExtResource( 81 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Palette" parent="Palettes" instance=ExtResource( 17 )]
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="Palette2" parent="Palettes" instance=ExtResource( 17 )]
+margin_right = 0.0
+margin_bottom = 0.0
 
+[connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
+[connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/FillButton" to="UI/EditPanel/ScrollContainer/GridContainer/FillButton" method="_on_FillButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/FillButton" to="UI/EditPanel/ScrollContainer/GridContainer/FillButton" method="_on_FillButton_pressed"]
+[connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton" to="UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton" to="UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
+[connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton" method="_on_AddLayerButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
+[connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
+[connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/GridButton" to="UI/EditPanel/ScrollContainer/GridContainer/GridButton" method="_on_GridButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/GridButton" to="UI/EditPanel/ScrollContainer/GridContainer/GridButton" method="_on_GridButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" to="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" method="_on_PaletteSettingButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer2/PrevButton" to="UI/ColorPanel" method="_on_PrevButton_pressed"]

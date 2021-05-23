@@ -3,6 +3,10 @@ class_name Frames
 
 var frame_node = preload("res://Canvas/Frame.tscn")
 
+func _ready():
+	# palettes는 크기가 있으면 안됨(다른 control에 메세지가 안감)
+	rect_size = Vector2(0, 0)
+	
 func get_frame_count()->int:
 	return get_child_count()
 	

@@ -3,12 +3,19 @@ class_name Edit
 
 onready var origin_selected_area:Rect2 = StaticData.selected_area
 var origin_image:Image
-onready var select:Select = get_tree().root.get_node_or_null("Main/Tools/Select")
+var select = null
 
 var drag_position = null
 var use_preview_layer = false
 
+func get_select_tool()->Select:
+	var nodes = NodeManager.get_tools().get_children()
+	for node in nodes:
+		if node is Select:
+			return node
+	return null
 func _ready():
+	select = get_select_tool()
 	if select == null:
 		return
 		

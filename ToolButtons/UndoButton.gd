@@ -1,6 +1,4 @@
-extends Button
-
-
+extends TextureRectButton
 
 func _process(_delta):
 	var undo = NodeManager.get_undo()
@@ -15,3 +13,14 @@ func on_UndoButton_pressed():
 		return
 	NodeManager.get_tools().finish_selected_area_editing()
 	var _result = undo.undo()
+
+
+func _on_UndoButton_gui_input(event):
+	run_gui_input(event)
+
+
+
+
+
+func _on_UndoButton_pressed():
+	pass # Replace with function body.

@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 
 
 func _process(_delta):
@@ -25,6 +25,6 @@ func _on_TileModeButton_pressed():
 	# save backup
 	StaticData.save_auto_saved_project()
 	
-	
-	
-	
+
+func _on_TileModeButton_gui_input(event):
+	run_gui_input(event)

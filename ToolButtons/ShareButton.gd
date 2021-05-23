@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 
 func _on_ShareButton_pressed():
 	var godot_share = PluginManager.get_godot_share()
@@ -11,3 +11,7 @@ func _on_ShareButton_pressed():
 			Util.show_error_message(self, error)
 	else:
 		Util.show_android_only_message(self)
+
+
+func _on_ShareButton_gui_input(event):
+	run_gui_input(event)

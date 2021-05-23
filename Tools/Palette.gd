@@ -4,6 +4,9 @@ class_name Palette
 var colors:Array
 export var default_colors = true
 func _ready():
+	# palette는 크기가 있으면 안됨(다른 control에 메세지가 안감)
+	rect_size = Vector2(0, 0)
+	
 	if default_colors:
 		make_default_colors()
 	

@@ -63,7 +63,6 @@ func is_touch_inside_drawing_area(event)->bool:
 # gui input은 event.index 1 이 안됨. 
 # zoom이 제대로 되게 하려면 Camera는 반드시 DrawingArea node 뒤에 위치해야
 func _input(event):
-		
 	# touch screen drag인지?
 	if event is InputEventScreenTouch:
 		if !is_touch_inside_drawing_area(event):

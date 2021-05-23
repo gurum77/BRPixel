@@ -12,7 +12,7 @@
 [ext_resource path="res://Assets/icon_merge_with_next.png" type="Texture" id=10]
 [ext_resource path="res://Assets/icon_eraser.png" type="Texture" id=11]
 [ext_resource path="res://Assets/icon_add_image.png" type="Texture" id=12]
-[ext_resource path="res://OpenButton.gd" type="Script" id=13]
+[ext_resource path="res://AddImageButton.gd" type="Script" id=13]
 
 [node name="LayerSettingPopup" type="Control"]
 script = ExtResource( 3 )
@@ -93,7 +93,6 @@ text = "Attach image"
 icon = ExtResource( 12 )
 expand_icon = true
 script = ExtResource( 13 )
-add_image = true
 
 [node name="DuplicateButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 40.0
@@ -160,7 +159,7 @@ icon = ExtResource( 9 )
 
 [connection signal="value_changed" from="DraggablePopup/GridContainerTop/TransparencyHSlider" to="." method="_on_TransparencyHSlider_value_changed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/ClearButton" to="." method="_on_ClearButton_pressed"]
-[connection signal="pressed" from="DraggablePopup/GridContainer/AttachImageButton" to="DraggablePopup/GridContainer/AttachImageButton" method="_on_OpenButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/GridContainer/AttachImageButton" to="DraggablePopup/GridContainer/AttachImageButton" method="_on_AddImageButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/DuplicateButton" to="." method="_on_DuplicateLayerButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/MoveDownButton" to="." method="_on_MoveDownButton_pressed"]

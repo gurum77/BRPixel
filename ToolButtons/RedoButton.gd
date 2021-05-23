@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 
 
 func _process(_delta):
@@ -13,3 +13,7 @@ func on_RedoButton_pressed():
 		return
 	NodeManager.get_tools().finish_selected_area_editing()
 	var _result = undo.redo()
+
+
+func _on_RedoButton_gui_input(event):
+	run_gui_input(event)

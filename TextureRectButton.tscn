@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/icon_add_folder.png" type="Texture" id=1]
+[ext_resource path="res://TextureRectButton.gd" type="Script" id=2]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=3]
+
+[node name="TextureRectButton" type="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+background = ExtResource( 3 )
+background_color = Color( 0.811765, 0.811765, 0.811765, 1 )
+
+[connection signal="gui_input" from="." to="." method="_on_TextureRectButton_gui_input"]

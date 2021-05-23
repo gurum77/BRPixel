@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 
 
 
@@ -10,3 +10,7 @@ func _on_FillButton_pressed():
 
 func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.fill)
+
+
+func _on_FillButton_gui_input(event):
+	run_gui_input(event)

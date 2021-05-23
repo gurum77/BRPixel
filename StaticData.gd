@@ -41,7 +41,7 @@ var selected_area = Rect2(0, 0, 0, 0)
 # 새 프로젝트의 이름 리턴
 func get_new_project_name()->String:
 	var dt = OS.get_datetime()
-	var new_name = "untitled %02d-%02d-%04d %02d:%02d" % [dt["month"], dt["day"], dt["year"], dt["hour"], dt["minute"]]
+	var new_name = "untitled %02d-%02d-%04d %02d_%02d" % [dt["month"], dt["day"], dt["year"], dt["hour"], dt["minute"]]
 	return new_name
 	
 # mosue 좌표가 tool에 적용하기에 부적합한지?
@@ -180,9 +180,12 @@ func save_project(path):
 		"palettes" : get_save_dic_palettes()
 	}
 	var save_file = File.new()
-	save_file.open(path, File.WRITE)
-	save_file.store_line(to_json(save_dic))
-	save_file.close()
+	var _err = save_file.open(path, File.WRITE)
+	if _err == OK:
+		save_file.store_line(to_json(save_dic))
+		save_file.close()
+	else:
+		Util.show_error_message(self, _err)
 
 # 이미지를 open 한다.
 func open_image(parent, path, var rows=1, var cols=1):

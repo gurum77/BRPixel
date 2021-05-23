@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 
 func _on_DarkerButton_pressed():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().darker_tool.instance())
@@ -7,3 +7,7 @@ func _on_DarkerButton_pressed():
 func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.darker)
 
+
+
+func _on_DarkerButton_gui_input(event):
+	run_gui_input(event)

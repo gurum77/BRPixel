@@ -1,5 +1,4 @@
-extends Button
-
+extends TextureRectButton
 
 var message_box
 func _on_DeleteLayerButton_pressed():
@@ -31,3 +30,7 @@ func on_MessageBox_hide():
 	# layer button을 재생성 한다.
 	NodeManager.get_layer_panel().regen_layer_buttons()
 
+
+
+func _on_DeleteLayerButton_gui_input(event):
+	run_gui_input(event)

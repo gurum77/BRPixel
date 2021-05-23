@@ -3,6 +3,10 @@ class_name Palettes
 
 var palette = preload("res://Tools/Palette.tscn")
 
+func _ready():
+	# palettes는 크기가 있으면 안됨(다른 control에 메세지가 안감)
+	rect_size = Vector2(0, 0)
+	
 func get_palette(index)->Palette:
 	return get_child(index) as Palette
 func clear_palettes():

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://SaveSelectAreaButton.gd" type="Script" id=1]
+[ext_resource path="res://Assets/icon_save.png" type="Texture" id=2]
+
+[node name="SaveSelectedAreaButton" type="Button"]
+margin_left = 308.0
+margin_right = 348.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+icon = ExtResource( 2 )
+expand_icon = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="." to="." method="_on_SaveSelectedAreaButton_pressed"]

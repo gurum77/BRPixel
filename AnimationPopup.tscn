@@ -1,16 +1,8 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://DraggableWindow.gd" type="Script" id=1]
-[ext_resource path="res://Canvas/FrameButton.gd" type="Script" id=2]
 [ext_resource path="res://FrameInfoLabel.gd" type="Script" id=3]
 [ext_resource path="res://FramePanel.gd" type="Script" id=4]
-[ext_resource path="res://AddFrameButtonOnFramePanel.gd" type="Script" id=5]
-[ext_resource path="res://PlayButton.gd" type="Script" id=6]
-[ext_resource path="res://PrevButton.gd" type="Script" id=7]
-[ext_resource path="res://EndButton.gd" type="Script" id=8]
-[ext_resource path="res://DelayLineEdit.gd" type="Script" id=9]
-[ext_resource path="res://NextButton.gd" type="Script" id=10]
-[ext_resource path="res://StartButton.gd" type="Script" id=11]
 [ext_resource path="res://Assets/icon_close.png" type="Texture" id=12]
 [ext_resource path="res://Assets/icon_drag.png" type="Texture" id=13]
 [ext_resource path="res://PrevButton.tscn" type="PackedScene" id=14]
@@ -19,7 +11,6 @@
 [ext_resource path="res://NextButton.tscn" type="PackedScene" id=17]
 [ext_resource path="res://StartButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://EndButton.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Assets/icon_plus.png" type="Texture" id=20]
 [ext_resource path="res://white_rect_1x1.png" type="Texture" id=21]
 [ext_resource path="res://Canvas/FrameButton.tscn" type="PackedScene" id=22]
 [ext_resource path="res://ToolButtons/AddFrameButtonOnFramePanel.tscn" type="PackedScene" id=23]
@@ -90,60 +81,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartButton" type="Button" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 18 )]
-margin_right = 40.0
+[node name="StartButton" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 18 )]
 margin_bottom = 26.0
-rect_min_size = Vector2( 40, 15 )
-expand_icon = true
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="PrevButton" type="Button" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 14 )]
+[node name="PrevButton" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 14 )]
 margin_left = 44.0
 margin_right = 84.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 40, 15 )
-expand_icon = true
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="PlayButton" type="Button" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 16 )]
+[node name="PlayButton" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 16 )]
 margin_left = 88.0
 margin_right = 128.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 40, 15 )
-toggle_mode = true
-expand_icon = true
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="NextButton" type="Button" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 17 )]
+[node name="NextButton" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 17 )]
 margin_left = 132.0
 margin_right = 172.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 40, 15 )
-expand_icon = true
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="EndButton" type="Button" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 19 )]
-margin_left = 176.0
-margin_right = 216.0
+[node name="EndButton" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 19 )]
 margin_bottom = 26.0
-rect_min_size = Vector2( 40, 15 )
-expand_icon = true
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DummyLabel2" type="Label" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
 margin_left = 220.0
@@ -159,16 +116,10 @@ margin_right = 351.0
 margin_bottom = 21.0
 text = "Delay Per Frame"
 
-[node name="DelayLineEdit" type="LineEdit" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 15 )]
+[node name="DelayLineEdit" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 15 )]
 margin_left = 355.0
 margin_right = 425.0
 margin_bottom = 26.0
-text = "0.1"
-align = 1
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DummyLabel" type="Label" parent="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
 margin_left = 429.0
@@ -198,28 +149,11 @@ __meta__ = {
 margin_right = 84.0
 margin_bottom = 40.0
 
-[node name="FrameButton" type="TextureRect" parent="HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 22 )]
+[node name="FrameButton" parent="HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 22 )]
 margin_right = 40.0
 margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-texture = ExtResource( 21 )
-expand = true
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="AddFrameButtonOnFramePanel" type="TextureButton" parent="HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 23 )]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-texture_normal = ExtResource( 20 )
-expand = true
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AddFrameButtonOnFramePanel" parent="HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 23 )]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_bottom = 1.0
@@ -236,12 +170,3 @@ __meta__ = {
 
 [connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/StartButton" to="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/StartButton" method="_on_StartButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/PrevButton" to="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/PrevButton" method="_on_PrevButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/PlayButton" to="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/PlayButton" method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/NextButton" to="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/NextButton" method="_on_NextButton_pressed"]
-[connection signal="pressed" from="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/EndButton" to="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/EndButton" method="_on_EndButton_pressed"]
-[connection signal="gui_input" from="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/DelayLineEdit" to="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/DelayLineEdit" method="_on_DelayLineEdit_gui_input"]
-[connection signal="text_changed" from="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/DelayLineEdit" to="HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/DelayLineEdit" method="_on_DelayLineEdit_text_changed"]
-[connection signal="gui_input" from="HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer/FrameButton" to="HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer/FrameButton" method="_on_FrameButton_gui_input"]
-[connection signal="pressed" from="HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer/AddFrameButtonOnFramePanel" to="HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer/AddFrameButtonOnFramePanel" method="_on_AddFrameButtonOnFramePanel_pressed"]

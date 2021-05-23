@@ -3,6 +3,10 @@ class_name Frame
 
 var unused = false
 
+func _ready():
+	# frame은 크기가 있으면 안됨(다른 control에 메세지가 안감)
+	rect_size = Vector2(0, 0)
+	
 func get_save_dic()->Dictionary:
 	var _save_dic:Dictionary
 	_save_dic["layers"] = get_save_dic_layers()

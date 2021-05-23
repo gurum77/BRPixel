@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 
 
 
@@ -9,3 +9,7 @@ func _on_MoveButton_pressed():
 	# edit 모드 실행
 	Util.run_edit_mode(Vector2(0, 0), StaticData.canvas_width, StaticData.canvas_height, false)
 
+
+
+func _on_MoveButton_gui_input(event):
+	run_gui_input(event)

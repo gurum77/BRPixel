@@ -37,6 +37,7 @@ margin_right = 48.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 22, 22 )
 icon = ExtResource( 4 )
+
 [connection signal="pressed" from="." to="." method="_on_BrushTypeButton_pressed"]
 [connection signal="pressed" from="GridContainer/RectangleButton" to="." method="_on_RectangleButton_pressed"]
 [connection signal="pressed" from="GridContainer/CircleButton" to="." method="_on_CircleButton_pressed"]

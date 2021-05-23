@@ -19,4 +19,4 @@ var directoryThumbnailTexture:StreamTexture = preload("res://Assets/icon_directo
 var languageTexture:StreamTexture = preload("res://Assets/icon_language.png")
 
 # 자동 저장된 project file
-var auto_saved_project_file:String="auto_save.pex"
+var auto_saved_project_file:String="user://auto_save.pex"

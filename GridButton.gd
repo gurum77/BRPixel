@@ -1,4 +1,4 @@
-extends Button
+extends TextureRectButton
 
 
 func _on_GridButton_pressed():
@@ -10,3 +10,7 @@ func _on_GridButton_pressed():
 
 func _process(_delta):
 	pressed = StaticData.enabled_grid
+
+
+func _on_GridButton_gui_input(event):
+	run_gui_input(event)

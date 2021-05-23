@@ -11,4 +11,8 @@ rect_min_size = Vector2( 50, 50 )
 icon = ExtResource( 2 )
 expand_icon = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="." to="." method="_on_RectangleButton_pressed"]

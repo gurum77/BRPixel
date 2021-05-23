@@ -3,6 +3,10 @@ class_name TileModeManager
 
 var draw_forced = false
 
+func _ready():
+	# tilemodemanager는 크기가 있으면 안됨(다른 control에 메세지가 안감)
+	rect_size = Vector2(0, 0)
+	
 func is_enabled_draw()->bool:
 	if StaticData.enabled_tilemode:
 		return true

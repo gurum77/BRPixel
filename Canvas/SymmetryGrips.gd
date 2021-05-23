@@ -14,6 +14,9 @@ func _process(_delta):
 	vertical_grip2.visible = vertical_grip1.visible
 	
 func _ready():
+	# symmetryGrips는 크기가 있으면 안됨(다른 control에 메세지가 안감)
+	rect_size = Vector2(0, 0)
+	
 	horizontal_grip1.connect("moved", self, "on_grip_moved", [horizontal_grip1])
 	horizontal_grip2.connect("moved", self, "on_grip_moved", [horizontal_grip2])
 	vertical_grip1.connect("moved", self, "on_grip_moved", [vertical_grip1])

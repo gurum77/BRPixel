@@ -1,7 +1,7 @@
-extends Button
+extends TextureRectButton
 
 func _on_PencilButton_pressed():
-	pass
+	run()
 	
 func run():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().pencil_tool.instance())
@@ -11,10 +11,9 @@ func _process(_delta):
 	Util.press_current_tool_button(self, StaticData.Tool.pencil)
 
 
-
 func _on_PencilSettingButton_pressed():
 	$PencilSettingButton/PencilSettingPopup.popup_centered()
 
 
-func _on_PencilButton_button_up():
-	run()
+func _on_PencilButton_gui_input(event):
+	run_gui_input(event)

@@ -1,16 +1,15 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://DraggableWindow.gd" type="Script" id=1]
+[ext_resource path="res://AddImageButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://SaveSelectedAreaButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/icon_close.png" type="Texture" id=11]
-[ext_resource path="res://Assets/icon_add_image.png" type="Texture" id=12]
 [ext_resource path="res://Assets/icon_drag.png" type="Texture" id=13]
 [ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=15]
 [ext_resource path="res://Assets/icon_separator.png" type="Texture" id=16]
 [ext_resource path="res://Assets/icon_cut.png" type="Texture" id=18]
 [ext_resource path="res://Assets/icon_select.png" type="Texture" id=20]
 [ext_resource path="res://ToolButtons/EditButton.tscn" type="PackedScene" id=23]
-[ext_resource path="res://ToolButtons/SaveButton.tscn" type="PackedScene" id=24]
-[ext_resource path="res://ToolButtons/OpenButton.tscn" type="PackedScene" id=25]
 [ext_resource path="res://ToolButtons/ShareSelectedAreaButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://ToolButtons/FlipButton.tscn" type="PackedScene" id=27]
 [ext_resource path="res://ToolButtons/SelectButton.tscn" type="PackedScene" id=28]
@@ -105,24 +104,11 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 15 )
 
-[node name="SaveSelectedAreaButton" parent="HBoxContainer" instance=ExtResource( 24 )]
-margin_left = 308.0
-margin_top = 0.0
-margin_right = 348.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-save_selected_area = true
+[node name="SaveSelectedAreaButton" parent="HBoxContainer" instance=ExtResource( 3 )]
 
 [node name="ShareSelectedAreaButton" parent="HBoxContainer" instance=ExtResource( 26 )]
 
-[node name="AddImageButton" parent="HBoxContainer" instance=ExtResource( 25 )]
-margin_left = 396.0
-margin_top = 0.0
-margin_right = 436.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-icon = ExtResource( 12 )
-add_image = true
+[node name="AddImageButton" parent="HBoxContainer" instance=ExtResource( 2 )]
 
 [node name="Separator" type="TextureRect" parent="HBoxContainer"]
 margin_left = 440.0
