@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://DraggableWindow.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Settings/ImportImagePreview.gd" type="Script" id=2]
-[ext_resource path="res://Assets/icon_up_down.png" type="Texture" id=3]
+[ext_resource path="res://Assets/icon_down_arrow.png" type="Texture" id=3]
 [ext_resource path="res://Settings/ImportImage.gd" type="Script" id=4]
 [ext_resource path="res://Assets/icon_brighter.png" type="Texture" id=5]
 [ext_resource path="res://Assets/icon_cancel.png" type="Texture" id=6]
 [ext_resource path="res://Assets/icon_ok.png" type="Texture" id=7]
+[ext_resource path="res://Assets/icon_red_up.png" type="Texture" id=8]
 
 [node name="ImportImage" type="Control"]
 script = ExtResource( 4 )
@@ -71,68 +72,83 @@ custom_colors/font_color = Color( 1, 0, 0, 1 )
 [node name="GridContainer" type="GridContainer" parent="DraggableWindow/VBoxContainer"]
 margin_top = 364.0
 margin_right = 580.0
-margin_bottom = 404.0
+margin_bottom = 394.0
 grow_horizontal = 2
-columns = 5
+columns = 9
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColsLabel" type="Label" parent="DraggableWindow/VBoxContainer/GridContainer"]
-margin_top = 12.0
-margin_right = 29.0
-margin_bottom = 28.0
-text = "Cols"
-
-[node name="ColsSpinBox" type="SpinBox" parent="DraggableWindow/VBoxContainer/GridContainer"]
-margin_left = 33.0
-margin_right = 133.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 100, 40 )
-focus_mode = 1
-custom_icons/updown = ExtResource( 3 )
-min_value = 1.0
-value = 1.0
-rounded = true
+margin_top = 7.0
+margin_right = 100.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+text = "Columns : 1"
 align = 1
+valign = 1
+
+[node name="DownColsButton" type="Button" parent="DraggableWindow/VBoxContainer/GridContainer"]
+margin_left = 104.0
+margin_right = 134.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 3 )
+expand_icon = true
+
+[node name="UpColsButton" type="Button" parent="DraggableWindow/VBoxContainer/GridContainer"]
+margin_left = 138.0
+margin_right = 168.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 8 )
+expand_icon = true
 
 [node name="Label" type="Label" parent="DraggableWindow/VBoxContainer/GridContainer"]
-margin_left = 137.0
-margin_top = 12.0
-margin_right = 182.0
-margin_bottom = 28.0
+margin_left = 172.0
+margin_top = 7.0
+margin_right = 217.0
+margin_bottom = 23.0
 text = "         "
+valign = 1
 
 [node name="RowsLabel" type="Label" parent="DraggableWindow/VBoxContainer/GridContainer"]
-margin_left = 186.0
-margin_top = 12.0
-margin_right = 219.0
-margin_bottom = 28.0
-text = "Rows"
-
-[node name="RowsSpinBox" type="SpinBox" parent="DraggableWindow/VBoxContainer/GridContainer"]
-margin_left = 223.0
-margin_right = 323.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 100, 40 )
-focus_mode = 1
-custom_icons/updown = ExtResource( 3 )
-min_value = 1.0
-value = 1.0
-rounded = true
+margin_left = 221.0
+margin_top = 7.0
+margin_right = 321.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+text = "Rows : 1"
 align = 1
+valign = 1
+
+[node name="DownRowsButton" type="Button" parent="DraggableWindow/VBoxContainer/GridContainer"]
+margin_left = 325.0
+margin_right = 355.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 3 )
+expand_icon = true
+
+[node name="UpRowsButton" type="Button" parent="DraggableWindow/VBoxContainer/GridContainer"]
+margin_left = 359.0
+margin_right = 389.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+icon = ExtResource( 8 )
+expand_icon = true
 
 [node name="Panel" type="ColorRect" parent="DraggableWindow/VBoxContainer"]
-margin_top = 408.0
+margin_top = 398.0
 margin_right = 580.0
-margin_bottom = 418.0
+margin_bottom = 408.0
 rect_min_size = Vector2( 0, 10 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="Container" type="HBoxContainer" parent="DraggableWindow/VBoxContainer"]
-margin_top = 422.0
+margin_top = 412.0
 margin_right = 580.0
-margin_bottom = 454.0
+margin_bottom = 444.0
 custom_constants/separation = 20
 alignment = 1
 
@@ -148,7 +164,9 @@ margin_right = 332.0
 margin_bottom = 32.0
 texture_normal = ExtResource( 6 )
 
-[connection signal="value_changed" from="DraggableWindow/VBoxContainer/GridContainer/ColsSpinBox" to="." method="_on_SpinBox_value_changed"]
-[connection signal="value_changed" from="DraggableWindow/VBoxContainer/GridContainer/RowsSpinBox" to="." method="_on_RowsSpinBox_value_changed"]
+[connection signal="pressed" from="DraggableWindow/VBoxContainer/GridContainer/DownColsButton" to="." method="_on_DownColsButton_pressed"]
+[connection signal="pressed" from="DraggableWindow/VBoxContainer/GridContainer/UpColsButton" to="." method="_on_UpColsButton_pressed"]
+[connection signal="pressed" from="DraggableWindow/VBoxContainer/GridContainer/DownRowsButton" to="." method="_on_DownRowsButton_pressed"]
+[connection signal="pressed" from="DraggableWindow/VBoxContainer/GridContainer/UpRowsButton" to="." method="_on_UpRowsButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/Container/OkButton" to="." method="_on_OkButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/Container/CancelButton" to="." method="_on_CancelButton_pressed"]

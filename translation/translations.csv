@@ -49,6 +49,7 @@ Source image,Source image,소스 이미지
 Target image,Target image,타겟 이미지
 Cols,Cols,열수
 Rows,Rows,행수
+Columns,Columns,열수
 frame,frame,프레임
 Frame,Frame,프레임
 frames,frames,프레임

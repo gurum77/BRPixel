@@ -7,11 +7,11 @@ onready var background = $DraggableWindow/VBoxContainer/Background
 onready var src_label = $DraggableWindow/VBoxContainer/InfoVBoxContainer/SourceInfoLabel
 onready var tar_label = $DraggableWindow/VBoxContainer/InfoVBoxContainer/TargetInfoLabel
 onready var error_label  = $DraggableWindow/VBoxContainer/InfoVBoxContainer/ErrorLabel
+onready var cols_label = $DraggableWindow/VBoxContainer/GridContainer/ColsLabel
+onready var rows_label = $DraggableWindow/VBoxContainer/GridContainer/ColsLabel
 var result_ok = false
 	
 func popup_centered():
-	$DraggableWindow/VBoxContainer/GridContainer/ColsSpinBox.get_line_edit().focus_mode  = Control.FOCUS_NONE
-	$DraggableWindow/VBoxContainer/GridContainer/RowsSpinBox.get_line_edit().focus_mode  = Control.FOCUS_NONE
 	result_ok = false
 	show()
 	$DraggableWindow.popup_centered()
@@ -34,6 +34,9 @@ func update_infomations():
 	var frames = preview.cols * preview.rows
 	tar_label.text = "%s : %d x %d, %d %s" % [tr("Target image"), target_image_width, target_image_height, frames, tr("frame")]
 	
+	cols_label.text = "%s : %d" % [tr("Columns"), preview.cols]
+	rows_label.text = "%s : %d" % [tr("Rows"), preview.rows]
+	
 	# error message
 	if is_too_big_image():
 		error_label.text = "Maximum image size is %d." % [Define.max_canvas_size]
@@ -53,15 +56,6 @@ func is_too_big_image()->bool:
 		return true
 	return false
 
-func _on_SpinBox_value_changed(value):
-	preview.cols = value
-	preview.update()
-	update_infomations()
-
-func _on_RowsSpinBox_value_changed(value):
-	preview.rows = value
-	preview.update()
-	update_infomations()
 	
 func _on_OkButton_pressed():
 	result_ok = true
@@ -74,3 +68,35 @@ func _on_CancelButton_pressed():
 
 
 
+
+
+func _on_UpColsButton_pressed():
+	preview.cols += 1
+	if preview.cols > 1000:
+		preview.cols = 1000
+	preview.update()
+	update_infomations()
+
+
+func _on_DownColsButton_pressed():
+	preview.cols -= 1
+	if preview.cols <= 0:
+		preview.cols = 1
+	preview.update()
+	update_infomations()
+
+
+func _on_UpRowsButton_pressed():
+	preview.rows += 1
+	if preview.rows > 1000:
+		preview.rows = 1000
+	preview.update()
+	update_infomations()
+
+
+func _on_DownRowsButton_pressed():
+	preview.rows -= 1
+	if preview.rows <= 0:
+		preview.rows = 1
+	preview.update()
+	update_infomations()
