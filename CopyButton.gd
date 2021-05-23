@@ -67,8 +67,10 @@ func on_CopyButton_pressed():
 	if clipboard_count > Define.max_clipboard_count:
 		remove_oldest_clipboard()
 	
-	# 사이즈 조정
-	get_parent().get_parent().get_parent().resize()
+	# clipboard를 추가하고 나서 select popup의 크기를 조정한다.
+	# 크기 조정 함수가 popup_button에 있다.
+	NodeManager.get_select_popup_button().resize()
+	
 	
 	# 선택했던 영역은 삭제를 한다.
 	if cut:

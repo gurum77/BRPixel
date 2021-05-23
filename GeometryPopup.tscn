@@ -1,0 +1,139 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://ToolButtons/RectangleButton.gd" type="Script" id=1]
+[ext_resource path="res://ToolButtons/CircleButton.gd" type="Script" id=2]
+[ext_resource path="res://ToolButtons/LineButton.gd" type="Script" id=3]
+[ext_resource path="res://DraggableWindow.gd" type="Script" id=4]
+[ext_resource path="res://Assets/icon_line.png" type="Texture" id=5]
+[ext_resource path="res://Assets/icon_rectangle.png" type="Texture" id=6]
+[ext_resource path="res://Assets/icon_drag.png" type="Texture" id=7]
+[ext_resource path="res://Assets/icon_close.png" type="Texture" id=8]
+[ext_resource path="res://Assets/icon_circle.png" type="Texture" id=9]
+[ext_resource path="res://Assets/icon_fill_circle.png" type="Texture" id=10]
+[ext_resource path="res://Assets/icon_fill_rectangle.png" type="Texture" id=11]
+[ext_resource path="res://ToolButtons/RectangleButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ToolButtons/CircleButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ToolButtons/LineButton.tscn" type="PackedScene" id=14]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=15]
+
+[node name="GeometryPopup" type="TextureRect"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 118.221
+margin_top = 0.656501
+margin_right = 435.221
+margin_bottom = 40.6565
+texture = ExtResource( 15 )
+expand = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+hide_close_button = true
+
+[node name="CloseButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -37.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+rect_min_size = Vector2( 100, 40 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="LineButton" type="Button" parent="HBoxContainer" instance=ExtResource( 14 )]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 5 )
+expand_icon = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RectangleButton" type="Button" parent="HBoxContainer" instance=ExtResource( 12 )]
+margin_left = 44.0
+margin_right = 84.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 6 )
+expand_icon = true
+script = ExtResource( 1 )
+
+[node name="FillRectangleButton" type="Button" parent="HBoxContainer" instance=ExtResource( 12 )]
+margin_left = 88.0
+margin_right = 128.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 11 )
+expand_icon = true
+script = ExtResource( 1 )
+fill = true
+
+[node name="CircleButton" type="Button" parent="HBoxContainer" instance=ExtResource( 13 )]
+margin_left = 132.0
+margin_right = 172.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 9 )
+expand_icon = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FillCircleButton" type="Button" parent="HBoxContainer" instance=ExtResource( 13 )]
+margin_left = 176.0
+margin_right = 216.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 10 )
+expand_icon = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+fill = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = 5.0
+margin_right = 21.0
+margin_bottom = -5.00001
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/LineButton" to="HBoxContainer/LineButton" method="_on_LineButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/RectangleButton" to="HBoxContainer/RectangleButton" method="_on_RectangleButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/FillRectangleButton" to="HBoxContainer/FillRectangleButton" method="_on_RectangleButton_pressed"]
+[connection signal="button_up" from="HBoxContainer/CircleButton" to="HBoxContainer/CircleButton" method="_on_CircleButton_button_up"]
+[connection signal="pressed" from="HBoxContainer/CircleButton" to="HBoxContainer/CircleButton" method="_on_CircleButton_pressed"]
+[connection signal="button_up" from="HBoxContainer/FillCircleButton" to="HBoxContainer/FillCircleButton" method="_on_CircleButton_button_up"]
+[connection signal="pressed" from="HBoxContainer/FillCircleButton" to="HBoxContainer/FillCircleButton" method="_on_CircleButton_pressed"]

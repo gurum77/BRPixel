@@ -1,0 +1,150 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://DraggableWindow.gd" type="Script" id=1]
+[ext_resource path="res://Assets/icon_close.png" type="Texture" id=11]
+[ext_resource path="res://Assets/icon_add_image.png" type="Texture" id=12]
+[ext_resource path="res://Assets/icon_drag.png" type="Texture" id=13]
+[ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=15]
+[ext_resource path="res://Assets/icon_separator.png" type="Texture" id=16]
+[ext_resource path="res://Assets/icon_cut.png" type="Texture" id=18]
+[ext_resource path="res://Assets/icon_select.png" type="Texture" id=20]
+[ext_resource path="res://ToolButtons/EditButton.tscn" type="PackedScene" id=23]
+[ext_resource path="res://ToolButtons/SaveButton.tscn" type="PackedScene" id=24]
+[ext_resource path="res://ToolButtons/OpenButton.tscn" type="PackedScene" id=25]
+[ext_resource path="res://ToolButtons/ShareSelectedAreaButton.tscn" type="PackedScene" id=26]
+[ext_resource path="res://ToolButtons/FlipButton.tscn" type="PackedScene" id=27]
+[ext_resource path="res://ToolButtons/SelectButton.tscn" type="PackedScene" id=28]
+[ext_resource path="res://ToolButtons/CopyButton.tscn" type="PackedScene" id=29]
+[ext_resource path="res://ToolButtons/ClearButton.tscn" type="PackedScene" id=30]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=31]
+
+[node name="SelectPopup" type="TextureRect"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 115.921
+margin_top = 4.2597
+margin_right = 432.921
+margin_bottom = 44.2597
+texture = ExtResource( 31 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+hide_close_button = true
+
+[node name="CloseButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -37.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_right = 163.0
+rect_min_size = Vector2( 100, 35 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="SelectButton" parent="HBoxContainer" instance=ExtResource( 28 )]
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 20 )
+expand_icon = true
+
+[node name="EditButton" parent="HBoxContainer" instance=ExtResource( 23 )]
+margin_left = 44.0
+margin_right = 84.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+
+[node name="CopyButton" parent="HBoxContainer" instance=ExtResource( 29 )]
+margin_left = 88.0
+margin_top = 0.0
+margin_right = 128.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="CutButton" parent="HBoxContainer" instance=ExtResource( 29 )]
+margin_left = 132.0
+margin_top = 0.0
+margin_right = 172.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+icon = ExtResource( 18 )
+cut = true
+
+[node name="ClearButton" parent="HBoxContainer" instance=ExtResource( 30 )]
+
+[node name="HorFlipButton" parent="HBoxContainer" instance=ExtResource( 27 )]
+margin_left = 220.0
+margin_right = 260.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="VertFlipButton" parent="HBoxContainer" instance=ExtResource( 27 )]
+margin_left = 264.0
+margin_right = 304.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+icon = ExtResource( 15 )
+
+[node name="SaveSelectedAreaButton" parent="HBoxContainer" instance=ExtResource( 24 )]
+margin_left = 308.0
+margin_top = 0.0
+margin_right = 348.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+save_selected_area = true
+
+[node name="ShareSelectedAreaButton" parent="HBoxContainer" instance=ExtResource( 26 )]
+
+[node name="AddImageButton" parent="HBoxContainer" instance=ExtResource( 25 )]
+margin_left = 396.0
+margin_top = 0.0
+margin_right = 436.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+icon = ExtResource( 12 )
+add_image = true
+
+[node name="Separator" type="TextureRect" parent="HBoxContainer"]
+margin_left = 440.0
+margin_right = 450.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 10, 40 )
+texture = ExtResource( 16 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = 5.0
+margin_right = 21.0
+margin_bottom = -5.00001
+texture = ExtResource( 13 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/CopyButton" to="HBoxContainer/CopyButton" method="on_CopyButton_pressed"]

@@ -1,16 +1,25 @@
 extends Button
 class_name SubmenuPopupButton
 export (StaticData.Tool) var current_tool = StaticData.Tool.none
+export (NodePath) var popup_node_path = null
+
+var popup
+var popup_hbox_container
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$DraggableWindow.hide_close_button = true
-	$DraggableWindow.hide()
+	if popup_node_path != null:
+		popup = get_node(popup_node_path)
+		popup_hbox_container = popup.get_node("HBoxContainer")
+		popup.submenu_popup_button_parent = self
+		
+	popup.hide_close_button = true
+	popup.hide()
 	resize()
 	
 func resize():
 	var total_width = 0
-	var nodes = $DraggableWindow/HBoxContainer.get_children()
+	var nodes = popup_hbox_container.get_children()
 	for node in nodes:
 		# clipboard중 사용되지 않는것은 크기조절에서 제외
 		if node is ClipBoardButton:
@@ -23,10 +32,10 @@ func resize():
 			var but:Control = node
 			total_width = total_width + but.rect_size.x
 
-	var margins = $DraggableWindow/HBoxContainer.margin_left + $DraggableWindow/HBoxContainer.margin_right
-	var sparations = $DraggableWindow/HBoxContainer.get_constant("separation") * nodes.size()
+	var margins = popup_hbox_container.margin_left + popup_hbox_container.margin_right
+	var sparations = popup_hbox_container.get_constant("separation") * nodes.size()
 	var close_button_width = 0
-	$DraggableWindow.rect_size.x = total_width + margins + sparations + close_button_width
+	popup.rect_size.x = total_width + margins + sparations + close_button_width
 
 func run_current_tool():
 	if current_tool == StaticData.Tool.none:
@@ -51,10 +60,10 @@ func _on_SubmenuPopupButton_pressed():
 	# current_tool을 바로 실행한다.
 	run_current_tool()
 	
-	if $DraggableWindow.visible:
-		$DraggableWindow.hide()
+	if popup.visible:
+		popup.hide()
 	else:
-		$DraggableWindow.show()
+		popup.show()
 
 func _process(_delta):
 	Util.press_current_tool_button(self, current_tool)		

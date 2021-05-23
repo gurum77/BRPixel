@@ -1,20 +1,59 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DraggableWindow.gd" type="Script" id=1]
+[ext_resource path="res://Assets/icon_drag.png" type="Texture" id=2]
+[ext_resource path="res://Assets/icon_close.png" type="Texture" id=3]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=4]
 
-[node name="SubMenuPopup" type="Control"]
+[node name="SubmenuPopup" type="TextureRect"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 145.083
+margin_top = -1.18921
+margin_right = 462.083
+margin_bottom = 48.8108
+texture = ExtResource( 4 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+hide_close_button = true
+
+[node name="CloseButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -37.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 3 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DraggablePopup" parent="." instance=ExtResource( 1 )]
-visible = true
-margin_right = 100.0
-margin_bottom = 50.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DraggablePopup"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 30.0
+rect_min_size = Vector2( 100, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = 5.0
+margin_right = 21.0
+margin_bottom = -5.00001
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]

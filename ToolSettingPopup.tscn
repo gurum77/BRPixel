@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Fonts/ui_normal.tres" type="DynamicFont" id=1]
+[ext_resource path="res://DraggableWindow.gd" type="Script" id=2]
+[ext_resource path="res://Assets/icon_drag.png" type="Texture" id=3]
+[ext_resource path="res://Assets/icon_close.png" type="Texture" id=4]
+[ext_resource path="res://ToolButtons/BrushTypeButton.gd" type="Script" id=5]
+[ext_resource path="res://ToolButtons/PixelPerfectCheckBox.gd" type="Script" id=6]
+[ext_resource path="res://ToolButtons/BrushSizeTextEdit.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ToolButtons/BrushTypeButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ToolButtons/PixelPerfectCheckBox.tscn" type="PackedScene" id=9]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=10]
+[ext_resource path="res://ToolButtons/BrushSizeTextEdit.gd" type="Script" id=11]
+
+[node name="ToolSettingPopup" type="TextureRect"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 63.6819
+margin_top = 25.5874
+margin_right = 367.682
+margin_bottom = 65.5874
+texture = ExtResource( 10 )
+expand = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+hide_close_button = true
+
+[node name="CloseButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -37.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 30.0
+margin_top = -13.0
+margin_bottom = 13.0
+rect_min_size = Vector2( 100, 20 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="BrushTypeButton" type="TextureButton" parent="HBoxContainer" instance=ExtResource( 8 )]
+margin_right = 25.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 25, 25 )
+texture_normal = ExtResource( 10 )
+expand = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BrushSizeTextEdit" type="LineEdit" parent="HBoxContainer" instance=ExtResource( 7 )]
+margin_left = 29.0
+margin_right = 99.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 20, 20 )
+text = "1"
+align = 1
+max_length = 2
+context_menu_enabled = false
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BrushSizeUnitsLabel" type="Label" parent="HBoxContainer"]
+margin_left = 103.0
+margin_top = 5.0
+margin_right = 119.0
+margin_bottom = 21.0
+text = "px"
+
+[node name="PixelPerfectCheckBox" type="CheckBox" parent="HBoxContainer" instance=ExtResource( 9 )]
+margin_left = 123.0
+margin_right = 245.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 1 )
+text = "Pixel-perfect"
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = 5.0
+margin_right = 21.0
+margin_bottom = -5.00001
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/BrushTypeButton" to="HBoxContainer/BrushTypeButton" method="_on_BrushTypeButton_pressed"]
+[connection signal="gui_input" from="HBoxContainer/BrushSizeTextEdit" to="HBoxContainer/BrushSizeTextEdit" method="_on_BrushSizeTextEdit_gui_input"]
+[connection signal="text_changed" from="HBoxContainer/BrushSizeTextEdit" to="HBoxContainer/BrushSizeTextEdit" method="_on_BrushSizeTextEdit_text_changed"]
+[connection signal="toggled" from="HBoxContainer/PixelPerfectCheckBox" to="HBoxContainer/PixelPerfectCheckBox" method="_on_PixelPerfectCheckBox_toggled"]

@@ -27,7 +27,13 @@ var copy_button:Button = null
 var cut_button:Button = null
 var redo_button:Button = null
 var undo_button:Button = null
+var select_popup_button:Button = null
 
+func get_select_popup_button()->Button:
+	if select_popup_button == null:
+		select_popup_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton")
+	return select_popup_button
+	
 func get_undo_button()->Button:
 	if undo_button == null:
 		undo_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/UndoButton")
@@ -41,12 +47,12 @@ func get_redo_button()->Button:
 
 func get_cut_button()->Button:
 	if cut_button == null:
-		cut_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CutButton")
+		cut_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/CutButton")
 	return cut_button
 	
 func get_copy_button()->Button:
 	if copy_button == null:
-		copy_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton")
+		copy_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/CopyButton")
 	return copy_button
 			
 func get_camera()->Camera2D:
@@ -192,7 +198,7 @@ func get_tools()->Tools:
 	
 func get_frame_panel():
 	if frame_panel == null:
-		frame_panel = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel")
+		frame_panel = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/AnimationPopup/HBoxContainer/FramePanel")
 	return frame_panel
 	
 func get_layer_panel()->LayerPanel:

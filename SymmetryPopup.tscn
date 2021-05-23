@@ -1,0 +1,110 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://DraggableWindow.gd" type="Script" id=1]
+[ext_resource path="res://ToolButtons/SymmetryButton.gd" type="Script" id=2]
+[ext_resource path="res://Assets/icon_close.png" type="Texture" id=3]
+[ext_resource path="res://Assets/icon_drag.png" type="Texture" id=4]
+[ext_resource path="res://Assets/icon_no_symmetry.png" type="Texture" id=5]
+[ext_resource path="res://Assets/icon_vertical_symmetry.png" type="Texture" id=6]
+[ext_resource path="res://Assets/icon_horizontal_symmetry.png" type="Texture" id=7]
+[ext_resource path="res://ToolButtons/SymmetryButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=9]
+
+[node name="SymmetryPopup" type="TextureRect"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 118.772
+margin_top = -20.068
+margin_right = 435.772
+margin_bottom = 19.9315
+texture = ExtResource( 9 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+hide_close_button = true
+
+[node name="CloseButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -37.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_bottom = 0.000499725
+rect_min_size = Vector2( 100, 40 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="NoSymmetryButton" type="Button" parent="HBoxContainer" instance=ExtResource( 8 )]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 5 )
+expand_icon = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HorizontalSymmetryButton" type="Button" parent="HBoxContainer" instance=ExtResource( 8 )]
+margin_left = 44.0
+margin_right = 84.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 7 )
+expand_icon = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+symmetry_type = 1
+
+[node name="VerticalSymmetryButton" type="Button" parent="HBoxContainer" instance=ExtResource( 8 )]
+margin_left = 88.0
+margin_right = 128.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+toggle_mode = true
+icon = ExtResource( 6 )
+expand_icon = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+symmetry_type = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = 5.0
+margin_right = 21.0
+margin_bottom = -5.00001
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/NoSymmetryButton" to="HBoxContainer/NoSymmetryButton" method="_on_SymmetryButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/HorizontalSymmetryButton" to="HBoxContainer/HorizontalSymmetryButton" method="_on_SymmetryButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/VerticalSymmetryButton" to="HBoxContainer/VerticalSymmetryButton" method="_on_SymmetryButton_pressed"]

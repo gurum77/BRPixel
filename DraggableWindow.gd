@@ -2,8 +2,11 @@ extends TextureRect
 class_name DraggableWindow
 var drag_position = null
 var active_color
+# draggable window가 submenu popup으로 사용될 경우 submenu popup 버튼을 연결해준다.
+var submenu_popup_button_parent = null
 export var full_screen = false
 export var hide_close_button = false
+
 func _ready():
 	if full_screen:
 		var size = get_viewport_rect().size

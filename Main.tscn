@@ -1,36 +1,33 @@
-[gd_scene load_steps=97 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://Canvas/Canvas.gd" type="Script" id=3]
 [ext_resource path="res://Canvas/Layer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Tools/Tools.gd" type="Script" id=5]
-[ext_resource path="res://ToolButtons/RectangleButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SymmetryPopup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ToolButtons/PencilButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ToolButtons/SaveButton.tscn" type="PackedScene" id=8]
-[ext_resource path="res://ToolButtons/LineButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GeometryPopup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ToolButtons/OpenButton.tscn" type="PackedScene" id=10]
 [ext_resource path="res://ToolButtons/ColorPickerButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ToolButtons/EraserButton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ToolButtons/SubmenuPopupButton.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
-[ext_resource path="res://ToolButtons/CircleButton.tscn" type="PackedScene" id=15]
-[ext_resource path="res://ToolButtons/CopyButton.tscn" type="PackedScene" id=16]
+[ext_resource path="res://ToolSettingPopup.tscn" type="PackedScene" id=15]
+[ext_resource path="res://SelectPopup.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Tools/Palette.tscn" type="PackedScene" id=17]
 [ext_resource path="res://ToolButtons/ColorButton.tscn" type="PackedScene" id=18]
 [ext_resource path="res://ToolButtons/ColorPanel.gd" type="Script" id=19]
 [ext_resource path="res://DrawingArea.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Assets/icon_add_image.png" type="Texture" id=21]
+[ext_resource path="res://AnimationPopup.tscn" type="PackedScene" id=21]
 [ext_resource path="res://EditPanel.gd" type="Script" id=22]
 [ext_resource path="res://AddLayerButton.gd" type="Script" id=23]
 [ext_resource path="res://Settings/LayerPanel.tscn" type="PackedScene" id=24]
 [ext_resource path="res://LayerSettingPopup.tscn" type="PackedScene" id=25]
-[ext_resource path="res://Canvas/FrameButton.tscn" type="PackedScene" id=26]
 [ext_resource path="res://DeleteLayerButton.gd" type="Script" id=27]
 [ext_resource path="res://ToolButtons/MoveButton.tscn" type="PackedScene" id=28]
-[ext_resource path="res://ToolButtons/SelectButton.tscn" type="PackedScene" id=29]
 [ext_resource path="res://Grips.gd" type="Script" id=30]
-[ext_resource path="res://ToolButtons/EditButton.tscn" type="PackedScene" id=31]
 [ext_resource path="res://Assets/icon_pick_color_from_canvas.png" type="Texture" id=32]
 [ext_resource path="res://Assets/icon_tool_setting.png" type="Texture" id=33]
 [ext_resource path="res://Assets/icon_add_layer.png" type="Texture" id=34]
@@ -46,31 +43,12 @@
 [ext_resource path="res://SettingButton.gd" type="Script" id=44]
 [ext_resource path="res://Tools/BrighterButton.tscn" type="PackedScene" id=45]
 [ext_resource path="res://PickColorFromCanvasButton.gd" type="Script" id=46]
-[ext_resource path="res://Assets/icon_separator.png" type="Texture" id=47]
-[ext_resource path="res://Assets/icon_fill_rectangle.png" type="Texture" id=48]
-[ext_resource path="res://Assets/icon_fill_circle.png" type="Texture" id=49]
-[ext_resource path="res://Assets/icon_cut.png" type="Texture" id=50]
-[ext_resource path="res://ToolButtons/FlipButton.tscn" type="PackedScene" id=51]
-[ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=52]
 [ext_resource path="res://Tools/DarkerButton.tscn" type="PackedScene" id=53]
-[ext_resource path="res://ToolButtons/PixelPerfectCheckBox.tscn" type="PackedScene" id=54]
 [ext_resource path="res://ToolButtons/TileModeButton.tscn" type="PackedScene" id=55]
 [ext_resource path="res://Canvas/TileModeManager.tscn" type="PackedScene" id=56]
 [ext_resource path="res://Assets/icon_horizontal_symmetry.png" type="Texture" id=57]
-[ext_resource path="res://ToolButtons/SymmetryButton.tscn" type="PackedScene" id=58]
-[ext_resource path="res://Assets/icon_vertical_symmetry.png" type="Texture" id=59]
 [ext_resource path="res://Canvas/SymmetryGrips.tscn" type="PackedScene" id=60]
-[ext_resource path="res://ToolButtons/BrushTypeButton.tscn" type="PackedScene" id=61]
-[ext_resource path="res://ToolButtons/BrushSizeTextEdit.tscn" type="PackedScene" id=62]
-[ext_resource path="res://FramePanel.gd" type="Script" id=63]
 [ext_resource path="res://Canvas/Frames.tscn" type="PackedScene" id=64]
-[ext_resource path="res://ToolButtons/AddFrameButtonOnFramePanel.tscn" type="PackedScene" id=65]
-[ext_resource path="res://PlayButton.tscn" type="PackedScene" id=66]
-[ext_resource path="res://PrevButton.tscn" type="PackedScene" id=67]
-[ext_resource path="res://NextButton.tscn" type="PackedScene" id=68]
-[ext_resource path="res://StartButton.tscn" type="PackedScene" id=69]
-[ext_resource path="res://EndButton.tscn" type="PackedScene" id=70]
-[ext_resource path="res://DelayLineEdit.tscn" type="PackedScene" id=71]
 [ext_resource path="res://Assets/icon_animation.png" type="Texture" id=72]
 [ext_resource path="res://DraggableFileDialog.tscn" type="PackedScene" id=73]
 [ext_resource path="res://MessageBox.tscn" type="PackedScene" id=74]
@@ -85,15 +63,12 @@
 [ext_resource path="res://Preview.tscn" type="PackedScene" id=83]
 [ext_resource path="res://ToolButtons/RedoButton.tscn" type="PackedScene" id=84]
 [ext_resource path="res://ToolButtons/UndoButton.tscn" type="PackedScene" id=85]
-[ext_resource path="res://ToolButtons/ClearButton.tscn" type="PackedScene" id=86]
 [ext_resource path="res://Settings/ColorSettingPopup.tscn" type="PackedScene" id=87]
 [ext_resource path="res://Settings/ImportImage.tscn" type="PackedScene" id=88]
-[ext_resource path="res://FrameInfoLabel.gd" type="Script" id=89]
 [ext_resource path="res://Settings/SaveOptionsPopup.tscn" type="PackedScene" id=90]
 [ext_resource path="res://CaptionLabel.gd" type="Script" id=91]
 [ext_resource path="res://Fonts/neodgm_pro.ttf" type="DynamicFontData" id=92]
 [ext_resource path="res://ToolButtons/ShareButton.tscn" type="PackedScene" id=93]
-[ext_resource path="res://ToolButtons/ShareSelectedAreaButton.tscn" type="PackedScene" id=94]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
@@ -167,39 +142,7 @@ __meta__ = {
 margin_left = 54.0
 margin_right = 104.0
 icon = ExtResource( 33 )
-
-[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton" index="0"]
-margin_left = 63.6819
-margin_top = 25.5874
-margin_right = 367.682
-margin_bottom = 65.5874
-
-[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow" index="1"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -13.0
-margin_bottom = 13.0
-rect_min_size = Vector2( 100, 20 )
-
-[node name="BrushTypeButton" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 61 )]
-margin_bottom = 26.0
-
-[node name="BrushSizeTextEdit" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 62 )]
-margin_left = 29.0
-margin_right = 99.0
-margin_bottom = 26.0
-
-[node name="BrushSizeUnitsLabel" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="2"]
-margin_left = 103.0
-margin_top = 5.0
-margin_right = 119.0
-margin_bottom = 21.0
-text = "px"
-
-[node name="PixelPerfectCheckBox" parent="UI/EditPanel/ScrollContainer/GridContainer/ToolSettingPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 54 )]
-margin_left = 123.0
-margin_right = 245.0
-margin_bottom = 26.0
+popup_node_path = NodePath("../../../SubmenuPopups/ToolSettingPopup")
 
 [node name="PickColorFromCanvasButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_top = 54.0
@@ -221,58 +164,7 @@ margin_top = 108.0
 margin_bottom = 158.0
 toggle_mode = true
 current_tool = 3
-
-[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton" index="0"]
-margin_left = 118.221
-margin_top = 0.656501
-margin_right = 435.221
-margin_bottom = 40.6565
-
-[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow" index="1"]
-rect_min_size = Vector2( 100, 40 )
-
-[node name="LineButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 9 )]
-margin_top = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
-
-[node name="RectangleButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 6 )]
-margin_left = 44.0
-margin_top = 0.0
-margin_right = 84.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
-
-[node name="FillRectangleButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 6 )]
-margin_left = 88.0
-margin_top = 0.0
-margin_right = 128.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
-icon = ExtResource( 48 )
-fill = true
-
-[node name="CircleButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 15 )]
-margin_left = 132.0
-margin_top = 0.0
-margin_right = 172.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
-
-[node name="FillCircleButton" parent="UI/EditPanel/ScrollContainer/GridContainer/GeometryPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 15 )]
-margin_left = 176.0
-margin_top = 0.0
-margin_right = 216.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
-icon = ExtResource( 49 )
-fill = true
+popup_node_path = NodePath("../../../SubmenuPopups/GeometryPopup")
 
 [node name="FillButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_left = 54.0
@@ -305,89 +197,7 @@ margin_bottom = 266.0
 toggle_mode = true
 icon = ExtResource( 36 )
 current_tool = 9
-
-[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton" index="0"]
-margin_left = 115.921
-margin_top = 4.2597
-margin_right = 432.921
-margin_bottom = 44.2597
-
-[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow" index="1"]
-rect_min_size = Vector2( 100, 35 )
-
-[node name="SelectButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 29 )]
-margin_top = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
-icon = ExtResource( 36 )
-expand_icon = true
-
-[node name="EditButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 31 )]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-toggle_mode = true
-
-[node name="CopyButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 16 )]
-margin_left = 88.0
-margin_top = 0.0
-margin_right = 128.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-
-[node name="CutButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="3" instance=ExtResource( 16 )]
-margin_left = 132.0
-margin_top = 0.0
-margin_right = 172.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-icon = ExtResource( 50 )
-cut = true
-
-[node name="ClearButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="4" instance=ExtResource( 86 )]
-
-[node name="HorFlipButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="5" instance=ExtResource( 51 )]
-margin_left = 220.0
-margin_right = 260.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-
-[node name="VertFlipButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="6" instance=ExtResource( 51 )]
-margin_left = 264.0
-margin_right = 304.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-icon = ExtResource( 52 )
-
-[node name="SaveSelectedAreaButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="7" instance=ExtResource( 8 )]
-margin_left = 308.0
-margin_top = 0.0
-margin_right = 348.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-save_selected_area = true
-
-[node name="ShareSelectedAreaButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="8" instance=ExtResource( 94 )]
-
-[node name="AddImageButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="9" instance=ExtResource( 10 )]
-margin_left = 396.0
-margin_top = 0.0
-margin_right = 436.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-icon = ExtResource( 21 )
-add_image = true
-
-[node name="Separator" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer" index="10"]
-margin_left = 440.0
-margin_right = 450.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 10, 40 )
-texture = ExtResource( 47 )
-expand = true
+popup_node_path = NodePath("../../../SubmenuPopups/SelectPopup")
 
 [node name="AddLayerButton" type="Button" parent="UI/EditPanel/ScrollContainer/GridContainer"]
 margin_left = 54.0
@@ -450,37 +260,7 @@ margin_bottom = 482.0
 margin_top = 486.0
 margin_bottom = 536.0
 icon = ExtResource( 57 )
-
-[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton" index="0"]
-margin_left = 118.772
-margin_top = -20.068
-margin_right = 435.772
-margin_bottom = 19.9315
-
-[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton/DraggableWindow" index="1"]
-margin_bottom = -10.0
-rect_min_size = Vector2( 100, 40 )
-
-[node name="NoSymmetryButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="0" instance=ExtResource( 58 )]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-
-[node name="HorizontalSymmetryButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="1" instance=ExtResource( 58 )]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-icon = ExtResource( 57 )
-symmetry_type = 1
-
-[node name="VerticalSymmetryButton" parent="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton/DraggableWindow/HBoxContainer" index="2" instance=ExtResource( 58 )]
-margin_left = 88.0
-margin_right = 128.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-icon = ExtResource( 59 )
-symmetry_type = 2
+popup_node_path = NodePath("../../../SubmenuPopups/SymmetryPopup")
 
 [node name="AnimationPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
@@ -488,117 +268,9 @@ margin_top = 486.0
 margin_right = 104.0
 margin_bottom = 536.0
 icon = ExtResource( 72 )
+popup_node_path = NodePath("../../../SubmenuPopups/AnimationPopup")
 
-[node name="DraggableWindow" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton" index="0"]
-margin_left = 64.0
-margin_top = 26.0
-margin_right = 619.0
-margin_bottom = 106.0
-
-[node name="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow" index="1"]
-margin_right = 5.0
-
-[node name="FramePanel" type="Panel" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer" index="0"]
-margin_right = 530.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 530, 70 )
-script = ExtResource( 63 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -12.0
-margin_bottom = 4.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
-margin_right = 518.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 0, 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StartButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 69 )]
-margin_bottom = 26.0
-
-[node name="PrevButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 67 )]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 26.0
-
-[node name="PlayButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 66 )]
-margin_left = 88.0
-margin_right = 128.0
-margin_bottom = 26.0
-
-[node name="NextButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 68 )]
-margin_left = 132.0
-margin_right = 172.0
-margin_bottom = 26.0
-
-[node name="EndButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 70 )]
-margin_bottom = 26.0
-
-[node name="DummyLabel2" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
-margin_left = 220.0
-margin_top = 5.0
-margin_right = 235.0
-margin_bottom = 21.0
-text = "   "
-
-[node name="DelayLabel" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
-margin_left = 239.0
-margin_top = 5.0
-margin_right = 351.0
-margin_bottom = 21.0
-text = "Delay Per Frame"
-
-[node name="DelayLineEdit" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer" instance=ExtResource( 71 )]
-margin_left = 355.0
-margin_right = 425.0
-margin_bottom = 26.0
-
-[node name="DummyLabel" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
-margin_left = 429.0
-margin_top = 5.0
-margin_right = 444.0
-margin_bottom = 21.0
-text = "   "
-
-[node name="FrameInfoLabel" type="Label" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
-margin_left = 448.0
-margin_top = 5.0
-margin_right = 496.0
-margin_bottom = 21.0
-text = "1 of 30"
-script = ExtResource( 89 )
-
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer"]
-margin_top = 30.0
-margin_right = 518.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 0, 50 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer"]
-margin_right = 84.0
-margin_bottom = 40.0
-
-[node name="FrameButton" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 26 )]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="AddFrameButtonOnFramePanel" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton/DraggableWindow/HBoxContainer/FramePanel/VBoxContainer/ScrollContainer/HBoxContainer" instance=ExtResource( 65 )]
-
-[node name="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton" index="1"]
+[node name="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton" index="0"]
 anchor_left = -0.02
 anchor_right = 0.98
 margin_left = 32.0
@@ -635,6 +307,33 @@ margin_bottom = 652.0
 [node name="SubmenuPopups" type="Control" parent="UI/EditPanel"]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPopup" parent="UI/EditPanel/SubmenuPopups" instance=ExtResource( 21 )]
+margin_left = 118.0
+margin_top = 512.0
+margin_right = 673.0
+margin_bottom = 592.0
+
+[node name="SymmetryPopup" parent="UI/EditPanel/SubmenuPopups" instance=ExtResource( 6 )]
+margin_top = 465.932
+margin_bottom = 505.932
+
+[node name="SelectPopup" parent="UI/EditPanel/SubmenuPopups" instance=ExtResource( 16 )]
+margin_top = 220.26
+margin_bottom = 260.26
+
+[node name="GeometryPopup" parent="UI/EditPanel/SubmenuPopups" instance=ExtResource( 9 )]
+margin_top = 114.657
+margin_bottom = 154.656
+
+[node name="ToolSettingPopup" parent="UI/EditPanel/SubmenuPopups" instance=ExtResource( 15 )]
+margin_left = 118.682
+margin_top = 42.5874
+margin_right = 422.682
+margin_bottom = 82.5874
 
 [node name="ColorPanel" type="Panel" parent="UI"]
 self_modulate = Color( 0, 0, 0, 1 )
@@ -1018,7 +717,6 @@ __meta__ = {
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/FillButton" to="UI/EditPanel/ScrollContainer/GridContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton" to="UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton" method="_on_ChangeColorButton_pressed"]
-[connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton" to="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton/DraggableWindow/HBoxContainer/CopyButton" method="on_CopyButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton" method="_on_AddLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/GridButton" to="UI/EditPanel/ScrollContainer/GridContainer/GridButton" method="_on_GridButton_pressed"]
@@ -1034,5 +732,7 @@ __meta__ = {
 [editable path="UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton"]
 [editable path="UI/EditPanel/ScrollContainer/GridContainer/SymmetryPopupButton"]
 [editable path="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton"]
+[editable path="UI/EditPanel/SubmenuPopups/AnimationPopup"]
+[editable path="UI/EditPanel/SubmenuPopups/SelectPopup"]
 [editable path="Canvas/Frames"]
 [editable path="Canvas/Frames/Frame"]
