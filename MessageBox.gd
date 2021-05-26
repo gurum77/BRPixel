@@ -25,8 +25,8 @@ func popup_centered():
 	$Tween.stop_all()
 	modulate = Color.white
 	# background를 가득 채운다.
-	var width = ProjectSettings.get("display/window/size/width")
-	var height = ProjectSettings.get("display/window/size/height")
+	var width = get_viewport_rect().size.x#ProjectSettings.get("display/window/size/width")
+	var height = get_viewport_rect().size.y#ProjectSettings.get("display/window/size/height")
 	$BackgroundPanel.rect_global_position.x = 0
 	$BackgroundPanel.rect_global_position.y = 0
 	$BackgroundPanel.rect_size.x = width
