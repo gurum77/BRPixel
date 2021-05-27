@@ -24,7 +24,7 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputBaseFilename={#MyAppName}_setup_{#MyDate}
-SetupIconFile=E:\MyProjects\Godot\BRPixel\Assets\icon_bear.ico
+SetupIconFile=E:\Trunk_Godot\BRPixel\icon_main.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -37,8 +37,8 @@ Name: "korean"; MessagesFile: "compiler:Languages\Korean.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "E:\MyProjects\Godot\BRPixel_bin\Windows\BRPixel.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "E:\MyProjects\Godot\BRPixel_bin\Windows\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\Trunk_Godot\BRPixel_bin\Windows\BRPixel.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\Trunk_Godot\BRPixel_bin\Windows\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

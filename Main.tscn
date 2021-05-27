@@ -360,16 +360,17 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorPanel/VBoxContainer"]
+margin_top = 5.0
 margin_right = 116.0
-margin_bottom = 30.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 30 )
 alignment = 1
 
 [node name="PaletteSettingButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer"]
-margin_left = 8.0
-margin_right = 38.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+margin_left = 6.0
+margin_right = 56.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 40 )
 icon = ExtResource( 78 )
 expand_icon = true
 script = ExtResource( 80 )
@@ -381,55 +382,65 @@ margin_top = 2.00905
 margin_right = 167.289
 margin_bottom = 2.00905
 
-[node name="NumLabel" type="Label" parent="UI/ColorPanel/VBoxContainer/HBoxContainer"]
-margin_left = 42.0
-margin_top = 7.0
-margin_right = 107.0
-margin_bottom = 23.0
-rect_min_size = Vector2( 65, 0 )
-text = "1/1"
-align = 1
-script = ExtResource( 82 )
+[node name="SortButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer"]
+margin_left = 60.0
+margin_right = 110.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 40 )
+icon = ExtResource( 76 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/ColorPanel/VBoxContainer"]
-margin_top = 34.0
+margin_top = 49.0
 margin_right = 116.0
-margin_bottom = 64.0
+margin_bottom = 84.0
 rect_min_size = Vector2( 0, 30 )
 alignment = 1
 
 [node name="PrevButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer2"]
-margin_left = 9.0
-margin_right = 39.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+margin_left = 6.0
+margin_right = 56.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 40 )
 icon = ExtResource( 77 )
 expand_icon = true
 
 [node name="NextButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer2"]
-margin_left = 43.0
-margin_right = 73.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
+margin_left = 60.0
+margin_right = 110.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 40 )
 icon = ExtResource( 75 )
 expand_icon = true
 
-[node name="SortButton" type="Button" parent="UI/ColorPanel/VBoxContainer/HBoxContainer2"]
-margin_left = 77.0
-margin_right = 107.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 30 )
-icon = ExtResource( 76 )
-expand_icon = true
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/ColorPanel/VBoxContainer"]
+margin_top = 88.0
+margin_right = 116.0
+margin_bottom = 104.0
+alignment = 1
+
+[node name="NumLabel" type="Label" parent="UI/ColorPanel/VBoxContainer/HBoxContainer3"]
+margin_left = 25.0
+margin_top = 5.0
+margin_right = 90.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 65, 0 )
+text = "1/1"
+align = 1
+valign = 1
+script = ExtResource( 82 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/ColorPanel"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -113.414
-margin_top = 71.4142
-margin_right = -1.41418
-margin_bottom = 1.41418
+margin_left = -113.0
+margin_top = 112.0
+margin_right = -1.0
+margin_bottom = 1.0
 follow_focus = true
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -749,9 +760,9 @@ margin_bottom = 0.0
 [connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/GridButton" to="UI/EditPanel/ScrollContainer/GridContainer/GridButton" method="_on_GridButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/GridButton" to="UI/EditPanel/ScrollContainer/GridContainer/GridButton" method="_on_GridButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" to="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" method="_on_PaletteSettingButton_pressed"]
+[connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer/SortButton" to="UI/ColorPanel" method="_on_SortButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer2/PrevButton" to="UI/ColorPanel" method="_on_PrevButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer2/NextButton" to="UI/ColorPanel" method="_on_NextButton_pressed"]
-[connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer2/SortButton" to="UI/ColorPanel" method="_on_SortButton_pressed"]
 [connection signal="pressed" from="UI/SettingButton" to="UI/SettingButton" method="_on_SettingButton_pressed"]
 [connection signal="timeout" from="Canvas/AnimationTimer" to="Canvas" method="_on_AnimationTimer_timeout"]
 
