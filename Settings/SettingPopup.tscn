@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://DraggablePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Settings/RunOpenButton.gd" type="Script" id=2]
@@ -17,6 +17,11 @@
 [ext_resource path="res://Settings/PreviewCheckButton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://SaveFileDialog.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Fonts/neodgm_pro.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://Assets/icon_home.png" type="Texture" id=18]
+[ext_resource path="res://Assets/icon_naver.png" type="Texture" id=19]
+[ext_resource path="res://Assets/icon_email.png" type="Texture" id=20]
+[ext_resource path="res://Assets/icon_google_play.png" type="Texture" id=21]
+[ext_resource path="res://Assets/icon_onestore.png" type="Texture" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -35,8 +40,8 @@ __meta__ = {
 [node name="DraggablePopup" parent="." instance=ExtResource( 1 )]
 visible = true
 margin_left = -1.0
-margin_right = 332.0
-margin_bottom = 418.0
+margin_right = 359.0
+margin_bottom = 467.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="DraggablePopup"]
 anchor_right = 1.0
@@ -68,10 +73,10 @@ caret_blink = true
 [node name="GridContainer" type="GridContainer" parent="DraggablePopup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
+margin_left = 29.0
 margin_top = 50.0
-margin_right = -19.0
-margin_bottom = -88.0
+margin_right = -17.0
+margin_bottom = -206.0
 columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -102,6 +107,8 @@ expand_icon = true
 script = ExtResource( 2 )
 
 [node name="OpenFileDialog" parent="DraggablePopup/GridContainer/OpenButton" instance=ExtResource( 11 )]
+current_dir = "/Trunk_Godot/BRPixel"
+current_path = "/Trunk_Godot/BRPixel/"
 
 [node name="SaveButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 54.0
@@ -117,6 +124,8 @@ __meta__ = {
 }
 
 [node name="SaveFileDialog" parent="DraggablePopup/GridContainer/SaveButton" instance=ExtResource( 16 )]
+current_dir = "/Trunk_Godot/BRPixel"
+current_path = "/Trunk_Godot/BRPixel/"
 
 [node name="CanvasSizeButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_left = 149.0
@@ -163,46 +172,69 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 30.0
-margin_top = -155.0
+margin_top = -208.0
 margin_right = -30.0
-margin_bottom = -25.0
+margin_bottom = -26.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AppNameLabel" type="Label" parent="DraggablePopup/VBoxContainer"]
-margin_right = 273.0
-margin_bottom = 32.0
+margin_top = 12.0
+margin_right = 300.0
+margin_bottom = 44.0
 custom_fonts/font = SubResource( 1 )
 text = "BRPixel"
 
 [node name="VersionLabel" type="Label" parent="DraggablePopup/VBoxContainer"]
-margin_top = 36.0
-margin_right = 273.0
-margin_bottom = 52.0
+margin_top = 48.0
+margin_right = 300.0
+margin_bottom = 64.0
 text = "Version 1.0 (made by Godot 3.3)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EmailButton" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 56.0
-margin_right = 273.0
-margin_bottom = 78.0
+margin_top = 68.0
+margin_right = 300.0
+margin_bottom = 90.0
 text = "Send e-mail"
+icon = ExtResource( 20 )
+expand_icon = true
 
 [node name="HomeButton" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 82.0
-margin_right = 273.0
-margin_bottom = 104.0
+margin_top = 94.0
+margin_right = 300.0
+margin_bottom = 116.0
 text = "Go to Home page"
+icon = ExtResource( 18 )
+expand_icon = true
 
-[node name="DownloadAndroidAppButton" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 108.0
-margin_right = 273.0
-margin_bottom = 130.0
-text = "Download Android App."
+[node name="DownloadFromGooglePlay" type="Button" parent="DraggablePopup/VBoxContainer"]
+margin_top = 120.0
+margin_right = 300.0
+margin_bottom = 142.0
+text = "Download from Google play(Android)"
+icon = ExtResource( 21 )
+expand_icon = true
+
+[node name="DownloadFromOneStore" type="Button" parent="DraggablePopup/VBoxContainer"]
+margin_top = 146.0
+margin_right = 300.0
+margin_bottom = 168.0
+text = "Download from One Store(Android)"
+icon = ExtResource( 22 )
+expand_icon = true
+
+[node name="DownloadFromNaver" type="Button" parent="DraggablePopup/VBoxContainer"]
+margin_top = 172.0
+margin_right = 300.0
+margin_bottom = 194.0
+text = "Download from Naver(PC)"
+icon = ExtResource( 19 )
+expand_icon = true
 
 [connection signal="text_changed" from="DraggablePopup/HBoxContainer/ProjectNameLabel" to="." method="_on_ProjectNameLabel_text_changed"]
 [connection signal="pressed" from="DraggablePopup/GridContainer/NewButton" to="." method="_on_NewButton_pressed"]
@@ -214,4 +246,6 @@ text = "Download Android App."
 [connection signal="pressed" from="DraggablePopup/GridContainer/LanguageButton" to="." method="_on_LanguageButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/VBoxContainer/EmailButton" to="." method="_on_EmailButton_pressed"]
 [connection signal="pressed" from="DraggablePopup/VBoxContainer/HomeButton" to="." method="_on_HomeButton_pressed"]
-[connection signal="pressed" from="DraggablePopup/VBoxContainer/DownloadAndroidAppButton" to="." method="_on_DownloadAndroidAppButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/VBoxContainer/DownloadFromGooglePlay" to="." method="_on_DownloadAndroidAppButton_pressed"]
+[connection signal="pressed" from="DraggablePopup/VBoxContainer/DownloadFromOneStore" to="." method="_on_DownloadFromOneStore_pressed"]
+[connection signal="pressed" from="DraggablePopup/VBoxContainer/DownloadFromNaver" to="." method="_on_DownloadFromNaver_pressed"]

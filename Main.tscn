@@ -360,7 +360,6 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorPanel/VBoxContainer"]
-margin_top = 5.0
 margin_right = 116.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 30 )
@@ -394,7 +393,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/ColorPanel/VBoxContainer"]
-margin_top = 49.0
+margin_top = 44.0
 margin_right = 116.0
 margin_bottom = 84.0
 rect_min_size = Vector2( 0, 30 )
@@ -424,7 +423,6 @@ alignment = 1
 
 [node name="NumLabel" type="Label" parent="UI/ColorPanel/VBoxContainer/HBoxContainer3"]
 margin_left = 25.0
-margin_top = 5.0
 margin_right = 90.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 65, 0 )

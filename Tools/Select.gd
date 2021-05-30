@@ -57,9 +57,11 @@ func drawing_area_input(_event):
 			start_point = get_local_mouse_position()
 			start_point.x = start_point.x as int
 			start_point.y = start_point.y as int
+			end_point.x = start_point.x + 1
+			end_point.y = end_point.y + 1
 			pressed = true
 			# 마우스를 클릭할때 preview grip을 만든다
-			make_grips(true)
+			make_grips(true, false)
 		elif InputManager.is_action_just_released_lbutton(_event):
 			if pressed:
 				end_point = get_local_mouse_position()
@@ -145,11 +147,12 @@ func set_selected_area_by_grip_points():
 	StaticData.set_selected_area(get_grip_points())
 	
 # grip을 다시 만든다.
-func make_grips(preview):
+func make_grips(preview, clear_when_same_points=true):
 	clear_grips()
-	if start_point.is_equal_approx(end_point):
-		StaticData.clear_selected_area()
-		return
+	if clear_when_same_points:
+		if start_point.is_equal_approx(end_point):
+			StaticData.clear_selected_area()
+			return
 		
 	grips.append(make_grip(Grip.Type.left_bottom, preview))
 	grips.append(make_grip(Grip.Type.right_bottom, preview))

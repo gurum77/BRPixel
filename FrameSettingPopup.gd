@@ -52,9 +52,11 @@ func _on_DuplicateButton_pressed():
 	for i in new_normal_layers.size():
 		if i >= selected_normal_layers.size():
 			continue
-		var new_normal_layer = new_normal_layers[i]
+		var new_normal_layer = new_normal_layers[i] as Layer
 		var selected_normal_layer = selected_normal_layers[i]
 		new_normal_layer.copy_image(selected_normal_layer.image, new_normal_layer.image, 0, 0)
+		new_normal_layer.update_texture()
+		
 		
 	# 새로운 frame의 위치를 selected_frame 뒤로 이동
 	var selected_frame_index = NodeManager.get_frames().get_child_index(selected_frame)

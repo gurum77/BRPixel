@@ -66,3 +66,11 @@ func _on_EmailButton_pressed():
 
 func _on_DownloadAndroidAppButton_pressed():
 	var _result = OS.shell_open("https://play.google.com/store/apps/details?id=com.br.brpixel")
+
+
+func _on_DownloadFromNaver_pressed():
+	var _result = OS.shell_open("https://software.naver.com/software/summary.nhn?softwareId=GWS_003514")
+
+
+func _on_DownloadFromOneStore_pressed():
+	var _result = OS.shell_open("https://onesto.re/00756006")
