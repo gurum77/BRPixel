@@ -1,6 +1,7 @@
 extends ColorRect
 
 var colors = []
+var selected_x = 0
 func _draw():
 	var width = rect_size.x
 	var height = rect_size.y
@@ -19,6 +20,10 @@ func _draw():
 		var from = Vector2(x, 0)
 		var to = Vector2(x, height)
 		draw_line(from, to, color, 2, false)
+	
+
+func get_selected_color()->Color:
+	return get_color_by_x(selected_x)
 	
 func get_color_count():
 	return (colors.size()-1) * 255
@@ -44,10 +49,11 @@ func get_color_by_index(idx)->Color:
 	var offset = idx - (array_idx * 255)
 	return get_color_by_offset(cur_color, next_color, offset)
 
+
 func get_color_by_offset(cur_color:Color, next_color:Color, offset)->Color:
 	return cur_color.linear_interpolate(next_color, offset/255.0)
 
-	
+
 func _ready():
 	colors.append(Color8(255, 0, 0))
 	colors.append(Color8(255, 255, 0))
@@ -58,3 +64,5 @@ func _ready():
 	colors.append(Color8(255, 0, 0))
 
 	update()
+
+

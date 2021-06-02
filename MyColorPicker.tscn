@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://FirstColorSelector.gd" type="Script" id=1]
+[ext_resource path="res://LastColorSelector.gd" type="Script" id=2]
+[ext_resource path="res://FirstColorSelectorLine.gd" type="Script" id=3]
+[ext_resource path="res://SelectedColorButton.gd" type="Script" id=4]
+[ext_resource path="res://LastColorSelectorLine.gd" type="Script" id=5]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=6]
+[ext_resource path="res://DraggableWindow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ColorValueSlider.tscn" type="PackedScene" id=8]
 
 [node name="MyColorPicker" type="Panel"]
 margin_right = 175.0
@@ -13,6 +20,15 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -50.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LastColorSelectorLine" type="TextureRect" parent="LastColorSelector"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
 
 [node name="FirstColorSelector" type="ColorRect" parent="."]
 anchor_top = 1.0
@@ -27,12 +43,81 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SelectedColorButton" type="Button" parent="."]
+[node name="FirstColorSelectorLine" type="TextureRect" parent="FirstColorSelector"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedColorButton" type="TextureButton" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -22.0
-text = "255,255,0"
+texture_normal = ExtResource( 6 )
+expand = true
+script = ExtResource( 4 )
+
+[node name="ColorInfo" type="Label" parent="SelectedColorButton"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "255,0,0"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Controller" parent="SelectedColorButton" instance=ExtResource( 7 )]
+margin_left = 183.0
+margin_top = -124.0
+margin_right = 512.0
+margin_bottom = 34.0
+hide_close_button = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectedColorButton/Controller"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectedColorButton/Controller/VBoxContainer"]
+margin_right = 319.0
+margin_bottom = 22.0
+
+[node name="RGBButton" type="Button" parent="SelectedColorButton/Controller/VBoxContainer/HBoxContainer"]
+margin_right = 36.0
+margin_bottom = 22.0
+text = "RGB"
+
+[node name="HSBButton" type="Button" parent="SelectedColorButton/Controller/VBoxContainer/HBoxContainer"]
+margin_left = 40.0
+margin_right = 76.0
+margin_bottom = 22.0
+text = "HSB"
+
+[node name="RValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
+
+[node name="GValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 56.0
+margin_bottom = 82.0
+
+[node name="BValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 86.0
+margin_bottom = 112.0
+
+[node name="AValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 116.0
+margin_bottom = 142.0
+
+[connection signal="gui_input" from="LastColorSelector/LastColorSelectorLine" to="LastColorSelector/LastColorSelectorLine" method="_on_LastColorSelectorLine_gui_input"]
+[connection signal="gui_input" from="FirstColorSelector/FirstColorSelectorLine" to="FirstColorSelector/FirstColorSelectorLine" method="_on_FirstColorSelectorLine_gui_input"]
+[connection signal="pressed" from="SelectedColorButton" to="SelectedColorButton" method="_on_SelectedColorButton_pressed"]
