@@ -172,7 +172,7 @@ _global_script_classes=[ {
 "base": "Panel",
 "class": "MyColorPicker",
 "language": "GDScript",
-"path": "res://MyColorPicker.gd"
+"path": "res://Tools/MyColorPicker/MyColorPicker.gd"
 }, {
 "base": "TextureRectButton",
 "class": "OpenButton",

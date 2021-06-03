@@ -61,12 +61,10 @@ func set_selected_color8_value(color8_value):
 	elif value_type == valueType.A:
 		color.a8 = color8_value
 	elif value_type == valueType.H:
-		if color8_value > 0:
-			var hv = color8_value as float / 360.0
-			print(hv)
-			print(color.s)
-			print(color.v)
-			color = color.from_hsv(hv, color.s, color.v)
+		if color8_value == 0:
+			color.h = 0
+		else:
+			color.h = color8_value / 360.0
 	elif value_type == valueType.S:
 		if color8_value == 0:
 			color.s = 0

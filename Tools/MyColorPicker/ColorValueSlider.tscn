@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ColorValueSlider.gd" type="Script" id=1]
-[ext_resource path="res://ColorValueTextLabel.gd" type="Script" id=3]
+[ext_resource path="res://Tools/MyColorPicker/ColorValueSlider.gd" type="Script" id=1]
 
 [node name="ColorValueSlider" type="VBoxContainer"]
 margin_top = 26.0
@@ -24,7 +23,6 @@ rect_min_size = Vector2( 30, 26 )
 text = "R"
 align = 1
 valign = 1
-script = ExtResource( 3 )
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer"]
 margin_left = 34.0

@@ -21,13 +21,13 @@ func _draw():
 	# 255,  0,255
 	# 255,  0,  0
 
-	
-	for x in width:
-		var color = get_color_by_x(x)
-		var from = Vector2(x, 0)
-		var to = Vector2(x, height)
-		draw_line(from, to, color, 2, false)
-	
+	var points = []
+	var offset = width / (colors.size()-1)
+	for x in colors.size():
+		points.append(Vector2(x * offset, height/2))
+		
+	draw_polyline_colors(points, colors, height)
+
 
 func get_color_on_mouse()->Color:
 	return get_color_by_x(selected_x)

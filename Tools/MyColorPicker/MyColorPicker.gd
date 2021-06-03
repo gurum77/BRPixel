@@ -11,6 +11,8 @@ onready var avalue_slider = $SelectedColorButton/Controller/VBoxContainer/AValue
 onready var hvalue_slider = $SelectedColorButton/Controller/VBoxContainer/HValueSlider
 onready var svalue_slider = $SelectedColorButton/Controller/VBoxContainer/SValueSlider
 onready var vvalue_slider = $SelectedColorButton/Controller/VBoxContainer/VValueSlider
+
+	
 func get_selected_color()->Color:
 	return selected_color
 	
