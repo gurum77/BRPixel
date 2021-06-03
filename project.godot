@@ -169,6 +169,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://MessageBox.gd"
 }, {
+"base": "Panel",
+"class": "MyColorPicker",
+"language": "GDScript",
+"path": "res://MyColorPicker.gd"
+}, {
 "base": "TextureRectButton",
 "class": "OpenButton",
 "language": "GDScript",
@@ -292,6 +297,7 @@ _global_script_class_icons={
 "Layers": "",
 "LineTool": "",
 "MessageBox": "",
+"MyColorPicker": "",
 "OpenButton": "",
 "OriginPixel": "",
 "Palette": "",

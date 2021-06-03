@@ -1,10 +1,14 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ColorValueSlider.gd" type="Script" id=1]
+[ext_resource path="res://ColorValueTextLabel.gd" type="Script" id=3]
 
 [node name="ColorValueSlider" type="VBoxContainer"]
 margin_top = 26.0
 margin_right = 319.0
 margin_bottom = 52.0
 alignment = 1
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -13,13 +17,14 @@ __meta__ = {
 margin_right = 319.0
 margin_bottom = 26.0
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="ColorValueTextLabel" type="Label" parent="HBoxContainer"]
 margin_right = 30.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 30, 26 )
 text = "R"
 align = 1
 valign = 1
+script = ExtResource( 3 )
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer"]
 margin_left = 34.0
@@ -28,10 +33,12 @@ margin_bottom = 26.0
 rect_min_size = Vector2( 200, 26 )
 max_value = 255.0
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
+[node name="ColorValueLineEdit" type="LineEdit" parent="HBoxContainer"]
 margin_left = 238.0
 margin_right = 308.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 60, 26 )
 text = "255"
 align = 1
+
+[connection signal="text_changed" from="HBoxContainer/ColorValueLineEdit" to="." method="_on_ColorValueLineEdit_text_changed"]

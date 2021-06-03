@@ -6,7 +6,7 @@ onready var last_color_selector_line = get_parent().get_parent().get_node("LastC
 func _draw():
 	var from = Vector2(first_color_selector.selected_x, 0)
 	var to = Vector2(first_color_selector.selected_x, rect_size.y)
-	var selected_color_line = first_color_selector.get_selected_color().blend(Color.red)
+	var selected_color_line = first_color_selector.get_color_on_mouse().blend(Color.red)
 	draw_line(from, to, selected_color_line, 1)
 	
 # 누르고 있는 동안 계속해서 selected_color 변수를 갱신한다.

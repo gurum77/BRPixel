@@ -3,7 +3,7 @@ extends ColorRect
 var selected_x = 0
 var selected_y = 0
 
-func get_selected_color()->Color:
+func get_color_on_mouse()->Color:
 	var color = get_base_color()
 	# x 방향 보간
 	var factor = selected_x / rect_size.x
@@ -27,7 +27,7 @@ func _draw():
 	draw_polygon(points, colors)
 	
 func get_base_color()->Color:
-	return get_parent().get_node("FirstColorSelector").get_selected_color()
+	return get_parent().get_node("FirstColorSelector").get_color_on_mouse()
 	
 func _ready():
 	update()

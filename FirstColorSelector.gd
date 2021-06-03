@@ -22,7 +22,7 @@ func _draw():
 		draw_line(from, to, color, 2, false)
 	
 
-func get_selected_color()->Color:
+func get_color_on_mouse()->Color:
 	return get_color_by_x(selected_x)
 	
 func get_color_count():
