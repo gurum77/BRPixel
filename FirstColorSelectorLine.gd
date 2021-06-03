@@ -9,6 +9,9 @@ func _draw():
 	var selected_color_line = first_color_selector.get_color_on_mouse().blend(Color.red)
 	draw_line(from, to, selected_color_line, 1)
 	
+
+	
+	
 # 누르고 있는 동안 계속해서 selected_color 변수를 갱신한다.
 func _on_FirstColorSelectorLine_gui_input(event):
 	if InputManager.is_action_pressed_lbutton(event):

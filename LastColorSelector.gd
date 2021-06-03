@@ -3,6 +3,12 @@ extends ColorRect
 var selected_x = 0
 var selected_y = 0
 
+func reposition_selected_xy():
+	var selected_color:Color = get_parent().get_selected_color()
+	selected_x = rect_size.x * selected_color.s
+	selected_y = rect_size.y * (1 - selected_color.v)
+	$LastColorSelectorLine.update()
+	
 func get_color_on_mouse()->Color:
 	var color = get_base_color()
 	# x 방향 보간

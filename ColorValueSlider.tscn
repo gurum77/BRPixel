@@ -40,5 +40,9 @@ margin_bottom = 26.0
 rect_min_size = Vector2( 60, 26 )
 text = "255"
 align = 1
+caret_blink = true
 
+[connection signal="value_changed" from="HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="focus_entered" from="HBoxContainer/ColorValueLineEdit" to="." method="_on_ColorValueLineEdit_focus_entered"]
+[connection signal="focus_exited" from="HBoxContainer/ColorValueLineEdit" to="." method="_on_ColorValueLineEdit_focus_exited"]
 [connection signal="text_changed" from="HBoxContainer/ColorValueLineEdit" to="." method="_on_ColorValueLineEdit_text_changed"]

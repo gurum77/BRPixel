@@ -8,6 +8,8 @@ export var full_screen = false
 export var hide_close_button = false
 
 func _ready():
+	$VBoxContainer/HBoxContainer/Tabs.add_tab("RGB")
+	$VBoxContainer/HBoxContainer/Tabs.add_tab("HSV")
 	if full_screen:
 		var size = get_viewport_rect().size
 		rect_global_position = Vector2.ZERO

@@ -2,6 +2,13 @@ extends ColorRect
 
 var colors = []
 var selected_x = 0
+
+# selected color에 맞게 line의 위치를 다시 잡는다.
+func reposition_selected_x():
+	var selected_color:Color = get_parent().get_selected_color()
+	selected_x = rect_size.x * selected_color.h
+	$FirstColorSelectorLine.update()
+	
 func _draw():
 	var width = rect_size.x
 	var height = rect_size.y

@@ -17,6 +17,7 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+selected_color = Color( 0.337255, 0.611765, 0.227451, 1 )
 
 [node name="LastColorSelector" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -91,43 +92,67 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
 margin_top = 5.0
-margin_right = -5.0
+margin_right = -6.0
 margin_bottom = -5.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SelectedColorButton/Controller/VBoxContainer"]
-margin_right = 319.0
-margin_bottom = 22.0
+margin_right = 318.0
+margin_bottom = 26.0
 
-[node name="RGBButton" type="Button" parent="SelectedColorButton/Controller/VBoxContainer/HBoxContainer"]
-margin_right = 36.0
-margin_bottom = 22.0
-text = "RGB"
-
-[node name="HSBButton" type="Button" parent="SelectedColorButton/Controller/VBoxContainer/HBoxContainer"]
-margin_left = 40.0
-margin_right = 76.0
-margin_bottom = 22.0
-text = "HSB"
+[node name="Tabs" type="Tabs" parent="SelectedColorButton/Controller/VBoxContainer/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 200, 0 )
+tab_align = 0
 
 [node name="RValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
+margin_top = 30.0
+margin_right = 318.0
+margin_bottom = 56.0
 
 [node name="GValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
-margin_top = 56.0
-margin_bottom = 82.0
+margin_top = 60.0
+margin_right = 318.0
+margin_bottom = 86.0
 value_type = 1
 
 [node name="BValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
-margin_top = 86.0
-margin_bottom = 112.0
+margin_top = 90.0
+margin_right = 318.0
+margin_bottom = 116.0
 value_type = 2
 
+[node name="HValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
+visible = false
+margin_top = 120.0
+margin_right = 318.0
+margin_bottom = 146.0
+value_type = 4
+
+[node name="SValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
+visible = false
+margin_top = 120.0
+margin_right = 318.0
+margin_bottom = 146.0
+value_type = 5
+
+[node name="VValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
+visible = false
+margin_top = 120.0
+margin_right = 318.0
+margin_bottom = 146.0
+value_type = 6
+
 [node name="AValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
-margin_top = 116.0
-margin_bottom = 142.0
+margin_top = 120.0
+margin_right = 318.0
+margin_bottom = 146.0
+value_type = 3
 
 [connection signal="gui_input" from="LastColorSelector/LastColorSelectorLine" to="LastColorSelector/LastColorSelectorLine" method="_on_LastColorSelectorLine_gui_input"]
 [connection signal="gui_input" from="FirstColorSelector/FirstColorSelectorLine" to="FirstColorSelector/FirstColorSelectorLine" method="_on_FirstColorSelectorLine_gui_input"]
 [connection signal="pressed" from="SelectedColorButton" to="SelectedColorButton" method="_on_SelectedColorButton_pressed"]
+[connection signal="tab_changed" from="SelectedColorButton/Controller/VBoxContainer/HBoxContainer/Tabs" to="." method="_on_Tabs_tab_changed"]
