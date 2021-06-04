@@ -95,7 +95,7 @@ func get_selected_color8_value()->int:
 		return (selected_color.v * 100.0) as int
 	return 0
 	
-func _process(delta):
+func _process(_delta):
 	if visible:
 		if color_value_line_edit != null && !is_focus_entered_line_edit:
 			color_value_line_edit.text = str(get_selected_color8_value())

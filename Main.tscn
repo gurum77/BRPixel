@@ -10,7 +10,6 @@
 [ext_resource path="res://ToolButtons/SaveButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://GeometryPopup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ToolButtons/OpenButton.tscn" type="PackedScene" id=10]
-[ext_resource path="res://ToolButtons/ColorPickerButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ToolButtons/EraserButton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ToolButtons/SubmenuPopupButton.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
@@ -46,6 +45,7 @@
 [ext_resource path="res://SettingButton.gd" type="Script" id=44]
 [ext_resource path="res://Tools/BrighterButton.tscn" type="PackedScene" id=45]
 [ext_resource path="res://PickColorFromCanvasButton.gd" type="Script" id=46]
+[ext_resource path="res://Tools/MyColorPicker/MyColorPickerButton.tscn" type="PackedScene" id=47]
 [ext_resource path="res://Tools/DarkerButton.tscn" type="PackedScene" id=53]
 [ext_resource path="res://ToolButtons/TileModeButton.tscn" type="PackedScene" id=55]
 [ext_resource path="res://Canvas/TileModeManager.tscn" type="PackedScene" id=56]
@@ -108,7 +108,7 @@ __meta__ = {
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="DrawingArea" parent="UI" instance=ExtResource( 20 )]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 0.752941, 0.137255, 0.137255, 0 )
 anchor_left = 0.00104284
 anchor_right = 1.00104
 margin_left = 109.998
@@ -142,7 +142,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorPickerButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 11 )]
+[node name="MyColorPickerButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 47 )]
+margin_right = 50.0
+margin_bottom = 50.0
 
 [node name="ToolSettingPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
@@ -745,6 +747,7 @@ margin_bottom = 0.0
 margin_right = 0.0
 margin_bottom = 0.0
 
+[connection signal="color_changed" from="UI/EditPanel/ScrollContainer/GridContainer/MyColorPickerButton" to="UI/EditPanel/ScrollContainer/GridContainer/MyColorPickerButton" method="_on_MyColorPickerButton_color_changed"]
 [connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
 [connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/FillButton" to="UI/EditPanel/ScrollContainer/GridContainer/FillButton" method="_on_FillButton_gui_input"]

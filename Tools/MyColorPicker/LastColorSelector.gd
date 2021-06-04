@@ -27,7 +27,6 @@ func _draw():
 	# 좌측하단은 0, 0, 0
 	# 우측하단은 0, 0, 0
 	var base_color = get_base_color()
-	var rect = Rect2(0, 0, width, height)
 	var points = [Vector2(0, 0), Vector2(width, 0), Vector2(width, height), Vector2(0, height), Vector2(0, 0)]
 	var colors = [Color.white, base_color, Color.black, Color.black, Color.white]
 	draw_polygon(points, colors)

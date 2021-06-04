@@ -46,7 +46,8 @@ func _on_ColorButton_gui_input(event):
 				if !empty_color:
 					StaticData.current_color = self_modulate
 				else:
-					NodeManager.get_color_picker_button().emit_signal("button_up")
+					if NodeManager.get_color_picker_button() != null:
+						NodeManager.get_color_picker_button().emit_signal("button_up")
 			pressed_position = null
 		
 			

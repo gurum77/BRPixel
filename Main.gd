@@ -70,3 +70,7 @@ func _input(event):
 		NodeManager.get_undo_button().on_UndoButton_pressed()
 	elif event.is_action_pressed("redo"):
 		NodeManager.get_redo_button().on_RedoButton_pressed()
+
+
+
+

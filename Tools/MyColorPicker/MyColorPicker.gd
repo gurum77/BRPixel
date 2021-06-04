@@ -1,5 +1,7 @@
 extends Panel
 
+signal color_changed(color)
+
 class_name MyColorPicker
 
 export (Color) var selected_color = Color.red	
@@ -19,6 +21,7 @@ func get_selected_color()->Color:
 # 현재 색을 지정해서 first color selectr와 last color select의 x / y 값을 정한다.
 func set_selected_color(color):
 	selected_color = color
+	emit_signal("color_changed", selected_color)
 	pass
 	
 	
@@ -30,7 +33,6 @@ func _ready():
 	hvalue_slider.my_color_picker = self
 	svalue_slider.my_color_picker = self
 	vvalue_slider.my_color_picker = self
-	
 	
 	reposition_selectors()
 

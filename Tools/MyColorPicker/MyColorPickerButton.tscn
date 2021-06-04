@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Tools/MyColorPicker/MyColorPickerButton.gd" type="Script" id=1]
-[ext_resource path="res://Tools/MyColorPicker/MyColorPicker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/icon_transparent_rect.png" type="Texture" id=3]
-[ext_resource path="res://white_rect_1x1.png" type="Texture" id=4]
+[ext_resource path="res://Tools/MyColorPicker/ColorTexture.gd" type="Script" id=5]
 
 [node name="MyColorPickerButton" type="Button"]
 margin_right = 30.0
@@ -22,19 +21,9 @@ margin_right = -3.0
 margin_bottom = -3.0
 texture = ExtResource( 3 )
 expand = true
-
-[node name="BackgroundPanel" type="TextureButton" parent="."]
-self_modulate = Color( 1, 1, 1, 0.0941176 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 728.0
-margin_bottom = 268.0
-texture_normal = ExtResource( 4 )
-expand = true
-
-[node name="MyColorPicker" parent="." instance=ExtResource( 2 )]
-margin_left = 61.0
-margin_right = 236.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="." to="." method="_on_MyColorPickerButton_pressed"]
-[connection signal="pressed" from="BackgroundPanel" to="." method="_on_BackgroundPanel_pressed"]

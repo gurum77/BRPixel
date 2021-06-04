@@ -4,7 +4,7 @@ var bar_swipe = 0
 func _ready():
 	v_bar_lenght = $ScrollContainer.get_v_scrollbar().get_instance_id()
 	
-func _gui_input(event):
+func _gui_input(_event):
 	pass
 #		if event is InputEventScreenDrag:
 #			if (event.relative.y > 1):
