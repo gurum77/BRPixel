@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Tools/MyColorPicker/FirstColorSelector.gd" type="Script" id=1]
 [ext_resource path="res://Tools/MyColorPicker/LastColorSelector.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Tools/MyColorPicker/ColorValueSlider.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Tools/MyColorPicker/MyColorPicker.gd" type="Script" id=9]
 [ext_resource path="res://Tools/MyColorPicker/MyColorPickerController.gd" type="Script" id=10]
+[ext_resource path="res://Tools/MyColorPicker/ColorLineEdit.gd" type="Script" id=11]
 
 [node name="MyColorPicker" type="Panel"]
 margin_right = 175.0
@@ -105,10 +106,19 @@ margin_right = 318.0
 margin_bottom = 26.0
 
 [node name="Tabs" type="Tabs" parent="SelectedColorButton/Controller/VBoxContainer/HBoxContainer"]
-margin_right = 200.0
+margin_right = 170.0
 margin_bottom = 26.0
-rect_min_size = Vector2( 200, 0 )
+rect_min_size = Vector2( 170, 0 )
 tab_align = 0
+
+[node name="ColorLineEdit" type="LineEdit" parent="SelectedColorButton/Controller/VBoxContainer/HBoxContainer"]
+margin_left = 174.0
+margin_right = 244.0
+margin_bottom = 26.0
+focus_mode = 1
+text = "ffffff"
+clear_button_enabled = true
+script = ExtResource( 11 )
 
 [node name="RValueSlider" parent="SelectedColorButton/Controller/VBoxContainer" instance=ExtResource( 8 )]
 margin_top = 30.0
@@ -158,3 +168,6 @@ value_type = 3
 [connection signal="gui_input" from="FirstColorSelector/FirstColorSelectorLine" to="FirstColorSelector/FirstColorSelectorLine" method="_on_FirstColorSelectorLine_gui_input"]
 [connection signal="pressed" from="SelectedColorButton" to="SelectedColorButton" method="_on_SelectedColorButton_pressed"]
 [connection signal="tab_changed" from="SelectedColorButton/Controller/VBoxContainer/HBoxContainer/Tabs" to="." method="_on_Tabs_tab_changed"]
+[connection signal="focus_entered" from="SelectedColorButton/Controller/VBoxContainer/HBoxContainer/ColorLineEdit" to="SelectedColorButton/Controller/VBoxContainer/HBoxContainer/ColorLineEdit" method="_on_ColorLineEdit_focus_entered"]
+[connection signal="focus_exited" from="SelectedColorButton/Controller/VBoxContainer/HBoxContainer/ColorLineEdit" to="SelectedColorButton/Controller/VBoxContainer/HBoxContainer/ColorLineEdit" method="_on_ColorLineEdit_focus_exited"]
+[connection signal="text_changed" from="SelectedColorButton/Controller/VBoxContainer/HBoxContainer/ColorLineEdit" to="SelectedColorButton/Controller/VBoxContainer/HBoxContainer/ColorLineEdit" method="_on_ColorLineEdit_text_changed"]

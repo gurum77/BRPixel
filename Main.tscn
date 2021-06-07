@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ToolButtons/SaveButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://GeometryPopup.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ToolButtons/OpenButton.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ToolButtons/MainColorPickerButton.gd" type="Script" id=11]
 [ext_resource path="res://ToolButtons/EraserButton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ToolButtons/SubmenuPopupButton.tscn" type="PackedScene" id=13]
 [ext_resource path="res://ToolButtons/FillButton.gd" type="Script" id=14]
@@ -145,6 +146,7 @@ __meta__ = {
 [node name="MyColorPickerButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 47 )]
 margin_right = 50.0
 margin_bottom = 50.0
+script = ExtResource( 11 )
 
 [node name="ToolSettingPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
 margin_left = 54.0
@@ -760,6 +762,7 @@ margin_bottom = 0.0
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" to="UI/EditPanel/ScrollContainer/GridContainer/DeleteLayerButton" method="_on_DeleteLayerButton_pressed"]
 [connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/GridButton" to="UI/EditPanel/ScrollContainer/GridContainer/GridButton" method="_on_GridButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/GridButton" to="UI/EditPanel/ScrollContainer/GridContainer/GridButton" method="_on_GridButton_pressed"]
+[connection signal="pressed" from="UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/CutButton" to="UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/CutButton" method="on_CopyButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" to="UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton" method="_on_PaletteSettingButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer/SortButton" to="UI/ColorPanel" method="_on_SortButton_pressed"]
 [connection signal="pressed" from="UI/ColorPanel/VBoxContainer/HBoxContainer2/PrevButton" to="UI/ColorPanel" method="_on_PrevButton_pressed"]

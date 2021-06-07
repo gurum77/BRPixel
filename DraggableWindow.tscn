@@ -29,5 +29,6 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]

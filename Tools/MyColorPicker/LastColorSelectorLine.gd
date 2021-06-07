@@ -27,7 +27,7 @@ func _on_LastColorSelectorLine_gui_input(event):
 		
 		# 최종 선택 색을 지정
 		var selected_color = last_color_selector.get_color_on_mouse()
-		my_color_picker.set_selected_color(selected_color)
+		my_color_picker.change_selected_color(selected_color)
 	
 		update()
 		last_color_selector.update()

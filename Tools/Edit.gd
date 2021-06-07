@@ -91,7 +91,11 @@ func finish_edit():
 	# 단, preview layer를 사용한 경우에는 지우지 않는다.
 	if !use_preview_layer:
 		UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer_by_Rect(origin_selected_area)
-		NodeManager.get_current_layer().erase_pixels_by_rect(origin_selected_area, false)
+		var erase_area:Rect2 = origin_selected_area
+		# 선택영역의 end point는 실제 셀 위치보다 1개 크다.하나 줄여서 삭제해야한다.
+		erase_area.end.x = erase_area.end.x - 1
+		erase_area.end.y = erase_area.end.y - 1
+		NodeManager.get_current_layer().erase_pixels_by_rect(erase_area, false)
 	
 	# 이미지를 preview layer에 그린다.
 	NodeManager.get_current_layer().copy_image(resized_image, NodeManager.get_current_layer().image, StaticData.selected_area.position.x, StaticData.selected_area.position.y)

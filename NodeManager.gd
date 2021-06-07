@@ -25,8 +25,8 @@ var drawing_area:Control = null
 var camera:Camera2D = null
 var copy_button:Button = null
 var cut_button:Button = null
-var redo_button:Button = null
-var undo_button:Button = null
+var redo_button:TextureRect = null
+var undo_button:TextureRect = null
 var select_popup_button:TextureRectButton = null
 var open_button:OpenButton = null
 var save_button:SaveButton = null
@@ -47,12 +47,12 @@ func get_select_popup_button()->TextureRectButton:
 		select_popup_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/SelectPopupButton")
 	return select_popup_button
 	
-func get_undo_button()->Button:
+func get_undo_button()->TextureRect:
 	if undo_button == null:
 		undo_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/UndoButton")
 	return undo_button
 	
-func get_redo_button()->Button:
+func get_redo_button()->TextureRect:
 	if redo_button == null:
 		redo_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/RedoButton")
 	return redo_button

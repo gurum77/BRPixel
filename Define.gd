@@ -12,7 +12,7 @@ var min_delay_per_frame = 0.001
 var max_delay_per_frame = 10
 
 var darker_amount = 0.1
-var brighter_amount = 0.1
+var brighter_amount = 0.2
 
 var fileThumbnailTexture:StreamTexture = preload("res://Assets/icon_file.png")
 var directoryThumbnailTexture:StreamTexture = preload("res://Assets/icon_directory.png")

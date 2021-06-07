@@ -1,6 +1,8 @@
 extends Control
 class_name Grip
 signal moved()
+signal start_drag()
+signal end_drag()
 
 enum Type{left_bottom, right_bottom, right_top, left_top}
 var type = Type.left_bottom
@@ -84,6 +86,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if pressed:
 			end_point = get_global_mouse_position_as_int()
+			emit_signal("start_drag")
 			drag()
 		
 	if InputManager.is_action_just_pressed_lbutton(event):
@@ -97,6 +100,7 @@ func _input(event):
 			end_point = get_global_mouse_position_as_int()
 			pressed = false		
 			StaticData.dragging_grip = false
+			emit_signal("end_drag")
 		
 func drag():
 	rect_position = end_point

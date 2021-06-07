@@ -1,4 +1,5 @@
 extends Button
+class_name MyColorPickerButton
 signal color_changed(color)
 export (Color) var selected_color = Color.white
 
@@ -36,7 +37,7 @@ func _on_MyColorPickerButton_pressed():
 	my_color_picker.set_selected_color(selected_color)
 	my_color_picker.reposition_selectors()
 	my_color_picker.visible = true
-	my_color_picker.rect_position = rect_position + Vector2(rect_size.x, 0)
+	my_color_picker.popup_centered()# .rect_position = rect_position + Vector2(rect_size.x, 0)
 
 
 
@@ -44,23 +45,17 @@ func _on_BackgroundPanel_pressed():
 	background_panel.visible = false
 	my_color_picker.visible = false
 
-
+func change_selected_color(color):
+	set_selected_color(color)
+	emit_signal("color_changed", selected_color)
+	
 func set_selected_color(color):
 	selected_color = color
-	StaticData.current_color = selected_color
 	color_texture.modulate = selected_color
 	color_texture.update()
-	emit_signal("color_changed", selected_color)
+	
 	
 # 색이 바뀌면 호출된다.
 func _on_MyColorPicker_color_changed(color):
-	set_selected_color(color)
+	change_selected_color(color)
 	
-
-func _process(_delta):
-	if selected_color != StaticData.current_color:
-		set_selected_color(StaticData.current_color)
-
-
-func _on_MyColorPickerButton_color_changed(color):
-	StaticData.current_color = color

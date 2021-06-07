@@ -179,6 +179,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Tools/MyColorPicker/MyColorPicker.gd"
 }, {
+"base": "Button",
+"class": "MyColorPickerButton",
+"language": "GDScript",
+"path": "res://Tools/MyColorPicker/MyColorPickerButton.gd"
+}, {
+"base": "LineEdit",
+"class": "MyLineEdit",
+"language": "GDScript",
+"path": "res://MyLineEdit.gd"
+}, {
 "base": "TextureRectButton",
 "class": "OpenButton",
 "language": "GDScript",
@@ -304,6 +314,8 @@ _global_script_class_icons={
 "LineTool": "",
 "MessageBox": "",
 "MyColorPicker": "",
+"MyColorPickerButton": "",
+"MyLineEdit": "",
 "OpenButton": "",
 "OriginPixel": "",
 "Palette": "",

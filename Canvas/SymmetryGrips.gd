@@ -21,10 +21,28 @@ func _ready():
 	horizontal_grip2.connect("moved", self, "on_grip_moved", [horizontal_grip2])
 	vertical_grip1.connect("moved", self, "on_grip_moved", [vertical_grip1])
 	vertical_grip2.connect("moved", self, "on_grip_moved", [vertical_grip2])
+	
+	horizontal_grip1.connect("start_drag", self, "on_grip_start_drag", [horizontal_grip1])
+	horizontal_grip2.connect("start_drag", self, "on_grip_start_drag", [horizontal_grip2])
+	vertical_grip1.connect("start_drag", self, "on_grip_start_drag", [vertical_grip1])
+	vertical_grip2.connect("start_drag", self, "on_grip_start_drag", [vertical_grip2])
+	
+	horizontal_grip1.connect("end_drag", self, "on_grip_end_drag", [horizontal_grip1])
+	horizontal_grip2.connect("end_drag", self, "on_grip_end_drag", [horizontal_grip2])
+	vertical_grip1.connect("end_drag", self, "on_grip_end_drag", [vertical_grip1])
+	vertical_grip2.connect("end_drag", self, "on_grip_end_drag", [vertical_grip2])
 	horizontal_grip1.preview = false
 	horizontal_grip2.preview = false
 	vertical_grip1.preview = false
 	vertical_grip2.preview = false
+	
+# 대칭 그립을 이동후에 자꾸 그림이 그려지는데 해결이 안되서
+# 그냥 pass함.
+func on_grip_end_drag(grip):
+	pass
+	
+func on_grip_start_drag(grip):
+	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.none)
 	
 func on_grip_moved(grip):
 	if StaticData.symmetry_type == StaticData.SymmetryType.horizontal:
@@ -32,7 +50,7 @@ func on_grip_moved(grip):
 	elif StaticData.symmetry_type == StaticData.SymmetryType.vertical:
 		StaticData.vertical_symmetry_position = grip.rect_position.y
 	update_canvas_and_grips()
-	
+
 func update_canvas_and_grips():
 	NodeManager.get_canvas().update()
 	# grip 위치 조정

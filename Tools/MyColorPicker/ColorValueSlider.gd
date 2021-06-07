@@ -47,7 +47,7 @@ func get_selected_color()->Color:
 func set_selected_color(col):
 	if my_color_picker == null:
 		return
-	my_color_picker.set_selected_color(col)
+	my_color_picker.change_selected_color(col)
 	my_color_picker.reposition_selectors()
 	
 func set_selected_color8_value(color8_value):

@@ -27,6 +27,9 @@ func set_active(active):
 	else:
 		self_modulate = Color.dimgray
 	
+func popup():
+	visible = true
+	
 func popup_centered():
 	visible = true
 	

@@ -27,4 +27,4 @@ func is_black_text()->bool:
 
 
 func _on_SelectedColorButton_pressed():
-	$Controller.popup_centered()
+	$Controller.popup()

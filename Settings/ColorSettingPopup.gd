@@ -14,7 +14,7 @@ func popup_centered():
 	update_color_picker_button()
 	
 func update_color_picker_button():
-	$DraggablePopup/GridContainer/ColorPickerButton.color = palette.colors[color_index]
+	$DraggablePopup/GridContainer/ColorPickerButton.set_selected_color(palette.colors[color_index])
 	
 func hide():
 	$DraggablePopup.hide()
@@ -33,6 +33,8 @@ func _on_BrightenButton_pressed():
 	change_current_color(palette.colors[color_index].lightened(0.1))
 	
 func change_current_color(color):
+	if palette == null:
+		return
 	palette.colors[color_index] = color
 	update_color_picker_button()
 	NodeManager.get_color_panel().update_color_button(color_index)
