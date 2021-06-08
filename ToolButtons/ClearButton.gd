@@ -1,8 +1,11 @@
 extends Button
-
+class_name ClearButton
 
 # 선택한 영역을 지운다.
 func _on_ClearButton_pressed():
+	run()
+	
+func run():
 	# 선택한 영역이 없으면 리턴
 	if !StaticData.enabled_selected_area():
 		Util.show_message(self, "Warnning", "No selected area.")

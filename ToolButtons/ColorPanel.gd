@@ -22,6 +22,21 @@ func make_color_buttons():
 		var diff = button_count - need_count
 		for i in diff:
 			buttons_parent.remove_child(buttons_parent.get_child(0))
+
+# 현재 색상이 있다면 scroll을 한다.
+func scroll_color_buttons_to_current_color():
+	var sbar = $ScrollContainer.get_v_scrollbar() as ScrollBar
+	var min_value = sbar.min_value
+	var max_value = sbar.max_value
+	var current_color_index = 0
+	var palette:Palette = NodeManager.get_current_palette()
+	if palette != null && palette.colors.has(StaticData.current_color):
+		for i in palette.colors.size():
+			if palette.colors[i] == StaticData.current_color:
+				$ScrollContainer.scroll_vertical = (max_value - min_value) / ((i + 1) / palette.colors.size())
+				
+		
+	
 	
 func load_current_palette():
 	$ScrollContainer/GridContainer.columns = 100 / StaticData.palette_size

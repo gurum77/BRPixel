@@ -31,7 +31,13 @@ var select_popup_button:TextureRectButton = null
 var open_button:TextureRectButton = null
 var save_button:TextureRectButton = null
 var pencil_button:TextureRectButton = null
+var clear_button:Control = null
 
+func get_clear_button()->Control:
+	if clear_button == null:
+		clear_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/ClearButton")
+	return clear_button
+	
 func get_pencil_button()->TextureRectButton:
 	if pencil_button == null:
 		pencil_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/PencilButton")

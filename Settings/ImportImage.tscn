@@ -18,7 +18,7 @@ __meta__ = {
 [node name="DraggableWindow" parent="." instance=ExtResource( 1 )]
 margin_left = -2.0
 margin_right = 598.0
-margin_bottom = 464.0
+margin_bottom = 511.0
 hide_close_button = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DraggableWindow"]
@@ -69,12 +69,74 @@ margin_right = 580.0
 margin_bottom = 56.0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 
-[node name="GridContainer" type="GridContainer" parent="DraggableWindow/VBoxContainer"]
+[node name="SizeGridContainer" type="GridContainer" parent="DraggableWindow/VBoxContainer"]
 margin_top = 364.0
 margin_right = 580.0
-margin_bottom = 394.0
+margin_bottom = 404.0
 grow_horizontal = 2
-columns = 9
+columns = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WidthLabel" type="Label" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
+margin_top = 7.0
+margin_right = 70.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 70, 0 )
+text = "Width : "
+valign = 1
+
+[node name="WidthLineEdit" type="LineEdit" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
+margin_left = 74.0
+margin_top = 7.0
+margin_right = 144.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 0, 26 )
+align = 1
+
+[node name="Label" type="Label" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
+margin_left = 148.0
+margin_top = 12.0
+margin_right = 193.0
+margin_bottom = 28.0
+text = "         "
+
+[node name="HeightLabel" type="Label" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
+margin_left = 197.0
+margin_top = 7.0
+margin_right = 267.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 70, 0 )
+text = "Height : "
+valign = 1
+
+[node name="HeightLineEdit" type="LineEdit" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
+margin_left = 271.0
+margin_top = 7.0
+margin_right = 341.0
+margin_bottom = 33.0
+align = 1
+
+[node name="Label2" type="Label" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
+margin_left = 345.0
+margin_top = 12.0
+margin_right = 390.0
+margin_bottom = 28.0
+text = "         "
+
+[node name="LockRatioButton" type="CheckButton" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
+margin_left = 394.0
+margin_right = 546.0
+margin_bottom = 40.0
+text = "Lock Ratio"
+
+[node name="GridContainer" type="GridContainer" parent="DraggableWindow/VBoxContainer"]
+margin_top = 408.0
+margin_right = 580.0
+margin_bottom = 438.0
+grow_horizontal = 2
+columns = 7
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -85,7 +147,6 @@ margin_right = 100.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 100, 0 )
 text = "Columns : 1"
-align = 1
 valign = 1
 
 [node name="DownColsButton" type="Button" parent="DraggableWindow/VBoxContainer/GridContainer"]
@@ -119,7 +180,6 @@ margin_right = 321.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 100, 0 )
 text = "Rows : 1"
-align = 1
 valign = 1
 
 [node name="DownRowsButton" type="Button" parent="DraggableWindow/VBoxContainer/GridContainer"]
@@ -139,16 +199,16 @@ icon = ExtResource( 8 )
 expand_icon = true
 
 [node name="Panel" type="ColorRect" parent="DraggableWindow/VBoxContainer"]
-margin_top = 398.0
+margin_top = 442.0
 margin_right = 580.0
-margin_bottom = 408.0
+margin_bottom = 452.0
 rect_min_size = Vector2( 0, 10 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="Container" type="HBoxContainer" parent="DraggableWindow/VBoxContainer"]
-margin_top = 412.0
+margin_top = 456.0
 margin_right = 580.0
-margin_bottom = 444.0
+margin_bottom = 488.0
 custom_constants/separation = 20
 alignment = 1
 

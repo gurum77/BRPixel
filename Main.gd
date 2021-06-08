@@ -70,6 +70,10 @@ func _input(event):
 		NodeManager.get_undo_button().on_UndoButton_pressed()
 	elif event.is_action_pressed("redo"):
 		NodeManager.get_redo_button().on_RedoButton_pressed()
+	elif event.is_action_pressed("select_all"):
+		Util.run_edit_mode(Vector2(0, 0), StaticData.canvas_width, StaticData.canvas_height, false)
+	elif event.is_action_pressed("delete"):
+		NodeManager.get_clear_button().run()
 
 
 

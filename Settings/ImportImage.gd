@@ -9,6 +9,9 @@ onready var tar_label = $DraggableWindow/VBoxContainer/InfoVBoxContainer/TargetI
 onready var error_label  = $DraggableWindow/VBoxContainer/InfoVBoxContainer/ErrorLabel
 onready var cols_label = $DraggableWindow/VBoxContainer/GridContainer/ColsLabel
 onready var rows_label = $DraggableWindow/VBoxContainer/GridContainer/RowsLabel
+onready var width_line_edit = $DraggableWindow/VBoxContainer/SizeGridContainer/WidthLineEdit
+onready var height_line_edit = $DraggableWindow/VBoxContainer/SizeGridContainer/HeightLineEdit
+
 var result_ok = false
 	
 func popup_centered():
