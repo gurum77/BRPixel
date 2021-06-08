@@ -38,10 +38,10 @@ func _ready():
 	
 # 대칭 그립을 이동후에 자꾸 그림이 그려지는데 해결이 안되서
 # 그냥 pass함.
-func on_grip_end_drag(grip):
+func on_grip_end_drag(_grip):
 	pass
 	
-func on_grip_start_drag(grip):
+func on_grip_start_drag(_grip):
 	NodeManager.get_tools().init_to_start_tool(self, StaticData.Tool.none)
 	
 func on_grip_moved(grip):

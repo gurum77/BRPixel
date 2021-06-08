@@ -1,7 +1,8 @@
 extends Panel
 class_name ColorPanel
-onready var palette_num_label = $VBoxContainer/HBoxContainer/NumLabel
+onready var palette_num_label = $VBoxContainer/HBoxContainer3/NumLabel
 onready var buttons_parent = $ScrollContainer/GridContainer
+onready var sort_button = $VBoxContainer/HBoxContainer/SortButton
 var color_button_node = preload("res://ToolButtons/ColorButton.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -26,6 +27,7 @@ func load_current_palette():
 	$ScrollContainer/GridContainer.columns = 100 / StaticData.palette_size
 	# color button을 필요한 만큼 만든다.
 	make_color_buttons()
+	update_sort_button_text()
 	
 	# button의 크기와 색을 설정한다.
 	var index = 0
@@ -37,6 +39,7 @@ func load_current_palette():
 		button.rect_size.y = StaticData.palette_size
 		update_color_button(index)
 		index += 1
+	
 			
 func update_color_button(color_index:int):
 	var button = buttons_parent.get_child(color_index)
@@ -67,4 +70,21 @@ func _on_NextButton_pressed():
 func _on_SortButton_pressed():
 	NodeManager.get_current_palette().sort()
 	load_current_palette()
+	
+# 현재 palette의 sort 상태를 표시한다.
+func update_sort_button_text():
+	var text = ""
+	var palette:Palette = NodeManager.get_current_palette()
+	if palette.current_sort_type == Palette.sort_type.red:
+		text = "R"
+	elif palette.current_sort_type == Palette.sort_type.green:
+		text = "G"
+	elif palette.current_sort_type == Palette.sort_type.blue:
+		text = "B"
+	elif palette.current_sort_type == Palette.sort_type.hue:
+		text = "H"
+	elif palette.current_sort_type == Palette.sort_type.alpha:
+		text = "A"
+		
+	sort_button.text = text
 	

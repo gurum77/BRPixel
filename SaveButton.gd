@@ -51,6 +51,7 @@ func on_hide_file_dialog():
 		ext = ext.to_lower()
 		if ext == "pex":
 			StaticData.save_project(selected_file)
+			Util.show_message(self, "Save", "Save completed")
 		else:
 			var sprite_sheet = NodeManager.get_save_options_popup().sprite_sheets_method
 			var scale = NodeManager.get_save_options_popup().get_image_scale()

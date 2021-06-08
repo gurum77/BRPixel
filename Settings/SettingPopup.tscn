@@ -107,8 +107,6 @@ expand_icon = true
 script = ExtResource( 2 )
 
 [node name="OpenFileDialog" parent="DraggablePopup/GridContainer/OpenButton" instance=ExtResource( 11 )]
-current_dir = "/Trunk_Godot/BRPixel"
-current_path = "/Trunk_Godot/BRPixel/"
 
 [node name="SaveButton" type="Button" parent="DraggablePopup/GridContainer"]
 margin_top = 54.0
@@ -181,57 +179,56 @@ __meta__ = {
 }
 
 [node name="AppNameLabel" type="Label" parent="DraggablePopup/VBoxContainer"]
-margin_top = 12.0
 margin_right = 300.0
-margin_bottom = 44.0
+margin_bottom = 32.0
 custom_fonts/font = SubResource( 1 )
 text = "BRPixel"
 
 [node name="VersionLabel" type="Label" parent="DraggablePopup/VBoxContainer"]
-margin_top = 48.0
+margin_top = 36.0
 margin_right = 300.0
-margin_bottom = 64.0
+margin_bottom = 52.0
 text = "Version 1.0 (made by Godot 3.3)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EmailButton" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 68.0
+margin_top = 56.0
 margin_right = 300.0
-margin_bottom = 90.0
+margin_bottom = 78.0
 text = "Send e-mail"
 icon = ExtResource( 20 )
 expand_icon = true
 
 [node name="HomeButton" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 94.0
+margin_top = 82.0
 margin_right = 300.0
-margin_bottom = 116.0
+margin_bottom = 104.0
 text = "Go to Home page"
 icon = ExtResource( 18 )
 expand_icon = true
 
 [node name="DownloadFromGooglePlay" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 120.0
+margin_top = 108.0
 margin_right = 300.0
-margin_bottom = 142.0
+margin_bottom = 130.0
 text = "Download from Google play(Android)"
 icon = ExtResource( 21 )
 expand_icon = true
 
 [node name="DownloadFromOneStore" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 146.0
+margin_top = 134.0
 margin_right = 300.0
-margin_bottom = 168.0
+margin_bottom = 156.0
 text = "Download from One Store(Android)"
 icon = ExtResource( 22 )
 expand_icon = true
 
 [node name="DownloadFromNaver" type="Button" parent="DraggablePopup/VBoxContainer"]
-margin_top = 172.0
+margin_top = 160.0
 margin_right = 300.0
-margin_bottom = 194.0
+margin_bottom = 182.0
 text = "Download from Naver(PC)"
 icon = ExtResource( 19 )
 expand_icon = true

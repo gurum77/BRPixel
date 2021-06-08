@@ -8,6 +8,7 @@ var pressed:bool = false
 var button_down:bool = false
 var pressed_position
 
+export (String) var text = ""
 export (bool) var toggle_mode = false
 export (Texture) var background
 export (Color) var background_color = Color8(57, 57, 62)#Color.lightgray
@@ -84,3 +85,7 @@ func _pressed():
 		pressed = !pressed
 	emit_signal("pressed")
 		
+
+func set_text(text):
+	if $Label != null:
+		$Label.text = text;

@@ -18,7 +18,7 @@ func update_grid_column_nums():
 func update_preview():
 	if palette == null:
 		return
-	$NameButton.text = palette.name
+	$NameButton.set_text(palette.name)
 	var nodes = $GridContainer.get_children()
 	for node in nodes:
 		node.call_deferred("queue_free")

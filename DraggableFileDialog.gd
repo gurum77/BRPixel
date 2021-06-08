@@ -252,6 +252,12 @@ func popup_centered():
 	result_ok = false
 	file_name_line_edit.text = default_file_name
 	
+	# file_name_line_edit는 screen 크기에 맞춘다.
+	var size = get_viewport_rect().size
+	
+	file_name_line_edit.rect_size.x = size.x - 300
+	file_name_line_edit.rect_min_size.x = size.x - 300
+	
 	$DraggableWindow.popup_centered()
 	update_lsit()
 	

@@ -1,25 +1,31 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Settings/PalettePreview.gd" type="Script" id=1]
+[ext_resource path="res://TextureRectButton.tscn" type="PackedScene" id=2]
 
 [node name="PalettePreview" type="GridContainer"]
-rect_min_size = Vector2( 0, 20 )
+anchor_right = 1.0
+margin_right = -140.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 660, 20 )
 columns = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NameButton" type="Button" parent="."]
+[node name="NameButton" parent="." instance=ExtResource( 2 )]
 margin_right = 150.0
-margin_bottom = 22.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 150, 0 )
-text = "Palette name"
+texture = null
+background_color = Color( 0.223529, 0.223529, 0.243137, 1 )
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 154.0
-margin_right = 454.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 300, 20 )
+margin_right = 654.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 500, 20 )
 columns = 10
+
 [connection signal="pressed" from="NameButton" to="." method="_on_NameButton_pressed"]

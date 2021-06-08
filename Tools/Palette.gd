@@ -1,8 +1,10 @@
 extends Control
 class_name Palette
-
+enum sort_type{none, red, green, blue, hue, alpha, count}
 var colors:Array
+var nosorted_colors:Array
 export var default_colors = true
+var current_sort_type = sort_type.none
 func _ready():
 	# palette는 크기가 있으면 안됨(다른 control에 메세지가 안감)
 	rect_size = Vector2(0, 0)
@@ -90,5 +92,42 @@ func set_palette_from_image(image:Image):
 
 # 팔레트의 칼라를 정렬한다.
 func sort():
-	colors.sort()
+	if current_sort_type == sort_type.none:
+		nosorted_colors = colors.duplicate()
+		
+		
+	current_sort_type = current_sort_type + 1
+	if current_sort_type == sort_type.count:
+		current_sort_type = sort_type.none
+		
+	if current_sort_type == sort_type.none:
+		colors = nosorted_colors.duplicate()
+		return
+		
+	colors.sort_custom(self, "sort_color")
+	
+func sort_color(a:Color, b:Color):
+	if current_sort_type == sort_type.red:
+		if a.r8 > b.r8:
+			return true
+		return false
+	elif current_sort_type == sort_type.green:
+		if a.g8 > b.g8:
+			return true
+		return false
+	elif current_sort_type == sort_type.blue:
+		if a.b8 > b.b8:
+			return true
+		return false
+	elif current_sort_type == sort_type.hue:
+		if a.h > b.h:
+			return true
+		return false
+	elif current_sort_type == sort_type.alpha:
+		if a.a8 > b.a8:
+			return true
+		return false
+		
+	
+		
 	

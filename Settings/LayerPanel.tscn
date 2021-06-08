@@ -8,12 +8,13 @@
 [ext_resource path="res://LayerPanel.gd" type="Script" id=6]
 
 [node name="LayerPanel" type="WindowDialog"]
+visible = true
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -200.0
 margin_bottom = 200.0
 grow_horizontal = 0
-rect_min_size = Vector2( 200, 200 )
+rect_min_size = Vector2( 100, 200 )
 window_title = "Layer"
 resizable = true
 script = ExtResource( 6 )

@@ -28,16 +28,22 @@ var cut_button:Button = null
 var redo_button:TextureRect = null
 var undo_button:TextureRect = null
 var select_popup_button:TextureRectButton = null
-var open_button:OpenButton = null
-var save_button:SaveButton = null
+var open_button:TextureRectButton = null
+var save_button:TextureRectButton = null
+var pencil_button:TextureRectButton = null
 
-func get_save_button()->SaveButton:
+func get_pencil_button()->TextureRectButton:
+	if pencil_button == null:
+		pencil_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/PencilButton")
+	return pencil_button
+
+func get_save_button()->TextureRectButton:
 	if save_button == null:
 		save_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/SaveButton")
 	return save_button
 
 
-func get_open_button()->OpenButton:
+func get_open_button()->TextureRectButton:
 	if open_button == null:
 		open_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/OpenButton")
 	return open_button

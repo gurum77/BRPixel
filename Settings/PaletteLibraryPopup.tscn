@@ -12,41 +12,74 @@ __meta__ = {
 
 [node name="DraggablePopup" parent="." instance=ExtResource( 1 )]
 visible = true
-margin_right = 493.0
-margin_bottom = 320.0
+margin_right = 700.0
+margin_bottom = 400.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DraggablePopup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = 10.0
+margin_top = 40.0
 margin_right = -10.0
-margin_bottom = -10.0
+margin_bottom = -30.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DraggablePopup/ScrollContainer"]
-margin_right = 454.0
-margin_bottom = 118.0
+margin_right = 660.0
+margin_bottom = 110.0
 custom_constants/separation = 10
 
 [node name="PalettePreview" parent="DraggablePopup/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_right = 454.0
-margin_bottom = 22.0
+anchor_right = 0.0
+margin_right = 660.0
 
 [node name="PalettePreview2" parent="DraggablePopup/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 32.0
-margin_right = 454.0
-margin_bottom = 54.0
+anchor_right = 0.0
+margin_top = 30.0
+margin_right = 660.0
+margin_bottom = 50.0
 
 [node name="PalettePreview3" parent="DraggablePopup/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 64.0
-margin_right = 454.0
-margin_bottom = 86.0
+anchor_right = 0.0
+margin_top = 60.0
+margin_right = 660.0
+margin_bottom = 80.0
 
 [node name="PalettePreview4" parent="DraggablePopup/ScrollContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 96.0
-margin_right = 454.0
-margin_bottom = 118.0
+anchor_right = 0.0
+margin_top = 90.0
+margin_right = 660.0
+margin_bottom = 110.0
+
+[node name="SearchingLineEdit" type="LineEdit" parent="DraggablePopup"]
+anchor_right = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 26.0
+focus_mode = 1
+clear_button_enabled = true
+placeholder_text = "Searching..."
+caret_blink = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LinkButton" type="LinkButton" parent="DraggablePopup"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+margin_top = -26.0
+margin_right = -200.0
+margin_bottom = -10.0
+text = "by https://lospec.com/palette-list"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="text_changed" from="DraggablePopup/SearchingLineEdit" to="." method="_on_SearchingLineEdit_text_changed"]
+[connection signal="pressed" from="DraggablePopup/LinkButton" to="." method="_on_LinkButton_pressed"]

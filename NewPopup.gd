@@ -84,6 +84,10 @@ func _on_OkButton_pressed():
 
 	# 새파일을 auto save
 	StaticData.save_auto_saved_project()	
+	
+	# 도구를 pen으로 변경
+	NodeManager.get_pencil_button().run()
+	
 
 
 func _on_CancelButton_pressed():

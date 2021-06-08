@@ -19,8 +19,45 @@ var textures = [
 			preload("res://Assets/palettes/slso8-1x.png"),
 			preload("res://Assets/palettes/sweetie-16-1x.png"),
 			preload("res://Assets/palettes/vinik24-1x.png"),
-			preload("res://Assets/palettes/zughy-32-1x.png")
+			preload("res://Assets/palettes/zughy-32-1x.png"),
+			preload("res://Assets/palettes/comfort44s-1x.png"),
+			preload("res://Assets/palettes/bubblegum-16-1x.png"),
+			preload("res://Assets/palettes/pineapple-32-1x.png"),
+			preload("res://Assets/palettes/ammo-8-1x.png"),
+			preload("res://Assets/palettes/japanese-woodblock-1x.png"),
+			preload("res://Assets/palettes/indecision-1x.png"),
+			preload("res://Assets/palettes/sheltzy32-1x.png"),
+			preload("res://Assets/palettes/pollen8-1x.png"),
+			preload("res://Assets/palettes/blk-36-1x.png"),
+			preload("res://Assets/palettes/srb2-1x.png"),
+			preload("res://Assets/palettes/rustic-gb-1x.png"),
+			preload("res://Assets/palettes/rosy-42-1x.png"),
+			preload("res://Assets/palettes/resurrect-32-1x.png"),
+			preload("res://Assets/palettes/1bit-monitor-glow-1x.png"),
+			preload("res://Assets/palettes/mist-gb-1x.png"),
+			preload("res://Assets/palettes/2-bit-grayscale-1x.png"),
+			preload("res://Assets/palettes/31-1x.png"),
+			preload("res://Assets/palettes/endesga-36-1x.png"),
+			preload("res://Assets/palettes/blessing-1x.png"),
+			preload("res://Assets/palettes/aap-splendor128-1x.png"),
+			preload("res://Assets/palettes/island-joy-16-1x.png"),
+			preload("res://Assets/palettes/blk-neo-1x.png"),
+			preload("res://Assets/palettes/lux2k-1x.png"),
+			preload("res://Assets/palettes/endesga-16-1x.png"),
+			preload("res://Assets/palettes/aurora-1x.png"),
+			preload("res://Assets/palettes/ice-cream-gb-1x.png"),
+			preload("res://Assets/palettes/dawnbringer-32-1x.png"),
+			preload("res://Assets/palettes/vines-flexible-linear-ramps-1x.png"),
+			preload("res://Assets/palettes/fleja-master-palette-1x.png"),
+			preload("res://Assets/palettes/nintendo-entertainment-system-1x.png"),
+			preload("res://Assets/palettes/nyx8-1x.png"),
+			preload("res://Assets/palettes/steam-lords-1x.png"),
+			preload("res://Assets/palettes/apollo-1x.png"),
+			preload("res://Assets/palettes/kirokaze-gameboy-1x.png")		
 			]
+			
+			
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	make_library_palettes()
@@ -28,6 +65,7 @@ func _ready():
 	
 func popup_centered():
 	$DraggablePopup.popup_centered()
+	
 	
 func update_palette_previews():
 	var nodes = $DraggablePopup/ScrollContainer/VBoxContainer.get_children()
@@ -91,3 +129,25 @@ func make_library_palettes():
 		new_palette.default_colors = false
 		palettes.append(new_palette)
 		
+
+# 검색
+func _on_SearchingLineEdit_text_changed(new_text):
+	var container = $DraggablePopup/ScrollContainer/VBoxContainer
+	var nodes = container.get_children()
+	for node in nodes:
+		var pp = node as PalettePreview
+		if new_text == "":
+			pp.visible = true
+			continue
+			
+		var find = pp.palette.name.find(new_text)
+		if find < 0:
+			pp.visible = false
+		else:
+			pp.visible = true
+		
+
+
+func _on_LinkButton_pressed():
+	var _result = OS.shell_open("https://lospec.com/palette-list")
+

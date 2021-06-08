@@ -8,11 +8,17 @@ onready var src_label = $DraggableWindow/VBoxContainer/InfoVBoxContainer/SourceI
 onready var tar_label = $DraggableWindow/VBoxContainer/InfoVBoxContainer/TargetInfoLabel
 onready var error_label  = $DraggableWindow/VBoxContainer/InfoVBoxContainer/ErrorLabel
 onready var cols_label = $DraggableWindow/VBoxContainer/GridContainer/ColsLabel
-onready var rows_label = $DraggableWindow/VBoxContainer/GridContainer/ColsLabel
+onready var rows_label = $DraggableWindow/VBoxContainer/GridContainer/RowsLabel
 var result_ok = false
 	
 func popup_centered():
 	result_ok = false
+	
+	# popup 할때마다 옵션값을 초기화 한다.
+	if preview != null:
+		preview.cols = 1
+		preview.rows = 1
+		
 	show()
 	$DraggableWindow.popup_centered()
 	var image = Util.load_image_file(self, image_file_path)

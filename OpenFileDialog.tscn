@@ -8,8 +8,8 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.pex;Pixel Express" )
-current_dir = "/Trunk_Godot/ExpertPixelEditor"
-current_path = "/Trunk_Godot/ExpertPixelEditor/"
+current_dir = "/Trunk_Godot/BRPixel"
+current_path = "/Trunk_Godot/BRPixel/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
