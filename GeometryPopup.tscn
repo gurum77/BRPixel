@@ -1,5 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://Settings/OrthoModeCheckButton.gd" type="Script" id=1]
+[ext_resource path="res://Settings/OrthoModeCheckButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://DraggableWindow.gd" type="Script" id=4]
 [ext_resource path="res://Assets/icon_drag.png" type="Texture" id=7]
 [ext_resource path="res://Assets/icon_close.png" type="Texture" id=8]
@@ -12,10 +14,10 @@
 
 [node name="GeometryPopup" type="TextureRect"]
 self_modulate = Color( 0, 0, 0, 1 )
-margin_left = 118.221
-margin_top = 0.656501
-margin_right = 435.221
-margin_bottom = 40.6565
+margin_left = 118.0
+margin_top = 1.0
+margin_right = 525.0
+margin_bottom = 41.0
 texture = ExtResource( 15 )
 expand = true
 script = ExtResource( 4 )
@@ -92,6 +94,9 @@ toggle_mode = true
 icon = ExtResource( 10 )
 fill = true
 
+[node name="OrthoModeCheckButton" parent="HBoxContainer" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_bottom = 1.0
 margin_left = -6.0
@@ -107,3 +112,4 @@ __meta__ = {
 
 [connection signal="gui_input" from="." to="." method="_on_DraggableWindow_gui_input"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="toggled" from="HBoxContainer/OrthoModeCheckButton" to="HBoxContainer/OrthoModeCheckButton" method="_on_OrthoModeCheckButton_toggled"]

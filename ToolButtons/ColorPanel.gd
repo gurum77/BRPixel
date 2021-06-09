@@ -12,6 +12,9 @@ func _ready():
 # color button을 필요한 만큼 만든다.
 func make_color_buttons():
 	var palette:Palette = NodeManager.get_current_palette()
+	if palette == null:
+		return
+		
 	var button_count = buttons_parent.get_child_count()
 	var need_count = (palette.colors.size()+1)
 	if need_count > button_count:
@@ -28,7 +31,6 @@ func scroll_color_buttons_to_current_color():
 	var sbar = $ScrollContainer.get_v_scrollbar() as ScrollBar
 	var min_value = sbar.min_value
 	var max_value = sbar.max_value
-	var current_color_index = 0
 	var palette:Palette = NodeManager.get_current_palette()
 	if palette != null && palette.colors.has(StaticData.current_color):
 		for i in palette.colors.size():
@@ -39,6 +41,9 @@ func scroll_color_buttons_to_current_color():
 	
 	
 func load_current_palette():
+	if StaticData.current_palette_index >= NodeManager.get_palettes().get_palette_count():
+		StaticData.current_palette_index = 0
+		
 	$ScrollContainer/GridContainer.columns = 100 / StaticData.palette_size
 	# color button을 필요한 만큼 만든다.
 	make_color_buttons()

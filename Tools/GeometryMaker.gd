@@ -12,6 +12,25 @@ static func to_2D(idx, w) -> Vector2:
 	p.y = int(idx / w)
 	return p 
 	
+# ortho로 end point를 보정해서 리턴한다.
+static func get_end_point_by_orthomode(var from, var to)->Vector2:
+	if !StaticData.enabled_orthomode:
+		return to
+		
+	
+	var vec:Vector2 = to - from
+	vec = vec.normalized()
+
+	var dist = from.distance_to(to)
+	var offset_angle = 22.5
+	var ang = rad2deg(vec.angle())
+	var new_ang = round(ang / offset_angle) * offset_angle
+	new_ang = deg2rad(new_ang)
+	var new_dir = Vector2(cos(new_ang), sin(new_ang)).normalized()
+	
+	to = from + new_dir * dist
+	return to
+	
 # pixel를 start 부터 offset간격으로 가져온다.
 func get_pixels_by_check_pattern(pixels, first:bool)->Array:
 	var start = 0

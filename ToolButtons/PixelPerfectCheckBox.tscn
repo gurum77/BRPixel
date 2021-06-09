@@ -3,7 +3,7 @@
 [ext_resource path="res://ToolButtons/PixelPerfectCheckBox.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/ui_normal.tres" type="DynamicFont" id=2]
 
-[node name="PixelPerfectCheckBox" type="CheckBox"]
+[node name="PixelPerfectCheckBox" type="CheckButton"]
 margin_left = 110.0
 margin_right = 219.0
 margin_bottom = 25.0
@@ -13,4 +13,5 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="toggled" from="." to="." method="_on_PixelPerfectCheckBox_toggled"]

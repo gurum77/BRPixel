@@ -25,6 +25,7 @@ var canvas_width = 64
 var canvas_height = 64
 var enabled_grid = true
 var enabled_tilemode = false
+var enabled_orthomode = false
 var symmetry_type = SymmetryType.no
 var brush_type = BrushType.rectangle
 var horizontal_symmetry_position = 0
@@ -165,6 +166,7 @@ func save_project(path):
 		"canvas_height" : StaticData.canvas_height,
 		"enabled_grid" : StaticData.enabled_grid,
 		"enabled_tilemode" : StaticData.enabled_tilemode,
+		"enabled_orthomode" : StaticData.enabled_orthomode,
 		"symmetry_type" : StaticData.symmetry_type,
 		"brush_type" : StaticData.brush_type,
 		"horizontal_symmetry_position" : StaticData.horizontal_symmetry_position,
@@ -188,10 +190,16 @@ func save_project(path):
 		Util.show_error_message(self, _err)
 
 # 이미지를 open 한다.
-func open_image(parent, path, var rows=1, var cols=1):
+func open_image(parent, path, var rows=1, var cols=1, new_image_width=0, new_image_height=0):
 	var image:Image = Util.load_image_file(self, path)
 	if image == null:
 		return
+		
+	if new_image_width > 0 && new_image_height > 0:
+		if new_image_width != image.get_width() && new_image_height != image.get_height():
+			image.resize(new_image_width, new_image_height, Image.INTERPOLATE_TRILINEAR)
+		
+		
 		
 	var width = image.get_width() / cols
 	var height = image.get_height() / rows
@@ -238,6 +246,12 @@ func open_image(parent, path, var rows=1, var cols=1):
 	NodeManager.get_frame_panel().regen_frame_buttons()
 	NodeManager.get_layer_panel().regen_layer_buttons()
 
+	# image를 불러 왔을때는 palette를 초기화 하지 말자.
+	# 이미지에는 원래 palette 정보가 없으니 기존 작업하던 palette를 남겨둔다.
+	
+	# 현 image로 palette를 만든다.
+	NodeManager.get_palette_setting_popup().add_new_palette_from_image(image)
+
 func get_value(dic:Dictionary, key, default_value):
 	if dic.has(key):
 		return dic[key]
@@ -259,6 +273,7 @@ func open_project(path)->bool:
 		StaticData.canvas_height = get_value(dic, "canvas_height", StaticData.canvas_height)
 		StaticData.enabled_grid = get_value(dic, "enabled_grid", StaticData.enabled_grid)
 		StaticData.enabled_tilemode = get_value(dic, "enabled_tilemode", StaticData.enabled_tilemode)
+		StaticData.enabled_orthomode = get_value(dic, "enabled_orthomode", StaticData.enabled_orthomode)
 		StaticData.symmetry_type = get_value(dic, "symmetry_type", StaticData.symmetry_type)
 		StaticData.brush_type = get_value(dic, "brush_type", StaticData.brush_type)
 		StaticData.horizontal_symmetry_position = get_value(dic, "horizontal_symmetry_position", StaticData.horizontal_symmetry_position)

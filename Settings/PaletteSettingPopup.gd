@@ -1,4 +1,6 @@
 extends Control
+class_name PaletteSettingPopup
+
 var message_box:MessageBox
 var palette_resource = preload("res://Tools/Palette.tscn")
 onready var close_palette_button = $DraggablePopup/GridContainer/ClosePaletteButton

@@ -8,7 +8,10 @@ func _ready():
 	rect_size = Vector2(0, 0)
 	
 func get_palette(index)->Palette:
+	if get_child_count() <= index:
+		return null
 	return get_child(index) as Palette
+	
 func clear_palettes():
 	var nodes = get_children()
 	for node in nodes:

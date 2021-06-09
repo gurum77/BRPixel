@@ -29,6 +29,7 @@ func drawing_area_input(_event):
 		if start_point == null:
 			return
 		end_point = get_local_mouse_position()
+		end_point = GeometryMaker.get_end_point_by_orthomode(start_point, end_point)
 		var points = GeometryMaker.get_pixels_in_circle(start_point, end_point, fill, StaticData.pencil_thickness)
 		NodeManager.get_current_layer().set_pixels_by_current_color(points)
 		StaticData.preview_layer.clear(true)
@@ -37,4 +38,5 @@ func drawing_area_input(_event):
 		
 	if InputManager.is_action_pressed_lbutton(_event):
 		end_point = get_local_mouse_position()
+		end_point = GeometryMaker.get_end_point_by_orthomode(start_point, end_point)
 		update()

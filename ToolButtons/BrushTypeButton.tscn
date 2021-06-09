@@ -8,7 +8,7 @@
 [node name="BrushTypeButton" type="TextureButton"]
 margin_right = 25.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
+rect_min_size = Vector2( 40, 40 )
 texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 2 )
@@ -17,9 +17,9 @@ __meta__ = {
 }
 
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_top = 28.0
-margin_right = 40.0
-margin_bottom = 68.0
+margin_top = 49.0
+margin_right = 48.0
+margin_bottom = 72.0
 columns = 2
 __meta__ = {
 "_edit_use_anchors_": false

@@ -215,6 +215,11 @@ _global_script_classes=[ {
 "path": "res://Settings/PalettePreview.gd"
 }, {
 "base": "Control",
+"class": "PaletteSettingPopup",
+"language": "GDScript",
+"path": "res://Settings/PaletteSettingPopup.gd"
+}, {
+"base": "Control",
 "class": "Palettes",
 "language": "GDScript",
 "path": "res://Tools/Palettes.gd"
@@ -326,6 +331,7 @@ _global_script_class_icons={
 "OriginPixel": "",
 "Palette": "",
 "PalettePreview": "",
+"PaletteSettingPopup": "",
 "Palettes": "",
 "Pencil": "",
 "Preview": "",

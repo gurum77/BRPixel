@@ -32,7 +32,13 @@ var open_button:TextureRectButton = null
 var save_button:TextureRectButton = null
 var pencil_button:TextureRectButton = null
 var clear_button:Control = null
+var palette_setting_popup:PaletteSettingPopup = null
 
+func get_palette_setting_popup()->PaletteSettingPopup:
+	if palette_setting_popup == null:
+		palette_setting_popup = get_tree().root.get_node("Main/UI/ColorPanel/VBoxContainer/HBoxContainer/PaletteSettingButton/PaletteSettingPopup")
+	return palette_setting_popup
+	
 func get_clear_button()->Control:
 	if clear_button == null:
 		clear_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/ClearButton")

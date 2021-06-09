@@ -80,18 +80,17 @@ __meta__ = {
 }
 
 [node name="WidthLabel" type="Label" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
-margin_top = 7.0
+margin_top = 12.0
 margin_right = 70.0
-margin_bottom = 35.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 70, 0 )
 text = "Width : "
 valign = 1
 
 [node name="WidthLineEdit" type="LineEdit" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
 margin_left = 74.0
-margin_top = 7.0
 margin_right = 144.0
-margin_bottom = 33.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 26 )
 align = 1
 
@@ -104,19 +103,19 @@ text = "         "
 
 [node name="HeightLabel" type="Label" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
 margin_left = 197.0
-margin_top = 7.0
+margin_top = 12.0
 margin_right = 267.0
-margin_bottom = 35.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 70, 0 )
 text = "Height : "
 valign = 1
 
 [node name="HeightLineEdit" type="LineEdit" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
 margin_left = 271.0
-margin_top = 7.0
 margin_right = 341.0
-margin_bottom = 33.0
+margin_bottom = 40.0
 align = 1
+editable = false
 
 [node name="Label2" type="Label" parent="DraggableWindow/VBoxContainer/SizeGridContainer"]
 margin_left = 345.0
@@ -129,6 +128,7 @@ text = "         "
 margin_left = 394.0
 margin_right = 546.0
 margin_bottom = 40.0
+pressed = true
 text = "Lock Ratio"
 
 [node name="GridContainer" type="GridContainer" parent="DraggableWindow/VBoxContainer"]
@@ -224,6 +224,9 @@ margin_right = 332.0
 margin_bottom = 32.0
 texture_normal = ExtResource( 6 )
 
+[connection signal="text_changed" from="DraggableWindow/VBoxContainer/SizeGridContainer/WidthLineEdit" to="." method="_on_WidthLineEdit_text_changed"]
+[connection signal="text_changed" from="DraggableWindow/VBoxContainer/SizeGridContainer/HeightLineEdit" to="." method="_on_HeightLineEdit_text_changed"]
+[connection signal="toggled" from="DraggableWindow/VBoxContainer/SizeGridContainer/LockRatioButton" to="." method="_on_LockRatioButton_toggled"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/GridContainer/DownColsButton" to="." method="_on_DownColsButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/GridContainer/UpColsButton" to="." method="_on_UpColsButton_pressed"]
 [connection signal="pressed" from="DraggableWindow/VBoxContainer/GridContainer/DownRowsButton" to="." method="_on_DownRowsButton_pressed"]

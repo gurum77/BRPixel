@@ -47,12 +47,15 @@ func on_hide_file_dialog():
 
 
 func _on_ImportImage_hide():
-	NodeManager.get_import_image_popup().disconnect("hide", self, "_on_ImportImage_hide")
-	var rows = NodeManager.get_import_image_popup().preview.rows
-	var cols = NodeManager.get_import_image_popup().preview.cols
-	
+	var import_image_popup = NodeManager.get_import_image_popup()
+	import_image_popup.disconnect("hide", self, "_on_ImportImage_hide")
+	var rows = import_image_popup.preview.rows
+	var cols = import_image_popup.preview.cols
+	var new_image_width = import_image_popup.preview.new_image_width
+	var new_image_height = import_image_popup.preview.new_image_height
+	# 이미지 크기 조절
 	if NodeManager.get_import_image_popup().result_ok:
-		StaticData.open_image(self, NodeManager.get_import_image_popup().image_file_path, rows, cols)
+		StaticData.open_image(self, NodeManager.get_import_image_popup().image_file_path, rows, cols, new_image_width, new_image_height)
 		NodeManager.get_camera().zoom_fit()
 
 

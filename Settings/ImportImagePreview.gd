@@ -2,6 +2,8 @@ extends TextureRect
 
 export var cols = 1
 export var rows = 1
+export var new_image_width = 100
+export var new_image_height = 100
 
 # 이미지가 preview texture rect보다 큰지?
 func is_big_image()->bool:

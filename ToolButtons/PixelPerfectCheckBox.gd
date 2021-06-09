@@ -1,4 +1,4 @@
-extends CheckBox
+extends CheckButton
 
 
 
