@@ -11,6 +11,7 @@ var setting_popup = null
 var symmetry_grips = null
 var frames:Frames = null
 var palettes:Palettes = null
+var user_brushes:Control = null
 var file_dialog:DraggableFileDialog = null
 var color_panel:ColorPanel = null
 var preload_message_popup = preload("res://MessagePopup.tscn")
@@ -53,7 +54,6 @@ func get_save_button()->TextureRectButton:
 	if save_button == null:
 		save_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/SaveButton")
 	return save_button
-
 
 func get_open_button()->TextureRectButton:
 	if open_button == null:
@@ -159,6 +159,11 @@ func get_current_palette()->Palette:
 	return palettes.get_palette(StaticData.current_palette_index)
 		
 		
+func get_user_brushes()->Control:
+	if user_brushes == null:
+		user_brushes = get_tree().root.get_node("Main/UserBrushes")
+	return user_brushes
+	
 func get_palettes()->Palettes:
 	if palettes == null:
 		palettes = get_tree().root.get_node("Main/Palettes")

@@ -288,6 +288,16 @@ _global_script_classes=[ {
 "class": "UndoManager_DrawPixelsOnCurrentLayer",
 "language": "GDScript",
 "path": "res://Tools/UndoManager_DrawPixelsOnCurrentLayer.gd"
+}, {
+"base": "Control",
+"class": "UserBrushes",
+"language": "GDScript",
+"path": "res://Tools/UserBrushes.gd"
+}, {
+"base": "Control",
+"class": "Userbrush",
+"language": "GDScript",
+"path": "res://Tools/UserBrush.gd"
 } ]
 _global_script_class_icons={
 "AddFrameButtonOnFramePanel": "",
@@ -345,7 +355,9 @@ _global_script_class_icons={
 "TextureRectButton": "",
 "TileModeManager": "",
 "Tools": "",
-"UndoManager_DrawPixelsOnCurrentLayer": ""
+"UndoManager_DrawPixelsOnCurrentLayer": "",
+"UserBrushes": "",
+"Userbrush": ""
 }
 
 [application]

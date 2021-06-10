@@ -5,13 +5,14 @@ circle, select, edit, pick_color_from_canvas, brighter, darker}
 
 enum SymmetryType{no, horizontal, vertical}
 
-enum BrushType{rectangle, circle}
+enum BrushType{rectangle, circle, User}
 
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_frame_index = 0
 var current_layer_index = 0
 var current_palette_index = 0
+var current_user_brush_index = 0
 var preview_layer = null
 var cursor_layer = null
 

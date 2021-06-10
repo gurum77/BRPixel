@@ -427,4 +427,6 @@ static func get_pixels_in_line(from: Vector2, to: Vector2, thickness:int=1, appl
 	
 	if apply_symmetry:
 		append_symmetry_pixels(points)
+		
 	return points
+
