@@ -10,14 +10,17 @@ func _on_AddBrushButton_pressed():
 	var image = Util.create_image_from_selected_area()
 	
 	# brush로 등록
-	NodeManager.get_user_brushes().add_user_brush(image)
+	var new_user_brush = NodeManager.get_user_brushes().add_user_brush(image)
+	
+	# brush button 갱신
+	NodeManager.get_brush_type_button().update_user_brush_buttons()
 	
 	# 선택영역 해제
 	NodeManager.get_tools().finish_selected_area_editing()
 	
 	# 마지막에 추가한 브러쉬를 사용하도록 설정
 	StaticData.brush_type = StaticData.BrushType.User
-	StaticData.current_user_brush_index = NodeManager.get_user_brushes().get_user_brush_count()-1
+	StaticData.set_current_user_brush(new_user_brush)
 	
-func _process(delta):
+func _process(_delta):
 	disabled = !StaticData.enabled_selected_area()

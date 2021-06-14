@@ -786,5 +786,6 @@ __meta__ = {
 [editable path="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton"]
 [editable path="UI/EditPanel/SubmenuPopups/AnimationPopup"]
 [editable path="UI/EditPanel/SubmenuPopups/SelectPopup"]
+[editable path="UI/EditPanel/SubmenuPopups/ToolSettingPopup"]
 [editable path="Canvas/Frames"]
 [editable path="Canvas/Frames/Frame"]

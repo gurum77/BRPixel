@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Tools/Brighter.gd"
 }, {
+"base": "TextureButton",
+"class": "BrushTypeButton",
+"language": "GDScript",
+"path": "res://ToolButtons/BrushTypeButton.gd"
+}, {
 "base": "TextureRect",
 "class": "Canvas",
 "language": "GDScript",
@@ -290,14 +295,19 @@ _global_script_classes=[ {
 "path": "res://Tools/UndoManager_DrawPixelsOnCurrentLayer.gd"
 }, {
 "base": "Control",
+"class": "UserBrush",
+"language": "GDScript",
+"path": "res://Tools/UserBrush.gd"
+}, {
+"base": "TextureButton",
+"class": "UserBrushButton",
+"language": "GDScript",
+"path": "res://ToolButtons/UserBrushButton.gd"
+}, {
+"base": "Control",
 "class": "UserBrushes",
 "language": "GDScript",
 "path": "res://Tools/UserBrushes.gd"
-}, {
-"base": "Control",
-"class": "Userbrush",
-"language": "GDScript",
-"path": "res://Tools/UserBrush.gd"
 } ]
 _global_script_class_icons={
 "AddFrameButtonOnFramePanel": "",
@@ -305,6 +315,7 @@ _global_script_class_icons={
 "AddLayerButtonOnLayerPanel": "",
 "BackgroundPanel": "",
 "BrighterTool": "",
+"BrushTypeButton": "",
 "Canvas": "",
 "ChangeColorTool": "",
 "CircleTool": "",
@@ -356,8 +367,9 @@ _global_script_class_icons={
 "TileModeManager": "",
 "Tools": "",
 "UndoManager_DrawPixelsOnCurrentLayer": "",
-"UserBrushes": "",
-"Userbrush": ""
+"UserBrush": "",
+"UserBrushButton": "",
+"UserBrushes": ""
 }
 
 [application]

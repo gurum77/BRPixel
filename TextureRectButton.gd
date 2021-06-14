@@ -86,6 +86,6 @@ func _pressed():
 	emit_signal("pressed")
 		
 
-func set_text(text):
+func set_text(_text):
 	if $Label != null:
-		$Label.text = text;
+		$Label.text = _text;

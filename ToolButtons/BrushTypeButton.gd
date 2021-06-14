@@ -1,8 +1,8 @@
 extends TextureButton
-
+class_name BrushTypeButton
 
 var last_drawn_thickness = 0
-
+var user_brush_button = preload("res://ToolButtons/UserBrushButton.tscn")
 func _ready():
 	$GridContainer.visible = false
 	
@@ -32,3 +32,17 @@ func _on_CircleButton_pressed():
 
 func _on_BrushTypeButton_pressed():
 	$GridContainer.visible = true
+
+func update_user_brush_buttons():
+	var nodes = $GridContainer.get_children()
+	for node in nodes:
+		if node is UserBrushButton:
+			node.call_deferred("queue_free")
+
+	nodes = NodeManager.get_user_brushes().get_children()
+	for node in nodes:
+		var new_button = user_brush_button.instance()
+		if new_button is UserBrushButton:
+			new_button.user_brush = node
+			$GridContainer.add_child(new_button)
+		

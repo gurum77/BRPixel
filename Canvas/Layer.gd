@@ -194,6 +194,42 @@ func set_pixel_by_current_color(point):
 	image.unlock()
 	update_texture()
 	
+func get_pixel_with_colors_by_current_user_brush(points:Array)->Dictionary:
+	var pixel_with_colors = Dictionary()
+	
+	var _image = StaticData.current_user_brush_texture.get_data()
+	if _image == null:
+		return pixel_with_colors
+		
+	_image.lock()
+	var w = _image.get_width()
+	var h = _image.get_height()
+	var center = Vector2(floor(w/2), floor(h/2))
+	
+	for point in points:
+		for x in w:
+			var new_point_x = point.x + x - center.x
+			var image_x = x
+			if StaticData.user_brush_pattern != StaticData.UserBrushPattern.paint:
+				image_x = new_point_x - floor(new_point_x / w) * w
+			for y in h:
+				var new_point_y = point.y + y - center.y
+				var image_y = y
+				if StaticData.user_brush_pattern != StaticData.UserBrushPattern.paint:
+					image_y = new_point_y - floor(new_point_y / h) * h
+				
+				var color = _image.get_pixel(image_x, image_y)
+				pixel_with_colors[Vector2(new_point_x, new_point_y)] = color
+				
+	_image.unlock()	
+	return pixel_with_colors
+	
+func set_pixels_by_current_user_brush(points:Array):
+	if StaticData.current_user_brush_texture == null:
+		return
+	var pixel_with_colors = get_pixel_with_colors_by_current_user_brush(points)
+	set_pixel_with_colors(pixel_with_colors)
+	
 func set_pixels_by_current_color(points:Array):
 	set_pixels_by_color(points, StaticData.current_color)
 	

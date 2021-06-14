@@ -1,5 +1,5 @@
 extends Control
-class_name Userbrush
+class_name UserBrush
 
 var image = Image.new()
 

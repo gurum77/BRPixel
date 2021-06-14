@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://white_rect_1x1.png" type="Texture" id=1]
 [ext_resource path="res://ToolButtons/BrushTypeButton.gd" type="Script" id=2]
 [ext_resource path="res://white_rect_10x10.png" type="Texture" id=3]
 [ext_resource path="res://white_circle_10x10.png" type="Texture" id=4]
+[ext_resource path="res://Assets/icon_transparent_rect.png" type="Texture" id=5]
 
 [node name="BrushTypeButton" type="TextureButton"]
 margin_right = 25.0
@@ -20,23 +21,44 @@ __meta__ = {
 margin_top = 49.0
 margin_right = 48.0
 margin_bottom = 72.0
-columns = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RectangleButton" type="Button" parent="GridContainer"]
-margin_right = 22.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 20, 20 )
-icon = ExtResource( 3 )
+[node name="RectangleButton" type="TextureButton" parent="GridContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+texture_normal = ExtResource( 5 )
+expand = true
 
-[node name="CircleButton" type="Button" parent="GridContainer"]
-margin_left = 26.0
-margin_right = 48.0
-margin_bottom = 22.0
-rect_min_size = Vector2( 22, 22 )
-icon = ExtResource( 4 )
+[node name="TextureRect" type="TextureRect" parent="GridContainer/RectangleButton"]
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CircleButton" type="TextureButton" parent="GridContainer"]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 40, 40 )
+texture_normal = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer/CircleButton"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="." to="." method="_on_BrushTypeButton_pressed"]
 [connection signal="pressed" from="GridContainer/RectangleButton" to="." method="_on_RectangleButton_pressed"]

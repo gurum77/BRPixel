@@ -116,6 +116,9 @@ func is_enabled_pixel_perfect()->bool:
 		return false
 	if StaticData.pencil_thickness > 1:
 		return false
+	if StaticData.brush_type == StaticData.BrushType.User:
+		return false
+		
 	return true
 
 		
@@ -145,7 +148,10 @@ func set_pixels(points):
 		NodeManager.get_current_layer().image.unlock()	
 		NodeManager.get_current_layer().update_texture()
 	else:
-		NodeManager.get_current_layer().set_pixels_by_current_color(points)
+		if StaticData.brush_type != StaticData.BrushType.User:
+			NodeManager.get_current_layer().set_pixels_by_current_color(points)
+		else:
+			NodeManager.get_current_layer().set_pixels_by_current_user_brush(points)
 	
 func get_key(point)->String:
 	return str(point.x as int) + str(",") + str(point.y as int)
