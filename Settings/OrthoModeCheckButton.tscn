@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="OrthoModeCheckButton" type="CheckButton"]
+margin_left = 220.0
+margin_right = 376.0
+margin_bottom = 40.0
+text = "Ortho mode"
