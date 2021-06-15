@@ -5,13 +5,15 @@ circle, select, edit, pick_color_from_canvas, brighter, darker}
 
 enum SymmetryType{no, horizontal, vertical}
 
-enum BrushType{rectangle, circle}
-
+enum BrushType{rectangle, circle, User}
+enum UserBrushPattern{aligned_to_source, aligned_to_destination, paint}
 var current_tool = Tool.pencil
 var current_color = Color.black
 var current_frame_index = 0
 var current_layer_index = 0
 var current_palette_index = 0
+var current_user_brush_texture:Texture = null
+var user_brush_pattern = UserBrushPattern.aligned_to_destination
 var preview_layer = null
 var cursor_layer = null
 
@@ -39,6 +41,10 @@ var delay_per_frame = 0.3
 # selected area
 var selected_area = Rect2(0, 0, 0, 0)
 	
+func set_current_user_brush(user_brush):
+	if user_brush != null:
+		current_user_brush_texture = Util.create_texture_from_image(user_brush.image)
+		
 # 새 프로젝트의 이름 리턴
 func get_new_project_name()->String:
 	var dt = OS.get_datetime()
@@ -168,7 +174,6 @@ func save_project(path):
 		"enabled_tilemode" : StaticData.enabled_tilemode,
 		"enabled_orthomode" : StaticData.enabled_orthomode,
 		"symmetry_type" : StaticData.symmetry_type,
-		"brush_type" : StaticData.brush_type,
 		"horizontal_symmetry_position" : StaticData.horizontal_symmetry_position,
 		"vertical_symmetry_position" : StaticData.vertical_symmetry_position,
 		"pencil_thickness" : StaticData.pencil_thickness,
@@ -275,7 +280,6 @@ func open_project(path)->bool:
 		StaticData.enabled_tilemode = get_value(dic, "enabled_tilemode", StaticData.enabled_tilemode)
 		StaticData.enabled_orthomode = get_value(dic, "enabled_orthomode", StaticData.enabled_orthomode)
 		StaticData.symmetry_type = get_value(dic, "symmetry_type", StaticData.symmetry_type)
-		StaticData.brush_type = get_value(dic, "brush_type", StaticData.brush_type)
 		StaticData.horizontal_symmetry_position = get_value(dic, "horizontal_symmetry_position", StaticData.horizontal_symmetry_position)
 		StaticData.vertical_symmetry_position = get_value(dic, "vertical_symmetry_position", StaticData.vertical_symmetry_position)
 		StaticData.pencil_thickness = get_value(dic, "pencil_thickness", StaticData.pencil_thickness)

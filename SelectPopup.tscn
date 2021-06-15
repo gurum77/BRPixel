@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://DraggableWindow.gd" type="Script" id=1]
 [ext_resource path="res://AddImageButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://SaveSelectedAreaButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tools/AddBrushButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/icon_add_brush.png" type="Texture" id=5]
 [ext_resource path="res://Assets/icon_close.png" type="Texture" id=11]
 [ext_resource path="res://Assets/icon_drag.png" type="Texture" id=13]
 [ext_resource path="res://Assets/icon_vert_flip.png" type="Texture" id=15]
@@ -19,10 +21,10 @@
 
 [node name="SelectPopup" type="TextureRect"]
 self_modulate = Color( 0, 0, 0, 1 )
-margin_left = 115.921
-margin_top = 4.2597
-margin_right = 432.921
-margin_bottom = 44.2597
+margin_left = 116.0
+margin_top = 4.0
+margin_right = 662.0
+margin_bottom = 44.0
 texture = ExtResource( 31 )
 expand = true
 script = ExtResource( 1 )
@@ -73,46 +75,57 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 toggle_mode = true
 
+[node name="AddBrushButton" parent="HBoxContainer" instance=ExtResource( 4 )]
+icon = ExtResource( 5 )
+
 [node name="CopyButton" parent="HBoxContainer" instance=ExtResource( 29 )]
-margin_left = 88.0
+margin_left = 132.0
 margin_top = 0.0
-margin_right = 128.0
+margin_right = 172.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="CutButton" parent="HBoxContainer" instance=ExtResource( 29 )]
-margin_left = 132.0
+margin_left = 176.0
 margin_top = 0.0
-margin_right = 172.0
+margin_right = 216.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 18 )
 cut = true
 
 [node name="ClearButton" parent="HBoxContainer" instance=ExtResource( 30 )]
-
-[node name="HorFlipButton" parent="HBoxContainer" instance=ExtResource( 27 )]
 margin_left = 220.0
 margin_right = 260.0
+
+[node name="HorFlipButton" parent="HBoxContainer" instance=ExtResource( 27 )]
+margin_left = 264.0
+margin_right = 304.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 
 [node name="VertFlipButton" parent="HBoxContainer" instance=ExtResource( 27 )]
-margin_left = 264.0
-margin_right = 304.0
+margin_left = 308.0
+margin_right = 348.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 icon = ExtResource( 15 )
 
 [node name="SaveSelectedAreaButton" parent="HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 352.0
+margin_right = 392.0
 
 [node name="ShareSelectedAreaButton" parent="HBoxContainer" instance=ExtResource( 26 )]
+margin_left = 396.0
+margin_right = 436.0
 
 [node name="AddImageButton" parent="HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 440.0
+margin_right = 480.0
 
 [node name="Separator" type="TextureRect" parent="HBoxContainer"]
-margin_left = 440.0
-margin_right = 450.0
+margin_left = 484.0
+margin_right = 494.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 10, 40 )
 texture = ExtResource( 16 )

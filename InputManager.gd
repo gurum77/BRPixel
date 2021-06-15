@@ -16,7 +16,11 @@ func draw_preview_pixel_cursor(parent:Control, event, thickness):
 			StaticData.preview_layer.set_pixels_by_color(white_pixels, Color.white)
 			StaticData.preview_layer.set_pixels_by_color(gray_pixels, Color.gray)
 		else:
-			StaticData.preview_layer.set_pixels_by_current_color(pixels)
+			if StaticData.brush_type != StaticData.BrushType.User:
+				StaticData.preview_layer.set_pixels_by_current_color(pixels)
+			else:
+				StaticData.preview_layer.set_pixels_by_current_user_brush(pixels)
+			
 # zooming 중인지?
 func is_zooming()->bool:
 	return zooming;

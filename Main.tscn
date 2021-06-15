@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -47,6 +47,7 @@
 [ext_resource path="res://Tools/BrighterButton.tscn" type="PackedScene" id=45]
 [ext_resource path="res://PickColorFromCanvasButton.gd" type="Script" id=46]
 [ext_resource path="res://Tools/MyColorPicker/MyColorPickerButton.tscn" type="PackedScene" id=47]
+[ext_resource path="res://Tools/UserBrushes.gd" type="Script" id=49]
 [ext_resource path="res://Tools/DarkerButton.tscn" type="PackedScene" id=53]
 [ext_resource path="res://ToolButtons/TileModeButton.tscn" type="PackedScene" id=55]
 [ext_resource path="res://Canvas/TileModeManager.tscn" type="PackedScene" id=56]
@@ -751,6 +752,12 @@ margin_bottom = 0.0
 margin_right = 0.0
 margin_bottom = 0.0
 
+[node name="UserBrushes" type="Control" parent="."]
+script = ExtResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="color_changed" from="UI/EditPanel/ScrollContainer/GridContainer/MyColorPickerButton" to="UI/EditPanel/ScrollContainer/GridContainer/MyColorPickerButton" method="_on_MyColorPickerButton_color_changed"]
 [connection signal="gui_input" from="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_gui_input"]
 [connection signal="pressed" from="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" to="UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton" method="_on_PickColorFromCanvasButton_pressed"]
@@ -779,5 +786,6 @@ margin_bottom = 0.0
 [editable path="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton"]
 [editable path="UI/EditPanel/SubmenuPopups/AnimationPopup"]
 [editable path="UI/EditPanel/SubmenuPopups/SelectPopup"]
+[editable path="UI/EditPanel/SubmenuPopups/ToolSettingPopup"]
 [editable path="Canvas/Frames"]
 [editable path="Canvas/Frames/Frame"]
