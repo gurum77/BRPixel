@@ -13,6 +13,8 @@ var current_frame_index = 0
 var current_layer_index = 0
 var current_palette_index = 0
 var current_user_brush_texture:Texture = null
+var current_user_brush_origin_point = Vector2(0, 0)
+var current_user_brush_destination_point = Vector2(0, 0)
 var user_brush_pattern = UserBrushPattern.aligned_to_destination
 var preview_layer = null
 var cursor_layer = null
@@ -41,9 +43,21 @@ var delay_per_frame = 0.3
 # selected area
 var selected_area = Rect2(0, 0, 0, 0)
 	
-func set_current_user_brush(user_brush):
+# 새프로젝트를 위한 options들을 초기화 한다.
+func init_options_for_new_project():
+	enabled_orthomode = false
+	symmetry_type = SymmetryType.no
+	brush_type = BrushType.rectangle
+	horizontal_symmetry_position = 0
+	vertical_symmetry_position = 0
+	pencil_thickness = 1
+	pixel_perfect = false
+	delay_per_frame = 0.3
+
+func set_current_user_brush(var user_brush):
 	if user_brush != null:
 		current_user_brush_texture = Util.create_texture_from_image(user_brush.image)
+		current_user_brush_origin_point = user_brush.origin_point
 		
 # 새 프로젝트의 이름 리턴
 func get_new_project_name()->String:

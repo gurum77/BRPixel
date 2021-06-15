@@ -9,17 +9,15 @@ func draw_preview_pixel_cursor(parent:Control, event, thickness):
 	if event is InputEventMouseMotion:
 		var point = parent.get_local_mouse_position()
 		var pixels = GeometryMaker.get_pixels_in_line(point, point, thickness)
+		var pixel_with_colors = GeometryMaker.get_pixel_with_colors_by_brush_type(pixels)
 		StaticData.preview_layer.clear()
 		if StaticData.current_tool == StaticData.Tool.eraser:
-			var white_pixels = GeometryMaker.get_pixels_by_check_pattern(pixels, true)
-			var gray_pixels = GeometryMaker.get_pixels_by_check_pattern(pixels, false)
+			var white_pixels = GeometryMaker.get_pixels_by_check_pattern(pixel_with_colors.keys(), true)
+			var gray_pixels = GeometryMaker.get_pixels_by_check_pattern(pixel_with_colors.keys(), false)
 			StaticData.preview_layer.set_pixels_by_color(white_pixels, Color.white)
 			StaticData.preview_layer.set_pixels_by_color(gray_pixels, Color.gray)
 		else:
-			if StaticData.brush_type != StaticData.BrushType.User:
-				StaticData.preview_layer.set_pixels_by_current_color(pixels)
-			else:
-				StaticData.preview_layer.set_pixels_by_current_user_brush(pixels)
+			StaticData.preview_layer.set_pixel_with_colors(pixel_with_colors)
 			
 # zooming 중인지?
 func is_zooming()->bool:

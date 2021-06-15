@@ -35,7 +35,13 @@ var pencil_button:TextureRectButton = null
 var clear_button:Control = null
 var palette_setting_popup:PaletteSettingPopup = null
 var brush_type_button:BrushTypeButton = null
+var add_brush_button:Control = null
 
+func get_add_brush_button()->Control:
+	if add_brush_button == null:
+		add_brush_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/AddBrushButton")
+	return add_brush_button
+	
 func get_brush_type_button()->BrushTypeButton:
 	if brush_type_button == null:
 		brush_type_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/ToolSettingPopup/HBoxContainer/BrushTypeButton")

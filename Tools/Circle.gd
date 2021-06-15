@@ -10,8 +10,9 @@ func _draw():
 	if StaticData.current_tool != StaticData.Tool.circle:
 		return
 	var points = GeometryMaker.get_pixels_in_circle(start_point, end_point, fill, StaticData.pencil_thickness)
+	var pixel_with_color = GeometryMaker.get_pixel_with_colors_by_brush_type(points)
 	StaticData.preview_layer.clear()
-	StaticData.preview_layer.set_pixels_by_current_color(points)
+	StaticData.preview_layer.set_pixel_with_colors(pixel_with_color)
 		
 		
 	return points
@@ -25,15 +26,17 @@ func drawing_area_input(_event):
 	if InputManager.is_action_just_pressed_lbutton(_event):
 		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
 		start_point = get_local_mouse_position()
+		StaticData.current_user_brush_destination_point = start_point
 	elif InputManager.is_action_just_released_lbutton(_event):
 		if start_point == null:
 			return
 		end_point = get_local_mouse_position()
 		end_point = GeometryMaker.get_end_point_by_orthomode(start_point, end_point)
 		var points = GeometryMaker.get_pixels_in_circle(start_point, end_point, fill, StaticData.pencil_thickness)
-		NodeManager.get_current_layer().set_pixels_by_current_color(points)
+		var pixel_with_colors = GeometryMaker.get_pixel_with_colors_by_brush_type(points)
+		NodeManager.get_current_layer().set_pixel_with_colors(pixel_with_colors)
 		StaticData.preview_layer.clear(true)
-		UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(points)
+		UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(pixel_with_colors.keys())
 		UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
 		
 	if InputManager.is_action_pressed_lbutton(_event):

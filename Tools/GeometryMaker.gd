@@ -12,6 +12,55 @@ static func to_2D(idx, w) -> Vector2:
 	p.y = int(idx / w)
 	return p 
 	
+# point에 user brush 를 반영해서 리턴한다.
+static func get_pixel_with_colors_by_current_user_brush(points:Array)->Dictionary:
+	var pixel_with_colors = Dictionary()
+	
+	var _image = StaticData.current_user_brush_texture.get_data()
+	if _image == null:
+		return pixel_with_colors
+		
+	_image.lock()
+	var w = _image.get_width()
+	var h = _image.get_height()
+	var center = Vector2(floor(w/2), floor(h/2))
+	
+	var origin_point = StaticData.current_user_brush_origin_point - center
+	if StaticData.user_brush_pattern == StaticData.UserBrushPattern.aligned_to_destination:
+		origin_point = StaticData.current_user_brush_destination_point - center
+	for point in points:
+		for x in w:
+			# 좌표가 찍히는 실제 위치
+			var new_point_x = point.x + x - center.x
+			var image_x = x
+			if StaticData.user_brush_pattern != StaticData.UserBrushPattern.paint:
+				# 이미의 x 좌표
+				var offset_x = new_point_x - origin_point.x
+				image_x = offset_x - floor(offset_x / w) * w
+				if image_x < 0:
+					image_x = w - image_x
+			for y in h:
+				var new_point_y = point.y + y - center.y
+				var image_y = y
+				if StaticData.user_brush_pattern != StaticData.UserBrushPattern.paint:
+					image_y = new_point_y - floor(new_point_y / h) * h
+				
+				var color = _image.get_pixel(image_x, image_y)
+				pixel_with_colors[Vector2(new_point_x, new_point_y)] = color
+				
+	_image.unlock()	
+	return pixel_with_colors
+	
+# point로 brush type을 반영한 pixel을 리턴한다.
+static func get_pixel_with_colors_by_brush_type(var points)->Dictionary:
+	if StaticData.brush_type != StaticData.BrushType.User:
+		var pixels = Dictionary()
+		for point in points:
+			pixels[point] = StaticData.current_color
+		return pixels
+	else:
+		return GeometryMaker.get_pixel_with_colors_by_current_user_brush(points)
+		
 # ortho로 end point를 보정해서 리턴한다.
 static func get_end_point_by_orthomode(var from, var to)->Vector2:
 	if !StaticData.enabled_orthomode:

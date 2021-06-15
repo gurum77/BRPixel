@@ -13,3 +13,4 @@ func _ready():
 func _on_UserBrushButton_pressed():
 	StaticData.brush_type = StaticData.BrushType.User
 	StaticData.set_current_user_brush(user_brush)
+	get_parent().visible = false

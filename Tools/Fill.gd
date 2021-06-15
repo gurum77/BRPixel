@@ -15,9 +15,11 @@ func drawing_area_input(_event):
 	var pos = NodeManager.get_current_layer().get_local_mouse_position()
 	pos = GeometryMaker.get_adjusted_point_by_tile_mode(pos)
 	var points = get_neighbouring_pixels(pos.x, pos.y)
+	var pixel_with_colors = GeometryMaker.get_pixel_with_colors_by_brush_type(points)
+	
 	UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
-	NodeManager.get_current_layer().set_pixels_by_current_color(points)
-	UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(points)
+	NodeManager.get_current_layer().set_pixel_with_colors(pixel_with_colors)
+	UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(pixel_with_colors.keys())
 	UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
 
 	

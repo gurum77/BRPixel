@@ -59,3 +59,5 @@ func _on_TextureButton_pressed():
 	hide()
 	if get_parent() != null:
 		get_parent().hide()
+
+

@@ -8,6 +8,6 @@ func _ready():
 func drawing_area_input(_event):
 	.drawing_area_input(_event)
 	
-func set_pixels(points, _draw_on_preview_layer:bool=true):
-	NodeManager.get_current_layer().erase_pixels(points)
+func set_pixel_with_colors(pixels:Dictionary):
+	NodeManager.get_current_layer().erase_pixels(pixels.keys())
 		

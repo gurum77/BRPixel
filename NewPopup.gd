@@ -70,6 +70,9 @@ func _on_OkButton_pressed():
 	StaticData.current_frame_index = 0
 	StaticData.current_layer_index = 0
 	
+	# 옵션들을 초기화
+	StaticData.init_options_for_new_project()
+	
 	# preview layer 크기 변경
 	StaticData.preview_layer.resize(Layer.ResizeDir.right_bottom)
 	

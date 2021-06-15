@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/icon_main_16.png" type="Texture" id=1]
-[ext_resource path="res://Assets/icon_transparent_rect.png" type="Texture" id=2]
+[ext_resource path="res://white_rect_1x1.png" type="Texture" id=2]
 [ext_resource path="res://ToolButtons/UserBrushButton.gd" type="Script" id=3]
 
 [node name="UserBrushButton" type="TextureButton"]
@@ -17,8 +17,10 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 37.0
+margin_bottom = 37.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6

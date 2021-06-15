@@ -74,6 +74,8 @@ func _input(event):
 		Util.run_edit_mode(Vector2(0, 0), StaticData.canvas_width, StaticData.canvas_height, false)
 	elif event.is_action_pressed("delete"):
 		NodeManager.get_clear_button().run()
+	elif event.is_action_pressed("add_brush"):
+		NodeManager.get_add_brush_button().run()
 
 
 
