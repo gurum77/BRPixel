@@ -1,5 +1,5 @@
 extends Button
-
+class_name CircleButton
 export var fill = false
 
 func _on_CircleButton_pressed():

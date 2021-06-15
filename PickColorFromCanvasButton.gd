@@ -1,6 +1,9 @@
 extends TextureRectButton
+class_name PickColorFromCanvasButton
 var pickcolor_tool = preload("res://Tools/PickColorFromCanvas.tscn")
 func _on_PickColorFromCanvasButton_pressed():
+	run()
+func run():
 	NodeManager.get_tools().add_child(pickcolor_tool.instance())
 
 func _process(_delta):

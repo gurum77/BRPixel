@@ -138,11 +138,11 @@ func set_pixel_with_colors(pixels:Dictionary):
 	if is_enabled_pixel_perfect():
 		NodeManager.get_current_layer().image.lock()
 		
-		for pixel in pixels:
+		for point in pixels.keys():
 			if draw_symmetry_pixels:
-				symmetry_pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, pixel.key, pixel.value)
+				symmetry_pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, point, pixels[point])
 			else:
-				pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, pixel.key, pixel.value)
+				pixel_perfect_drawer.set_pixel(NodeManager.get_current_layer().image, point, pixels[point])
 		
 		
 		NodeManager.get_current_layer().image.unlock()	

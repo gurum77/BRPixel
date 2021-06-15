@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Tools/MyColorPicker/BackgroundPanel.gd"
 }, {
+"base": "TextureRectButton",
+"class": "BrighterButton",
+"language": "GDScript",
+"path": "res://Tools/BrighterButton.gd"
+}, {
 "base": "Pencil",
 "class": "BrighterTool",
 "language": "GDScript",
@@ -48,6 +53,11 @@ _global_script_classes=[ {
 "class": "ChangeColorTool",
 "language": "GDScript",
 "path": "res://Tools/ChangeColor.gd"
+}, {
+"base": "Button",
+"class": "CircleButton",
+"language": "GDScript",
+"path": "res://ToolButtons/CircleButton.gd"
 }, {
 "base": "Control",
 "class": "CircleTool",
@@ -74,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Settings/ColorSettingPopup.gd"
 }, {
+"base": "TextureRectButton",
+"class": "DarkerButton",
+"language": "GDScript",
+"path": "res://ToolButtons/DarkerButton.gd"
+}, {
 "base": "Pencil",
 "class": "DarkerTool",
 "language": "GDScript",
@@ -99,6 +114,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Tools/Edit.gd"
 }, {
+"base": "TextureRectButton",
+"class": "EraserButton",
+"language": "GDScript",
+"path": "res://ToolButtons/EraserButton.gd"
+}, {
 "base": "Pencil",
 "class": "EraserTool",
 "language": "GDScript",
@@ -108,6 +128,11 @@ _global_script_classes=[ {
 "class": "FileButton",
 "language": "GDScript",
 "path": "res://FileButton.gd"
+}, {
+"base": "TextureRectButton",
+"class": "FillButton",
+"language": "GDScript",
+"path": "res://ToolButtons/FillButton.gd"
 }, {
 "base": "Control",
 "class": "FillTool",
@@ -174,6 +199,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Canvas/Layers.gd"
 }, {
+"base": "Button",
+"class": "LineButton",
+"language": "GDScript",
+"path": "res://ToolButtons/LineButton.gd"
+}, {
 "base": "Control",
 "class": "LineTool",
 "language": "GDScript",
@@ -183,6 +213,11 @@ _global_script_classes=[ {
 "class": "MessageBox",
 "language": "GDScript",
 "path": "res://MessageBox.gd"
+}, {
+"base": "TextureRectButton",
+"class": "MoveButton",
+"language": "GDScript",
+"path": "res://MoveButton.gd"
 }, {
 "base": "Panel",
 "class": "MyColorPicker",
@@ -234,6 +269,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Tools/Pencil.gd"
 }, {
+"base": "TextureRectButton",
+"class": "PickColorFromCanvasButton",
+"language": "GDScript",
+"path": "res://PickColorFromCanvasButton.gd"
+}, {
 "base": "WindowDialog",
 "class": "Preview",
 "language": "GDScript",
@@ -248,6 +288,11 @@ _global_script_classes=[ {
 "class": "Projects",
 "language": "GDScript",
 "path": "res://Canvas/Projects.gd"
+}, {
+"base": "Button",
+"class": "RectangleButton",
+"language": "GDScript",
+"path": "res://ToolButtons/RectangleButton.gd"
 }, {
 "base": "Control",
 "class": "RectangleTool",
@@ -268,6 +313,11 @@ _global_script_classes=[ {
 "class": "Select",
 "language": "GDScript",
 "path": "res://Tools/Select.gd"
+}, {
+"base": "Button",
+"class": "SelectButton",
+"language": "GDScript",
+"path": "res://SelectButton.gd"
 }, {
 "base": "TextureRectButton",
 "class": "SubmenuPopupButton",
@@ -314,22 +364,27 @@ _global_script_class_icons={
 "AddImageButton": "",
 "AddLayerButtonOnLayerPanel": "",
 "BackgroundPanel": "",
+"BrighterButton": "",
 "BrighterTool": "",
 "BrushTypeButton": "",
 "Canvas": "",
 "ChangeColorTool": "",
+"CircleButton": "",
 "CircleTool": "",
 "ClearButton": "",
 "ClipBoardButton": "",
 "ColorPanel": "",
 "ColorSettingPopup": "",
+"DarkerButton": "",
 "DarkerTool": "",
 "DraggableFileDialog": "",
 "DraggablePopup": "",
 "DraggableWindow": "",
 "Edit": "",
+"EraserButton": "",
 "EraserTool": "",
 "FileButton": "",
+"FillButton": "",
 "FillTool": "",
 "Frame": "",
 "FramePanel": "",
@@ -343,8 +398,10 @@ _global_script_class_icons={
 "LayerPanel": "",
 "LayerSettingPopup": "",
 "Layers": "",
+"LineButton": "",
 "LineTool": "",
 "MessageBox": "",
+"MoveButton": "",
 "MyColorPicker": "",
 "MyColorPickerButton": "",
 "MyLineEdit": "",
@@ -355,13 +412,16 @@ _global_script_class_icons={
 "PaletteSettingPopup": "",
 "Palettes": "",
 "Pencil": "",
+"PickColorFromCanvasButton": "",
 "Preview": "",
 "Project": "",
 "Projects": "",
+"RectangleButton": "",
 "RectangleTool": "",
 "SaveButton": "",
 "SaveOptionsPopup": "",
 "Select": "",
+"SelectButton": "",
 "SubmenuPopupButton": "",
 "TextureRectButton": "",
 "TileModeManager": "",
@@ -474,6 +534,71 @@ delete={
 add_brush={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":66,"unicode":0,"echo":false,"script":null)
+ ]
+}
+eraser={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pencil={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fill={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
+ ]
+}
+circle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
+ ]
+}
+line={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":76,"unicode":0,"echo":false,"script":null)
+ ]
+}
+rectangle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fill_circle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fill_rectangle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pick_color_from_canvas={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":79,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
+brighter={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":66,"unicode":0,"echo":false,"script":null)
+ ]
+}
+darker={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
  ]
 }
 

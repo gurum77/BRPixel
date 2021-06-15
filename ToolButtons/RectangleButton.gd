@@ -1,8 +1,11 @@
 extends Button
-
+class_name RectangleButton
 export var fill = false
 
 func _on_RectangleButton_pressed():
+	run()
+	
+func run():
 	var rectangle = NodeManager.get_tools().rectangle_tool.instance()
 	rectangle.fill = fill
 	NodeManager.get_tools().add_child(rectangle)

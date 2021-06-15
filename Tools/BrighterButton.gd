@@ -1,9 +1,11 @@
 extends TextureRectButton
-
+class_name BrighterButton
 
 
 
 func _on_BrighterButton_pressed():
+	run()
+func run():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().brighter_tool.instance())
 	StaticData.last_drawing_tool = NodeManager.get_tools().brighter_tool
 

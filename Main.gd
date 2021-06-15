@@ -76,6 +76,33 @@ func _input(event):
 		NodeManager.get_clear_button().run()
 	elif event.is_action_pressed("add_brush"):
 		NodeManager.get_add_brush_button().run()
+	elif event.is_action_pressed("pencil"):
+		NodeManager.get_pencil_button().run()
+	elif event.is_action_pressed("line"):
+		NodeManager.get_line_button().run()
+	elif event.is_action_pressed("fill_rectangle"):
+		NodeManager.get_fill_rectangle_button().run()
+	elif event.is_action_pressed("rectangle"):
+		NodeManager.get_rectangle_button().run()
+	elif event.is_action_pressed("fill_circle"):
+		NodeManager.get_fill_circle_button().run()
+	elif event.is_action_pressed("circle"):
+		NodeManager.get_circle_button().run()
+	elif event.is_action_pressed("eraser"):
+		NodeManager.get_eraser_button().run()
+	elif event.is_action_pressed("fill"):
+		NodeManager.get_fill_button().run()
+	elif event.is_action_pressed("select"):
+		NodeManager.get_select_button().run()
+	elif event.is_action_pressed("pick_color_from_canvas"):
+		NodeManager.get_pick_color_from_canvas_button().run()
+	elif event.is_action_pressed("move"):
+		NodeManager.get_move_button().run()
+	elif event.is_action_pressed("brighter"):
+		NodeManager.get_brighter_button().run()
+	elif event.is_action_pressed("darker"):
+		NodeManager.get_darker_button().run()
+	
 
 
 

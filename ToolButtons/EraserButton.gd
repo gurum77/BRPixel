@@ -1,6 +1,9 @@
 extends TextureRectButton
+class_name EraserButton
 
 func _on_EraserButton_pressed():
+	run()
+func run():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().eraser_tool.instance())
 	StaticData.last_drawing_tool = NodeManager.get_tools().eraser_tool
 

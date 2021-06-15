@@ -32,10 +32,23 @@ var select_popup_button:TextureRectButton = null
 var open_button:TextureRectButton = null
 var save_button:TextureRectButton = null
 var pencil_button:TextureRectButton = null
+var line_button:LineButton = null
+var rectangle_button:RectangleButton = null
+var fill_rectangle_button:RectangleButton = null
+var circle_button:CircleButton = null
+var fill_circle_button:CircleButton = null
+var eraser_button:EraserButton = null
+var fill_button:FillButton = null
+var select_button:SelectButton = null
+var pick_color_from_canvas_button:PickColorFromCanvasButton = null
+var move_button:MoveButton = null
+var brighter_button:BrighterButton = null
+var darker_button:DarkerButton = null
 var clear_button:Control = null
 var palette_setting_popup:PaletteSettingPopup = null
 var brush_type_button:BrushTypeButton = null
 var add_brush_button:Control = null
+
 
 func get_add_brush_button()->Control:
 	if add_brush_button == null:
@@ -56,6 +69,69 @@ func get_clear_button()->Control:
 	if clear_button == null:
 		clear_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/ClearButton")
 	return clear_button
+
+func get_move_button()->MoveButton:
+	if move_button == null:
+		move_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/MoveButton")
+	return move_button
+	
+func get_brighter_button()->BrighterButton:
+	if brighter_button == null:
+		brighter_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/BrighterButton")
+	return brighter_button
+	
+func get_darker_button()->DarkerButton:
+	if darker_button == null:
+		darker_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/DarkerButton")
+	return darker_button
+	
+func get_pick_color_from_canvas_button()->PickColorFromCanvasButton:
+	if pick_color_from_canvas_button == null:
+		pick_color_from_canvas_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/PickColorFromCanvasButton")
+	return pick_color_from_canvas_button
+	
+func get_select_button()->SelectButton:
+	if select_button == null:
+		select_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/SelectButton")
+	return select_button
+
+
+func get_fill_button()->FillButton:
+	if fill_button == null:
+		fill_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/FillButton")
+	return fill_button
+	
+	
+func get_eraser_button()->EraserButton:
+	if eraser_button == null:
+		eraser_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/EraserButton")
+	return eraser_button
+
+	
+func get_fill_circle_button()->CircleButton:
+	if fill_circle_button == null:
+		fill_circle_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/GeometryPopup/HBoxContainer/FillCircleButton")
+	return fill_circle_button
+		
+func get_circle_button()->CircleButton:
+	if circle_button == null:
+		circle_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/GeometryPopup/HBoxContainer/CircleButton")
+	return circle_button
+	
+func get_fill_rectangle_button()->RectangleButton:
+	if fill_rectangle_button == null:
+		fill_rectangle_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/GeometryPopup/HBoxContainer/FillRectangleButton")
+	return fill_rectangle_button
+		
+func get_rectangle_button()->RectangleButton:
+	if rectangle_button == null:
+		rectangle_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/GeometryPopup/HBoxContainer/RectangleButton")
+	return rectangle_button
+		
+func get_line_button()->LineButton:
+	if line_button == null:
+		line_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/GeometryPopup/HBoxContainer/LineButton")
+	return line_button
 	
 func get_pencil_button()->TextureRectButton:
 	if pencil_button == null:

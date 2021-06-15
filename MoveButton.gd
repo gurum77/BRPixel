@@ -1,8 +1,10 @@
 extends TextureRectButton
-
+class_name MoveButton
 
 
 func _on_MoveButton_pressed():
+	run()
+func run():
 	# 현재 layer를 모두 선택하고 편집 모드를 실행한다.
 	StaticData.selected_area = Rect2(0, 0, StaticData.canvas_width, StaticData.canvas_height)
 	
