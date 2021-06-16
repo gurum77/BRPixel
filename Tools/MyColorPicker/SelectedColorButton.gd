@@ -10,19 +10,11 @@ func _ready():
 func _process(_delta):
 	self_modulate = my_color_picker.get_selected_color()
 	color_info.text = "%d,%d,%d" % [self_modulate.r8, self_modulate.g8, self_modulate.b8]
-	if is_black_text():
+	if Util.is_black_text(self_modulate):
 		color_info.modulate = Color.black
 	else:
 		color_info.modulate = Color.white
-func is_black_text()->bool:
-	if self_modulate.r > 0.5:
-		return true
-	if self_modulate.g > 0.5:
-		return true
-	if self_modulate.b > 0.5:
-		return true
-	return false
-	
+
 	
 
 

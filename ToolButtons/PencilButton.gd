@@ -1,5 +1,8 @@
 extends TextureRectButton
 
+func _ready():
+	Util.set_tooltip(self, "Pencil Circle tool", "P")
+	
 func _on_PencilButton_pressed():
 	run()
 	

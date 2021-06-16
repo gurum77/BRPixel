@@ -1,6 +1,21 @@
 extends Node
 var valid_drives:Array = []
 
+# tool tip을 추가한다.
+func set_tooltip(control:Control, desc, shortcut):
+	control.hint_tooltip = desc + "\n\nShortcut : " + shortcut
+	
+# 검색 글자를 찍어야 하는지?(너무 밝아진 경우이다)
+func is_black_text(var color)->bool:
+	if color.r > 0.5:
+		return true
+	if color.g > 0.5:
+		return true
+	if color.b > 0.5:
+		return true
+	return false
+	
+	
 func get_drive(idx)->String:
 	if idx < 0 || idx >= valid_drives.size():
 		return ""
@@ -133,11 +148,12 @@ func show_error_message(parent, _err):
 	show_message(parent, "Error", message)
 	
 # submenu popup button에 현재 툴을 설정한다.
-func set_submenu_popup_button_current_tool(submenu_button:Button, current_tool):
+func set_submenu_popup_button_current_tool(submenu_button:Button, current_tool, hint_tooltip=""):
 	var parent_button:SubmenuPopupButton = submenu_button.get_parent().get_parent().submenu_popup_button_parent
 	if parent_button != null:
 		parent_button.current_tool = current_tool
 		parent_button.icon.texture = submenu_button.icon
+		parent_button.hint_tooltip = hint_tooltip
 			
 # 현재 tool인 경우 버튼을 press한다
 func press_current_tool_button(button, current_tool):

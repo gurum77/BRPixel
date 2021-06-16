@@ -9,8 +9,20 @@ func _draw():
 	var x = last_color_selector.selected_x
 	var y = last_color_selector.selected_y
 
-	draw_line(Vector2(x, 0), Vector2(x, rect_size.y), my_color_picker.get_selected_color())
-	draw_line(Vector2(0, y), Vector2(rect_size.x, y), my_color_picker.get_selected_color())
+	var selected_color = my_color_picker.get_selected_color()
+	
+	var draw_color = Color.gray
+	# rgb 하나라도 120을 넘어가면 black으로 표시하고
+	# 아니면 gray
+	if Util.is_black_text(selected_color):
+		draw_color = Color.black
+	draw_line(Vector2(x, 0), Vector2(x, rect_size.y), draw_color)
+	draw_line(Vector2(0, y), Vector2(rect_size.x, y), draw_color)
+	
+	var size = 6
+	var rect = Rect2(x-size/2, y-size/2, size, size)
+	draw_rect(rect, draw_color, false, 1)
+	
 
 func _on_LastColorSelectorLine_gui_input(event):
 	if InputManager.is_action_pressed_lbutton(event):

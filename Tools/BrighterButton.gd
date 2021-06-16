@@ -2,7 +2,9 @@ extends TextureRectButton
 class_name BrighterButton
 
 
-
+func _ready():
+	Util.set_tooltip(self, "Brighten tool", "B")
+	
 func _on_BrighterButton_pressed():
 	run()
 func run():

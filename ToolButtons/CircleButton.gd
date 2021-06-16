@@ -2,6 +2,12 @@ extends Button
 class_name CircleButton
 export var fill = false
 
+func _ready():
+	if fill:
+		Util.set_tooltip(self, "Filled Circle tool", "Shift+C")
+	else:
+		Util.set_tooltip(self, "Circle tool", "C")
+		
 func _on_CircleButton_pressed():
 	pass
 func run():
@@ -12,7 +18,7 @@ func run():
 	StaticData.last_drawing_tool = NodeManager.get_tools().circle_tool
 	StaticData.fill_for_last_drawing_tool = fill
 	
-	Util.set_submenu_popup_button_current_tool(self, StaticData.Tool.circle)
+	Util.set_submenu_popup_button_current_tool(self, StaticData.Tool.circle, hint_tooltip)
 	
 func _process(_delta):
 	var is_current_tool = false

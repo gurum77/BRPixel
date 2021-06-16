@@ -1,5 +1,9 @@
 extends Button
 
+func _ready():
+	Util.set_tooltip(self, "Brush tool", "Ctrl+B")
+
+
 func run():
 	if !StaticData.enabled_selected_area():
 		return

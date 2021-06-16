@@ -1,6 +1,9 @@
 extends Button
 class_name SelectButton
 
+func _ready():
+	Util.set_tooltip(self, "Selection tool", "S")
+
 
 func _on_SelectButton_pressed():
 	run()

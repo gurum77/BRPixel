@@ -1,6 +1,7 @@
 extends TextureRectButton
 class_name SubmenuPopupButton
 export (StaticData.Tool) var current_tool = StaticData.Tool.none
+export (String, MULTILINE) var first_hint_tooltip = ""
 export (NodePath) var popup_node_path = null
 
 var popup
@@ -8,6 +9,8 @@ var popup_hbox_container
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hint_tooltip = first_hint_tooltip
+	
 	if popup_node_path != null:
 		popup = get_node(popup_node_path)
 		popup_hbox_container = popup.get_node("HBoxContainer")

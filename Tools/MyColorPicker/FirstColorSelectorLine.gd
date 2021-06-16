@@ -7,9 +7,14 @@ func _draw():
 	var from = Vector2(first_color_selector.selected_x, 0)
 	var to = Vector2(first_color_selector.selected_x, rect_size.y)
 	var selected_color_line = first_color_selector.get_color_on_mouse().blend(Color.red)
-	draw_line(from, to, selected_color_line, 1)
+	var draw_color = Color.black
+	draw_line(from, to, draw_color, 1)
 	
-
+	var size = 6
+	var center = (from + to)/2
+	
+	var rect = Rect2(center.x-size/2, center.y-size/2, size, size)
+	draw_rect(rect, draw_color, false, 1)
 	
 	
 # 누르고 있는 동안 계속해서 selected_color 변수를 갱신한다.

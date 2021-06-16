@@ -1,6 +1,8 @@
 extends TextureRectButton
 
-
+func _ready():
+	Util.set_tooltip(self, "Redo", "Ctrl+Y")
+	
 func _process(_delta):
 	var undo = NodeManager.get_undo()
 	if undo == null:

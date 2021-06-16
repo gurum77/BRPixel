@@ -1,6 +1,10 @@
 extends TextureRectButton
 class_name EraserButton
 
+func _ready():
+	Util.set_tooltip(self, "Eraser tool", "F")
+
+
 func _on_EraserButton_pressed():
 	run()
 func run():

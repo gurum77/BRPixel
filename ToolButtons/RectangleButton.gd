@@ -2,6 +2,13 @@ extends Button
 class_name RectangleButton
 export var fill = false
 
+func _ready():
+	if fill:
+		Util.set_tooltip(self, "Filled Rectangle tool", "Shift+R")
+	else:
+		Util.set_tooltip(self, "Rectangle tool", "R")
+
+	
 func _on_RectangleButton_pressed():
 	run()
 	
@@ -13,7 +20,7 @@ func run():
 	StaticData.last_drawing_tool = NodeManager.get_tools().rectangle_tool
 	StaticData.fill_for_last_drawing_tool = fill
 	
-	Util.set_submenu_popup_button_current_tool(self, StaticData.Tool.rectangle)
+	Util.set_submenu_popup_button_current_tool(self, StaticData.Tool.rectangle, hint_tooltip)
 	
 
 func _process(_delta):
