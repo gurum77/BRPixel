@@ -2,7 +2,7 @@ extends TextureRectButton
 class_name DarkerButton
 
 func _ready():
-	Util.set_tooltip(self, "Darken tool", "D")
+	Util.set_tooltip(self, tr("Darken tool"), "D")
 	
 func _on_DarkerButton_pressed():
 	run()

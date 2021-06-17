@@ -29,6 +29,7 @@ var cut_button:Button = null
 var redo_button:TextureRect = null
 var undo_button:TextureRect = null
 var select_popup_button:TextureRectButton = null
+var new_button:NewButton = null
 var open_button:TextureRectButton = null
 var save_button:TextureRectButton = null
 var pencil_button:TextureRectButton = null
@@ -44,12 +45,44 @@ var pick_color_from_canvas_button:PickColorFromCanvasButton = null
 var move_button:MoveButton = null
 var brighter_button:BrighterButton = null
 var darker_button:DarkerButton = null
+var change_color_button:Control = null
+var add_layer_button:AddLayerButton = null
+var share_button:ShareButton = null
 var clear_button:Control = null
 var palette_setting_popup:PaletteSettingPopup = null
 var brush_type_button:BrushTypeButton = null
 var add_brush_button:Control = null
+var start_button:Control = null
+var prev_button:Control = null
+var play_button:Control = null
+var next_button:Control = null
+var end_button:Control = null
 
-
+func get_start_button()->Control:
+	if start_button == null:
+		start_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/AnimationPopup/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/StartButton")
+	return start_button
+	
+func get_prev_button()->Control:
+	if prev_button == null:
+		prev_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/AnimationPopup/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/PrevButton")
+	return prev_button
+	
+func get_play_button()->Control:
+	if play_button == null:
+		play_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/AnimationPopup/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/PlayButton")
+	return play_button
+	
+func get_next_button()->Control:
+	if next_button == null:
+		next_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/AnimationPopup/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/NextButton")
+	return next_button	
+	
+func get_end_button()->Control:
+	if end_button == null:
+		end_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/AnimationPopup/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/EndButton")
+	return end_button
+		
 func get_add_brush_button()->Control:
 	if add_brush_button == null:
 		add_brush_button = get_tree().root.get_node("Main/UI/EditPanel/SubmenuPopups/SelectPopup/HBoxContainer/AddBrushButton")
@@ -84,6 +117,21 @@ func get_darker_button()->DarkerButton:
 	if darker_button == null:
 		darker_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/DarkerButton")
 	return darker_button
+
+func get_change_color_button()->Control:
+	if change_color_button == null:
+		change_color_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/ChangeColorButton")
+	return change_color_button	
+	
+func get_add_layer_button()->AddLayerButton:
+	if add_layer_button == null:
+		add_layer_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/AddLayerButton")
+	return add_layer_button	
+
+func get_share_button()->ShareButton:
+	if share_button == null:
+		share_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/ShareButton")
+	return share_button		
 	
 func get_pick_color_from_canvas_button()->PickColorFromCanvasButton:
 	if pick_color_from_canvas_button == null:
@@ -147,6 +195,11 @@ func get_open_button()->TextureRectButton:
 	if open_button == null:
 		open_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/OpenButton")
 	return open_button
+
+func get_new_button()->NewButton:
+	if new_button == null:
+		new_button = get_tree().root.get_node("Main/UI/EditPanel/ScrollContainer/GridContainer/NewButton")
+	return new_button
 	
 func get_select_popup_button()->TextureRectButton:
 	if select_popup_button == null:

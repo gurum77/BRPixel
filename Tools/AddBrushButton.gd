@@ -1,7 +1,7 @@
 extends Button
 
 func _ready():
-	Util.set_tooltip(self, "Brush tool", "Ctrl+B")
+	Util.set_tooltip(self, tr("Create brush"), "Ctrl+B")
 
 
 func run():

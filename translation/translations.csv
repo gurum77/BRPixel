@@ -67,3 +67,52 @@ layer(s),layer(s),레이어
 Download Android App.,Download Android App.,안드로이드 앱 다운로드
 Load Palette,Load Palette,팔레트 불러오기
 Close Palette,Close Palette,팔레트 닫기
+Eyedropper tool,Eyedropper tool,스포이드
+Shortcut,Shortcut,단축키
+Pencil tool,Pencil tool,펜
+Line tool,Line tool,선 그리기
+Filled Circle tool,Filled Circle tool,채워진 원 그리기
+Circle tool,Circle tool,원 그리기
+Filled Rectangle tool,Filled Rectangle tool,채워진 사각형 그리기
+Rectangle tool,Rectangle tool,사각형 그리기
+Selection tool,Selection tool,선택하기
+Add new layer,Add new layer,새 레이어 추가
+Delete current layer,Delete current layer,현재 레이어 삭제
+Brighten tool,Brighten tool,밝게 하기
+Darken tool,Darken tool,어둡게 하기
+Move tool,Move tool,이동
+Show/Hide grid,Show/Hide grid,그리드 켜기/끄기
+Tilemode on/off,Tilemode on/off,타일모드 켜기/끄기
+Symmetry setting,Symmetry setting,대칭 설정
+Animation control center,Animation control center,애니메이션 제어 센터
+Fill tool,Fill tool,채우기
+Change color,Change color,색 바꾸기
+New project,New project,새 프로젝트
+Open project,Open project,프로젝트 열기
+Save project,Save project,프로젝트 저장
+Share,Share,공유하기
+Palette options,Palette options,팔레트 옵션
+Sort colors on palette,Sort colors on palette,팔레트 색상 정렬
+Layer visible on/off,Layer visible on/off,레이어 켜기/끄기
+Layer options,Layer options,레이어 옵션
+All layers visible on/off,All layers visible on/off,모든 레이어 켜기/끄기
+Play animation,Play animation,애니메이션 재생
+Move to first frame,Move to first frame,첫번째 프레임으로 이동
+Move to previous frame,Move to previous frame,이전 프레임으로 이동
+Move to next frame,Move to next frame,다음 프레임으로 이동
+Move to last frame,Move to last frame,마지막 프레임으로 이동
+Add new frame,Add new frame,새 프레임 추가
+System options,System options,시스템 옵션
+No symmetry,No symmetry,대칭 없음
+Vertical symmetry,Vertical symmetry,수직 대칭
+Horizontal symmetry,Horizontal symmetry,수평 대칭
+Create brush,Create brush,브러쉬 생성
+Edit selected area(move/stretch),Edit selected area(move/stretch),선택 영역 편집(이동/늘리기)
+Cut tool,Cut tool,잘라내기
+Copy tool,Copy tool,복사하기
+Horizontal flip,Horizontal flip,선택영역 수평으로 뒤집기
+Vertical flip,Vertical flip,선택영역 수직으로 뒤집기
+Add image to layer,Add image to layer,레이어에 이미지 파일 붙여넣기
+Save selected area as image,Save selected area as image,선택영역 이미지로 저장하기
+Share selected area as image,Share selected area as image,선택영역 이미지로 공유하기
+Delete selected area tool,Delete selected area tool,선택영역 삭제

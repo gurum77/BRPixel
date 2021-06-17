@@ -27,6 +27,10 @@ class PixelPerfectDrawer:
 				
 				
 	func set_pixel(image: Image, position: Vector2, color: Color) -> void:
+		if position.x < 0 || position.y < 0:
+			return
+		if position.x >= image.get_width() || position.y >= image.get_height():
+			return
 		var color_old = image.get_pixelv(position)
 		last_pixels.push_back([position, color_old])
 		image.set_pixelv(position, color)

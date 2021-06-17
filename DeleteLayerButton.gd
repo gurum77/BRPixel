@@ -1,6 +1,10 @@
 extends TextureRectButton
 
 var message_box
+
+func _ready():
+	Util.set_tooltip(self, tr("Delete current layer"), "")
+	
 func _on_DeleteLayerButton_pressed():
 	var layers = NodeManager.get_current_layers()
 	if layers == null:

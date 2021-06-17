@@ -1,6 +1,8 @@
 extends Button
 class_name AddImageButton
 
+func _ready():
+	Util.set_tooltip(self, tr("Add image to layer"), "")
 func run():
 	_on_AddImageButton_pressed()
 	

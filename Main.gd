@@ -3,11 +3,6 @@ extends Control
 func on_size_changed():
 	if NodeManager.file_dialog != null:
 		NodeManager.file_dialog.resize()
-	
-
-# 모든 윈도우 drive를 한번씩 오픈한다.
-
-
 
 func _ready():
 	# android가 아닐때는 stretch mode를 disable로 해야 함(아이콘 크기를 유지)
@@ -56,6 +51,10 @@ func _on_Main_resized():
 	pass # Replace with function body.
 
 func _input(event):
+	# text editing중일때는 단축키 입력을 무시한다.
+	if InputManager.text_editing:
+		return
+		
 	if event.is_action_pressed("copy"):
 		if StaticData.enabled_selected_area():
 			NodeManager.get_copy_button().on_CopyButton_pressed()
@@ -70,6 +69,8 @@ func _input(event):
 		NodeManager.get_undo_button().on_UndoButton_pressed()
 	elif event.is_action_pressed("redo"):
 		NodeManager.get_redo_button().on_RedoButton_pressed()
+	elif event.is_action_pressed("save"):
+		NodeManager.get_save_button().run()
 	elif event.is_action_pressed("select_all"):
 		Util.run_edit_mode(Vector2(0, 0), StaticData.canvas_width, StaticData.canvas_height, false)
 	elif event.is_action_pressed("delete"):
@@ -102,8 +103,24 @@ func _input(event):
 		NodeManager.get_brighter_button().run()
 	elif event.is_action_pressed("darker"):
 		NodeManager.get_darker_button().run()
-	
-
-
-
-
+	elif event.is_action_pressed("change_color"):
+		NodeManager.get_change_color_button().run()
+	elif event.is_action_pressed("new"):
+		NodeManager.get_new_button().run()
+	elif event.is_action_pressed("open"):
+		NodeManager.get_open_button().run()
+	elif event.is_action_pressed("add_layer"):
+		NodeManager.get_add_layer_button().run()
+	elif event.is_action_pressed("share"):
+		NodeManager.get_share_button().run()
+	elif event.is_action_pressed("start"):
+		NodeManager.get_start_button().run()
+	elif event.is_action_pressed("prev"):
+		NodeManager.get_prev_button().run()
+	elif event.is_action_pressed("play"):
+		NodeManager.get_play_button().pressed = !NodeManager.get_play_button().pressed
+		NodeManager.get_play_button().run()
+	elif event.is_action_pressed("next"):
+		NodeManager.get_next_button().run()
+	elif event.is_action_pressed("end"):
+		NodeManager.get_end_button().run()

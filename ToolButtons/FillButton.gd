@@ -2,7 +2,7 @@ extends TextureRectButton
 class_name FillButton
 
 func _ready():
-	Util.set_tooltip(self, "Fill tool", "F")
+	Util.set_tooltip(self, tr("Fill tool"), "F")
 	
 func _on_FillButton_pressed():	
 	run()

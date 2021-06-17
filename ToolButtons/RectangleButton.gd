@@ -4,9 +4,9 @@ export var fill = false
 
 func _ready():
 	if fill:
-		Util.set_tooltip(self, "Filled Rectangle tool", "Shift+R")
+		Util.set_tooltip(self, tr("Filled Rectangle tool"), "Shift+R")
 	else:
-		Util.set_tooltip(self, "Rectangle tool", "R")
+		Util.set_tooltip(self, tr("Rectangle tool"), "R")
 
 	
 func _on_RectangleButton_pressed():

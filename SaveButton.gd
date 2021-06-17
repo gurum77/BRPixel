@@ -3,7 +3,7 @@ class_name SaveButton
 export var save_selected_area = false
 
 func _ready():
-	pass	
+	Util.set_tooltip(self, tr("Save project"), "Ctrl+S")
 		
 func run():
 	_on_SaveButton_pressed()

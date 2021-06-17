@@ -3,7 +3,7 @@ class_name PickColorFromCanvasButton
 var pickcolor_tool = preload("res://Tools/PickColorFromCanvas.tscn")
 	
 func _ready():
-	Util.set_tooltip(self, "Eyedropper Circle tool", "I")
+	Util.set_tooltip(self, tr("Eyedropper tool"), "I")
 	
 func _on_PickColorFromCanvasButton_pressed():
 	run()

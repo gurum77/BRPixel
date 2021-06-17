@@ -1,7 +1,9 @@
 extends TextureButton
 class_name AddLayerButtonOnLayerPanel
 
-
+func _ready():
+	Util.set_tooltip(self, tr("Add new layer"), "")
+	
 func _on_AddLayerButton_pressed():
 	# 모든 frame에 layer를 추가한다.
 	NodeManager.get_frames().add_layer()

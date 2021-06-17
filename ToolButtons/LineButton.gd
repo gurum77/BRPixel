@@ -1,7 +1,7 @@
 extends Button
 class_name LineButton
 func _ready():
-	Util.set_tooltip(self, "Line tool", "L")
+	Util.set_tooltip(self, tr("Line tool"), "L")
 
 	
 func run():

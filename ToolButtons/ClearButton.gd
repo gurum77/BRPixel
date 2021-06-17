@@ -2,7 +2,7 @@ extends Button
 class_name ClearButton
 
 func _ready():
-	Util.set_tooltip(self, "Delete selected area tool", "Del")
+	Util.set_tooltip(self, tr("Delete selected area tool"), "Del")
 	
 # 선택한 영역을 지운다.
 func _on_ClearButton_pressed():

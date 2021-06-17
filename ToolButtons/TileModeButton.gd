@@ -1,10 +1,15 @@
 extends TextureRectButton
 
+func _ready():
+	Util.set_tooltip(self, tr("Tilemode on/off"), "")
 
 func _process(_delta):
 	pressed = StaticData.enabled_tilemode
 	
 func _on_TileModeButton_pressed():
+	run()
+
+func run():
 	StaticData.enabled_tilemode = pressed
 	# tile mode manager 초기화
 	var tile_mode_manager:TileModeManager = NodeManager.get_tile_mode_manager()

@@ -1,6 +1,13 @@
 extends TextureRectButton
+class_name ShareButton
 
+func _ready():
+	Util.set_tooltip(self, tr("Share"), "Ctrl+H")
+	
 func _on_ShareButton_pressed():
+	run()
+	
+func run():
 	var godot_share = PluginManager.get_godot_share()
 	if godot_share != null:
 		var image_save_path = OS.get_user_data_dir() + "/brpixel_share_image_____.png"

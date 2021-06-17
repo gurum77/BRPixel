@@ -1,6 +1,9 @@
 extends Button
 
 
+func _ready():
+	Util.set_tooltip(self, tr("Play animation"), "Enter")
+	
 func update_texture():
 	$PlayTexture.visible = !pressed
 	$PauseTexture.visible = pressed
@@ -11,6 +14,9 @@ func _process(_delta):
 		update_texture()
 	
 func _on_PlayButton_pressed():
+	run()
+	
+func run():
 	if pressed:
 		NodeManager.get_canvas().play()
 	else:

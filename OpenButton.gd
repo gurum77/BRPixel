@@ -3,11 +3,13 @@ class_name OpenButton
 
 export var add_image = false
 
+func _ready():
+	Util.set_tooltip(self, tr("Open project"), "Ctrl+O")
+	
 func run():
 	_on_OpenButton_pressed()
 	
 func _on_OpenButton_pressed():
-		
 	var _tmp = NodeManager.get_file_dialog().connect("hide", self, "on_hide_file_dialog")
 	NodeManager.get_file_dialog().save_file_dialog = false
 	if add_image:

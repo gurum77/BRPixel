@@ -6,9 +6,9 @@ export var cut = false
 
 func _ready():
 	if cut:
-		Util.set_tooltip(self, "Cut tool", "Ctrl+X")
+		Util.set_tooltip(self, tr("Cut tool"), "Ctrl+X")
 	else:
-		Util.set_tooltip(self, "Copy tool", "Ctrl+C")
+		Util.set_tooltip(self, tr("Copy tool"), "Ctrl+C")
 	
 func _process(_delta):
 	disabled = !StaticData.enabled_selected_area()

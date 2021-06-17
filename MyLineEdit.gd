@@ -1,6 +1,14 @@
 extends LineEdit
 class_name MyLineEdit
 
+func _ready():
+	connect("focus_entered", self, "_on_focus_entered")
+	connect("focus_exited", self, "_on_focus_exited")
+
+func _on_focus_entered():
+	InputManager.text_editing = true
+func _on_focus_exited():
+	InputManager.text_editing = false
 
 func _is_pos_in(checkpos:Vector2):
 	var gr = get_global_rect()

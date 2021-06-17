@@ -1,5 +1,8 @@
 extends Button
 
+func _ready():
+	Util.set_tooltip(self, tr("Share selected area as image"), "")
+	
 func _on_ShareSelectedAreaButton_pressed():
 	var godot_share = PluginManager.get_godot_share()
 	if godot_share != null:

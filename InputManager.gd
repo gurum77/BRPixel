@@ -2,6 +2,7 @@ extends Node
 
 var pressed_lbutton = false
 var zooming = false
+var text_editing = false	# 글자 입력중인지?
 		
 # 미리보기 cursor를 그린다.
 # cursor는 현재 점의 크기이다.

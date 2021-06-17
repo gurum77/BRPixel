@@ -1,6 +1,8 @@
 extends TextureRectButton
 
-
+func _ready():
+	Util.set_tooltip(self, tr("Show/Hide grid"), "")
+	
 func _on_GridButton_pressed():
 	StaticData.enabled_grid = pressed
 	NodeManager.get_canvas().update()

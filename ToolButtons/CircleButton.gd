@@ -4,9 +4,9 @@ export var fill = false
 
 func _ready():
 	if fill:
-		Util.set_tooltip(self, "Filled Circle tool", "Shift+C")
+		Util.set_tooltip(self, tr("Filled Circle tool"), "Shift+C")
 	else:
-		Util.set_tooltip(self, "Circle tool", "C")
+		Util.set_tooltip(self, tr("Circle tool"), "C")
 		
 func _on_CircleButton_pressed():
 	pass

@@ -2,7 +2,7 @@ extends TextureRectButton
 class_name MoveButton
 
 func _ready():
-	Util.set_tooltip(self, "Move tool", "M")
+	Util.set_tooltip(self, tr("Move tool"), "M")
 	
 func _on_MoveButton_pressed():
 	run()

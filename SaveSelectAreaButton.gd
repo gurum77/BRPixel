@@ -1,6 +1,8 @@
 extends Button
 
 	
+func _ready():
+	Util.set_tooltip(self, tr("Save selected area as image"),"")
 # save option popup이 닫히면 파일 dialog를 띄운다.
 func on_SaveOptionsPopup_hide():
 		

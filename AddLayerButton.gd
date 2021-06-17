@@ -1,8 +1,14 @@
 extends TextureRectButton
+class_name AddLayerButton
 
-
+func _ready():
+	Util.set_tooltip(self, tr("Add new layer"), "Shfit+N")
+	
 # layer를 추가하고 추가한 layer를 현재 layer로 설정한다.
 func _on_AddLayerButton_pressed():
+	run()
+	
+func run():
 	# layer를 추가한다.
 	var _result = NodeManager.get_frame(StaticData.current_frame_index).get_layers().add_layer()
 	

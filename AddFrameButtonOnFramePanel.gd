@@ -1,6 +1,9 @@
 extends TextureButton
 class_name AddFrameButtonOnFramePanel
 
+func _ready():
+	Util.set_tooltip(self, tr("Add new frame"), "")
+	
 func _on_AddFrameButtonOnFramePanel_pressed():
 	var _frame = NodeManager.get_frames().add_frame()
 	

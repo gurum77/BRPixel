@@ -3,7 +3,10 @@ var valid_drives:Array = []
 
 # tool tip을 추가한다.
 func set_tooltip(control:Control, desc, shortcut):
-	control.hint_tooltip = desc + "\n\nShortcut : " + shortcut
+	if shortcut == null || shortcut == "":
+		control.hint_tooltip = desc
+	else:
+		control.hint_tooltip = desc + "\n\n"+tr("Shortcut")+" : " + shortcut
 	
 # 검색 글자를 찍어야 하는지?(너무 밝아진 경우이다)
 func is_black_text(var color)->bool:

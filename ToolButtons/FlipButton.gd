@@ -1,6 +1,11 @@
 extends Button
 
 export var horizontal_flip = true
+func _ready():
+	if horizontal_flip:
+		Util.set_tooltip(self, tr("Horizontal flip"), "")
+	else:
+		Util.set_tooltip(self, tr("Vertical flip"), "")
 # 선택 영역을 flip 한다.
 # 선택 영역을 유지한다.	
 func _on_FlipButton_pressed():

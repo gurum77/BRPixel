@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -47,6 +47,7 @@
 [ext_resource path="res://Tools/BrighterButton.tscn" type="PackedScene" id=45]
 [ext_resource path="res://PickColorFromCanvasButton.gd" type="Script" id=46]
 [ext_resource path="res://Tools/MyColorPicker/MyColorPickerButton.tscn" type="PackedScene" id=47]
+[ext_resource path="res://Settings/SortButton.gd" type="Script" id=48]
 [ext_resource path="res://Tools/UserBrushes.gd" type="Script" id=49]
 [ext_resource path="res://Tools/DarkerButton.tscn" type="PackedScene" id=53]
 [ext_resource path="res://ToolButtons/TileModeButton.tscn" type="PackedScene" id=55]
@@ -77,9 +78,13 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends TextureRectButton
 
-
-
+func _ready():
+	Util.set_tooltip(self, tr(\"Change color\"), \"A\")
+	
 func _on_ChangeColorButton_pressed():
+	run()
+	
+func run():
 	NodeManager.get_tools().add_child(NodeManager.get_tools().change_color.instance())
 	StaticData.last_drawing_tool = NodeManager.get_tools().change_color
 
@@ -153,6 +158,8 @@ script = ExtResource( 11 )
 margin_left = 54.0
 margin_right = 104.0
 texture = ExtResource( 33 )
+first_hint_tooltip = "Brush options
+Brush type /Size/Pixel perfect"
 popup_node_path = NodePath("../../../SubmenuPopups/ToolSettingPopup")
 
 [node name="PickColorFromCanvasButton" type="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer"]
@@ -277,6 +284,7 @@ margin_bottom = 482.0
 margin_top = 486.0
 margin_bottom = 536.0
 texture = ExtResource( 31 )
+first_hint_tooltip = "Symmetry setting"
 popup_node_path = NodePath("../../../SubmenuPopups/SymmetryPopup")
 
 [node name="AnimationPopupButton" parent="UI/EditPanel/ScrollContainer/GridContainer" instance=ExtResource( 13 )]
@@ -285,6 +293,7 @@ margin_top = 486.0
 margin_right = 104.0
 margin_bottom = 536.0
 texture = ExtResource( 72 )
+first_hint_tooltip = "Animation control center"
 popup_node_path = NodePath("../../../SubmenuPopups/AnimationPopup")
 
 [node name="TextureRect" parent="UI/EditPanel/ScrollContainer/GridContainer/AnimationPopupButton" index="0"]
@@ -399,6 +408,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 50, 40 )
 icon = ExtResource( 76 )
 expand_icon = true
+script = ExtResource( 48 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
