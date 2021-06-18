@@ -15,4 +15,5 @@ margin_top = -7.0
 margin_right = -35.0
 margin_bottom = 7.0
 text = "Message Box"
+
 [connection signal="popup_hide" from="." to="." method="_on_MessagePopup_popup_hide"]
