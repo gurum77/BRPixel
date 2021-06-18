@@ -11,3 +11,4 @@ __meta__ = {
 }
 
 [connection signal="gui_input" from="." to="." method="_on_DraggablePopup_gui_input"]
+[connection signal="visibility_changed" from="." to="." method="_on_DraggablePopup_visibility_changed"]

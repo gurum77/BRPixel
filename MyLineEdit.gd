@@ -2,8 +2,8 @@ extends LineEdit
 class_name MyLineEdit
 
 func _ready():
-	connect("focus_entered", self, "_on_focus_entered")
-	connect("focus_exited", self, "_on_focus_exited")
+	var _res = connect("focus_entered", self, "_on_focus_entered")
+	_res = connect("focus_exited", self, "_on_focus_exited")
 
 func _on_focus_entered():
 	InputManager.text_editing = true

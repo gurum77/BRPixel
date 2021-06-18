@@ -23,3 +23,10 @@ func _on_MessagePopup_popup_hide():
 		call_deferred("queue_free")
 
 
+
+
+func _on_DraggablePopup_visibility_changed():
+	if visible:
+		InputManager.text_editing = true
+	else:
+		InputManager.text_editing = false

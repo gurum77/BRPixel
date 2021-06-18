@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/icon_visible_on.png" type="Texture" id=1]
 [ext_resource path="res://Assets/icon_visible_off.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Fonts/neodgm_pro.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Settings/LayerSettingButton.gd" type="Script" id=7]
 [ext_resource path="res://Settings/VisibleButton.gd" type="Script" id=8]
+[ext_resource path="res://MyLineEdit.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
@@ -68,6 +69,7 @@ editable = false
 placeholder_text = "Input layer name"
 caret_blink = true
 caret_blink_speed = 0.5
+script = ExtResource( 9 )
 
 [node name="SetCurrentLayerButton" type="Button" parent="HBoxContainer/NameLineEdit"]
 modulate = Color( 1, 1, 1, 0 )

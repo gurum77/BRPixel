@@ -74,6 +74,7 @@ func is_valid_layer_name(name)->bool:
 
 
 func _on_NameLineEdit_focus_exited():
+	InputManager.text_editing = false
 	var new_text = $HBoxContainer/NameLineEdit.text
 	if !is_valid_layer_name(new_text):
 		update_control()
@@ -94,6 +95,7 @@ func update_all_layer_info_control():
 	NodeManager.get_layer_panel().update_layer_buttons()
 		
 func _on_NameLineEdit_focus_entered():
+	InputManager.text_editing = true
 #	set_current_layer()
 	pass
 	
