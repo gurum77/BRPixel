@@ -601,6 +601,7 @@ margin_left = 130.0
 margin_right = 130.0
 
 [node name="LayerPanel" parent="UI" instance=ExtResource( 24 )]
+visible = true
 anchor_bottom = 1.0
 margin_left = -320.0
 margin_top = 164.0
@@ -648,8 +649,9 @@ __meta__ = {
 [node name="CaptionLabel" type="Label" parent="UI"]
 anchor_right = 1.0
 margin_left = 100.0
+margin_top = -0.8909
 margin_right = -100.0
-margin_bottom = 32.0
+margin_bottom = 31.1091
 rect_min_size = Vector2( 100, 30 )
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.866667, 0.85098, 0.85098, 1 )

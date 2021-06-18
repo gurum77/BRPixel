@@ -3,7 +3,7 @@ class_name BrighterButton
 
 
 func _ready():
-	Util.set_tooltip(self, tr("Brighten tool"), "B")
+	Util.set_tooltip(self, tr("Brighten tool"), "Shfit+D")
 	
 func _on_BrighterButton_pressed():
 	run()
