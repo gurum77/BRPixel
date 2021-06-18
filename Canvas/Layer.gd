@@ -178,11 +178,13 @@ func erase_pixels_by_rect(rect:Rect2, inside_working_area_only = true):
 	erase_pixels(points, inside_working_area_only)
 	
 func erase_pixels(points:Array, inside_working_area_only=true):
+
+	
 	image.lock()
 	for point in points:
 		if inside_working_area_only && !StaticData.inside_working_area(point):
 			continue
-		image.set_pixel(point.x, point.y, Color.transparent)
+		image.set_pixel(point.x, point.y, Define.delete_color)
 	image.unlock()
 	update_texture()
 	
