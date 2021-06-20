@@ -25,3 +25,4 @@ func popup_centered():
 
 func _on_ItemList_item_selected(index):
 	TranslationServer.set_locale(locales[index])
+	StaticData.save_system_options()

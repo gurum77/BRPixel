@@ -13,6 +13,9 @@ func _ready():
 	else:
 		get_tree().set_screen_stretch(SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_EXPAND, Vector2(800, 600), 1)
 	
+	# 시스템 설정 열기
+	open_system_options()
+	
 	Util.init_valid_drives()
 	$Camera.zoom_fit()
 	$UI/ColorPanel.load_current_palette()
@@ -41,6 +44,9 @@ func _ready():
 	# 마지막 작업 로드
 	load_last_project()
 
+func open_system_options():
+	StaticData.open_system_options()
+	
 func load_last_project():
 	if StaticData.open_auto_saved_project():
 		Util.show_message(self, "Hello", "The last project was recovered.", 0.5)

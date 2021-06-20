@@ -275,7 +275,52 @@ func get_value(dic:Dictionary, key, default_value):
 	if dic.has(key):
 		return dic[key]
 	return default_value
+	
+func open_system_options()->bool:
+	var _result = false
+	var path = Define.system_options_file_path
+	var open_file = File.new()
+	var _err = open_file.open(path, File.READ)
+	if _err != 0:
+		init_system_options()
+		save_system_options()
+		return false
 		
+	if open_file.get_position() < open_file.get_len():
+		_result = true
+		var dic = parse_json(open_file.get_line())
+		var locale = get_value(dic, "locale", TranslationServer.get_locale())
+		TranslationServer.set_locale(locale)
+		
+		return true
+		
+	return false
+	
+func init_system_options():
+	# 시스템 언어가 한글이 아니라면 en으로 설정
+	var locale = OS.get_locale()
+	if locale == "ko":
+		TranslationServer.set_locale(locale)
+	else:
+		TranslationServer.set_locale("en")
+	
+	
+func save_system_options()->bool:
+	var _result = false
+	var save_dic={
+		"locale" : TranslationServer.get_locale(),
+	}
+	var save_file = File.new()
+	var path = Define.system_options_file_path
+	var _err = save_file.open(path, File.WRITE)
+	if _err == OK:
+		save_file.store_line(to_json(save_dic))
+		save_file.close()
+	else:
+		Util.show_error_message(self, _err)
+		return false
+	return true
+	
 		
 func open_project(path)->bool:
 	var _result = false
