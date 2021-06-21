@@ -15,13 +15,15 @@ func _on_DrawingArea_mouse_exited():
 func _gui_input(event):
 	if InputManager.text_editing:
 		return
-	# 첫번째 lbutton up을 무시할지?
+	# 첫번째 lbutton up이 나올때 까지 마우스 클릭을 무시할지?
 	if InputManager.ignore_first_button_up:
+		if InputManager.is_action_just_pressed_lbutton(event):
+			return
 		if InputManager.is_action_just_released_lbutton(event):
 			InputManager.ignore_first_button_up = false
+			NodeManager.get_tools().run_last_drawing_tool()
 			return
 			
-		
 	# layer가 꺼져 있으면 클릭 이벤트 안 먹게 한다.
 	if !NodeManager.get_current_layer().visible:
 		if InputManager.is_action_just_released_lbutton(event):
