@@ -282,8 +282,8 @@ func open_system_options()->bool:
 	var open_file = File.new()
 	var _err = open_file.open(path, File.READ)
 	if _err != 0:
-		init_system_options()
-		save_system_options()
+		var _res = init_system_options()
+		_res = save_system_options()
 		return false
 		
 	if open_file.get_position() < open_file.get_len():

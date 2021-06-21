@@ -66,6 +66,8 @@ func _input(event):
 	# 어디선가 text 편집 중이라면 zoom 하지 말자.
 	if InputManager.text_editing:
 		return
+	if InputManager.is_exist_showing_popup():
+		return
 		
 	# touch screen drag인지?
 	if event is InputEventScreenTouch:

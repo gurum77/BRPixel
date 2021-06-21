@@ -45,7 +45,7 @@ func _ready():
 	load_last_project()
 
 func open_system_options():
-	StaticData.open_system_options()
+	var _res = StaticData.open_system_options()
 	
 func load_last_project():
 	if StaticData.open_auto_saved_project():

@@ -4,7 +4,22 @@ var pressed_lbutton = false
 var zooming = false
 var text_editing = false	# 글자 입력중인지?
 var ignore_first_button_up = false	# 첫번째 button up은 무시하는지?
+var showing_popups = []	# 보여지고 있는 팝업
 		
+func remove_showing_popup(popup):
+	if showing_popups.has(popup):
+		showing_popups.erase(popup)
+		
+func add_showing_popups(popup):
+	if has_showing_popup(popup):
+		return
+	showing_popups.append(popup)
+func has_showing_popup(popup):
+	return showing_popups.has(popup)
+	
+func is_exist_showing_popup():
+	return showing_popups.size() > 0
+	
 # 미리보기 cursor를 그린다.
 # cursor는 현재 점의 크기이다.
 func draw_preview_pixel_cursor(parent:Control, event, thickness):

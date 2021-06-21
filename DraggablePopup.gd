@@ -49,3 +49,6 @@ func _on_MessagePopup_popup_hide():
 func _on_DraggablePopup_visibility_changed():
 	if !visible:
 		InputManager.ignore_first_button_up = true
+		InputManager.remove_showing_popup(self)
+	else:
+		InputManager.add_showing_popups(self)
