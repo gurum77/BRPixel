@@ -80,10 +80,14 @@ func set_palette_from_image(image:Image):
 	var h = image.get_height()
 	var dic:Dictionary = Dictionary()
 	
+	# 이미지에서 불러올때는 최대 100개만 불러오자.
+	# 안그러면 메모리 에러남
 	image.lock()
 	for x in range(0, w):
 		for y in range(0, h):
 			dic[image.get_pixel(x, y)] = true
+			if dic.size() >= 100:
+				break
 	image.unlock()
 	
 	colors.clear()
