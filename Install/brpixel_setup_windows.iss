@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "BRPixel"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.1"
 #define MyAppPublisher "JaeHo Lee"
 #define MyAppURL "https://blog.naver.com/hileejaeho/222357691687"
 #define MyAppExeName "BRPixel.exe"
