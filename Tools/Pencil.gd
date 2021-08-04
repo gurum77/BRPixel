@@ -68,7 +68,7 @@ func drawing_area_input(_event):
 #		NodeManager.get_debug_label().text = "untouch"
 		pass
 		
-	if InputManager.is_action_just_pressed_lbutton(_event):
+	if InputManager.is_action_just_pressed_lrbutton(_event):
 #		NodeManager.get_debug_label().text = "lbutton pressed"
 		UndoManager.draw_pixels_on_current_layer.prepare_undo_for_draw_on_current_layer()
 		pixel_perfect_drawer.reset()
@@ -81,13 +81,13 @@ func drawing_area_input(_event):
 		UndoManager.draw_pixels_on_current_layer.append_undo_for_draw_on_current_layer(pixel_with_colors.keys())
 		set_symmetry_pixel_with_colors(pixel_with_colors)
 	# 마우스를 떼면 undo commit
-	elif InputManager.is_action_just_released_lbutton(_event):
+	elif InputManager.is_action_just_released_lrbutton(_event):
 		released_lbutton_count += 1
 		UndoManager.draw_pixels_on_current_layer.commit_undo_for_draw_on_current_layer()
 		drawn_points.clear()
 		
 	# 누르고 있는 동안 계속 그림
-	if start_point != null && InputManager.is_action_pressed_lbutton(_event):
+	if start_point != null && InputManager.is_action_pressed_lrbutton(_event):
 		var end_point = get_local_mouse_position()
 		# 다른 점이면 그린다.
 		if !is_same_pixels(start_point, end_point):

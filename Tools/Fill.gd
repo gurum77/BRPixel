@@ -8,7 +8,7 @@ func drawing_area_input(_event):
 		return
 	
 		
-	if !InputManager.is_action_just_released_lbutton(_event):
+	if !InputManager.is_action_just_released_lrbutton(_event):
 		return
 		
 	# image 사본을 복사한다.

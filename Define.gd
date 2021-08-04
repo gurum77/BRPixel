@@ -1,7 +1,8 @@
 extends Node
 
-var version:float = 0.1
+var version:float = 1.1
 var delete_color = Color(0, 0, 0, 0)	
+var preview_delete_color = Color(0, 0, 0, 0.2)	
 var min_canvas_size:int = 1
 var max_canvas_size:int = 1024
 var max_clipboard_count:int = 3	# clipboard 최대 갯수

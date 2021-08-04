@@ -5,6 +5,8 @@ var zooming = false
 var text_editing = false	# 글자 입력중인지?
 var ignore_first_button_up = false	# 첫번째 button up은 무시하는지?
 var showing_popups = []	# 보여지고 있는 팝업
+var lbutton_pressed = false	# 마지막에 lbutton이 눌러졌었는지?
+var rbutton_pressed = false	# 마지막에 rbutton이 눌러졌었는지?
 		
 func remove_showing_popup(popup):
 	if showing_popups.has(popup):
@@ -46,39 +48,91 @@ func is_touch_screen_zoom_event(_event)->bool:
 			return true
 	return false
 	
-func is_action_just_pressed_rbutton(_event)->bool:
-	if is_touch_screen_zoom_event(_event):
-		return false
-		
-	if Input.is_action_just_pressed("right_button"):
+func is_action_just_pressed_lrbutton(_event)->bool:
+	if is_action_just_pressed_lbutton(_event):
 		return true
+	if is_action_just_pressed_rbutton(_event):
+		return true
+	
 	return false
+	
+func is_action_just_pressed_rbutton(event)->bool:
+	return is_action_just_pressed_button(event, false)
 		
 func is_action_just_pressed_lbutton(event)->bool:
+	return is_action_just_pressed_button(event, true)
+
+func is_action_just_pressed_button(event, left)->bool:
+	lbutton_pressed = false
+	rbutton_pressed = false
 	if is_touch_screen_zoom_event(event):
 		return false
 		
-	if event.is_action_pressed("left_button"):
+	if left && event.is_action_pressed("left_button"):
+		lbutton_pressed = true
 		return true
+	elif !left && event.is_action_pressed("right_button"):
+		rbutton_pressed = true
+		return true
+		
 	if event is InputEventScreenTouch && event.pressed:
+		lbutton_pressed = true
 		return true
 	return false
-
+	
+func is_action_just_released_lrbutton(event)->bool:
+	if is_action_just_released_lbutton(event):
+		return true
+	elif is_action_just_released_rbutton(event):
+		return true
+	return false
+	
+func is_action_just_released_rbutton(event)->bool:
+	return is_action_just_released_button(event, false)
+	
 func is_action_just_released_lbutton(event)->bool:
+	return is_action_just_released_button(event, true)
+	
+	
+# left or right 버튼이 떼졌는지?
+func is_action_just_released_button(event, left)->bool:
+	lbutton_pressed = true
+	
 	if is_touch_screen_zoom_event(event):
 		return false
-
-	if event.is_action_released("left_button"):
+	
+	if left && event.is_action_released("left_button"):
+		return true
+	elif !left && event.is_action_released("right_button"):
+		lbutton_pressed = false
 		return true
 	if event is InputEventScreenTouch && !event.pressed:
 		return true
 	return false
 	
+func is_action_pressed_lrbutton(event)->bool:
+	if is_action_pressed_lbutton(event):
+		return true
+	if is_action_pressed_rbutton(event):
+		return true
+	return false
+	
+func is_action_pressed_rbutton(event)->bool:
+	return is_action_pressed_button(event, false)
+	
 func is_action_pressed_lbutton(event)->bool:
+	return is_action_pressed_button(event, true)
+	
+		
+func is_action_pressed_button(event, left)->bool:
+	lbutton_pressed = true
 	if is_touch_screen_zoom_event(event):
 		return false
 		
-	if Input.is_action_pressed("left_button"):
+	if left && Input.is_action_pressed("left_button"):
+		return true
+	elif !left && Input.is_action_pressed("right_button"):
+		lbutton_pressed = false
 		return true
 	if event is InputEventScreenDrag:
 		return true

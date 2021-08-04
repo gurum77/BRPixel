@@ -13,7 +13,7 @@ static func to_2D(idx, w) -> Vector2:
 	return p 
 	
 # point에 user brush 를 반영해서 리턴한다.
-static func get_pixel_with_colors_by_current_user_brush(points:Array)->Dictionary:
+static func get_pixel_with_colors_by_current_user_brush(points:Array, for_preview=false)->Dictionary:
 	var pixel_with_colors = Dictionary()
 	
 	var _image = StaticData.current_user_brush_texture.get_data()
@@ -46,20 +46,32 @@ static func get_pixel_with_colors_by_current_user_brush(points:Array)->Dictionar
 					image_y = new_point_y - floor(new_point_y / h) * h
 				
 				var color = _image.get_pixel(image_x, image_y)
+				if InputManager.rbutton_pressed:
+					if for_preview:
+						color = Define.preview_delete_color
+					else:
+						color = Define.delete_color
+					
 				pixel_with_colors[Vector2(new_point_x, new_point_y)] = color
 				
 	_image.unlock()	
 	return pixel_with_colors
 	
 # point로 brush type을 반영한 pixel을 리턴한다.
-static func get_pixel_with_colors_by_brush_type(var points)->Dictionary:
+static func get_pixel_with_colors_by_brush_type(var points, for_preview=false)->Dictionary:
 	if StaticData.brush_type != StaticData.BrushType.User:
 		var pixels = Dictionary()
 		for point in points:
-			pixels[point] = StaticData.current_color
+			if InputManager.lbutton_pressed:
+				pixels[point] = StaticData.current_color
+			else:
+				if for_preview:
+					pixels[point] = Define.preview_delete_color
+				else:
+					pixels[point] = Define.delete_color
 		return pixels
 	else:
-		return GeometryMaker.get_pixel_with_colors_by_current_user_brush(points)
+		return GeometryMaker.get_pixel_with_colors_by_current_user_brush(points, for_preview)
 		
 # ortho로 end point를 보정해서 리턴한다.
 static func get_end_point_by_orthomode(var from, var to)->Vector2:
